@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Alfursan.App_Start;
+using Alfursan.Infrastructure;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Alfursan.IService;
 
 namespace Alfursan
 {
@@ -13,6 +12,9 @@ namespace Alfursan
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            IocContainer.Initialize(new BootstrapContainer());
+            var userService = IocContainer.Resolve<IUserService>();
+            var user = userService.Login("a@a.com", "23");
         }
     }
 }

@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -84,6 +90,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BootstrapContainer.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -104,6 +111,32 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alfursan.Domain\Alfursan.Domain.csproj">
+      <Project>{AB3EA5CF-DF17-48FA-97DA-80EF20B278FA}</Project>
+      <Name>Alfursan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alfursan.Infrastructure\Alfursan.Infrastructure.csproj">
+      <Project>{2F861CF7-A3E9-48F2-965D-E4DE30EC30BE}</Project>
+      <Name>Alfursan.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alfursan.IRepository\Alfursan.IRepository.csproj">
+      <Project>{4E9341AF-FF94-4FD3-B967-1EFF9CD402AA}</Project>
+      <Name>Alfursan.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alfursan.IService\Alfursan.IService.csproj">
+      <Project>{7B975A6D-E859-4010-95D8-D6CFC7199FFC}</Project>
+      <Name>Alfursan.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alfursan.Repository\Alfursan.Repository.csproj">
+      <Project>{C31A5470-256F-4804-AC0C-718A6A58FDC5}</Project>
+      <Name>Alfursan.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alfursan.Service\Alfursan.Service.csproj">
+      <Project>{34C4C286-E301-444A-B4F9-1EADDB3175DA}</Project>
+      <Name>Alfursan.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
