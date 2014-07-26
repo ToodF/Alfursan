@@ -1,0 +1,17 @@
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Service.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Service.pdb
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Domain.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Infrastructure.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.IRepository.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.IService.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Castle.Core.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Castle.Windsor.dll
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Domain.pdb
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.Infrastructure.pdb
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.IRepository.pdb
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Alfursan.IService.pdb
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Castle.Core.xml
+D:\Github\Alfursan\Alfursan.Service\bin\Debug\Castle.Windsor.xml
+D:\Github\Alfursan\Alfursan.Service\obj\Debug\Alfursan.Service.csprojResolveAssemblyReference.cache
+D:\Github\Alfursan\Alfursan.Service\obj\Debug\Alfursan.Service.dll
+D:\Github\Alfursan\Alfursan.Service\obj\Debug\Alfursan.Service.pdb

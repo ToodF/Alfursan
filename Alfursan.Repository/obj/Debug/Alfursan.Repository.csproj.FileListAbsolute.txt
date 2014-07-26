@@ -1,0 +1,12 @@
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.Repository.dll
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.Repository.pdb
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.Domain.dll
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.IRepository.dll
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Dapper.dll
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.Domain.pdb
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Alfursan.IRepository.pdb
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Dapper.pdb
+D:\Github\Alfursan\Alfursan.Repository\bin\Debug\Dapper.xml
+D:\Github\Alfursan\Alfursan.Repository\obj\Debug\Alfursan.Repository.csprojResolveAssemblyReference.cache
+D:\Github\Alfursan\Alfursan.Repository\obj\Debug\Alfursan.Repository.dll
+D:\Github\Alfursan\Alfursan.Repository\obj\Debug\Alfursan.Repository.pdb

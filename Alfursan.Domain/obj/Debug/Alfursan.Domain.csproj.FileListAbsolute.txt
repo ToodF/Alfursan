@@ -1,0 +1,4 @@
+D:\Github\Alfursan\Alfursan.Domain\bin\Debug\Alfursan.Domain.dll
+D:\Github\Alfursan\Alfursan.Domain\bin\Debug\Alfursan.Domain.pdb
+D:\Github\Alfursan\Alfursan.Domain\obj\Debug\Alfursan.Domain.dll
+D:\Github\Alfursan\Alfursan.Domain\obj\Debug\Alfursan.Domain.pdb

@@ -33,9 +33,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                con.Open();
-                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @pass", new { Email = email, Password = password }).First();
-                con.Close();
+                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = email, Password = password }).First();
                 return user;
             }
         }
