@@ -1,7 +1,0 @@
-D:\Github\Alfursan\Alfursan.IRepository\bin\Debug\Alfursan.IRepository.dll
-D:\Github\Alfursan\Alfursan.IRepository\bin\Debug\Alfursan.IRepository.pdb
-D:\Github\Alfursan\Alfursan.IRepository\bin\Debug\Alfursan.Domain.dll
-D:\Github\Alfursan\Alfursan.IRepository\bin\Debug\Alfursan.Domain.pdb
-D:\Github\Alfursan\Alfursan.IRepository\obj\Debug\Alfursan.IRepository.csprojResolveAssemblyReference.cache
-D:\Github\Alfursan\Alfursan.IRepository\obj\Debug\Alfursan.IRepository.dll
-D:\Github\Alfursan\Alfursan.IRepository\obj\Debug\Alfursan.IRepository.pdb

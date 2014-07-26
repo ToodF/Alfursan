@@ -1,8 +1,0 @@
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Alfursan.Infrastructure.dll
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Alfursan.Infrastructure.pdb
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Castle.Core.dll
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Castle.Windsor.dll
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Castle.Core.xml
-D:\Github\Alfursan\Alfursan.Infrastructure\bin\Debug\Castle.Windsor.xml
-D:\Github\Alfursan\Alfursan.Infrastructure\obj\Debug\Alfursan.Infrastructure.dll
-D:\Github\Alfursan\Alfursan.Infrastructure\obj\Debug\Alfursan.Infrastructure.pdb

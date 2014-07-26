@@ -1,7 +1,0 @@
-D:\Github\Alfursan\Alfursan.IService\bin\Debug\Alfursan.IService.dll
-D:\Github\Alfursan\Alfursan.IService\bin\Debug\Alfursan.IService.pdb
-D:\Github\Alfursan\Alfursan.IService\bin\Debug\Alfursan.Domain.dll
-D:\Github\Alfursan\Alfursan.IService\bin\Debug\Alfursan.Domain.pdb
-D:\Github\Alfursan\Alfursan.IService\obj\Debug\Alfursan.IService.csprojResolveAssemblyReference.cache
-D:\Github\Alfursan\Alfursan.IService\obj\Debug\Alfursan.IService.dll
-D:\Github\Alfursan\Alfursan.IService\obj\Debug\Alfursan.IService.pdb
