@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using Alfursan.Domain;
+﻿using Alfursan.Domain;
 using Alfursan.IRepository;
 using Dapper;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Alfursan.Repository
 {
@@ -24,22 +23,28 @@ namespace Alfursan.Repository
             throw new System.NotImplementedException();
         }
 
-        public User Get(string userName)
+        public User Get(string emailOrUsername)
         {
             throw new System.NotImplementedException();
         }
 
-        public User Get(string email, string password)
+        public User Get(string emailOrUsername, string password)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = email, Password = password }).First();
+                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password }).First();
                 return user;
             }
         }
 
 
-        public List<User> GetAllByUserType(EnumUserType userType)
+        public List<User> GetAllByUserType(EnumProfile profile)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public void ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
         {
             throw new System.NotImplementedException();
         }

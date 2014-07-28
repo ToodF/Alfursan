@@ -23,7 +23,7 @@ namespace Alfursan.Service
             return user;
         }
 
-        public List<User> GetAllByUserType(EnumUserType type)
+        public List<User> GetAllByUserType(EnumProfile profile)
         {
             throw new NotImplementedException();
         }
