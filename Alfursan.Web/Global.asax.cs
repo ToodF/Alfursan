@@ -23,7 +23,7 @@ namespace Alfursan.Web
         {
             //if (Request.RequestContext.RouteData.Values["culture"] != null)
             {
-                string lang = "en";
+                string lang = "ar";
                 //string lang = Request.RequestContext.RouteData.Values["culture"].ToString();
                 //CultureInfo culture = CultureInfo.InvariantCulture;//if need invariant
                 CultureInfo culture = CultureInfo.GetCultureInfo(lang);

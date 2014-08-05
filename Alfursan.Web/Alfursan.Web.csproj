@@ -196,14 +196,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.ar.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ar\bootstrap.css" />
+    <Content Include="Content\en\bootstrap.css" />
+    <Content Include="Content\ar\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Images\logo.png" />
+    <Content Include="Content\en\Site.css" />
+    <Content Include="Images\ar\logo.png" />
+    <Content Include="Images\en\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
