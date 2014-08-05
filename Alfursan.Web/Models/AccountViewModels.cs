@@ -39,15 +39,15 @@ namespace Alfursan.Web.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email",ResourceType = typeof(Alfursan.Resx.Account))]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", ResourceType = typeof(Alfursan.Resx.Account))]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Rememberme",ResourceType = typeof(Alfursan.Resx.Account))]
         public bool RememberMe { get; set; }
     }
 

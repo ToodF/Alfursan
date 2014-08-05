@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Globalization;
+using System.Threading;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Alfursan.Infrastructure;
@@ -16,9 +18,19 @@ namespace Alfursan.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             IocContainer.Initialize(new BootstrapContainer());
+        }
+        protected void Application_BeginRequest()
+        {
+            //if (Request.RequestContext.RouteData.Values["culture"] != null)
+            {
+                string lang = "en";
+                //string lang = Request.RequestContext.RouteData.Values["culture"].ToString();
+                //CultureInfo culture = CultureInfo.InvariantCulture;//if need invariant
+                CultureInfo culture = CultureInfo.GetCultureInfo(lang);
 
-            //var userService = IocContainer.Resolve<IUserService>();
-            //var user = userService.Login("a@a.com", "23");
+                Thread.CurrentThread.CurrentUICulture = culture;
+                Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
     }
 }
