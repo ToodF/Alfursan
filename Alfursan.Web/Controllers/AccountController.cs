@@ -405,8 +405,9 @@ namespace Alfursan.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            FormsAuthentication.SignOut();
+            //AuthenticationManager.SignOut();
+            return RedirectToAction("Login", "Account");
         }
 
         //
