@@ -25,12 +25,12 @@ namespace Alfursan.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/en").Include(
+            bundles.Add(new StyleBundle("~/Style/en").Include(
                       "~/Content/en/bootstrap.css",
                       "~/Content/en/site.css",
                       "~/Plugins/Datatable/style/jquery.dataTables.css",
                       "~/Plugins/Datatable/style/jquery.dataTables_themeroller.css"));
-            bundles.Add(new StyleBundle("~/Content/css/ar").Include(
+            bundles.Add(new StyleBundle("~/Style/ar").Include(
                      "~/Content/ar/bootstrap.css",
                      "~/Content/ar/site.css"));
 

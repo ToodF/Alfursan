@@ -18,5 +18,14 @@ namespace Alfursan.Web.Controllers
         {
             return View();
         }
+        public ActionResult UserList()
+        {
+            return View();
+        }
+
+        public PartialViewResult _CreateUserView()
+        {
+            return PartialView();
+        }
     }
 }

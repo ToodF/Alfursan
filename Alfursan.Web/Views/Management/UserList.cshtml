@@ -1,0 +1,16 @@
+﻿
+<h2>UserListView</h2>
+
+<button class="btn btn-primary" id="create-user">
+    New
+</button>
+@Html.Partial("/Views/Shared/_ModalView.cshtml")
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Alfursan.Management.js"></script>
+    <script>
+        $("#create-user").click(function () {
+            AlfursanManagement.OpenCreateUserModel();
+        });
+    </script>
+}
