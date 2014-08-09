@@ -18,6 +18,8 @@ namespace Alfursan.Web
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
+                        "~/Plugins/Datatable/js/jquery.dataTables.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -25,7 +27,9 @@ namespace Alfursan.Web
 
             bundles.Add(new StyleBundle("~/Content/css/en").Include(
                       "~/Content/en/bootstrap.css",
-                      "~/Content/en/site.css"));
+                      "~/Content/en/site.css",
+                      "~/Plugins/Datatable/style/jquery.dataTables.css",
+                      "~/Plugins/Datatable/style/jquery.dataTables_themeroller.css"));
             bundles.Add(new StyleBundle("~/Content/css/ar").Include(
                      "~/Content/ar/bootstrap.css",
                      "~/Content/ar/site.css"));

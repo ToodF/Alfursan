@@ -222,6 +222,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Plugins\Datatable\js\jquery.dataTables.js" />
+    <Content Include="Plugins\Datatable\js\jquery.dataTables.min.js" />
+    <Content Include="Plugins\Datatable\style\jquery.dataTables.css" />
+    <Content Include="Plugins\Datatable\style\jquery.dataTables.min.css" />
+    <Content Include="Plugins\Datatable\style\jquery.dataTables_themeroller.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
