@@ -15,5 +15,6 @@ namespace Alfursan.Domain
         public string Address { get; set; }
         public int CreatedUserId { get; set; }
         public bool Isdeleted { get; set; }
+        public int CountryId{ get; set; }
     }
 }

@@ -30,7 +30,16 @@ namespace Alfursan.Service
 
         public void Set(User user)
         {
-            userRepository.Set(user);
+            if (user.UserId == 0)
+                userRepository.Set(user);
+            else
+                userRepository.Update(user);
+        }
+
+        public User Get(int userId)
+        {
+            var user = userRepository.Get(userId);
+            return user;
         }
 
 

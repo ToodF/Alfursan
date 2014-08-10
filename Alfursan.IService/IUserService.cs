@@ -11,5 +11,7 @@ namespace Alfursan.IService
         List<User> GetAllByUserType(EnumProfile profile);
 
         void Set(User user);
+
+        User Get(int userId);
     }
 }

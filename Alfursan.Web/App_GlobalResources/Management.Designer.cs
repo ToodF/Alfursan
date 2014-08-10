@@ -70,6 +70,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string btnDelete {
+            get {
+                return ResourceManager.GetString("btnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CompanyName.
         /// </summary>
         public static string CompanyName {
@@ -88,11 +97,47 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CustomOfficer.
+        /// </summary>
+        public static string CustomOfficer {
+            get {
+                return ResourceManager.GetString("CustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model is not valid.
+        /// </summary>
+        public static string ErrorMessage_ModelNotValid {
+            get {
+                return ResourceManager.GetString("ErrorMessage_ModelNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User save..
+        /// </summary>
+        public static string Message_SetUserSuccess {
+            get {
+                return ResourceManager.GetString("Message_SetUserSuccess", resourceCulture);
             }
         }
         

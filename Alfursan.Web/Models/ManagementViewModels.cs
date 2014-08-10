@@ -5,7 +5,6 @@ namespace Alfursan.Web.Models
 {
     public class UserViewModel
     {
-        [Required]
         public int UserId { get; set; }
 
         [Display(Name = "UserName", ResourceType = typeof(Alfursan.Resx.Management))]
@@ -48,6 +47,12 @@ namespace Alfursan.Web.Models
 
         [Display(Name = "Address", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Address { get; set; }
+
+        [Display(Name = "Country", ResourceType = typeof(Alfursan.Resx.Management))]
+        public int CountryId { get; set; }
+
+        [Display(Name = "CustomOfficer", ResourceType = typeof(Alfursan.Resx.Management))]
+        public int CustomOfficerId { get; set; }
     }
 
     public class UserListViewModel

@@ -2,15 +2,15 @@
 @model Alfursan.Web.Models.UserViewModel
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "/api/UserApi" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>UserViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -18,10 +18,10 @@
                 @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.User)@Html.Label(Alfursan.Resx.Management.Profile_User)
                 @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Customer) @Html.Label(Alfursan.Resx.Management.Profile_Customer)
                 @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.CustomOfficer) @Html.Label(Alfursan.Resx.Management.Profile_CustomOfficer)
-               
+
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -79,6 +79,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CountryId, (List<SelectListItem>)ViewData["List"], htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
@@ -94,18 +102,26 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group" id="form-item-customerofficer" style="display: @{Write((Model != null && Model.ProfileId == EnumProfile.Customer) ? "block" : "none");}"> 
+            @Html.LabelFor(model => model.CustomOfficerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CustomOfficerId, (List<SelectListItem>)ViewData["List"], htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CustomOfficerId, "", new { @class = "text-danger" })
             </div>
         </div>
+       
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script>
+    $(document).ready(function () {
+        $("input[name='ProfileId']").change(function () {
+            var id = @((int)EnumProfile.Customer);
+            if ($(this).val() == id) {
+                $("#form-item-customerofficer").css("display", "block");
+            } else {
+                $("#form-item-customerofficer").css("display", "none");
+            }
+        });
+    });
+</script>

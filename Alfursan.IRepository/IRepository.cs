@@ -9,5 +9,7 @@ namespace Alfursan.IRepository
         void Set(T entity);
 
         List<T> GetAll();
+
+        void Update(T entity);
     }
 }

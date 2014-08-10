@@ -17,6 +17,10 @@
         $("#create-user").click(function () {
             AlfursanManagement.OpenCreateUserModel();
         });
+        $("input[name='delete-user']").click(function() {
+            var id = $(this).attr("data");
+            alert(id);
+        });
     </script>
 }
 <div id="grid-container">
@@ -28,6 +32,7 @@
                 <th>@{Write(Alfursan.Resx.Management.Surname);}</th>
                 <th>@{Write(Alfursan.Resx.Management.Email);}</th>
                 <th>@{Write(Alfursan.Resx.Management.Phone);}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,12 +40,13 @@
             {
                 foreach (var user in Model)
                 {
-                    <tr>
+                    <tr data="@user.UserId">
                         <td>@user.ProfileId</td>
                         <td>@user.Name</td>
                         <td>@user.Surname</td>
                         <td>@user.Email</td>
                         <td>@user.Phone</td>
+                        <td><input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn" name="delete-user" data="@user.UserId" /></td>
                     </tr>
                 }
             }

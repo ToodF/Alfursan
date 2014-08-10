@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Models;
 using AutoMapper;
+using Microsoft.Owin;
+using FormCollection = System.Web.Mvc.FormCollection;
 
 namespace Alfursan.Web.Controllers
 {
@@ -26,10 +29,10 @@ namespace Alfursan.Web.Controllers
             return "value";
         }
 
-        // POST: api/AlfuranApi
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST: api/AlfuranApi
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/AlfuranApi/5
         public void Put(int id, [FromBody]string value)
@@ -60,5 +63,7 @@ namespace Alfursan.Web.Controllers
             };
             return dataGirdModelView;
         }
+
+       
     }
 }

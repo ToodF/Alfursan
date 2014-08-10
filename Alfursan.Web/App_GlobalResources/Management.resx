@@ -159,4 +159,19 @@
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CustomOfficer" xml:space="preserve">
+    <value>CustomOfficer</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ErrorMessage_ModelNotValid" xml:space="preserve">
+    <value>Model is not valid</value>
+  </data>
+  <data name="Message_SetUserSuccess" xml:space="preserve">
+    <value>User save.</value>
+  </data>
 </root>

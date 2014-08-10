@@ -10,7 +10,11 @@ namespace Alfursan.Repository
     {
         public User Get(int id)
         {
-            throw new System.NotImplementedException();
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var user = con.Query<User>("select * from [User] where UserId = @UserId",new {UserId = id}).First();
+                return user;
+            }
         }
 
         public List<User> GetAll()
@@ -26,19 +30,6 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-              //var result =   con.Execute("insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values ('@UserName','@Email','@Password','@Name','@Surname','@CompanyName','@Phone','@Address',@ProfileId)",new
-              //  {
-              //      UserName = entity.UserName
-              //      , Email = entity.Email
-              //      , Password = entity.Password
-              //      , Name = entity.Name
-              //      , Surname =  entity.Surname
-              //      , CompanyName =  entity.CompanyName
-              //      , Phone = entity.Phone
-              //      , Address = entity.Address
-              //      , ProfileId = entity.ProfileId
-              //  });
-
                  var result =   con.Execute("insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)",entity);
             }
         }
@@ -56,8 +47,7 @@ namespace Alfursan.Repository
                 return user;
             }
         }
-
-
+        
         public List<User> GetAllByUserType(EnumProfile profile)
         {
             using (var con = DapperHelper.CreateConnection())
@@ -67,10 +57,28 @@ namespace Alfursan.Repository
             }
         }
 
-
         public void ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void Update(User entity)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var result = con.Execute(@"update [User] set 
+                                            UserName = @UserName
+                                            , Email = @Email
+                                            , Password = @Password
+                                            , Name = @Name
+                                            , Surname = @Surname
+                                            , CompanyName = @CompanyName
+                                            , Phone = @Phone
+                                            , CountryId = @CountryId
+                                            , Address = @Address
+                                            , ProfileId = @ProfileId
+                                            where UserId = @UserId", entity);
+            }
         }
     }
 }
