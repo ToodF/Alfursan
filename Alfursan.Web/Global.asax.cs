@@ -1,11 +1,16 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using System.Web.Http;
+using Alfursan.Web.Models;
+using AutoMapper;
+
 namespace Alfursan.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -17,9 +22,8 @@ namespace Alfursan.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-           
-
             IocContainer.Initialize(new BootstrapContainer());
+          
         }
         protected void Application_BeginRequest()
         {

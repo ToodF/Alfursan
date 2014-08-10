@@ -27,5 +27,17 @@ namespace Alfursan.Service
         {
             throw new NotImplementedException();
         }
+
+        public void Set(User user)
+        {
+            userRepository.Set(user);
+        }
+
+
+        public List<User> GetAll()
+        {
+            var users = userRepository.GetAll();
+            return users;
+        }
     }
 }

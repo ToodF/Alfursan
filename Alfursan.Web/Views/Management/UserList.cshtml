@@ -1,4 +1,6 @@
-﻿
+﻿@using System.Resources
+@using Microsoft.Ajax.Utilities
+@model List<Alfursan.Web.Models.UserListViewModel>
 <h2>UserListView</h2>
 
 <button class="btn btn-primary" id="create-user">
@@ -9,8 +11,40 @@
 {
     <script type="text/javascript" src="~/Scripts/Alfursan.Management.js"></script>
     <script>
+        $(document).ready(function () {
+            AlfursanManagement.GetUserList("sd");
+        });
         $("#create-user").click(function () {
             AlfursanManagement.OpenCreateUserModel();
         });
     </script>
 }
+<div id="grid-container">
+    <table id="grid-users" class="table table-striped table-bordered hover " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>@{Write(Alfursan.Resx.Management.Profile);}</th>
+                <th>@{Write(Alfursan.Resx.Management.Name);}</th>
+                <th>@{Write(Alfursan.Resx.Management.Surname);}</th>
+                <th>@{Write(Alfursan.Resx.Management.Email);}</th>
+                <th>@{Write(Alfursan.Resx.Management.Phone);}</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.ProfileId</td>
+                        <td>@user.Name</td>
+                        <td>@user.Surname</td>
+                        <td>@user.Email</td>
+                        <td>@user.Phone</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

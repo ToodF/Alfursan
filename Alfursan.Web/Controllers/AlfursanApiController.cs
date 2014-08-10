@@ -4,7 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Alfursan.Domain;
+using Alfursan.Infrastructure;
+using Alfursan.IService;
 using Alfursan.Web.Models;
+using AutoMapper;
 
 namespace Alfursan.Web.Controllers
 {
@@ -38,9 +42,23 @@ namespace Alfursan.Web.Controllers
         }
 
         [Route("api/alfursanapi/GetUsersByType/{userType}")]
-        public List<UserListViewModel> Get(string userType)
+        public DataGirdModelView Get(string userType)
         {
-            return new List<UserListViewModel>() { new UserListViewModel() { Email = "dfdf" } };
+            var userService = IocContainer.Resolve<IUserService>();
+            var users = userService.GetAll();
+            Mapper.CreateMap<User, UserListViewModel>();
+            var userListViewModel = Mapper.Map<List<User>, List<UserListViewModel>>(users);
+            var dataGirdModelView = new DataGirdModelView();
+            dataGirdModelView.recordsTotal = userListViewModel.Count;
+            dataGirdModelView.draw = 1;
+            dataGirdModelView.recordsFiltered = userListViewModel.Count;
+            dataGirdModelView.data = userListViewModel.ToArray();
+            var jsonResult = new System.Web.Mvc.JsonResult
+            {
+                Data = dataGirdModelView,
+                JsonRequestBehavior = System.Web.Mvc.JsonRequestBehavior.AllowGet
+            };
+            return dataGirdModelView;
         }
     }
 }

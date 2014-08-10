@@ -7,6 +7,9 @@ namespace Alfursan.IService
     {
         User Login(string email, string pass);
 
+        List<User> GetAll();
         List<User> GetAllByUserType(EnumProfile profile);
+
+        void Set(User user);
     }
 }

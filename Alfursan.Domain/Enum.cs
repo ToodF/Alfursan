@@ -3,7 +3,6 @@ using System;
 
 namespace Alfursan.Domain
 {
-    [Flags]
     public enum EnumProfile
     {
         None = 0,

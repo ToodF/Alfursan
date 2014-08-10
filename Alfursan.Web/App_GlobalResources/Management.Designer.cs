@@ -133,6 +133,42 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Profile_Admin {
+            get {
+                return ResourceManager.GetString("Profile_Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer.
+        /// </summary>
+        public static string Profile_Customer {
+            get {
+                return ResourceManager.GetString("Profile_Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Officer.
+        /// </summary>
+        public static string Profile_CustomOfficer {
+            get {
+                return ResourceManager.GetString("Profile_CustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string Profile_User {
+            get {
+                return ResourceManager.GetString("Profile_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
         public static string Surname {

@@ -30,18 +30,18 @@ namespace Alfursan.Web.Models
         [Required]
         [Display(Name = "Name", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Name { get; set; }
-        
+
         [Required]
         [Display(Name = "Surname", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Surname { get; set; }
-        
+
         [Required]
         [Display(Name = "Profile", ResourceType = typeof(Alfursan.Resx.Management))]
-        public EnumProfile Profile { get; set; }
+        public EnumProfile ProfileId { get; set; }
 
         [Display(Name = "CompanyName", ResourceType = typeof(Alfursan.Resx.Management))]
         public string CompanyName { get; set; }
-        
+
         [Required]
         [Display(Name = "Phone", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Phone { get; set; }
@@ -53,11 +53,20 @@ namespace Alfursan.Web.Models
     public class UserListViewModel
     {
         public int UserId { get; set; }
+        [Display(Name = "UserName", ResourceType = typeof(Alfursan.Resx.Management))]
         public string UserName { get; set; }
+        [Display(Name = "Email", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Email { get; set; }
+        [Display(Name = "Name", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Name { get; set; }
+        [Display(Name = "Surname", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Surname { get; set; }
-        public EnumProfile Profile { get; set; }
+
+        public EnumProfile ProfileId { get; set; }
+
+        [Display(Name = "Profile", ResourceType = typeof(Alfursan.Resx.Management))]
+        public string ProfileName { get; set; }
+        [Display(Name = "Phone", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Phone { get; set; }
     }
 }
