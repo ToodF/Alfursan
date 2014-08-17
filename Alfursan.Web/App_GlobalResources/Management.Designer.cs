@@ -124,24 +124,6 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model is not valid.
-        /// </summary>
-        public static string ErrorMessage_ModelNotValid {
-            get {
-                return ResourceManager.GetString("ErrorMessage_ModelNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User save..
-        /// </summary>
-        public static string Message_SetUserSuccess {
-            get {
-                return ResourceManager.GetString("Message_SetUserSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {

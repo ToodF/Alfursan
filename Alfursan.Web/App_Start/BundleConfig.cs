@@ -25,11 +25,25 @@ namespace Alfursan.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fileupload").Include(
+                     "~/Plugins/JQueryFileUpload/js/vendor/jquery.ui.widget.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.iframe-transport.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload-process.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload-image.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload-audio.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload-video.js",
+                     "~/Plugins/JQueryFileUpload/js/jquery.fileupload-validate.js"
+                     ));
+
             bundles.Add(new StyleBundle("~/Style/en").Include(
                       "~/Content/en/bootstrap.css",
                       "~/Content/en/site.css",
-                      "~/Plugins/Datatable/style/jquery.dataTables.css",
-                      "~/Plugins/Datatable/style/jquery.dataTables_themeroller.css"));
+                      "~/Plugins/Datatable/css/jquery.dataTables.css",
+                      "~/Plugins/Datatable/css/jquery.dataTables_themeroller.css",
+                      "~/Plugins/Datatable/css/style.css",
+                      "~/Plugins/Datatable/css/jquery.fileupload.css"
+                      ));
             bundles.Add(new StyleBundle("~/Style/ar").Include(
                      "~/Content/ar/bootstrap.css",
                      "~/Content/ar/site.css"));

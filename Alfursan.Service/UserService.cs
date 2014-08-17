@@ -15,7 +15,7 @@ namespace Alfursan.Service
         {
             userRepository = IocContainer.Resolve<IUserRepository>();
         }
-        public User Login(string email, string pass)
+        public EntityResponder<User> Login(string email, string pass)
         {
             var user = userRepository.Get(email, pass);
             if (user == null)
@@ -23,30 +23,34 @@ namespace Alfursan.Service
             return user;
         }
 
-        public List<User> GetAllByUserType(EnumProfile profile)
+        public EntityResponder<List<User>> GetAllByUserType(EnumProfile profile)
         {
             throw new NotImplementedException();
         }
 
-        public void Set(User user)
+        public Responder Set(User user)
         {
             if (user.UserId == 0)
-                userRepository.Set(user);
+                return userRepository.Set(user);
             else
-                userRepository.Update(user);
+                return userRepository.Update(user);
         }
 
-        public User Get(int userId)
+        public EntityResponder<User> Get(int userId)
         {
             var user = userRepository.Get(userId);
             return user;
         }
 
-
-        public List<User> GetAll()
+        public EntityResponder<List<User>> GetAll()
         {
             var users = userRepository.GetAll();
             return users;
+        }
+
+        public Responder Delete(int id)
+        {
+            return userRepository.Delete(id);
         }
     }
 }

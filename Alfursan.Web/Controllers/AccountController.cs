@@ -1,9 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Resources;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
+using Alfursan.Resx;
+using Alfursan.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -15,6 +21,10 @@ namespace Alfursan.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+
+        private string LoginCookieKey = Util.Util.BasicEncrypt("LoginCookieKey", true, "Login");
+        private string UserNameKey = Util.Util.BasicEncrypt("UserName", true, "Login");
+        private string PasswordKey = Util.Util.BasicEncrypt("Password", true, "Login");
 
         public AccountController()
         {
@@ -42,6 +52,36 @@ namespace Alfursan.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            //LoginCookieSet edildiyse kullanıcı login sayfasına girmeden login olur.
+            if (Request.Cookies[LoginCookieKey] != null)
+            {
+                HttpCookie cookie = null;
+                try
+                {
+                    cookie = Request.Cookies.Get(LoginCookieKey);
+                    if (cookie != null && cookie.Values.AllKeys.Any(f => f != null))
+                    {
+                        var loginViewModel = new LoginViewModel();
+
+                        loginViewModel.Email = Util.Util.DecryptString(cookie.Values[UserNameKey]);
+                        loginViewModel.Password = Util.Util.DecryptString(cookie.Values[PasswordKey]);
+                        loginViewModel.RememberMe = true;
+                        var isLogin = LoginAndSetCookie(loginViewModel, returnUrl);
+                        if (isLogin)
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    if (cookie != null)
+                    {
+                        Response.Cookies.Remove(cookie.Name);
+                    }
+                }
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -55,17 +95,10 @@ namespace Alfursan.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userService = IocContainer.Resolve<IUserService>();
-                var user = userService.Login(model.Email, model.Password);
-                if (user != null)
+                var isLogin = LoginAndSetCookie(model, returnUrl);
+                if (isLogin)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, model.RememberMe);
-                    //return RedirectToAction("Index", "Home");
                     return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
                 }
                 //var user = await UserManager.FindAsync(model.Email, model.Password);
                 //if (user != null)
@@ -81,6 +114,35 @@ namespace Alfursan.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        bool LoginAndSetCookie(LoginViewModel model, string returnUrl)
+        {
+            model.Password = Util.Util.EncryptWithMD5(model.Password);
+            var userService = IocContainer.Resolve<IUserService>();
+            var response = userService.Login(model.Email, model.Password);
+            if (response.ResponseCode == EnumResponseCode.Successful)
+            {
+                var user = response.Data;
+                FormsAuthentication.SetAuthCookie(user.UserName, model.RememberMe);
+                if (model.RememberMe)
+                {
+                    var isSecure = Request.Url.Scheme.Equals("https") ? true : false;
+                    var cookie = new HttpCookie(LoginCookieKey) { HttpOnly = true, Secure = isSecure };
+                    cookie.Values.Add(UserNameKey, Util.Util.EncryptString(user.Email));
+                    cookie.Values.Add(PasswordKey, Util.Util.EncryptString(user.Password));
+                    var dtExpiry = DateTime.UtcNow.AddDays(14);
+                    cookie.Expires = dtExpiry;
+                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+                }
+                return true;
+            }
+            else
+            {
+
+                ModelState.AddModelError("", ResourceHelper.GetGlobalMessageResource(response.ResponseUserFriendlyMessageKey));
+            }
+            return false;
         }
 
         //

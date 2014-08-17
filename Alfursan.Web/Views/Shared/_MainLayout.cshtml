@@ -39,46 +39,6 @@
     @Scripts.Render("~/bundles/datatable")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $(".modal-footer .btn-primary").click(function () {
-                var form = $(".modal-body form");
-                if ($("#form").validate()) {
-                   
-                } else {
-                    alert("notvalid");
-                    return false;
-                }
-                $.ajax({
-                    type: form.attr('method'),
-                    url: form.attr('action'),
-                    data: form.serialize()
-                }).done(function (result) {
-                    var messageCode = "alert-success";
-                    if (result.ReturnCode == "2") {
-                        messageCode = "alert-danger";
-                    }
-                    else if (result.ReturnCode == "3") {
-                        messageCode = "alert-warning";
-                    }
-                    else if (result.ReturnCode == "4") {
-                        messageCode = "alert-info";
-                    }
-                    var alertDiv = $(".alert");
-                    if (alertDiv.size() > 0) {
-                        alertDiv.removeAttr("class");
-                        alertDiv.addClass("alert");
-                        alertDiv.addClass(messageCode);
-                        alertDiv.html(result.ResponseMessage);
-                    } else {
-                        $(".modal-body").append('<div class="alert ' + messageCode + '" role="alert">' + result.ResponseMessage + '</div>');
-                    }
-
-                }).fail(function () {
-                    // Optionally alert the user of an error here...
-                });
-            });
-        });
-    </script>
+  
 </body>
 </html>

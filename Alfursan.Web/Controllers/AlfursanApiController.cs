@@ -50,7 +50,7 @@ namespace Alfursan.Web.Controllers
             var userService = IocContainer.Resolve<IUserService>();
             var users = userService.GetAll();
             Mapper.CreateMap<User, UserListViewModel>();
-            var userListViewModel = Mapper.Map<List<User>, List<UserListViewModel>>(users);
+            var userListViewModel = Mapper.Map<List<User>, List<UserListViewModel>>(users.Data);
             var dataGirdModelView = new DataGirdModelView();
             dataGirdModelView.recordsTotal = userListViewModel.Count;
             dataGirdModelView.draw = 1;

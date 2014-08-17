@@ -8,6 +8,7 @@ using System.Web.Http.ModelBinding;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
+using Alfursan.Web.Helpers;
 using Alfursan.Web.Models;
 using AutoMapper;
 
@@ -36,9 +37,9 @@ namespace Alfursan.Web.Api
                 var user = Mapper.Map<UserViewModel, User>(userViewModel);
                 var userService = IocContainer.Resolve<IUserService>();
                 userService.Set(user);
-                return new HttpResponseModel() { ReturnCode =  EnumResponseStatusCode.Success,ResponseMessage = Alfursan.Resx.Management.Message_SetUserSuccess};
+                return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Success, ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser };
             }
-            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error ,ResponseMessage = Alfursan.Resx.Management.ErrorMessage_ModelNotValid};
+            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
         }
 
         // PUT: api/UserApi/5
@@ -47,8 +48,26 @@ namespace Alfursan.Web.Api
         }
 
         // DELETE: api/UserApi/5
-        public void Delete(int id)
+        public HttpResponseModel Delete(int id)
         {
+            var userService = IocContainer.Resolve<IUserService>();
+            var response = userService.Delete(id);
+            if (response.ResponseCode == EnumResponseCode.Successful)
+            {
+                return new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Success,
+                    ResponseMessage = Alfursan.Resx.MessageResource.Info_DeleteUser
+                };
+            }
+            else
+            {
+                return new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Error,
+                    ResponseMessage = ResourceHelper.GetGlobalMessageResource(response.ResponseUserFriendlyMessageKey)
+                };
+            }
         }
     }
 }

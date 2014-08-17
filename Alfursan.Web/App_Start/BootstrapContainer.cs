@@ -17,9 +17,11 @@ namespace Alfursan.Web
             container.Register(
                  Component.For<Logging>().LifestyleTransient(),
                   Component.For<Caching>().LifestyleTransient(),
+                  Component.For<ExceptionHandling>().LifestyleTransient(),
                  Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient()
                   .Interceptors(InterceptorReference.ForType<Logging>()).First
                   .Interceptors(InterceptorReference.ForType<Caching>()).First
+                  .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First
                   , Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient()
                  );
 

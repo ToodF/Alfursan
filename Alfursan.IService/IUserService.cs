@@ -5,13 +5,15 @@ namespace Alfursan.IService
 {
     public interface IUserService
     {
-        User Login(string email, string pass);
+        EntityResponder<User> Login(string email, string pass);
 
-        List<User> GetAll();
-        List<User> GetAllByUserType(EnumProfile profile);
+        EntityResponder<List<User>> GetAll();
+        EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
 
-        void Set(User user);
+        Responder Set(User user);
 
-        User Get(int userId);
+        EntityResponder<User> Get(int userId);
+
+        Responder Delete(int id);
     }
 }

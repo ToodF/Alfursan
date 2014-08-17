@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Alfursan.Web.Models.UserListViewModel>
+
+<table id="grid-users" class="table table-striped table-bordered hover " cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>@{Write(Alfursan.Resx.Management.Profile);}</th>
+            <th>@{Write(Alfursan.Resx.Management.Name);}</th>
+            <th>@{Write(Alfursan.Resx.Management.Surname);}</th>
+            <th>@{Write(Alfursan.Resx.Management.Email);}</th>
+            <th>@{Write(Alfursan.Resx.Management.Phone);}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var user in Model)
+            {
+                <tr data="@user.UserId">
+                    <td>@user.ProfileId</td>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Email</td>
+                    <td>@user.Phone</td>
+                    <td><input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn" name="delete-user" data="@user.UserId" /></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

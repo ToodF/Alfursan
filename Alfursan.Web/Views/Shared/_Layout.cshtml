@@ -7,16 +7,21 @@
 
 @section Menu
 {
-    <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
-        <li>@Html.ActionLink("Güncel", "Index", "Home")</li>
-        <li>@Html.ActionLink("Arşiv", "Index", "Home")</li>
-        <li>@Html.ActionLink("Diğer", "Index", "Home")</li>
-        <li>@Html.ActionLink("Hesap Arşivi", "Index", "Home")</li>
-        <li>@Html.ActionLink("Mail Gönder", "Index", "Home")</li>
-        <li>@Html.ActionLink("Dosya Ekle", "Index", "Home")</li>
-        <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
-    </ul>
+@*<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">*@
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
+            <li>@Html.ActionLink("Güncel", "Index", "Home")</li>
+            <li>@Html.ActionLink("Arşiv", "Index", "Home")</li>
+            <li>@Html.ActionLink("Diğer", "Index", "Home")</li>
+            <li>@Html.ActionLink("Hesap Arşivi", "Index", "Home")</li>
+            <li>@Html.ActionLink("Mail Gönder", "Index", "Home")</li>
+            <li>@Html.ActionLink("Dosya Ekle", "Index", "Home")</li>
+            <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
+        </ul>
+    @*</div>
+</nav>*@
+   
     @Html.Partial("_LoginPartial")
 }
 @RenderBody()

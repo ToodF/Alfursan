@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
+using Alfursan.Domain;
 
 namespace Alfursan.IRepository
 {
-    public interface IRepository <T>
+    public interface IRepository<T>
     {
-        T Get(int id);
-        
-        void Set(T entity);
+        EntityResponder<T> Get(int id);
 
-        List<T> GetAll();
+        Responder Set(T entity);
 
-        void Update(T entity);
+        EntityResponder<List<T>> GetAll();
+
+        Responder Update(T entity);
+
+        Responder Delete(int id);
     }
 }

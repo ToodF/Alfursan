@@ -48,12 +48,19 @@
     <Compile Include="Exceptions\NotFoundUserException.cs" />
     <Compile Include="IBootstrapContainer.cs" />
     <Compile Include="Interceptor\Caching.cs" />
+    <Compile Include="Interceptor\ExceptionHandling.cs" />
     <Compile Include="Interceptor\Logging.cs" />
     <Compile Include="IocContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alfursan.Domain\Alfursan.Domain.csproj">
+      <Project>{AB3EA5CF-DF17-48FA-97DA-80EF20B278FA}</Project>
+      <Name>Alfursan.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

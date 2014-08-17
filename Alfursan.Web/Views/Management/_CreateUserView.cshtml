@@ -8,16 +8,28 @@
 
     <div class="form-horizontal">
         <h4>UserViewModel</h4>
+        @Html.HiddenFor(model => model.UserId)
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Admin) @Html.Label(Alfursan.Resx.Management.Profile_Admin)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.User)@Html.Label(Alfursan.Resx.Management.Profile_User)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Customer) @Html.Label(Alfursan.Resx.Management.Profile_Customer)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.CustomOfficer) @Html.Label(Alfursan.Resx.Management.Profile_CustomOfficer)
+                @{
+    var profile = EnumProfile.Customer;
+    if (Model != null)
+    {
+        profile = Model.ProfileId;
+    }
+    var adminOpt = profile == EnumProfile.Admin ? new { @checked = "checked" } : null;
+    var userOpt = profile == EnumProfile.User ? new { @checked = "checked" } : null;
+    var customerOpt = profile == EnumProfile.Customer ? new { @checked = "checked" } : null;
+    var customOfficerOpt = profile == EnumProfile.CustomOfficer ? new { @checked = "checked" } : null;
+                }
+                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Admin, adminOpt) @Html.Label(Alfursan.Resx.Management.Profile_Admin)
+                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.User, userOpt)@Html.Label(Alfursan.Resx.Management.Profile_User)
+                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Customer, customerOpt) @Html.Label(Alfursan.Resx.Management.Profile_Customer)
+                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.CustomOfficer, customOfficerOpt) @Html.Label(Alfursan.Resx.Management.Profile_CustomOfficer)
 
             </div>
         </div>
@@ -102,14 +114,14 @@
             </div>
         </div>
 
-        <div class="form-group" id="form-item-customerofficer" style="display: @{Write((Model != null && Model.ProfileId == EnumProfile.Customer) ? "block" : "none");}"> 
+        <div class="form-group" id="form-item-customerofficer" style="display: @{Write((Model != null && Model.ProfileId == EnumProfile.Customer) ? "block" : "none");}">
             @Html.LabelFor(model => model.CustomOfficerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CustomOfficerId, (List<SelectListItem>)ViewData["List"], htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CustomOfficerId, "", new { @class = "text-danger" })
             </div>
         </div>
-       
+        <input type="submit" />
     </div>
 }
 

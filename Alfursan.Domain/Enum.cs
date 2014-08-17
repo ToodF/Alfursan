@@ -46,4 +46,18 @@ namespace Alfursan.Domain
         DeleteCustomOfficer,
         Authorization
     }
+    public enum EnumResponseCode
+    {
+        Successful = 0,
+        SystemError = 1,
+        DbError = 2,
+        NoRecordFound = 3,
+        Authorized = 4,
+        NotAuthorized = 5,
+        AlreadyDefined = 6,
+        MissingData = 7,
+        InvalidOperation = 8,
+        ValidationError = 9,
+        Unexpected = 10
+    }
 }

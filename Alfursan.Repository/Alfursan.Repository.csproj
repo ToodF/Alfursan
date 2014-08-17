@@ -56,6 +56,10 @@
       <Project>{4E9341AF-FF94-4FD3-B967-1EFF9CD402AA}</Project>
       <Name>Alfursan.IRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Alfursan.Util\Alfursan.Util.csproj">
+      <Project>{5011b001-4dcb-4b85-8654-e58bbc419db7}</Project>
+      <Name>Alfursan.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

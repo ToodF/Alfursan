@@ -51,6 +51,9 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -188,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Account.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\MessageResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Management.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ResourceHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManagementViewModels.cs" />
@@ -259,9 +268,31 @@
     <Content Include="Images\sort_desc_disabled.png" />
     <Content Include="Plugins\Datatable\js\jquery.dataTables.js" />
     <Content Include="Plugins\Datatable\js\jquery.dataTables.min.js" />
-    <Content Include="Plugins\Datatable\style\jquery.dataTables.css" />
-    <Content Include="Plugins\Datatable\style\jquery.dataTables.min.css" />
-    <Content Include="Plugins\Datatable\style\jquery.dataTables_themeroller.css" />
+    <Content Include="Plugins\Datatable\css\jquery.dataTables.css" />
+    <Content Include="Plugins\Datatable\css\jquery.dataTables.min.css" />
+    <Content Include="Plugins\Datatable\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\demo-ie8.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\demo.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload.css" />
+    <Content Include="Plugins\JQueryFileUpload\css\style.css" />
+    <Content Include="Plugins\JQueryFileUpload\js\app.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-angular.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-audio.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-image.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-process.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-ui.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-validate.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-video.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.iframe-transport.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\main.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\vendor\jquery.ui.widget.js" />
     <Content Include="Scripts\Alfursan.Management.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -308,9 +339,12 @@
     <Content Include="Views\Management\_CreateUserView.cshtml" />
     <Content Include="Views\Management\UserList.cshtml" />
     <Content Include="Views\Shared\_ModalView.cshtml" />
+    <Content Include="Views\Home\Archive.cshtml" />
+    <Content Include="Views\Management\_UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploaded\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -341,6 +375,10 @@
       <Project>{34C4C286-E301-444A-B4F9-1EADDB3175DA}</Project>
       <Name>Alfursan.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Alfursan.Util\Alfursan.Util.csproj">
+      <Project>{5011b001-4dcb-4b85-8654-e58bbc419db7}</Project>
+      <Name>Alfursan.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Account.ar.resx">
@@ -350,6 +388,11 @@
     <EmbeddedResource Include="App_GlobalResources\Account.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Account.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\MessageResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageResource.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Management.resx">

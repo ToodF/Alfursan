@@ -168,10 +168,4 @@
   <data name="btnDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="ErrorMessage_ModelNotValid" xml:space="preserve">
-    <value>Model is not valid</value>
-  </data>
-  <data name="Message_SetUserSuccess" xml:space="preserve">
-    <value>User save.</value>
-  </data>
 </root>

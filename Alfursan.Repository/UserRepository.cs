@@ -8,62 +8,67 @@ namespace Alfursan.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public User Get(int id)
+        public EntityResponder<User> Get(int id)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("select * from [User] where UserId = @UserId",new {UserId = id}).First();
-                return user;
+                var user = con.Query<User>("select * from [User] where UserId = @UserId", new { UserId = id }).First();
+                return new EntityResponder<User>() { Data = user };
             }
         }
 
-        public List<User> GetAll()
+        public EntityResponder<List<User>> GetAll()
         {
             using (var con = DapperHelper.CreateConnection())
             {
                 var users = con.Query<User>("select * from [User] ").ToList();
-                return users;
+                return new EntityResponder<List<User>>() { Data = users };
             }
         }
 
-        public void Set(User entity)
+        public Responder Set(User entity)
         {
+            entity.Password = Alfursan.Util.Util.EncryptWithMD5(entity.Password);
             using (var con = DapperHelper.CreateConnection())
             {
-                 var result =   con.Execute("insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)",entity);
+                var result = con.Execute("insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)", entity);
             }
+            return new Responder();
         }
 
-        public User Get(string emailOrUsername)
+        public EntityResponder<User> Get(string emailOrUsername)
         {
             throw new System.NotImplementedException();
         }
 
-        public User Get(string emailOrUsername, string password)
+        public EntityResponder<User> Get(string emailOrUsername, string password)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password }).First();
-                return user;
-            }
-        }
-        
-        public List<User> GetAllByUserType(EnumProfile profile)
-        {
-            using (var con = DapperHelper.CreateConnection())
-            {
-                var users = con.Query<User>("select * from [User] where [ProfileId] = @pofile", new { profile = (int)profile}).ToList();
-                return users;
+                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password });
+                if (user == null || !user.Any())
+                    return new EntityResponder<User>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = Const.Error_InvalidUserNameOrPass };
+                return new EntityResponder<User>() { Data = user.First() };
             }
         }
 
-        public void ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
+        public EntityResponder<List<User>> GetAllByUserType(EnumProfile profile)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var users = con.Query<User>("select * from [User] where [ProfileId] = @pofile", new { profile = (int)profile }).ToList();
+                return new EntityResponder<List<User>>() { Data = users };
+            }
+        }
+
+        public Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(User entity)
+        public Responder Update(User entity)
         {
+            entity.Password = Alfursan.Util.Util.EncryptWithMD5(entity.Password);
             using (var con = DapperHelper.CreateConnection())
             {
                 var result = con.Execute(@"update [User] set 
@@ -79,6 +84,20 @@ namespace Alfursan.Repository
                                             , ProfileId = @ProfileId
                                             where UserId = @UserId", entity);
             }
+            return new Responder();
+        }
+
+
+        public Responder Delete(int id)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var result = con.Execute(@"update [User] set 
+                                            IsDeleted = 1,
+                                            UpdateDate = Getdate()
+                                            where UserId = @UserId", id);
+            }
+            return new Responder();
         }
     }
 }

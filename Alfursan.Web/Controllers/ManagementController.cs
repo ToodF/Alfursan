@@ -23,7 +23,7 @@ namespace Alfursan.Web.Controllers
             var userService = IocContainer.Resolve<IUserService>();
             var users = userService.GetAll();
             Mapper.CreateMap<User, UserListViewModel>();
-            var userListViewModels = Mapper.Map<List<User>, List<UserListViewModel>>(users);
+            var userListViewModels = Mapper.Map<List<User>, List<UserListViewModel>>(users.Data);
             foreach (var user in userListViewModels)
             {
                 if (user.ProfileId == EnumProfile.Admin)
@@ -47,7 +47,7 @@ namespace Alfursan.Web.Controllers
                 var user = userService.Get(id);
 
                 Mapper.CreateMap<User, UserViewModel>();
-                var userViewModel = Mapper.Map<User, UserViewModel>(user);
+                var userViewModel = Mapper.Map<User, UserViewModel>(user.Data);
                 ViewData.Model = userViewModel;
             }
 
@@ -83,5 +83,27 @@ namespace Alfursan.Web.Controllers
             }
             return PartialView();
         }
+
+        public ActionResult _UserList()
+        {
+            var userService = IocContainer.Resolve<IUserService>();
+            var users = userService.GetAll();
+            Mapper.CreateMap<User, UserListViewModel>();
+            var userListViewModels = Mapper.Map<List<User>, List<UserListViewModel>>(users.Data);
+            foreach (var user in userListViewModels)
+            {
+                if (user.ProfileId == EnumProfile.Admin)
+                    user.ProfileName = Alfursan.Resx.Management.Profile_Admin;
+                if (user.ProfileId == EnumProfile.CustomOfficer)
+
+                    user.ProfileName = Alfursan.Resx.Management.Profile_CustomOfficer;
+                if (user.ProfileId == EnumProfile.Customer)
+                    user.ProfileName = Alfursan.Resx.Management.Profile_Customer;
+                if (user.ProfileId == EnumProfile.User)
+                    user.ProfileName = Alfursan.Resx.Management.Profile_User;
+            }
+            return View(userListViewModels);
+        }
+
     }
 }
