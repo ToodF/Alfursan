@@ -7,8 +7,9 @@
 
 @section Menu
 {
-@*<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">*@
+  
+    <div class="navbar-collapse collapse">
+        @Html.Partial("_LoginPartial")
         <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
             <li>@Html.ActionLink("Güncel", "Index", "Home")</li>
@@ -19,10 +20,7 @@
             <li>@Html.ActionLink("Dosya Ekle", "Index", "Home")</li>
             <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
         </ul>
-    @*</div>
-</nav>*@
-   
-    @Html.Partial("_LoginPartial")
+    </div>
 }
 @RenderBody()
 

@@ -15,9 +15,10 @@ namespace Alfursan.Domain
     [Flags]
     public enum EnumFileType
     {
-        Other = 0,
+        None = 0,
         ShipmentDoc = 1,
-        AccountDoc = 2
+        AccountDoc = 2,
+        Other = 3,
     }
 
     [Flags]

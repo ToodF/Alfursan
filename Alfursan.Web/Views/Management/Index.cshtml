@@ -3,12 +3,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Porta</h2>
-<li>@Html.ActionLink("Kullanıcı listesi", "UserList", "Management")</li>
-<li>@Html.ActionLink("Kullanıcı ekleme", "CreateUser", "Management")</li>
-Müşteri Gümrkçü tanımlama<br/>
-Profiller<br/>
-Kullanıcı profil düzenleme<br/>
+<div class="jumbotron">
+    <h1>Kullanıcı yönetimi</h1>
+    <p class="lead">Yeni kullanıcı ekleyebilir, tüm kullanıcılarınızı yönetebilirsiniz.</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Kullanıcılar</h2>
+        <p>
+            @Html.ActionLink("Kullanıcı listesi", "UserList", "Management")
+        </p>
+        <p><a class="btn btn-success" href="#">Add &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Müşteri Gümrkçü tanımlama</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p><a class="btn btn-warning" href="#">Add &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Profiller</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p><a class="btn btn-primary" href="#">Add &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Kullanıcı profil düzenleme</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p><a class="btn btn-default" href="#">Add &raquo;</a></p>
+    </div>
+</div>
 
 
 
