@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Resources;
 using System.Web.Mvc;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Service;
+using Alfursan.Web.Helpers;
 using Alfursan.Web.Models;
 using AutoMapper;
 
@@ -60,13 +63,13 @@ namespace Alfursan.Web.Controllers
             listItems.Add(new SelectListItem
             {
                 Text = "Exemplo2",
-                Value = "1",
+                Value = "2",
                 Selected = true
             });
             listItems.Add(new SelectListItem
             {
                 Text = "Exemplo3",
-                Value = "1"
+                Value = "3"
             });
             ViewData.Add("List", listItems);
             return PartialView();
@@ -103,6 +106,18 @@ namespace Alfursan.Web.Controllers
                     user.ProfileName = Alfursan.Resx.Management.Profile_User;
             }
             return View(userListViewModels);
+        }
+
+        public ActionResult EditProfileRole()
+        {
+            var profiles = (from object profile in Enum.GetValues(typeof(EnumProfile))
+                            select new SelectListItem()
+                            {
+                                Text = ResourceHelper.GetGlobalManagementResource("EnumProfile_" + Enum.GetName(typeof(EnumProfile), profile)),
+                                Value = profile.ToString()
+                            }).ToList();
+            ViewData["Profiles"] = profiles;
+            return View();
         }
 
     }

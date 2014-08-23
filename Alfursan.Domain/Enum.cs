@@ -5,7 +5,7 @@ namespace Alfursan.Domain
 {
     public enum EnumProfile
     {
-        None = 0,
+        //None = 0,
         Admin = 1,
         User = 2,
         Customer = 3,
@@ -32,7 +32,7 @@ namespace Alfursan.Domain
     [Flags]
     public enum EnumRole
     {
-        None,
+        //None,
         AddFile,
         DeleteFile,
         ReadFile,
@@ -42,7 +42,7 @@ namespace Alfursan.Domain
         ChangeUserStatus,
         DeleteUser,
         ChangePassword,
-        CustomOfficer,
+        AddCustomOfficer,
         UpdateCustomOfficer,
         DeleteCustomOfficer,
         Authorization
@@ -59,6 +59,8 @@ namespace Alfursan.Domain
         MissingData = 7,
         InvalidOperation = 8,
         ValidationError = 9,
-        Unexpected = 10
+        Unexpected = 10,
+        NotInserted,
+        NotUpdated
     }
 }

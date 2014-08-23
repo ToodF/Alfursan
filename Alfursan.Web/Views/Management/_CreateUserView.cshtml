@@ -7,29 +7,31 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>UserViewModel</h4>
         @Html.HiddenFor(model => model.UserId)
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
+            @{
+                var profile = EnumProfile.Customer;
+                if (Model != null)
+                {
+                    profile = Model.ProfileId;
+                }
+            }
             @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @{
-    var profile = EnumProfile.Customer;
-    if (Model != null)
-    {
-        profile = Model.ProfileId;
-    }
-    var adminOpt = profile == EnumProfile.Admin ? new { @checked = "checked" } : null;
-    var userOpt = profile == EnumProfile.User ? new { @checked = "checked" } : null;
-    var customerOpt = profile == EnumProfile.Customer ? new { @checked = "checked" } : null;
-    var customOfficerOpt = profile == EnumProfile.CustomOfficer ? new { @checked = "checked" } : null;
-                }
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Admin, adminOpt) @Html.Label(Alfursan.Resx.Management.Profile_Admin)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.User, userOpt)@Html.Label(Alfursan.Resx.Management.Profile_User)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.Customer, customerOpt) @Html.Label(Alfursan.Resx.Management.Profile_Customer)
-                @Html.RadioButtonFor(m => m.ProfileId, (int)EnumProfile.CustomOfficer, customOfficerOpt) @Html.Label(Alfursan.Resx.Management.Profile_CustomOfficer)
+                <input type="radio" name="ProfileId" id="@EnumProfile.Admin.ToString()" value="@((int)EnumProfile.Admin)" @{Write(profile == EnumProfile.Admin ? "checked=checked" : "");}/>
+                <label for="@EnumProfile.Admin">@Alfursan.Resx.Management.Profile_Admin</label>
+                
+                <input type="radio" name="ProfileId" id="@EnumProfile.User.ToString()" value="@((int)EnumProfile.User)" @{Write(profile == EnumProfile.User ? "checked=checked" : "");} />
+                <label for="@EnumProfile.User">@Alfursan.Resx.Management.Profile_User</label>
+                
+                <input type="radio" name="ProfileId" id="@EnumProfile.Customer.ToString()" value="@((int)EnumProfile.Customer)" @{Write(profile == EnumProfile.Customer ? "checked=checked" : "");} />
+                <label for="@EnumProfile.Customer">@Alfursan.Resx.Management.Profile_Customer</label>
+
+                <input type="radio" name="ProfileId" id="@EnumProfile.CustomOfficer.ToString()" value="@((int)EnumProfile.CustomOfficer)" @{Write(profile == EnumProfile.CustomOfficer ? "checked=checked" : "");} />
+                <label for="@EnumProfile.CustomOfficer">@Alfursan.Resx.Management.Profile_CustomOfficer</label>
 
             </div>
         </div>
@@ -50,7 +52,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="container-pass">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
@@ -58,7 +60,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="container-confirmpassword">
             @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
@@ -121,19 +123,5 @@
                 @Html.ValidationMessageFor(model => model.CustomOfficerId, "", new { @class = "text-danger" })
             </div>
         </div>
-        <input type="submit" />
     </div>
 }
-
-<script>
-    $(document).ready(function () {
-        $("input[name='ProfileId']").change(function () {
-            var id = @((int)EnumProfile.Customer);
-            if ($(this).val() == id) {
-                $("#form-item-customerofficer").css("display", "block");
-            } else {
-                $("#form-item-customerofficer").css("display", "none");
-            }
-        });
-    });
-</script>

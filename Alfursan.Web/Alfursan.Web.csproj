@@ -201,6 +201,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Management.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Shared.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BootstrapContainer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -341,6 +346,8 @@
     <Content Include="Views\Shared\_ModalView.cshtml" />
     <Content Include="Views\Home\Archive.cshtml" />
     <Content Include="Views\Management\_UserList.cshtml" />
+    <Content Include="Views\Management\EditProfileRole.cshtml" />
+    <Content Include="Views\Management\_Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -400,6 +407,11 @@
       <LastGenOutput>Management.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\App_LocalResources\Login.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

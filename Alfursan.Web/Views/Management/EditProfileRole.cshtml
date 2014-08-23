@@ -1,0 +1,10 @@
+﻿@model Alfursan.Web.Models.RoleViewModel
+
+<h2>EditProfileRole</h2>
+@using (Html.BeginForm(null, null, FormMethod.Post, new {@action = ""}))
+{
+
+    @Html.DropDownListFor(model => model.ProfileId, (List<SelectListItem>) ViewData["Profiles"])
+
+    @Html.Partial("_Roles")
+}

@@ -70,11 +70,47 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New User.
+        /// </summary>
+        public static string Btn_NewUser {
+            get {
+                return ResourceManager.GetString("Btn_NewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Pass.
+        /// </summary>
+        public static string btnChangePass {
+            get {
+                return ResourceManager.GetString("btnChangePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string btnDelete {
             get {
                 return ResourceManager.GetString("btnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string btnNo {
+            get {
+                return ResourceManager.GetString("btnNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string btnOk {
+            get {
+                return ResourceManager.GetString("btnOk", resourceCulture);
             }
         }
         
@@ -120,6 +156,69 @@ namespace Alfursan.Resx {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Roles.
+        /// </summary>
+        public static string EnumProfile_Admin {
+            get {
+                return ResourceManager.GetString("EnumProfile_Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CustomerRoles.
+        /// </summary>
+        public static string EnumProfile_Customer {
+            get {
+                return ResourceManager.GetString("EnumProfile_Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Officer Roles.
+        /// </summary>
+        public static string EnumProfile_CustomOfficer {
+            get {
+                return ResourceManager.GetString("EnumProfile_CustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Roles.
+        /// </summary>
+        public static string EnumProfile_User {
+            get {
+                return ResourceManager.GetString("EnumProfile_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add file.
+        /// </summary>
+        public static string EnumRole_AddFile {
+            get {
+                return ResourceManager.GetString("EnumRole_AddFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save User.
+        /// </summary>
+        public static string Modal_Btn_Save {
+            get {
+                return ResourceManager.GetString("Modal_Btn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New User.
+        /// </summary>
+        public static string Modal_Title_NewUser {
+            get {
+                return ResourceManager.GetString("Modal_Title_NewUser", resourceCulture);
             }
         }
         
@@ -201,6 +300,15 @@ namespace Alfursan.Resx {
         public static string Surname {
             get {
                 return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User List.
+        /// </summary>
+        public static string Title_UserList {
+            get {
+                return ResourceManager.GetString("Title_UserList", resourceCulture);
             }
         }
         

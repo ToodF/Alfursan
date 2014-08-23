@@ -15,5 +15,9 @@ namespace Alfursan.IService
         EntityResponder<User> Get(int userId);
 
         Responder Delete(int id);
+
+        Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword);
+
+        Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer);
     }
 }

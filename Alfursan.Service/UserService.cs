@@ -52,5 +52,16 @@ namespace Alfursan.Service
         {
             return userRepository.Delete(id);
         }
+
+        public Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
+        {
+            return userRepository.ChangePassword(emailOrUsername, oldPassword, newPassword);
+        }
+
+
+        public Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer)
+        {
+            return userRepository.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+        }
     }
 }

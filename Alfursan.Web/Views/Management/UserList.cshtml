@@ -1,30 +1,44 @@
 ﻿@using System.Resources
+@using Alfursan.Domain
 @using Alfursan.Web.Models
 @using Microsoft.Ajax.Utilities
+
 @model List<Alfursan.Web.Models.UserListViewModel>
-<h2>UserListView</h2>
+<h2>@Alfursan.Resx.Management.Title_UserList</h2>
 
 <button class="btn btn-primary" id="create-user">
-    New
+    @Alfursan.Resx.Management.Btn_NewUser
 </button>
-@Html.Partial("/Views/Shared/_ModalView.cshtml")
 
+<div class="modal fade" id="AlfursanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Alfursan.Resx.Shared.Modal_Btn_Close </span></button>
+                <h4 class="modal-title" id="myModalLabel">@Alfursan.Resx.Management.Modal_Title_NewUser</h4>
+            </div>
+            <div class="modal-body">
+                @{ Html.RenderAction("_CreateUserView", new { id = 0 });}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Alfursan.Resx.Shared.Modal_Btn_Close</button>
+                <button type="button" class="btn btn-primary">@Alfursan.Resx.Management.Modal_Btn_Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-warning" id="message-delete-user">
+    <span id="user-email"></span>
+    @Alfursan.Resx.MessageResource.Warning_DeleteUser
+    <input type="hidden" name="UserId" id="UserId" />
+    <input type="button" class="btn" id="delete-user-ok" value="@Alfursan.Resx.Management.btnOk" />
+    <input type="button" class="btn" id="delete-user-cancel" value="@Alfursan.Resx.Management.btnNo" />
+</div>
 <div id="grid-container">
-   
+
 </div>
 @section scripts
 {
     <script type="text/javascript" src="~/Scripts/Alfursan.Management.js"></script>
-    <script>
-        $(document).ready(function () {
-            AlfursanManagement.GetUserList("sd");
-        });
-        $("#create-user").click(function () {
-            AlfursanManagement.OpenCreateUserModel();
-        });
-        $("input[name='delete-user']").click(function () {
-            var id = $(this).attr("data");
-            AlfursanManagement.OpenCreateUserModel(id);
-        });
-    </script>
 }

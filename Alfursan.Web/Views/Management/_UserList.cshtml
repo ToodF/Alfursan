@@ -22,7 +22,10 @@
                     <td>@user.Surname</td>
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
-                    <td><input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn" name="delete-user" data="@user.UserId" /></td>
+                    <td>
+                        <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn" name="change-pass" data="@user.UserId" email ="@user.Email" />
+                        <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn" name="delete-user" data="@user.UserId" />
+                    </td>
                 </tr>
             }
         }

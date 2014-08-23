@@ -74,4 +74,17 @@ namespace Alfursan.Web.Models
         [Display(Name = "Phone", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Phone { get; set; }
     }
+
+    public class RoleViewModel
+    {
+        public int ProfileRoleId { get; set; }
+        [Required]
+        public int RoleId { get; set; }
+        [Required]
+        public int ProfileId { get; set; }
+        
+        public string RoleName { get; set; }
+        public EnumRoleType RoleType { get; set; }
+        public EnumFileType FileType { get; set; }
+    }
 }

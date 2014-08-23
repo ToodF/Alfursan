@@ -95,6 +95,7 @@ namespace Alfursan.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Password = Util.Util.EncryptWithMD5(model.Password);
                 var isLogin = LoginAndSetCookie(model, returnUrl);
                 if (isLogin)
                 {
@@ -117,8 +118,7 @@ namespace Alfursan.Web.Controllers
         }
 
         bool LoginAndSetCookie(LoginViewModel model, string returnUrl)
-        {
-            model.Password = Util.Util.EncryptWithMD5(model.Password);
+        {           
             var userService = IocContainer.Resolve<IUserService>();
             var response = userService.Login(model.Email, model.Password);
             if (response.ResponseCode == EnumResponseCode.Successful)
