@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Remoting.Messaging;
+using System.Security.Policy;
 using Alfursan.Domain;
 using Alfursan.IRepository;
 using Dapper;
@@ -32,9 +33,21 @@ namespace Alfursan.Repository
             entity.Password = Alfursan.Util.Util.EncryptWithMD5(entity.Password);
             using (var con = DapperHelper.CreateConnection())
             {
-                var result = con.Execute("insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)", entity);
+                var existUser = con.Query<User>("SELECT * FROM [User] WHERE (UserName = @UserName OR Email = @Email) AND IsDeleted = 0", new { entity.UserName, entity.Email });
+                if (existUser != null && existUser.Any())
+                {
+                    return new Responder() { ResponseCode = EnumResponseCode.AlreadyDefined, ResponseUserFriendlyMessageKey = "Error_ExistingUserNameOrEmail" };
+                }
+                else
+                {
+                    var result =
+                        con.Execute(
+                            "insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)",
+                            entity);
+                    return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
+                }
             }
-            return new Responder();
+
         }
 
         public EntityResponder<User> Get(string emailOrUsername)
@@ -85,10 +98,20 @@ namespace Alfursan.Repository
 
         public Responder Update(User entity)
         {
-            var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute(@"update [User] set 
+                var existUser = con.Query<User>("SELECT * FROM [User] WHERE " +
+                                                "(UserName = @UserName " +
+                                                "OR Email = @Email) " +
+                                                "AND IsDeleted = 0" +
+                                                "AND UserId <> @UserId", entity);
+                if (existUser != null && existUser.Any())
+                {
+                    return new Responder() { ResponseCode = EnumResponseCode.AlreadyDefined, ResponseUserFriendlyMessageKey = "Error_ExistingUserNameOrEmail" };
+                }
+                else
+                {
+                    var result = con.Execute(@"update [User] set 
                                             UserName = @UserName
                                             , Email = @Email
                                             , Name = @Name
@@ -99,11 +122,10 @@ namespace Alfursan.Repository
                                             , Address = @Address
                                             , ProfileId = @ProfileId
                                             where UserId = @UserId", entity);
+                    return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
+                }
             }
-
-            return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful) };
         }
-
 
         public Responder Delete(int id)
         {
@@ -115,9 +137,8 @@ namespace Alfursan.Repository
                                             UpdateDate = Getdate()
                                             where UserId = @UserId", new { UserId = id });
             }
-            return new Responder(){ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful)};
+            return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful) };
         }
-
 
         public Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer)
         {
@@ -127,6 +148,17 @@ namespace Alfursan.Repository
                 result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerUserId,CreatedUserId) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId)", relationCustomerCustomOfficer);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
+        }
+
+        public Responder ChangeStatus(int userId, bool status)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var result = con.Execute(@"update [User] set 
+                                            Status = @Status
+                                            where UserId = @UserId", new { UserId = userId, Status = status });
+                return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Alfursan.Domain;
+﻿using System.Web;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Helpers;
@@ -7,6 +8,7 @@ using AutoMapper;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Security;
 
 namespace Alfursan.Web.Api
 {
@@ -25,7 +27,7 @@ namespace Alfursan.Web.Api
             var response = userService.Get(id);
             if (response.ResponseCode == EnumResponseCode.Successful)
             {
-                Mapper.CreateMap<User,UserViewModel>();
+                Mapper.CreateMap<User, UserViewModel>();
                 var userViewModel = Mapper.Map<User, UserViewModel>(response.Data);
                 userViewModel.ConfirmPassword = userViewModel.Password;
                 return new HttpResponseModel()
@@ -53,19 +55,49 @@ namespace Alfursan.Web.Api
                 Mapper.CreateMap<UserViewModel, User>();
                 var user = Mapper.Map<UserViewModel, User>(userViewModel);
                 var userService = IocContainer.Resolve<IUserService>();
-                userService.Set(user);
-                if (userViewModel.ProfileId == EnumProfile.Customer && userViewModel.CustomOfficerId > 0)
+                var result = userService.Set(user);
+                if (result.ResponseCode == EnumResponseCode.Successful
+                    && userViewModel.ProfileId == EnumProfile.Customer
+                    && userViewModel.CustomOfficerId > 0)
                 {
-                    
+                    var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
+                    {
+                        CreatedUserId = 0, //((User) HttpContext.Current.Session["CurrentUser"]).UserId,
+                        CustomOfficerUserId = userViewModel.CustomOfficerId,
+                        CustomerUserId = user.UserId
+                    };
+                    userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+                }
+                else
+                {
+                    return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = ResourceHelper.GetGlobalMessageResource(result.ResponseUserFriendlyMessageKey) };
                 }
                 return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Success, ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser };
             }
             return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
         }
 
-        // PUT: api/UserApi/5
-        public void Put(int id, [FromBody]string value)
+        [Route("api/UserApi/{id}/{status}")]
+        public HttpResponseModel Post(int id, bool status)
         {
+            var userService = IocContainer.Resolve<IUserService>();
+            var response = userService.ChangeStatus(id, status);
+            if (response.ResponseCode == EnumResponseCode.Successful)
+            {
+                return new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Success,
+                    ResponseMessage = Alfursan.Resx.MessageResource.Info_DeleteUser
+                };
+            }
+            else
+            {
+                return new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Error,
+                    ResponseMessage = ResourceHelper.GetGlobalMessageResource(response.ResponseUserFriendlyMessageKey)
+                };
+            }
         }
 
         // DELETE: api/UserApi/5

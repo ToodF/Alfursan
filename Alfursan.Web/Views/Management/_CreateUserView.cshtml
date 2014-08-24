@@ -8,7 +8,6 @@
 
     <div class="form-horizontal">
         @Html.HiddenFor(model => model.UserId)
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
@@ -115,8 +114,7 @@
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group" id="form-item-customerofficer" style="display: @{Write((Model != null && Model.ProfileId == EnumProfile.Customer) ? "block" : "none");}">
+        <div class="form-group" id="form-item-customerofficer">
             @Html.LabelFor(model => model.CustomOfficerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CustomOfficerId, (List<SelectListItem>)ViewData["List"], htmlAttributes: new { @class = "form-control" })

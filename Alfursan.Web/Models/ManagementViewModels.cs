@@ -73,6 +73,8 @@ namespace Alfursan.Web.Models
         public string ProfileName { get; set; }
         [Display(Name = "Phone", ResourceType = typeof(Alfursan.Resx.Management))]
         public string Phone { get; set; }
+
+        public bool Status { get; set; }
     }
 
     public class RoleViewModel
@@ -82,7 +84,7 @@ namespace Alfursan.Web.Models
         public int RoleId { get; set; }
         [Required]
         public int ProfileId { get; set; }
-        
+
         public string RoleName { get; set; }
         public EnumRoleType RoleType { get; set; }
         public EnumFileType FileType { get; set; }

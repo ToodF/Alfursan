@@ -61,6 +61,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tanımlamak istediğiniz email yada username başka bir kayıt için kullanılmış. Lütfen değişiklik yaparak kayıt işlemine devam ediniz..
+        /// </summary>
+        public static string Error_ExistingUserNameOrEmail {
+            get {
+                return ResourceManager.GetString("Error_ExistingUserNameOrEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tanımsız resource key kullanımı.
         /// </summary>
         public static string Error_InvalidResourceKey {

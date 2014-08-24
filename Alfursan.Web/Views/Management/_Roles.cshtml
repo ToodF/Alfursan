@@ -16,23 +16,6 @@
             @Html.Label(EnumRole.DeleteUser.ToString(), new { @for = EnumRole.DeleteUser })
         </div>
         <div>
-            @Html.CheckBox(EnumRole.AddCustomOfficer.ToString(), false, new { id = EnumRole.AddCustomOfficer })
-            @Html.Label(EnumRole.AddCustomOfficer.ToString(), new { @for = EnumRole.AddCustomOfficer })
-        </div>
-        <div>
-            @Html.CheckBox(EnumRole.UpdateCustomOfficer.ToString(), false, new { id = EnumRole.UpdateCustomOfficer })
-            @Html.Label(EnumRole.UpdateCustomOfficer.ToString(), new { @for = EnumRole.UpdateCustomOfficer })
-        </div>
-        <div>
-            @Html.CheckBox(EnumRole.DeleteCustomOfficer.ToString(), false, new { id = EnumRole.DeleteCustomOfficer })
-            @Html.Label(EnumRole.DeleteCustomOfficer.ToString(), new { @for = EnumRole.DeleteCustomOfficer })
-        </div>
-    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">Kullanıcı yetkileri</div>
-    <div class="panel-body">
-        <div>
             @Html.CheckBox(EnumRole.ChangePassword.ToString(), false, new { id = EnumRole.ChangePassword })
             @Html.Label(EnumRole.ChangePassword.ToString(), new { @for = EnumRole.ChangePassword })
         </div>
@@ -42,7 +25,6 @@
         </div>
     </div>
 </div>
-
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Dosya yetkileri</h3>

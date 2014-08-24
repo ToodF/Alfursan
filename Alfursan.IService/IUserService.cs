@@ -19,5 +19,7 @@ namespace Alfursan.IService
         Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword);
 
         Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer);
+
+        Responder ChangeStatus(int userId, bool status);
     }
 }

@@ -3,7 +3,7 @@
     CustomerProfileId: 3,
 
     Init: function () {
-        AlfursanManagement.GetUserList("sd");
+        AlfursanManagement.GetUserList();
 
         $("input[name='ProfileId']").change(function () {
             if ($(this).val() == AlfursanManagement.CustomerProfileId) {
@@ -19,7 +19,7 @@
 
         $("#delete-user-ok").click(function () {
             $("#message-delete-user").css("display", "none");
-            AlfursanManagement.DeleteUserById( $("#UserId").val());
+            AlfursanManagement.DeleteUserById($("#UserId").val());
         });
 
         $(".modal-footer .btn-primary").click(function () {
@@ -28,43 +28,17 @@
             if (!isValid) {
                 return false;
             }
-            $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize()
-            }).done(function (result) {
-                var messageCode = "alert-success";
-                if (result.ReturnCode == "2") {
-                    messageCode = "alert-danger";
-                }
-                else if (result.ReturnCode == "3") {
-                    messageCode = "alert-warning";
-                }
-                else if (result.ReturnCode == "4") {
-                    messageCode = "alert-info";
-                }
-                var alertDiv = $(".alert");
-                if (alertDiv.size() > 0) {
-                    alertDiv.removeAttr("class");
-                    alertDiv.addClass("alert");
-                    alertDiv.addClass(messageCode);
-                    alertDiv.html(result.ResponseMessage);
-                } else {
-                    $(".modal-body").append('<div class="alert ' + messageCode + '" role="alert">' + result.ResponseMessage + '</div>');
-
-                }
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), null, null, function(result) {
                 if (result.ReturnCode == "4") {
                     $("#AlfursanModal").modal("hide");
-                    AlfursanManagement.GetUserList("sd");
+                    AlfursanManagement.GetUserList();
                 }
-
-            }).fail(function () {
-                alert("hata");
             });
+
         });
     },
 
-    GetUserList: function (userType) {
+    GetUserList: function () {
         $("#grid-container").css("display", "none");
         $("#message-delete-user").css("display", "none");
         $("#grid-container").load("/Management/_UserList", null, function () {
@@ -95,71 +69,38 @@
                 });
             });
 
+            $("input[name='change-status-passive']").click(function () {
+                AlfursanManagement.ChangeStatusById($(this).attr("data"), false);
+            });
+
+            $("input:button[name='change-status-active']").click(function () {
+                AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
+            });
+
         });
     },
 
     DeleteUserById: function (id) {
-        $.ajax({
-            type: 'Post',
-            url: "/api/UserApi/" + id,
-            data: null
-        }).done(function (result) {
-            var messageCode = "alert-success";
-            if (result.ReturnCode == "2") {
-                messageCode = "alert-danger";
-            }
-            else if (result.ReturnCode == "3") {
-                messageCode = "alert-warning";
-            }
-            else if (result.ReturnCode == "4") {
-                messageCode = "alert-info";
-            }
-            var alertDiv = $(".alert");
-            if (alertDiv.size() > 0) {
-                alertDiv.removeAttr("class");
-                alertDiv.addClass("alert");
-                alertDiv.addClass(messageCode);
-                alertDiv.html(result.ResponseMessage);
-            } else {
-                $(".modal-body").append('<div class="alert ' + messageCode + '" role="alert">' + result.ResponseMessage + '</div>');
-                $("#AlfursanModal").modal("hide");
-            }
-            AlfursanManagement.GetUserList("sd");
-        }).fail(function () {
-            alert("hata");
+        var url = "/api/UserApi/" + id;
+        AlfursanAjax.Request(url, "post", null, null, function() {
+            AlfursanManagement.GetUserList();
+        });
+    },
+
+    ChangeStatusById: function (id, status) {
+        var url = "/api/UserApi/" + id + "/" + status;
+        AlfursanAjax.Request(url, "Post", null, null, function () {
+            AlfursanManagement.GetUserList();
         });
     },
 
     BindUser: function (userId) {
         if (userId > 0) {
-            $.ajax({
-                type: 'Get',
-                url: "/api/UserApi/" + userId,
-                data: null
-            }).done(function (result) {
-                var messageCode = "alert-success";
-                if (result.ReturnCode == "2") {
-                    messageCode = "alert-danger";
-                } else if (result.ReturnCode == "3") {
-                    messageCode = "alert-warning";
-                } else if (result.ReturnCode == "4") {
-                    messageCode = "alert-info";
-                }
-                var alertDiv = $(".alert");
-                if (alertDiv.size() > 0) {
-                    alertDiv.removeAttr("class");
-                    alertDiv.addClass("alert");
-                    alertDiv.addClass(messageCode);
-                    alertDiv.html(result.ResponseMessage);
-                } else {
-                    $(".modal-body").append('<div class="alert ' + messageCode + '" role="alert">' + result.ResponseMessage + '</div>');
-
-                }
+            var url = "/api/UserApi/" + userId;
+            AlfursanAjax.Request(url, 'Get', ".modal-body", null, function(result) {
                 AlfursanUser.SetEntity(result.Data);
                 AlfursanUser.BindModel();
                 $("#AlfursanModal").modal("show");
-            }).fail(function () {
-                alert("hata");
             });
         } else {
             AlfursanUser.BindModel();
@@ -180,7 +121,7 @@ var AlfursanUser = {
     CountryId: 0,
     Phone: "",
     Address: "",
-
+    ProfileId: 3,
     SetEntity: function (entity) {
         if (entity == null) {
             this.UserId = 0;
@@ -194,6 +135,7 @@ var AlfursanUser = {
             this.CountryId = "";
             this.Phone = "";
             this.Address = "";
+            this.ProfileId = 3;
         } else {
             this.UserId = entity.UserId;
             this.UserName = entity.UserName;
@@ -206,6 +148,7 @@ var AlfursanUser = {
             this.CountryId = entity.CountryId;
             this.Phone = entity.Phone;
             this.Address = entity.Address;
+            this.ProfileId = entity.ProfileId;
         }
     },
 
@@ -228,6 +171,12 @@ var AlfursanUser = {
         $("#CountryId").val(this.CountryId);
         $("#Phone").val(this.Phone);
         $("#Address").val(this.Address);
+        $('input:radio[name="ProfileId"][value=' + this.ProfileId + ']').prop('checked', true);
+        if (this.ProfileId == 3) {
+            $("#form-item-customerofficer").css("display", "block");
+        } else {
+            $("#form-item-customerofficer").css("display", "none");
+        }
     }
 };
 

@@ -17,5 +17,7 @@ namespace Alfursan.Domain
         public bool Isdeleted { get; set; }
         public int CountryId{ get; set; }
         public RelationCustomerCustomOfficer RelationCustomerCustomOfficer { get; set; }
+
+        public bool Status { get; set; }
     }
 }

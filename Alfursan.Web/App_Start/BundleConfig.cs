@@ -23,7 +23,8 @@ namespace Alfursan.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/Alfursan.Ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/fileupload").Include(
                      "~/Plugins/JQueryFileUpload/js/vendor/jquery.ui.widget.js",

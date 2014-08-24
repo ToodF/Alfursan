@@ -23,7 +23,15 @@
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>
-                        <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn" name="change-pass" data="@user.UserId" email ="@user.Email" />
+                        @if (user.Status)
+                        {
+                            <input type="button" value="@Alfursan.Resx.Management.btnStatusPassive" class="btn" name="change-status-passive" data="@user.UserId" />
+                        }
+                        else
+                        {
+                            <input type="button" value="@Alfursan.Resx.Management.btnStatusActive" class="btn" name="change-status-active" data="@user.UserId" />
+                        }
+                        <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn" name="change-pass" data="@user.Email" />
                         <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn" name="delete-user" data="@user.UserId" />
                     </td>
                 </tr>

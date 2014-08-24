@@ -298,6 +298,7 @@
     <Content Include="Plugins\JQueryFileUpload\js\jquery.iframe-transport.js" />
     <Content Include="Plugins\JQueryFileUpload\js\main.js" />
     <Content Include="Plugins\JQueryFileUpload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\Alfursan.Ajax.js" />
     <Content Include="Scripts\Alfursan.Management.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

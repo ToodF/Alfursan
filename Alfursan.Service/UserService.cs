@@ -58,10 +58,14 @@ namespace Alfursan.Service
             return userRepository.ChangePassword(emailOrUsername, oldPassword, newPassword);
         }
 
-
         public Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer)
         {
             return userRepository.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+        }
+
+        public Responder ChangeStatus(int userId, bool status)
+        {
+            return userRepository.ChangeStatus(userId, status);
         }
     }
 }

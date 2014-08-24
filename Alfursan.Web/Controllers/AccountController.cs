@@ -125,6 +125,7 @@ namespace Alfursan.Web.Controllers
             {
                 var user = response.Data;
                 FormsAuthentication.SetAuthCookie(user.UserName, model.RememberMe);
+                Session["CurrentUser"] = response.Data;
                 if (model.RememberMe)
                 {
                     var isSecure = Request.Url.Scheme.Equals("https") ? true : false;
@@ -468,6 +469,9 @@ namespace Alfursan.Web.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+            var cookie = new HttpCookie(LoginCookieKey);
+            cookie.Expires = DateTime.Now;
+            ControllerContext.HttpContext.Response.Cookies.Set(cookie);
             //AuthenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
         }

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error_ExistingUserNameOrEmail" xml:space="preserve">
+    <value>Tanımlamak istediğiniz email yada username başka bir kayıt için kullanılmış. Lütfen değişiklik yaparak kayıt işlemine devam ediniz.</value>
+  </data>
   <data name="Error_InvalidResourceKey" xml:space="preserve">
     <value>Tanımsız resource key kullanımı</value>
   </data>
