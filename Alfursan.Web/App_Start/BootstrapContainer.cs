@@ -15,15 +15,16 @@ namespace Alfursan.Web
         public IWindsorContainer InstallServices(IWindsorContainer container)
         {
             container.Register(
-                 Component.For<Logging>().LifestyleTransient(),
-                  Component.For<Caching>().LifestyleTransient(),
-                  Component.For<ExceptionHandling>().LifestyleTransient(),
-                 Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient()
-                  .Interceptors(InterceptorReference.ForType<Logging>()).First
-                  .Interceptors(InterceptorReference.ForType<Caching>()).First
-                  .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First
-                  , Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient()
-                 );
+                Component.For<Logging>().LifestyleTransient(),
+                Component.For<Caching>().LifestyleTransient(),
+                Component.For<ExceptionHandling>().LifestyleTransient(),
+                Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient()
+                    .Interceptors(InterceptorReference.ForType<Logging>()).First
+                    .Interceptors(InterceptorReference.ForType<Caching>()).First
+                    .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
+                Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient(),
+                Component.For<IAlfursanFileRepository>().ImplementedBy<AlfursanFileRespository>().LifestyleTransient(),
+                Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient());
 
             return container;
         }

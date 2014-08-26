@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAlfursanFileService.cs" />
     <Compile Include="IMessageSender.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="IUserService.cs" />

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlfursanFileRespository.cs" />
     <Compile Include="DapperHelper.cs" />
     <Compile Include="RoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
