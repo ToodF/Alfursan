@@ -160,5 +160,20 @@ namespace Alfursan.Repository
                 return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
             }
         }
+
+        public EntityResponder<User> GetCustomerUserId(int customOfficerId)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var user = con.Query<User>(@"SELECT u.*
+                                            FROM   RelationCustomerCustomOfficer rcco
+                                                   INNER JOIN [User] u
+                                                           ON u.UserId = rcco.CustomerUserId
+                                            WHERE  CustomOfficerId = @CustomOfficerId",
+                                           new { CustomOfficerId = customOfficerId }).FirstOrDefault();
+
+                return new EntityResponder<User>() { Data = user };
+            }
+        }
     }
 }

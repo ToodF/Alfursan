@@ -48,7 +48,7 @@ namespace Alfursan.Web.Controllers
 
             EnumFileType fileType;
 
-            if (EnumFileType.TryParse(Request.Form["fileType"], out fileType))
+            if (Enum.TryParse(Request.Form["fileType"], out fileType))
             {
                 var alfursanFile = new AlfursanFile();
 
@@ -65,10 +65,8 @@ namespace Alfursan.Web.Controllers
 
                 alfursanFile.CreatedUserId = Convert.ToInt32(User.Identity.GetUserId());
 
-                // Todo alfursanFile.CustomerUserId 
-                // Login olan kullanıcının Customer User olup olmadığı kontrol edilip onun idsi set edilmeli.
-                alfursanFile.CustomerUserId = Convert.ToInt32(User.Identity.GetUserId());
-                
+                alfursanFile.CustomerUserId = (int)Session["CustomerUserIdForCustomerOfficer"];
+
                 var fileService = IocContainer.Resolve<IAlfursanFileService>();
 
                 fileService.Set(alfursanFile);

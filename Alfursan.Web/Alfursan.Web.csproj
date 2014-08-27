@@ -284,8 +284,10 @@
     <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload.css" />
     <Content Include="Plugins\JQueryFileUpload\css\style.css" />
     <Content Include="Plugins\JQueryFileUpload\js\app.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\canvas-to-blob.min.js" />
     <Content Include="Plugins\JQueryFileUpload\js\cors\jquery.postmessage-transport.js" />
     <Content Include="Plugins\JQueryFileUpload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\jquery.blueimp-gallery.min.js" />
     <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-angular.js" />
     <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-audio.js" />
     <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-image.js" />
@@ -296,7 +298,9 @@
     <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload-video.js" />
     <Content Include="Plugins\JQueryFileUpload\js\jquery.fileupload.js" />
     <Content Include="Plugins\JQueryFileUpload\js\jquery.iframe-transport.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\load-image.min.js" />
     <Content Include="Plugins\JQueryFileUpload\js\main.js" />
+    <Content Include="Plugins\JQueryFileUpload\js\tmpl.min.js" />
     <Content Include="Plugins\JQueryFileUpload\js\vendor\jquery.ui.widget.js" />
     <Content Include="Scripts\Alfursan.Ajax.js" />
     <Content Include="Scripts\Alfursan.Management.js" />

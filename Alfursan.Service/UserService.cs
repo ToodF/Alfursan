@@ -67,5 +67,10 @@ namespace Alfursan.Service
         {
             return userRepository.ChangeStatus(userId, status);
         }
+
+        public EntityResponder<User> GetCustomerUser(int customOfficerId)
+        {
+            return userRepository.GetCustomerUserId(customOfficerId);
+        }
     }
 }

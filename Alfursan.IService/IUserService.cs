@@ -8,6 +8,7 @@ namespace Alfursan.IService
         EntityResponder<User> Login(string email, string pass);
 
         EntityResponder<List<User>> GetAll();
+
         EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
 
         Responder Set(User user);
@@ -21,5 +22,7 @@ namespace Alfursan.IService
         Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer);
 
         Responder ChangeStatus(int userId, bool status);
+
+        EntityResponder<User> GetCustomerUser(int customOfficerId);
     }
 }

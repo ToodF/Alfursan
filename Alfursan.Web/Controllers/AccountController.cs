@@ -118,14 +118,21 @@ namespace Alfursan.Web.Controllers
         }
 
         bool LoginAndSetCookie(LoginViewModel model, string returnUrl)
-        {           
+        {
             var userService = IocContainer.Resolve<IUserService>();
             var response = userService.Login(model.Email, model.Password);
             if (response.ResponseCode == EnumResponseCode.Successful)
             {
                 var user = response.Data;
                 FormsAuthentication.SetAuthCookie(user.UserName, model.RememberMe);
-                Session["CurrentUser"] = response.Data;
+                Session["CurrentUser"] = user;
+
+                if (user.ProfileId == (int)EnumProfile.CustomOfficer)
+                {
+                    var customerUser = userService.GetCustomerUser(user.UserId);
+                    Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
+                }
+
                 if (model.RememberMe)
                 {
                     var isSecure = Request.Url.Scheme.Equals("https") ? true : false;

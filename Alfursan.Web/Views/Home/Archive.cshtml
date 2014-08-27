@@ -1,6 +1,10 @@
 ﻿<link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload.css" rel="stylesheet" />
 
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+
+    <div class="row">
+
+    </div>
     <!-- Redirect browsers with JavaScript disabled to the origin page -->
     @*<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>*@
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -138,15 +142,15 @@
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="/Plugins/JQueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
     <!-- The Templates plugin is included to render the upload/download listings -->
-    <script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+    <script src="/Plugins/JQueryFileUpload/js/tmpl.min.js"></script>
     <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+    <script src="/Plugins/JQueryFileUpload/js/load-image.min.js"></script>
     <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="~/Plugins/JQueryFileUpload/js/canvas-to-blob.min.js"></script>
     <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!-- blueimp Gallery script -->
-    <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Plugins/JQueryFileUpload/js/jquery.blueimp-gallery.min.js"></script>
     <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
     <script src="/Plugins/JQueryFileUpload/js/jquery.iframe-transport.js"></script>
     <!-- The basic File Upload plugin -->
@@ -246,9 +250,7 @@
                 }
 
                 data.formData = inputs.serializeArray();
-
-                console.log(data.formData);
-
+                return false;
             }).on('fileuploadprogressall', function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css(

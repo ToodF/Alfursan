@@ -12,7 +12,11 @@ namespace Alfursan.IRepository
         EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
 
         Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword);
+
         Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer);
+
         Responder ChangeStatus(int userId, bool status);
+
+        EntityResponder<User> GetCustomerUserId(int customOfficerId);
     }
 }
