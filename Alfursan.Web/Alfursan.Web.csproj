@@ -362,6 +362,7 @@
     <Content Include="Views\Management\_UserList.cshtml" />
     <Content Include="Views\Management\EditProfileRole.cshtml" />
     <Content Include="Views\Management\_Roles.cshtml" />
+    <Content Include="Views\Shared\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

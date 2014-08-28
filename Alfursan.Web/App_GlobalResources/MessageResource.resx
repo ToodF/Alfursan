@@ -138,7 +138,13 @@
   <data name="Info_SetUser" xml:space="preserve">
     <value>User save.</value>
   </data>
+  <data name="Info_UpdateProfile" xml:space="preserve">
+    <value>Profile update edilmiştir.</value>
+  </data>
   <data name="Warning_DeleteUser" xml:space="preserve">
     <value>kullanıcısını silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="Warning_NotUpdateAdminProfile" xml:space="preserve">
+    <value>Admin profili düzenlenemez.</value>
   </data>
 </root>

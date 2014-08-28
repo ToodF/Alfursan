@@ -124,11 +124,29 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile update edilmiştir..
+        /// </summary>
+        public static string Info_UpdateProfile {
+            get {
+                return ResourceManager.GetString("Info_UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to kullanıcısını silmek istediğinize emin misiniz?.
         /// </summary>
         public static string Warning_DeleteUser {
             get {
                 return ResourceManager.GetString("Warning_DeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin profili düzenlenemez..
+        /// </summary>
+        public static string Warning_NotUpdateAdminProfile {
+            get {
+                return ResourceManager.GetString("Warning_NotUpdateAdminProfile", resourceCulture);
             }
         }
     }

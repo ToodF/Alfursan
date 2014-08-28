@@ -1,8 +1,7 @@
 ﻿var AlfursanManagement = {
-
     CustomerProfileId: 3,
 
-    Init: function () {
+    UserListInit: function () {
         AlfursanManagement.GetUserList();
 
         $("input[name='ProfileId']").change(function () {
@@ -28,13 +27,18 @@
             if (!isValid) {
                 return false;
             }
-            AlfursanAjax.Request(form.attr('action'), form.attr('method'), null, null, function(result) {
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), null, null, function (result) {
                 if (result.ReturnCode == "4") {
                     $("#AlfursanModal").modal("hide");
                     AlfursanManagement.GetUserList();
                 }
             });
 
+        });
+    },
+    EditProfileRoleInit: function () {
+        $("#ProfileId").change(function () {
+            AlfursanManagement.GetRolesByProfileId($(this).val());
         });
     },
 
@@ -84,7 +88,7 @@
 
     DeleteUserById: function (id) {
         var url = "/api/UserApi/" + id;
-        AlfursanAjax.Request(url, "post", null, null, function() {
+        AlfursanAjax.Request(url, "post", null, null, function () {
             AlfursanManagement.GetUserList();
         });
     },
@@ -99,7 +103,7 @@
     BindUser: function (userId) {
         if (userId > 0) {
             var url = "/api/UserApi/" + userId;
-            AlfursanAjax.Request(url, 'Get', ".modal-body", null, function(result) {
+            AlfursanAjax.Request(url, 'Get', null, ".modal-body", function (result) {
                 AlfursanUser.SetEntity(result.Data);
                 AlfursanUser.BindModel();
                 $("#AlfursanModal").modal("show");
@@ -108,6 +112,13 @@
             AlfursanUser.BindModel();
             $("#AlfursanModal").modal("show");
         }
+    },
+
+    GetRolesByProfileId: function (profileId) {
+        var url = "/Management/_Roles/" + profileId;
+        AlfursanAjax.Request(url, 'Get', null, "#contaner-roles", function (result) {
+            $("#contaner-roles").html(result);
+        });
     }
 };
 
@@ -183,7 +194,4 @@ var AlfursanUser = {
 };
 
 
-$(document).ready(function () {
-    AlfursanManagement.Init();
-});
 

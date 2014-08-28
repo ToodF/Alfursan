@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -110,40 +111,46 @@ namespace Alfursan.Web.Controllers
 
         public ActionResult EditProfileRole()
         {
-            var roleViewModel = GetRolesByProfleId((int)EnumProfile.Admin);
-            return View(roleViewModel);
+            GetProfiles();
+            return View();
         }
 
         [HttpPost]
         public ActionResult EditProfileRole(FormCollection collection)
         {
             var profileId = Convert.ToInt32(collection["ProfileId"]);
-
-            var roles = new List<Role>();
-            foreach (var item in Enum.GetValues(typeof(EnumRole)))
+            if (profileId == (int)EnumProfile.Admin)
             {
-                var isActive = !collection[item.ToString()].Equals("false");
-                if (isActive)
-                {
-                    roles.Add(new Role() { ProfileId = profileId, RoleId = (int)(EnumRole)item });
-                }
+                ViewData["warning"] = Alfursan.Resx.MessageResource.Warning_NotUpdateAdminProfile;
             }
-
-            if (roles.Any())
+            else
             {
-                var roleService = IocContainer.Resolve<IRoleService>();
-                var deleteOldRoles = roleService.DeleteRolesByProfileId(profileId);
-                if (deleteOldRoles.ResponseCode == EnumResponseCode.Successful)
+                var roles = new List<Role>();
+                foreach (var item in Enum.GetValues(typeof(EnumRole)))
                 {
-                    roleService.SetRoles(roles);
+                    var isActive = !collection[item.ToString()].Equals("false");
+                    if (isActive)
+                    {
+                        roles.Add(new Role() { ProfileId = profileId, RoleId = (int)(EnumRole)item });
+                    }
                 }
-            }
 
-            var roleViewModel = GetRolesByProfleId((int)EnumProfile.Admin);
-            return View(roleViewModel);
+                if (roles.Any())
+                {
+                    var roleService = IocContainer.Resolve<IRoleService>();
+                    var deleteOldRoles = roleService.DeleteRolesByProfileId(profileId);
+                    if (deleteOldRoles.ResponseCode == EnumResponseCode.Successful)
+                    {
+                        roleService.SetRoles(roles);
+                    }
+                }
+                ViewData["success"] = Alfursan.Resx.MessageResource.Info_UpdateProfile;
+            }
+            GetProfiles();
+            return View();
         }
 
-        RoleViewModel GetRolesByProfleId(int profileId)
+        void GetProfiles()
         {
             var profiles = (from object profile in Enum.GetValues(typeof(EnumProfile))
                             select new SelectListItem()
@@ -152,12 +159,13 @@ namespace Alfursan.Web.Controllers
                                 Value = ((int)profile).ToString()
                             }).ToList();
             ViewData["Profiles"] = profiles;
+        }
 
+        public PartialViewResult _Roles(int id)
+        {
             var roleService = IocContainer.Resolve<IRoleService>();
-            var roles = roleService.GetRolesByProfileId((int)profileId);
-            var roleViewModel = new RoleViewModel();
-            roleViewModel.ProfileId = (EnumProfile)profileId;
-            roleViewModel.Roles = new List<RoleModel>();
+            var roles = roleService.GetRolesByProfileId((int)id);
+            var roleViewModel = new RoleViewModel { ProfileId = (EnumProfile)id, Roles = new List<RoleModel>() };
             foreach (var item in Enum.GetValues(typeof(EnumRole)))
             {
                 RoleModel roleModel;
@@ -176,7 +184,7 @@ namespace Alfursan.Web.Controllers
 
                 roleViewModel.Roles.Add(roleModel);
             }
-            return roleViewModel;
+            return PartialView(roleViewModel);
         }
     }
 }
