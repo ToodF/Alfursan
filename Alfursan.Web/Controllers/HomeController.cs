@@ -1,29 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
-using Microsoft.AspNet.Identity;
 
 namespace Alfursan.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        public User CurrentUser
+        {
+            get
+            {
+                if (Session["CurrentUser"] != null)
+                    return (User)Session["CurrentUser"];
+
+                return null;
+            }
+        }
+
         public ActionResult Index()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
             return View();
         }
 
+        public ActionResult Archive(int id)
+        {
+            ViewBag.Title = Alfursan.Resx.Index.Title;
+
+            return View();
+        }
+
         public ActionResult Archive()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
+
+            if (CurrentUser == null)
+                return RedirectToAction("Login", "Account");
+
+            if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
+            {
+                var userService = IocContainer.Resolve<IUserService>();
+                var users = userService.GetAll();
+
+                return View(users);
+            }
+
             return View();
         }
 
@@ -44,7 +71,7 @@ namespace Alfursan.Web.Controllers
             // File we want to resize and save.
             var file = Request.Files[0];
 
-            var relatedFileName = Guid.NewGuid().ToString();
+            var relatedFileName = string.Format("{0}{1}", Guid.NewGuid(), Path.GetExtension(file.FileName));
 
             EnumFileType fileType;
 
@@ -63,9 +90,20 @@ namespace Alfursan.Web.Controllers
 
                 alfursanFile.IsDeleted = false;
 
-                alfursanFile.CreatedUserId = Convert.ToInt32(User.Identity.GetUserId());
+                alfursanFile.CreatedUserId = CurrentUser.UserId;
 
-                alfursanFile.CustomerUserId = (int)Session["CustomerUserIdForCustomerOfficer"];
+                if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
+                {
+                    alfursanFile.CustomerUserId = Convert.ToInt32(Request.Form["customerUserId"]);
+                }
+                else if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
+                {
+                    alfursanFile.CustomerUserId = CurrentUser.UserId;
+                }
+                else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+                {
+                    alfursanFile.CustomerUserId = (int)Session["CustomerUserIdForCustomerOfficer"];
+                }
 
                 var fileService = IocContainer.Resolve<IAlfursanFileService>();
 
@@ -74,14 +112,15 @@ namespace Alfursan.Web.Controllers
 
             try
             {
-                var filename = UploadFile(file, relatedFileName);
+                string thumbnail;
+                var filename = UploadFile(file, relatedFileName, out thumbnail);
 
                 // Return JSON
                 return Json(new
                 {
                     statusCode = 200,
                     status = "Image uploaded.",
-                    files = new[] { new { url = filename, error = "", thumbnailUrl = "", name = "Filename" } },
+                    files = new[] { new { url = filename, error = "", thumbnailUrl = thumbnail, name = file.FileName } },
                 }, "text/html");
             }
             catch (Exception ex)
@@ -97,36 +136,71 @@ namespace Alfursan.Web.Controllers
             }
         }
 
-        string UploadFile(HttpPostedFileBase file, string relatedFileName)
+        string UploadFile(HttpPostedFileBase file, string relatedFileName, out string thumbnail)
         {
+            thumbnail = string.Empty;
+
             // Initialize variables we'll need for resizing and saving
             var width = int.Parse(ConfigurationManager.AppSettings["AuthorThumbnailResizeWidth"]);
             var height = int.Parse(ConfigurationManager.AppSettings["AuthorThumbnailResizeHeight"]);
 
             // Build absolute path
-            var absPath = @"D:\Projects\Alfursan\Alfursan.Web\Uploaded\";
+            var absPath = ConfigurationManager.AppSettings["FiledUploadedPath"];
             var absFileAndPath = absPath + relatedFileName;
 
             // Create directory as necessary and save image on server
             if (!Directory.Exists(absPath))
                 Directory.CreateDirectory(absPath);
+
             file.SaveAs(absFileAndPath);
 
-            //// Resize image using "ImageResizer" NuGet package.
-            //var resizeSettings = new ImageResizer.ResizeSettings
-            //{
-            //    Scale = ImageResizer.ScaleMode.DownscaleOnly,
-            //    Width = width,
-            //    Height = height,
-            //    Mode = ImageResizer.FitMode.Crop
-            //};
-            //var b = ImageResizer.ImageBuilder.Current.Build(absFileAndPath, resizeSettings);
+            var isFileImage = IsFileImage(Path.GetExtension(file.FileName));
 
-            //// Save resized image
-            //b.Save(absFileAndPath);
+            if (isFileImage)
+            {
+                var thumbnailsPath = string.Format("{0}Thumbnails", ConfigurationManager.AppSettings["FiledUploadedPath"]);
+                var thumbnailsFileAndPath = string.Format("{0}\\{1}", thumbnailsPath, relatedFileName);
+                thumbnail = string.Format(@"/Uploaded/Thumbnails/{0}", relatedFileName);
+
+                // Resize image using "ImageResizer" NuGet package.
+                var resizeSettings = new ImageResizer.ResizeSettings
+                {
+                    Scale = ImageResizer.ScaleMode.DownscaleOnly,
+                    Width = width,
+                    Height = height,
+                    Mode = ImageResizer.FitMode.Crop
+                };
+
+                var b = ImageResizer.ImageBuilder.Current.Build(absFileAndPath, resizeSettings);
+
+                if (!Directory.Exists(thumbnailsPath))
+                    Directory.CreateDirectory(thumbnailsPath);
+
+                // Save resized image
+                b.Save(thumbnailsFileAndPath);
+            }
 
             // Return relative file path
-            return @"http:\\alfursan.com\uploaded\Screenshot (2).png"; //relativeFileAndPath;
+            return string.Format(@"/Uploaded/{0}", relatedFileName); //relativeFileAndPath;
+        }
+
+        private bool IsFileImage(string fileExtension)
+        {
+            switch (fileExtension.ToLower())
+            {
+                case @".bmp":
+                case @".gif":
+                case @".ico":
+                case @".jpg":
+                case @".jpeg":
+                case @".png":
+                case @".tif":
+                case @".tiff":
+                case @".wmf":
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

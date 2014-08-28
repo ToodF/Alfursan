@@ -258,6 +258,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Images\Sorting icons.psd" />
+    <Content Include="Plugins\Dropdown\css\bootstrap-select.css.map" />
+    <Content Include="Plugins\Dropdown\js\bootstrap-select.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\back_disabled.png" />
     <Content Include="Images\back_enabled.png" />
@@ -276,6 +278,8 @@
     <Content Include="Plugins\Datatable\css\jquery.dataTables.css" />
     <Content Include="Plugins\Datatable\css\jquery.dataTables.min.css" />
     <Content Include="Plugins\Datatable\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Plugins\Dropdown\css\bootstrap-select.css" />
+    <Content Include="Plugins\Dropdown\js\bootstrap-select.js" />
     <Content Include="Plugins\JQueryFileUpload\css\demo-ie8.css" />
     <Content Include="Plugins\JQueryFileUpload\css\demo.css" />
     <Content Include="Plugins\JQueryFileUpload\css\jquery.fileupload-noscript.css" />
