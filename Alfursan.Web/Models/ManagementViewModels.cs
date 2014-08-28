@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Alfursan.Domain;
 
 namespace Alfursan.Web.Models
@@ -79,14 +80,15 @@ namespace Alfursan.Web.Models
 
     public class RoleViewModel
     {
-        public int ProfileRoleId { get; set; }
         [Required]
-        public int RoleId { get; set; }
-        [Required]
-        public int ProfileId { get; set; }
+        public EnumProfile ProfileId { get; set; }
+        public List<RoleModel> Roles { get; set; }
+    }
 
-        public string RoleName { get; set; }
+    public class RoleModel
+    {
+        public EnumRole Role { get; set; }
         public EnumRoleType RoleType { get; set; }
-        public EnumFileType FileType { get; set; }
+        public bool IsActive { get; set; }
     }
 }

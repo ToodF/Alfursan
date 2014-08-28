@@ -6,6 +6,10 @@ namespace Alfursan.IRepository
 {
     public interface IRoleRepository : IRepository<Role>
     {
-        EntityResponder<List<Role>> GetRolesByProfileId(int profileId,int langId);
+        EntityResponder<List<Role>> GetRolesByProfileId(int profileId);
+
+        Responder SetRoles(List<Role> roles);
+
+        Responder DeleteRolesByProfileId(int profileId);
     }
 }

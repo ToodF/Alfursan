@@ -8,16 +8,26 @@ namespace Alfursan.Service
 {
     public class RoleService : IRoleService
     {
-        private IRoleRepository rolerRepository;
+        private IRoleRepository roleRepository;
 
         public RoleService()
         {
-            rolerRepository = IocContainer.Resolve<IRoleRepository>();
+            roleRepository = IocContainer.Resolve<IRoleRepository>();
         }
-        public EntityResponder<List<Role>> GetRolesByProfileId(int profileId, int langId)
+        public EntityResponder<List<Role>> GetRolesByProfileId(int profileId)
         {
-            var roles = rolerRepository.GetRolesByProfileId(profileId, langId);
+            var roles = roleRepository.GetRolesByProfileId(profileId);
             return roles;
+        }
+
+        public Responder SetRoles(List<Role> roles)
+        {
+            return roleRepository.SetRoles(roles);
+        }
+
+        public Responder DeleteRolesByProfileId(int profileId)
+        {
+            return roleRepository.DeleteRolesByProfileId(profileId);
         }
     }
 }

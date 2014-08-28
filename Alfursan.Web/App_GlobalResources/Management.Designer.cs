@@ -214,11 +214,110 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Customer.
+        /// </summary>
+        public static string EnumRole_AddCustomer {
+            get {
+                return ResourceManager.GetString("EnumRole_AddCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Customofficer.
+        /// </summary>
+        public static string EnumRole_AddCustomOfficer {
+            get {
+                return ResourceManager.GetString("EnumRole_AddCustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add file.
         /// </summary>
         public static string EnumRole_AddFile {
             get {
                 return ResourceManager.GetString("EnumRole_AddFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add User.
+        /// </summary>
+        public static string EnumRole_AddUser {
+            get {
+                return ResourceManager.GetString("EnumRole_AddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Pass.
+        /// </summary>
+        public static string EnumRole_ChangePassword {
+            get {
+                return ResourceManager.GetString("EnumRole_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Customer.
+        /// </summary>
+        public static string EnumRole_DeleteCustomer {
+            get {
+                return ResourceManager.GetString("EnumRole_DeleteCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Customofficer.
+        /// </summary>
+        public static string EnumRole_DeleteCustomOfficer {
+            get {
+                return ResourceManager.GetString("EnumRole_DeleteCustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete file.
+        /// </summary>
+        public static string EnumRole_DeleteFile {
+            get {
+                return ResourceManager.GetString("EnumRole_DeleteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete User.
+        /// </summary>
+        public static string EnumRole_DeleteUser {
+            get {
+                return ResourceManager.GetString("EnumRole_DeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Customer.
+        /// </summary>
+        public static string EnumRole_UpdateCustomer {
+            get {
+                return ResourceManager.GetString("EnumRole_UpdateCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Customofficer.
+        /// </summary>
+        public static string EnumRole_UpdateCustomOfficer {
+            get {
+                return ResourceManager.GetString("EnumRole_UpdateCustomOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update User.
+        /// </summary>
+        public static string EnumRole_UpdateUser {
+            get {
+                return ResourceManager.GetString("EnumRole_UpdateUser", resourceCulture);
             }
         }
         

@@ -34,14 +34,36 @@ namespace Alfursan.Repository
             throw new NotImplementedException();
         }
 
-        public EntityResponder<List<Role>> GetRolesByProfileId(int profileId, int langId)
+        public EntityResponder<List<Role>> GetRolesByProfileId(int profileId)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var roles = con.Query<Role>("SELECT rpr.ProfileRoleId,rpr.RoleId,r.RoleName,r.RoleTypeId,rpr.TargetId FROM bo.RelationProfileRole AS rpr JOIN [Role] AS r ON r.RoleId = rpr.RoleId WHERE r.LangId = @LangId AND rpr.ProfileId = @ProfileId", new { ProfileId = profileId, LangId = langId });
+                var roles = con.Query<Role>("SELECT rpr.ProfileRoleId,rpr.RoleId FROM dbo.RelationProfileRole AS rpr WHERE rpr.ProfileId = @ProfileId", new { ProfileId = profileId });
                 if (roles == null || !roles.Any())
                     return new EntityResponder<List<Role>>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = Const.Error_InvalidUserNameOrPass };
                 return new EntityResponder<List<Role>>() { Data = roles.ToList() };
+            }
+        }
+
+        public Responder SetRoles(List<Role> roles)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                foreach (var role in roles)
+                {
+                    con.Execute("Insert into dbo.RelationProfileRole (RoleId,ProfileId) Values (@RoleId,@ProfileId)", role);
+                }
+
+                return new EntityResponder<List<Role>>() { ResponseCode = EnumResponseCode.Successful };
+            }
+        }
+
+        public Responder DeleteRolesByProfileId(int profileId)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                con.Execute("Update dbo.RelationProfileRole set IsDeleted = 1 , DeletedDate = GETDATE() where ProfileId = @ProfileId", new { ProfileId = profileId });
+                return new EntityResponder<List<Role>>() { ResponseCode = EnumResponseCode.Successful };
             }
         }
     }

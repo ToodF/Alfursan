@@ -24,7 +24,9 @@ namespace Alfursan.Web
                     .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient(),
                 Component.For<IAlfursanFileRepository>().ImplementedBy<AlfursanFileRespository>().LifestyleTransient(),
-                Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient());
+                Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient(),
+                Component.For<IRoleRepository>().ImplementedBy<RoleRepository>().LifestyleTransient(),
+                Component.For<IRoleService>().ImplementedBy<RoleService>().LifestyleTransient());
 
             return container;
         }

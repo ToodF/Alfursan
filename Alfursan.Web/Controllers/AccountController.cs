@@ -124,7 +124,7 @@ namespace Alfursan.Web.Controllers
             if (response.ResponseCode == EnumResponseCode.Successful)
             {
                 var user = response.Data;
-                FormsAuthentication.SetAuthCookie(user.UserName, model.RememberMe);
+                FormsAuthentication.SetAuthCookie(user.Email, model.RememberMe);
                 Session["CurrentUser"] = user;
 
                 if (user.ProfileId == (int)EnumProfile.CustomOfficer)

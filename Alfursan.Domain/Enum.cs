@@ -12,7 +12,6 @@ namespace Alfursan.Domain
         CustomOfficer = 4
     }
 
-    [Flags]
     public enum EnumFileType
     {
         None = 0,
@@ -21,7 +20,6 @@ namespace Alfursan.Domain
         Other = 3,
     }
 
-    [Flags]
     public enum EnumRoleType
     {
         None = 0,
@@ -29,23 +27,25 @@ namespace Alfursan.Domain
         UserRole = 2
     }
 
-    [Flags]
     public enum EnumRole
     {
         //None,
-        AddFile,
-        DeleteFile,
-        ReadFile,
-        DeleteAllFile,
         AddUser,
         UpdateUser,
-        ChangeUserStatus,
         DeleteUser,
-        ChangePassword,
+
+        AddCustomer,
+        UpdateCustomer,
+        DeleteCustomer,
+
         AddCustomOfficer,
         UpdateCustomOfficer,
         DeleteCustomOfficer,
-        Authorization
+
+        ChangePassword,
+
+        AddFile,
+        DeleteFile
     }
     public enum EnumResponseCode
     {
@@ -62,5 +62,11 @@ namespace Alfursan.Domain
         Unexpected = 10,
         NotInserted,
         NotUpdated
+    }
+
+    public enum EnumLanguage
+    {
+        English = 1,
+        Arabic = 2
     }
 }

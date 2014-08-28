@@ -41,7 +41,10 @@
     GetUserList: function () {
         $("#grid-container").css("display", "none");
         $("#message-delete-user").css("display", "none");
-        $("#grid-container").load("/Management/_UserList", null, function () {
+
+        var url = "/Management/_UserList";
+        AlfursanAjax.Request(url, "post", null, "body", function (result) {
+            $("#grid-container").html(result);
             var table = $('#grid-users').DataTable();
             $("#grid-container").css("display", "block");
             $('#grid-users tbody').on('click', 'tr', function () {
@@ -76,7 +79,6 @@
             $("input:button[name='change-status-active']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
             });
-
         });
     },
 

@@ -5,24 +5,46 @@
     <div class="panel-body">
         <div>
             @Html.CheckBox(EnumRole.AddUser.ToString(), false, new { id = EnumRole.AddUser })
-            @Html.Label(EnumRole.AddUser.ToString(), new { @for = EnumRole.AddUser })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_AddUser, new { @for = EnumRole.AddUser })
         </div>
         <div>
             @Html.CheckBox(EnumRole.UpdateUser.ToString(), false, new { id = EnumRole.UpdateUser })
-            @Html.Label(EnumRole.UpdateUser.ToString(), new { @for = EnumRole.UpdateUser })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateUser, new { @for = EnumRole.UpdateUser })
         </div>
         <div>
             @Html.CheckBox(EnumRole.DeleteUser.ToString(), false, new { id = EnumRole.DeleteUser })
-            @Html.Label(EnumRole.DeleteUser.ToString(), new { @for = EnumRole.DeleteUser })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteUser, new { @for = EnumRole.DeleteUser })
         </div>
+        <div>
+            @Html.CheckBox(EnumRole.AddCustomer.ToString(), false, new { id = EnumRole.AddCustomer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_AddCustomer, new { @for = EnumRole.AddCustomer })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.UpdateCustomer.ToString(), false, new { id = EnumRole.UpdateCustomer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateCustomer, new { @for = EnumRole.UpdateCustomer })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.DeleteCustomer.ToString(), false, new { id = EnumRole.DeleteCustomer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteCustomer, new { @for = EnumRole.DeleteCustomer })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.AddCustomOfficer.ToString(), false, new { id = EnumRole.AddCustomOfficer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_AddCustomOfficer, new { @for = EnumRole.AddCustomOfficer })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.UpdateCustomOfficer.ToString(), false, new { id = EnumRole.UpdateCustomOfficer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateCustomOfficer, new { @for = EnumRole.UpdateCustomOfficer })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.DeleteCustomOfficer.ToString(), false, new { id = EnumRole.DeleteCustomOfficer })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteCustomOfficer, new { @for = EnumRole.DeleteCustomOfficer })
+        </div>
+        <br/>
         <div>
             @Html.CheckBox(EnumRole.ChangePassword.ToString(), false, new { id = EnumRole.ChangePassword })
-            @Html.Label(EnumRole.ChangePassword.ToString(), new { @for = EnumRole.ChangePassword })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_ChangePassword, new { @for = EnumRole.ChangePassword })
         </div>
-        <div>
-            @Html.CheckBox(EnumRole.ChangeUserStatus.ToString(), false, new { id = EnumRole.ChangeUserStatus })
-            @Html.Label(EnumRole.ChangeUserStatus.ToString(), new { @for = EnumRole.ChangeUserStatus })
-        </div>
+        
     </div>
 </div>
 <div class="panel panel-default">
@@ -30,6 +52,13 @@
         <h3 class="panel-title">Dosya yetkileri</h3>
     </div>
     <div class="panel-body">
-        Panel content
+        <div>
+            @Html.CheckBox(EnumRole.AddFile.ToString(), false, new { id = EnumRole.AddFile })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_AddFile, new { @for = EnumRole.AddFile })
+        </div>
+        <div>
+            @Html.CheckBox(EnumRole.DeleteFile.ToString(), false, new { id = EnumRole.DeleteFile })
+            @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteFile, new { @for = EnumRole.DeleteFile })
+        </div>
     </div>
 </div>

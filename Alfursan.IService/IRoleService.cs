@@ -5,6 +5,9 @@ namespace Alfursan.IService
 {
     public interface IRoleService
     {
-        EntityResponder<List<Role>> GetRolesByProfileId(int profileId, int langId);
+        EntityResponder<List<Role>> GetRolesByProfileId(int profileId);
+        Responder SetRoles(List<Role> roles);
+
+        Responder DeleteRolesByProfileId(int profileId);
     }
 }

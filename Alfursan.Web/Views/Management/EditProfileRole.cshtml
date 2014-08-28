@@ -1,10 +1,93 @@
-﻿@model Alfursan.Web.Models.RoleViewModel
+﻿@using Alfursan.Domain
+
+@model Alfursan.Web.Models.RoleViewModel
 
 <h2>EditProfileRole</h2>
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "" }))
+@using (Html.BeginForm(/*null, null, FormMethod.Post, new { @action = "" }*/))
 {
 
     @Html.DropDownListFor(model => model.ProfileId, (List<SelectListItem>)ViewData["Profiles"], new { @class = "form-control" })
 
-    @Html.Partial("_Roles")
+    @*@Html.Partial("_Roles")*@
+    <div class="panel panel-default">
+        <div class="panel-heading">Kullanıcı yetkileri</div>
+        <div class="panel-body">
+            @foreach (var userRole in Model.Roles.Where(f => f.RoleType == EnumRoleType.UserRole))
+            {
+                <div>
+                    @Html.CheckBox(userRole.Role.ToString(), userRole.IsActive, new { id = userRole.Role.ToString() })
+                    @Html.Label(Alfursan.Resx.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
+                </div>
+            }
+
+            @*<div>
+                    <input type="checkbox" name="AddUser" id="AddUser" />
+                    <label for="AddUser">AddUser</label>
+
+                    @Html.CheckBox(EnumRole.AddUser.ToString(), false, new { id = EnumRole.AddUser })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_AddUser, new { @for = EnumRole.AddUser })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.UpdateUser.ToString(), false, new { id = EnumRole.UpdateUser })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateUser, new { @for = EnumRole.UpdateUser })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.DeleteUser.ToString(), false, new { id = EnumRole.DeleteUser })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteUser, new { @for = EnumRole.DeleteUser })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.AddCustomer.ToString(), false, new { id = EnumRole.AddCustomer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_AddCustomer, new { @for = EnumRole.AddCustomer })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.UpdateCustomer.ToString(), false, new { id = EnumRole.UpdateCustomer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateCustomer, new { @for = EnumRole.UpdateCustomer })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.DeleteCustomer.ToString(), false, new { id = EnumRole.DeleteCustomer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteCustomer, new { @for = EnumRole.DeleteCustomer })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.AddCustomOfficer.ToString(), false, new { id = EnumRole.AddCustomOfficer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_AddCustomOfficer, new { @for = EnumRole.AddCustomOfficer })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.UpdateCustomOfficer.ToString(), false, new { id = EnumRole.UpdateCustomOfficer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_UpdateCustomOfficer, new { @for = EnumRole.UpdateCustomOfficer })
+                </div>
+                <div>
+                    @Html.CheckBox(EnumRole.DeleteCustomOfficer.ToString(), false, new { id = EnumRole.DeleteCustomOfficer })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteCustomOfficer, new { @for = EnumRole.DeleteCustomOfficer })
+                </div>
+                <br />
+                <div>
+                    @Html.CheckBox(EnumRole.ChangePassword.ToString(), false, new { id = EnumRole.ChangePassword })
+                    @Html.Label(Alfursan.Resx.Management.EnumRole_ChangePassword, new { @for = EnumRole.ChangePassword })
+                </div>*@
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dosya yetkileri</h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var userRole in Model.Roles.Where(f => f.RoleType == EnumRoleType.FileRole))
+            {
+                <div>
+                    @Html.CheckBox(userRole.Role.ToString(), userRole.IsActive, new { id = userRole.Role.ToString() })
+                    @Html.Label(Alfursan.Resx.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
+                </div>
+            }
+            @*<div>
+                @Html.CheckBox(EnumRole.AddFile.ToString(), false, new { id = EnumRole.AddFile })
+                @Html.Label(Alfursan.Resx.Management.EnumRole_AddFile, new { @for = EnumRole.AddFile })
+            </div>
+            <div>
+                @Html.CheckBox(EnumRole.DeleteFile.ToString(), false, new { id = EnumRole.DeleteFile })
+                @Html.Label(Alfursan.Resx.Management.EnumRole_DeleteFile, new { @for = EnumRole.DeleteFile })
+            </div>*@
+        </div>
+    </div>
+    <input type="submit" value="kaydet" />
 }

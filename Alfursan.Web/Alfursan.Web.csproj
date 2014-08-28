@@ -257,6 +257,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\icon-active.png" />
+    <Content Include="Images\icon-passive.png" />
+    <Content Include="Images\loader.gif" />
     <Content Include="Images\Sorting icons.psd" />
     <Content Include="Plugins\Dropdown\css\bootstrap-select.css.map" />
     <Content Include="Plugins\Dropdown\js\bootstrap-select.js.map" />
@@ -323,7 +326,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

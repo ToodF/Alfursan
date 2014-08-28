@@ -17,7 +17,18 @@
             foreach (var user in Model)
             {
                 <tr data="@user.UserId">
-                    <td>@user.ProfileId</td>
+                    <td>
+                        @if (user.Status)
+                        {
+                            <img src="/Images/icon-active.png" width="12" height="12" />
+                        }
+                        else
+                        {
+                            <img src="/Images/icon-passive.png" width="12" height="12" />
+                        }
+                        
+                        @user.ProfileId
+                    </td>
                     <td>@user.Name</td>
                     <td>@user.Surname</td>
                     <td>@user.Email</td>

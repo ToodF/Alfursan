@@ -87,7 +87,7 @@ namespace Alfursan.Web.Controllers
             return PartialView();
         }
 
-        public ActionResult _UserList()
+        public PartialViewResult _UserList()
         {
             var userService = IocContainer.Resolve<IUserService>();
             var users = userService.GetAll();
@@ -105,20 +105,78 @@ namespace Alfursan.Web.Controllers
                 if (user.ProfileId == EnumProfile.User)
                     user.ProfileName = Alfursan.Resx.Management.Profile_User;
             }
-            return View(userListViewModels);
+            return PartialView(userListViewModels);
         }
 
         public ActionResult EditProfileRole()
+        {
+            var roleViewModel = GetRolesByProfleId((int)EnumProfile.Admin);
+            return View(roleViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfileRole(FormCollection collection)
+        {
+            var profileId = Convert.ToInt32(collection["ProfileId"]);
+
+            var roles = new List<Role>();
+            foreach (var item in Enum.GetValues(typeof(EnumRole)))
+            {
+                var isActive = !collection[item.ToString()].Equals("false");
+                if (isActive)
+                {
+                    roles.Add(new Role() { ProfileId = profileId, RoleId = (int)(EnumRole)item });
+                }
+            }
+
+            if (roles.Any())
+            {
+                var roleService = IocContainer.Resolve<IRoleService>();
+                var deleteOldRoles = roleService.DeleteRolesByProfileId(profileId);
+                if (deleteOldRoles.ResponseCode == EnumResponseCode.Successful)
+                {
+                    roleService.SetRoles(roles);
+                }
+            }
+
+            var roleViewModel = GetRolesByProfleId((int)EnumProfile.Admin);
+            return View(roleViewModel);
+        }
+
+        RoleViewModel GetRolesByProfleId(int profileId)
         {
             var profiles = (from object profile in Enum.GetValues(typeof(EnumProfile))
                             select new SelectListItem()
                             {
                                 Text = ResourceHelper.GetGlobalManagementResource("EnumProfile_" + Enum.GetName(typeof(EnumProfile), profile)),
-                                Value = profile.ToString()
+                                Value = ((int)profile).ToString()
                             }).ToList();
             ViewData["Profiles"] = profiles;
-            return View();
-        }
 
+            var roleService = IocContainer.Resolve<IRoleService>();
+            var roles = roleService.GetRolesByProfileId((int)profileId);
+            var roleViewModel = new RoleViewModel();
+            roleViewModel.ProfileId = (EnumProfile)profileId;
+            roleViewModel.Roles = new List<RoleModel>();
+            foreach (var item in Enum.GetValues(typeof(EnumRole)))
+            {
+                RoleModel roleModel;
+                if ((EnumRole)item == EnumRole.AddFile || (EnumRole)item == EnumRole.DeleteFile)
+                {
+                    roleModel = new RoleModel() { Role = (EnumRole)item, RoleType = EnumRoleType.FileRole };
+                }
+                else
+                {
+                    roleModel = new RoleModel() { Role = (EnumRole)item, RoleType = EnumRoleType.UserRole };
+                }
+                if (roles.ResponseCode == EnumResponseCode.Successful)
+                {
+                    roleModel.IsActive = roles.Data.Exists(f => f.RoleId == (int)(EnumRole)item);
+                }
+
+                roleViewModel.Roles.Add(roleModel);
+            }
+            return roleViewModel;
+        }
     }
 }

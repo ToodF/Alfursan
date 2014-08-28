@@ -213,4 +213,37 @@
   <data name="btnStatusPassive" xml:space="preserve">
     <value>Passive</value>
   </data>
+  <data name="EnumRole_AddCustomer" xml:space="preserve">
+    <value>Add Customer</value>
+  </data>
+  <data name="EnumRole_AddCustomOfficer" xml:space="preserve">
+    <value>Add Customofficer</value>
+  </data>
+  <data name="EnumRole_AddUser" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="EnumRole_ChangePassword" xml:space="preserve">
+    <value>Change Pass</value>
+  </data>
+  <data name="EnumRole_DeleteCustomer" xml:space="preserve">
+    <value>Delete Customer</value>
+  </data>
+  <data name="EnumRole_DeleteCustomOfficer" xml:space="preserve">
+    <value>Delete Customofficer</value>
+  </data>
+  <data name="EnumRole_DeleteFile" xml:space="preserve">
+    <value>Delete file</value>
+  </data>
+  <data name="EnumRole_DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="EnumRole_UpdateCustomer" xml:space="preserve">
+    <value>Update Customer</value>
+  </data>
+  <data name="EnumRole_UpdateCustomOfficer" xml:space="preserve">
+    <value>Update Customofficer</value>
+  </data>
+  <data name="EnumRole_UpdateUser" xml:space="preserve">
+    <value>Update User</value>
+  </data>
 </root>

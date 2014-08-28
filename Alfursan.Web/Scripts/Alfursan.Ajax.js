@@ -1,6 +1,9 @@
 ﻿var AlfursanAjax = {
 
     Request: function (url, method, data, resultContainer, succesCallback) {
+        if ($(resultContainer).size() > 0) {
+            $(resultContainer).append('<div class="loading-container"></div>');
+        }
         $.ajax({
             type: method,
             url: url,
@@ -26,7 +29,9 @@
             if (succesCallback) {
                 succesCallback(result);
             }
+            $(".loading-container").remove();
         }).fail(function () {
+            $(".loading-container").remove();
             alert("hata");
         });
     },
