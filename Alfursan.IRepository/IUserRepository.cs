@@ -18,5 +18,6 @@ namespace Alfursan.IRepository
         Responder ChangeStatus(int userId, bool status);
 
         EntityResponder<User> GetCustomerUserId(int customOfficerId);
+        EntityResponder<List<User>> GetCustomers();
     }
 }

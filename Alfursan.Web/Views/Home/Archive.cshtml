@@ -251,6 +251,16 @@
                         .append('<br>')
                         .append($('<span class="text-danger"/>').text(file.error));
                 }
+
+                var docType = $("button[value='@Url.RequestContext.RouteData.Values["id"]']");
+
+                docType.siblings().removeClass('active');
+                docType.addClass('active');
+
+                $("input[name='fileType']").each(function (index) {
+                    $(this).val(@Url.RequestContext.RouteData.Values["id"]);
+                });
+
                 //if (index + 1 === data.files.length) {
                 //    data.context.find('button')
                 //        .text('Upload')
@@ -297,7 +307,7 @@
                         .append(error);
                 });
             }).prop('disabled', !$.support.fileInput)
-                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                    .parent().addClass($.support.fileInput ? undefined : 'disabled');
         });
 
         $(document).ready(function () {

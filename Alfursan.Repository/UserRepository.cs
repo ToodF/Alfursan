@@ -175,5 +175,14 @@ namespace Alfursan.Repository
                 return new EntityResponder<User>() { Data = user };
             }
         }
+
+        public EntityResponder<List<User>> GetCustomers()
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var users = con.Query<User>("SELECT * FROM [User] WHERE ProfileId = 3").ToList();
+                return new EntityResponder<List<User>>() { Data = users };
+            }
+        }
     }
 }

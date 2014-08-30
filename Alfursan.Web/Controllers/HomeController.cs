@@ -29,13 +29,6 @@ namespace Alfursan.Web.Controllers
             return View();
         }
 
-        public ActionResult Archive(int id)
-        {
-            ViewBag.Title = Alfursan.Resx.Index.Title;
-
-            return View();
-        }
-
         public ActionResult Archive()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
@@ -46,7 +39,7 @@ namespace Alfursan.Web.Controllers
             if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
             {
                 var userService = IocContainer.Resolve<IUserService>();
-                var users = userService.GetAll();
+                var users = userService.GetCustomers();
 
                 return View(users);
             }
