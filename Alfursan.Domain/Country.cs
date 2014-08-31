@@ -1,4 +1,3 @@
-﻿
 namespace Alfursan.Domain
 {
     public class Country
