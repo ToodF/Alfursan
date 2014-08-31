@@ -18,9 +18,9 @@ namespace Alfursan.Domain
         public int CountryId { get; set; }
         public RelationCustomerCustomOfficer RelationCustomerCustomOfficer { get; set; }
 
-        public string LongName
+        public string FullName
         {
-            get { return Name + " " + Surname; }
+            get { return string.Format("{0} {1}", Name, Surname); }
         }
 
         public bool Status { get; set; }

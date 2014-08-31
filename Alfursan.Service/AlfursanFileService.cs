@@ -1,4 +1,5 @@
-﻿using Alfursan.Domain;
+﻿using System.Collections.Generic;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IRepository;
 using Alfursan.IService;
@@ -19,6 +20,11 @@ namespace Alfursan.Service
             return file.FileId == 0
                 ? fileRepository.Set(file)
                 : fileRepository.Update(file);
+        }
+
+        public EntityResponder<List<AlfursanFile>> GetFiles(int userId, int customerUserId)
+        {
+            return fileRepository.GetFiles(userId, customerUserId);
         }
     }
 }

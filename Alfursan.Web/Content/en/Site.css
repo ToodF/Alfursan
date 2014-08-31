@@ -7,6 +7,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 50px;
+    min-height: 400px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -40,4 +42,9 @@ textarea {
     background-position: center center;
     background-repeat: no-repeat;
     top: 0px;
+}
+
+.customer-dropdown-select {
+    padding-left: 15px;
+    padding-right: 15px;
 }

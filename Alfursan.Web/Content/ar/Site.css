@@ -8,6 +8,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 50px;
+    min-height: 400px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -29,4 +31,9 @@ textarea {
 
 .navbar-inverse .navbar-nav > li > a {
     color: #fff;
+}
+
+.customer-dropdown-select {
+    padding-left: 15px;
+    padding-right: 15px;
 }

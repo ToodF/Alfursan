@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
+
+<table id="grid-files" class="table table-striped table-bordered hover">
+    <thead>
+        <tr>
+            <th>@{Write(Alfursan.Resx.Archive.FileName);}</th>
+            <th>@{Write(Alfursan.Resx.Archive.FileType);}</th>
+            <th>@{Write(Alfursan.Resx.Archive.CustomerName);}</th>
+            <th>@{Write(Alfursan.Resx.Archive.CreatedBy);}</th>
+            <th>@{Write(Alfursan.Resx.Archive.CreatedDate);}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var file in Model)
+            {
+                <tr data="@file.FileId">
+                    <td><a href="/Uploaded/@file.RelatedFileName"> @file.OriginalFileName</a></td>
+                    <td>@file.FileType</td>
+                    <td>@file.Customer.FullName</td>
+                    <td>@file.CreatedUser.FullName</td>
+                    <td>@file.CreateDate</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#grid-files').dataTable({
+                "language": {
+                    "url": "/Plugins/Datatable/lang/English.txt"
+                }
+            });
+
+        });
+
+    </script>
+}

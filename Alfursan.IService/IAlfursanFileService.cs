@@ -10,5 +10,6 @@ namespace Alfursan.IService
     public interface IAlfursanFileService
     {
         Responder Set(AlfursanFile file);
+        EntityResponder<List<AlfursanFile>> GetFiles(int userId, int customerUserId);
     }
 }

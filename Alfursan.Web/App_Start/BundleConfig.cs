@@ -19,7 +19,9 @@ namespace Alfursan.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
-                        "~/Plugins/Datatable/js/jquery.dataTables.min.js"));
+                        "~/Plugins/Datatable/js/jquery.dataTables.min.js",
+                        "~/Plugins/Datatable/js/dataTables.bootstrap.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -44,7 +46,8 @@ namespace Alfursan.Web
                       "~/Plugins/Datatable/css/jquery.dataTables.css",
                       "~/Plugins/Datatable/css/jquery.dataTables_themeroller.css",
                       "~/Plugins/Datatable/css/style.css",
-                      "~/Plugins/Datatable/css/jquery.fileupload.css"
+                      "~/Plugins/Datatable/css/jquery.fileupload.css",
+                      "~/Plugins/Datatable/css/dataTables.bootstrap.css"
                       ));
             bundles.Add(new StyleBundle("~/Style/ar").Include(
                      "~/Content/ar/bootstrap.css",

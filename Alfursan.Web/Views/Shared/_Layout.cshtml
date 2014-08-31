@@ -7,14 +7,14 @@
 
 @section Menu
 {
-  
+
     <div class="navbar-collapse collapse">
         @Html.Partial("_LoginPartial")
         <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
-            <li>@Html.ActionLink("Hesap Arşivi", "Index", "Home")</li>
+            <li><a href="/Archive/Files">Hesap Arşivi</a></li>
             <li>@Html.ActionLink("Mail Gönder", "Index", "Home")</li>
-            <li>@Html.ActionLink("Dosya Ekle", "Index", "Home")</li>
+            <li><a href="/Archive/File/">Dosya Ekle</a></li>
             <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
         </ul>
     </div>
@@ -25,5 +25,3 @@
 {
     @RenderSection("scripts", required: false)
 }
-
-

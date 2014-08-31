@@ -21,12 +21,16 @@ namespace Alfursan.Domain
         public int CustomerUserId { get; set; }
 
         public int CreatedUserId { get; set; }
+        
+        public User Customer { get; set; }
+
+        public User CreatedUser { get; set; }
 
         public bool IsDeleted { get; set; }
 
         public DateTime CreateDate { get; set; }
 
-        public DateTime UpdateDate{ get; set; }
+        public DateTime UpdateDate { get; set; }
 
     }
 }

@@ -15,5 +15,7 @@ namespace Alfursan.IRepository
         List<AlfursanFile> GetFilesByUserIdAndDateRange(int userId, DateTime startDate, DateTime endDate);
 
         List<AlfursanFile> SearchFilesByUserIdKeyword(int userId, string keywords);
+
+        EntityResponder<List<AlfursanFile>> GetFiles(int userId, int customerUserId);
     }
 }

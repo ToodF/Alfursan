@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alfursan.Domain
 {
@@ -12,11 +13,14 @@ namespace Alfursan.Domain
         CustomOfficer = 4
     }
 
-    public enum EnumFileType
+    public enum EnumFileType : byte
     {
         None = 0,
+        [Display(Name = "Shipment Document")]
         ShipmentDoc = 1,
+        [Display(Name = "Account Document")]
         AccountDoc = 2,
+        [Display(Name = "Other")]
         Other = 3,
     }
 

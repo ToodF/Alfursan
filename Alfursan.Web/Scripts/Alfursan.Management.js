@@ -49,7 +49,13 @@
         var url = "/Management/_UserList";
         AlfursanAjax.Request(url, "post", null, "body", function (result) {
             $("#grid-container").html(result);
-            var table = $('#grid-users').DataTable();
+            
+            var table = $('#grid-users').DataTable({
+                "language": {
+                    "url": "/Plugins/Datatable/lang/English.txt"
+                }
+            });
+
             $("#grid-container").css("display", "block");
             $('#grid-users tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
