@@ -14,10 +14,11 @@
             <li><a href="/Archive/Files">Hesap Arşivi</a></li>
             <li>@Html.ActionLink("Mail Gönder", "Index", "Home")</li>
             <li><a href="/Archive/File/">Dosya Ekle</a></li>
-            <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
+            <li>@Html.ActionLink("Users", "UserList", "Management")</li>
+            <li>@Html.ActionLink("Profiles", "EditProfileRole", "Management")</li>
         </ul>
     </div>
-@Html.Partial("_LoginPartial")
+    @Html.Partial("_LoginPartial")
 }
 @RenderBody()
 

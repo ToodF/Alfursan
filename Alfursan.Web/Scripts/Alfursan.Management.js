@@ -115,6 +115,7 @@
                 $("#AlfursanModal").modal("show");
             });
         } else {
+            AlfursanUser.SetEntity(null);
             AlfursanUser.BindModel();
             $("#AlfursanModal").modal("show");
         }
