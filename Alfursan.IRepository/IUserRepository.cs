@@ -19,5 +19,7 @@ namespace Alfursan.IRepository
 
         EntityResponder<User> GetCustomerUserId(int customOfficerId);
         EntityResponder<List<User>> GetCustomers();
+
+        EntityResponder<User> GetUserByEmail(string email);
     }
 }

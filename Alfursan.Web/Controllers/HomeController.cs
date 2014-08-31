@@ -1,16 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using Alfursan.Domain;
-using Alfursan.Infrastructure;
-using Alfursan.IService;
+﻿using System.Web.Mvc;
 
 namespace Alfursan.Web.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

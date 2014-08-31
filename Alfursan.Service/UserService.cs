@@ -78,5 +78,10 @@ namespace Alfursan.Service
         {
             return userRepository.GetCustomerUserId(customOfficerId);
         }
+
+        public EntityResponder<User> GetUserByEmail(string email)
+        {
+            return userRepository.GetUserByEmail(email);
+        }
     }
 }

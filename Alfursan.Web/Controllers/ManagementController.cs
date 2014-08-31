@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
-using Alfursan.Domain;
+﻿using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
-using Alfursan.Service;
 using Alfursan.Web.Helpers;
 using Alfursan.Web.Models;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Alfursan.Web.Controllers
 {
     [Authorize]
-    public class ManagementController : Controller
+    public class ManagementController : BaseController
     {
         // GET: UserManagement
         public ActionResult Index()

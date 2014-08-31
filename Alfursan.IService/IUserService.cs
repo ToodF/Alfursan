@@ -26,5 +26,7 @@ namespace Alfursan.IService
         Responder ChangeStatus(int userId, bool status);
 
         EntityResponder<User> GetCustomerUser(int customOfficerId);
+
+        EntityResponder<User> GetUserByEmail(string email);
     }
 }

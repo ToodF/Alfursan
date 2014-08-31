@@ -184,5 +184,15 @@ namespace Alfursan.Repository
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }
+
+
+        public EntityResponder<User> GetUserByEmail(string email)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var user = con.Query<User>("select * from [User] where Email = @Email", new { Email = email }).First();
+                return new EntityResponder<User>() { Data = user };
+            }
+        }
     }
 }

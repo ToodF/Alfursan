@@ -1,31 +1,23 @@
-﻿using System;
+﻿using Alfursan.Domain;
+using Alfursan.Infrastructure;
+using Alfursan.IService;
+using Alfursan.Web.Filters;
+using Alfursan.Web.Models;
+using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Alfursan.Domain;
-using Alfursan.Infrastructure;
-using Alfursan.IService;
-using Alfursan.Web.Models;
-using AutoMapper;
 
 namespace Alfursan.Web.Controllers
 {
-    public class ArchiveController : Controller
+    public class ArchiveController : BaseController
     {
-        public User CurrentUser
-        {
-            get
-            {
-                if (Session["CurrentUser"] != null)
-                    return (User)Session["CurrentUser"];
-
-                return null;
-            }
-        }
         // GET: Archive
+        [Authentication]
         public ActionResult File()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
@@ -43,7 +35,7 @@ namespace Alfursan.Web.Controllers
 
             return View();
         }
-
+        [Authentication]
         public ActionResult Files()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
@@ -59,7 +51,7 @@ namespace Alfursan.Web.Controllers
             }
             else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
             {
-                customerUserId = (int)Session["CustomerUserIdForCustomerOfficer"];
+                customerUserId = (int)CustomerUserIdForCustomerOfficer;
             }
 
             var fileService = IocContainer.Resolve<IAlfursanFileService>();

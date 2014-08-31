@@ -221,8 +221,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlfursanApiController.cs" />
     <Compile Include="Controllers\ArchiveController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Filters\AuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -379,6 +381,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploaded\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,30 +1,21 @@
-﻿using System;
+﻿using Alfursan.Domain;
+using Alfursan.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
 using System.Linq;
-using System.Resources;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Alfursan.Domain;
-using Alfursan.Infrastructure;
-using Alfursan.IService;
-using Alfursan.Resx;
-using Alfursan.Web.Helpers;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Alfursan.Web.Models;
 
 namespace Alfursan.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationUserManager _userManager;
-
-        private string LoginCookieKey = Util.Util.BasicEncrypt("LoginCookieKey", true, "Login");
-        private string UserNameKey = Util.Util.BasicEncrypt("UserName", true, "Login");
-        private string PasswordKey = Util.Util.BasicEncrypt("Password", true, "Login");
 
         public AccountController()
         {
@@ -115,42 +106,6 @@ namespace Alfursan.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        bool LoginAndSetCookie(LoginViewModel model, string returnUrl)
-        {
-            var userService = IocContainer.Resolve<IUserService>();
-            var response = userService.Login(model.Email, model.Password);
-            if (response.ResponseCode == EnumResponseCode.Successful)
-            {
-                var user = response.Data;
-                FormsAuthentication.SetAuthCookie(user.Email, model.RememberMe);
-                Session["CurrentUser"] = user;
-
-                if (user.ProfileId == (int)EnumProfile.CustomOfficer)
-                {
-                    var customerUser = userService.GetCustomerUser(user.UserId);
-                    Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
-                }
-
-                if (model.RememberMe)
-                {
-                    var isSecure = Request.Url.Scheme.Equals("https") ? true : false;
-                    var cookie = new HttpCookie(LoginCookieKey) { HttpOnly = true, Secure = isSecure };
-                    cookie.Values.Add(UserNameKey, Util.Util.EncryptString(user.Email));
-                    cookie.Values.Add(PasswordKey, Util.Util.EncryptString(user.Password));
-                    var dtExpiry = DateTime.UtcNow.AddDays(14);
-                    cookie.Expires = dtExpiry;
-                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-                }
-                return true;
-            }
-            else
-            {
-
-                ModelState.AddModelError("", ResourceHelper.GetGlobalMessageResource(response.ResponseUserFriendlyMessageKey));
-            }
-            return false;
         }
 
         //
