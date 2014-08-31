@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AlfursanFile.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="EntityResponder.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="MailProvider.cs" />

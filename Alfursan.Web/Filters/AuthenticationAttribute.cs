@@ -17,33 +17,57 @@ namespace Alfursan.Web.Filters
                 filterContext.Result = new HttpUnauthorizedResult();
                 return;
             }
-            if (filterContext.HttpContext.Session != null && filterContext.HttpContext.Session["CurrentUser"] == null)
+
+            var userService = IocContainer.Resolve<IUserService>();
+            var response = userService.GetUserByEmail(identity.Identity.Name);
+            if (response.ResponseCode == EnumResponseCode.Successful)
             {
-                var userService = IocContainer.Resolve<IUserService>();
-                var response = userService.GetUserByEmail(identity.Identity.Name);
-                if (response.ResponseCode == EnumResponseCode.Successful)
+                var user = response.Data;
+
+                filterContext.HttpContext.Session["CurrentUser"] = user;
+
+                if (user.ProfileId == (int)EnumProfile.CustomOfficer)
                 {
-                    var user = response.Data;
-
-                    filterContext.HttpContext.Session["CurrentUser"] = user;
-
-                    if (user.ProfileId == (int)EnumProfile.CustomOfficer)
-                    {
-                        var customerUser = userService.GetCustomerUser(user.UserId);
-                        filterContext.HttpContext.Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
-                    }
+                    var customerUser = userService.GetCustomerUser(user.UserId);
+                    filterContext.HttpContext.Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
                 }
+            }
+            else
+            {
+                filterContext.HttpContext.Response.Redirect("/Account/LogOff");
             }
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
         {
-            var user = filterContext.HttpContext.User;
+            //var identity = filterContext.HttpContext.User;
 
-            if (!user.Identity.IsAuthenticated)
-            {
-                filterContext.Result = new HttpUnauthorizedResult();
-            }
+            //if (!identity.Identity.IsAuthenticated)
+            //{
+            //    filterContext.Result = new HttpUnauthorizedResult();
+            //    return;
+            //}
+            //if (filterContext.HttpContext.Session != null && filterContext.HttpContext.Session["CurrentUser"] == null)
+            //{
+            //    var userService = IocContainer.Resolve<IUserService>();
+            //    var response = userService.GetUserByEmail(identity.Identity.Name);
+            //    if (response.ResponseCode == EnumResponseCode.Successful)
+            //    {
+            //        var user = response.Data;
+
+            //        filterContext.HttpContext.Session["CurrentUser"] = user;
+
+            //        if (user.ProfileId == (int)EnumProfile.CustomOfficer)
+            //        {
+            //            var customerUser = userService.GetCustomerUser(user.UserId);
+            //            filterContext.HttpContext.Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        filterContext.HttpContext.Response.Redirect("/Account/LogOff");
+            //    }
+            //}
         }
     }
 }

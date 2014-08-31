@@ -67,12 +67,24 @@ namespace Alfursan.Web.Api
                         CustomerUserId = user.UserId
                     };
                     userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+                    return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Success, ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser };
+                }
+                else if (result.ResponseCode == EnumResponseCode.Successful)
+                {
+                    return new HttpResponseModel()
+                    {
+                        ReturnCode = EnumResponseStatusCode.Success,
+                        ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser
+                    };
                 }
                 else
                 {
-                    return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = ResourceHelper.GetGlobalMessageResource(result.ResponseUserFriendlyMessageKey) };
+                    return new HttpResponseModel()
+                    {
+                        ReturnCode = EnumResponseStatusCode.Error,
+                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey)
+                    };
                 }
-                return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Success, ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser };
             }
             return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
         }

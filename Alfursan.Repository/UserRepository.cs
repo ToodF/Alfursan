@@ -50,16 +50,11 @@ namespace Alfursan.Repository
 
         }
 
-        public EntityResponder<User> Get(string emailOrUsername)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public EntityResponder<User> Get(string emailOrUsername, string password)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("SELECT * FROM [User] WHERE Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password });
+                var user = con.Query<User>("SELECT * FROM [User] WHERE IsDeleted = 0 and Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password });
                 if (user == null || !user.Any())
                     return new EntityResponder<User>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = Const.Error_InvalidUserNameOrPass };
                 return new EntityResponder<User>() { Data = user.First() };
@@ -70,7 +65,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("select * from [User] where [ProfileId] = @pofile", new { profile = (int)profile }).ToList();
+                var users = con.Query<User>("select * from [User] where IsDeleted = 0 and [ProfileId] = @profile", new { profile = (int)profile }).ToList();
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }
@@ -185,14 +180,32 @@ namespace Alfursan.Repository
             }
         }
 
-
         public EntityResponder<User> GetUserByEmail(string email)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("select * from [User] where Email = @Email", new { Email = email }).First();
+                var user = con.Query<User>("select * from [User] where IsDeleted = 0 and Email = @Email", new { Email = email }).First();
                 return new EntityResponder<User>() { Data = user };
             }
         }
+
+        public EntityResponder<List<Country>> GetCountries()
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var countries = con.Query<Country>("SELECT CountryId,CountryName FROM Country WHERE LangId = 1").ToList();
+                return new EntityResponder<List<Country>>() { Data = countries };
+            }
+        }
+
+        public  EntityResponder<List<User>> GetCustomOfficersNotJoined()
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var users = con.Query<User>("select * from [User] u where IsDeleted = 0 and [ProfileId] = @profile and not exists(select * from dbo.RelationCustomerCustomOfficer rcc where u.UserId = rcc.CustomOfficerId)", new { profile = (int)EnumProfile.CustomOfficer }).ToList();
+                return new EntityResponder<List<User>>() { Data = users };
+            }
+        }
+
     }
 }

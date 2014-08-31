@@ -14,10 +14,10 @@ using System.Web.Mvc;
 
 namespace Alfursan.Web.Controllers
 {
+    [Authentication]
     public class ArchiveController : BaseController
     {
         // GET: Archive
-        [Authentication]
         public ActionResult File()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;
@@ -35,7 +35,6 @@ namespace Alfursan.Web.Controllers
 
             return View();
         }
-        [Authentication]
         public ActionResult Files()
         {
             ViewBag.Title = Alfursan.Resx.Index.Title;

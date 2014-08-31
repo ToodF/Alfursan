@@ -83,5 +83,15 @@ namespace Alfursan.Service
         {
             return userRepository.GetUserByEmail(email);
         }
+
+        public EntityResponder<List<Country>> GetCountries()
+        {
+            return userRepository.GetCountries();
+        }
+
+        public EntityResponder<List<User>> GetCustomOfficersNotJoined()
+        {
+            return userRepository.GetCustomOfficersNotJoined();
+        }
     }
 }

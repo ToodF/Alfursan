@@ -28,5 +28,9 @@ namespace Alfursan.IService
         EntityResponder<User> GetCustomerUser(int customOfficerId);
 
         EntityResponder<User> GetUserByEmail(string email);
+
+        EntityResponder<List<Country>> GetCountries();
+
+        EntityResponder<List<User>> GetCustomOfficersNotJoined();
     }
 }
