@@ -27,7 +27,7 @@
             foreach (var file in Model)
             {
                 <tr data="@file.FileId">
-                    <td><a href="/Uploaded/@file.RelatedFileName"> @file.OriginalFileName</a></td>
+                    <td><a href="/Uploaded/@file.RelatedFileName" download> @file.OriginalFileName</a></td>
                     <td>@file.FileType</td>
                     <td>@file.Customer.FullName</td>
                     <td>@file.CreatedUser.FullName</td>
