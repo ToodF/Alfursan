@@ -5,8 +5,6 @@ namespace Alfursan.IRepository
 {
     public interface IUserRepository : IRepository<User>
     {
-        EntityResponder<User> Get(string emailOrUsername);
-
         EntityResponder<User> Get(string emailOrUsername, string password);
 
         EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
@@ -20,6 +18,9 @@ namespace Alfursan.IRepository
         EntityResponder<User> GetCustomerUserId(int customOfficerId);
         EntityResponder<List<User>> GetCustomers();
 
-        EntityResponder<User> GetUserByEmail(string email);
+        EntityResponder<User> GetActiveUserByEmail(string email);
+        EntityResponder<List<Country>> GetCountries();
+
+        EntityResponder<List<User>> GetCustomOfficersNotJoined();
     }
 }

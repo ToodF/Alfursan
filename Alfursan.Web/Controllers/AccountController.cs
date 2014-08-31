@@ -428,13 +428,21 @@ namespace Alfursan.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff(FormCollection collection)
         {
             FormsAuthentication.SignOut();
             var cookie = new HttpCookie(LoginCookieKey);
             cookie.Expires = DateTime.Now;
             ControllerContext.HttpContext.Response.Cookies.Set(cookie);
             //AuthenticationManager.SignOut();
+            return RedirectToAction("Login", "Account");
+        }
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            var cookie = new HttpCookie(LoginCookieKey);
+            cookie.Expires = DateTime.Now;
+            ControllerContext.HttpContext.Response.Cookies.Set(cookie);
             return RedirectToAction("Login", "Account");
         }
 

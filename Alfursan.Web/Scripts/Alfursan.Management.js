@@ -27,7 +27,7 @@
             if (!isValid) {
                 return false;
             }
-            AlfursanAjax.Request(form.attr('action'), form.attr('method'), null, null, function (result) {
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), null, function (result) {
                 if (result.ReturnCode == "4") {
                     $("#AlfursanModal").modal("hide");
                     AlfursanManagement.GetUserList();
@@ -115,6 +115,7 @@
                 $("#AlfursanModal").modal("show");
             });
         } else {
+            AlfursanUser.SetEntity(null);
             AlfursanUser.BindModel();
             $("#AlfursanModal").modal("show");
         }
@@ -151,7 +152,7 @@ var AlfursanUser = {
             this.Name = "";
             this.Surname = "";
             this.CompanyName = "";
-            this.CountryId = "";
+            this.CountryId = "0";
             this.Phone = "";
             this.Address = "";
             this.ProfileId = 3;
