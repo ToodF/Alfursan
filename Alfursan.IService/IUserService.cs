@@ -27,7 +27,7 @@ namespace Alfursan.IService
 
         EntityResponder<User> GetCustomerUser(int customOfficerId);
 
-        EntityResponder<User> GetUserByEmail(string email);
+        EntityResponder<User> GetActiveUserByEmail(string email);
 
         EntityResponder<List<Country>> GetCountries();
 

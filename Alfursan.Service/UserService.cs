@@ -79,9 +79,9 @@ namespace Alfursan.Service
             return userRepository.GetCustomerUserId(customOfficerId);
         }
 
-        public EntityResponder<User> GetUserByEmail(string email)
+        public EntityResponder<User> GetActiveUserByEmail(string email)
         {
-            return userRepository.GetUserByEmail(email);
+            return userRepository.GetActiveUserByEmail(email);
         }
 
         public EntityResponder<List<Country>> GetCountries()

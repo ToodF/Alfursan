@@ -18,7 +18,7 @@ namespace Alfursan.IRepository
         EntityResponder<User> GetCustomerUserId(int customOfficerId);
         EntityResponder<List<User>> GetCustomers();
 
-        EntityResponder<User> GetUserByEmail(string email);
+        EntityResponder<User> GetActiveUserByEmail(string email);
         EntityResponder<List<Country>> GetCountries();
 
         EntityResponder<List<User>> GetCustomOfficersNotJoined();

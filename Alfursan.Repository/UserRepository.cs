@@ -54,7 +54,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("SELECT * FROM [User] WHERE IsDeleted = 0 and Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password });
+                var user = con.Query<User>("SELECT * FROM [User] WHERE IsDeleted = 0 and Status = 1 and Email = @Email AND [Password] = @Password", new { Email = emailOrUsername, Password = password });
                 if (user == null || !user.Any())
                     return new EntityResponder<User>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = Const.Error_InvalidUserNameOrPass };
                 return new EntityResponder<User>() { Data = user.First() };
@@ -140,7 +140,7 @@ namespace Alfursan.Repository
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerUserId,CreatedUserId) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId)", relationCustomerCustomOfficer);
+                result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerId,CreatedUserId) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId)", relationCustomerCustomOfficer);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
         }
@@ -180,7 +180,7 @@ namespace Alfursan.Repository
             }
         }
 
-        public EntityResponder<User> GetUserByEmail(string email)
+        public EntityResponder<User> GetActiveUserByEmail(string email)
         {
             using (var con = DapperHelper.CreateConnection())
             {

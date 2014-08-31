@@ -19,7 +19,7 @@ namespace Alfursan.Web.Filters
             }
 
             var userService = IocContainer.Resolve<IUserService>();
-            var response = userService.GetUserByEmail(identity.Identity.Name);
+            var response = userService.GetActiveUserByEmail(identity.Identity.Name);
             if (response.ResponseCode == EnumResponseCode.Successful)
             {
                 var user = response.Data;
