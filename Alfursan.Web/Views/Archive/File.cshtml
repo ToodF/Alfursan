@@ -31,10 +31,10 @@
                 <i class="glyphicon glyphicon-upload"></i>
                 <span>Start upload</span>
             </button>
-            <button type="reset" class="btn btn-warning cancel">
+            @*<button type="reset" class="btn btn-warning cancel">
                 <i class="glyphicon glyphicon-ban-circle"></i>
                 <span>Cancel upload</span>
-            </button>
+            </button>*@
             <button type="button" class="btn btn-danger delete">
                 <i class="glyphicon glyphicon-trash"></i>
                 <span>Delete</span>
@@ -132,7 +132,8 @@
             <span class="size">{%=o.formatFileSize(file.size)%}</span>
         </td>
         <td>
-            {% if (file.deleteUrl) { %}
+
+            @*{% if (file.deleteUrl) { %}
             <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
                 <i class="glyphicon glyphicon-trash"></i>
                 <span>Delete</span>
@@ -143,7 +144,7 @@
                 <i class="glyphicon glyphicon-ban-circle"></i>
                 <span>Cancel</span>
             </button>
-            {% } %}
+            {% } %}*@
         </td>
     </tr>
     {% } %}

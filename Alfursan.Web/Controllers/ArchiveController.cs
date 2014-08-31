@@ -126,7 +126,7 @@ namespace Alfursan.Web.Controllers
                 }
 
                 alfursanFileViewModel.CustomerUserId = alfursanFileViewModel.Customer.UserId;
-                
+
                 Mapper.CreateMap<AlfursanFileViewModel, AlfursanFile>();
                 var alfursanFile = Mapper.Map<AlfursanFileViewModel, AlfursanFile>(alfursanFileViewModel);
 
@@ -207,6 +207,12 @@ namespace Alfursan.Web.Controllers
 
             // Return relative file path
             return string.Format(@"/Uploaded/{0}", relatedFileName); //relativeFileAndPath;
+        }
+
+        public void DeleteFile(int id)
+        {
+            var alfursanFileService = IocContainer.Resolve<IAlfursanFileService>();
+            alfursanFileService.Delete(id);
         }
 
         private bool IsFileImage(string fileExtension)

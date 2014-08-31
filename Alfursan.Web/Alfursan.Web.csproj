@@ -274,8 +274,8 @@
     <Content Include="Plugins\Datatable\js\dataTables.bootstrap.js" />
     <Content Include="Plugins\Dropdown\css\bootstrap-select.css.map" />
     <Content Include="Plugins\Dropdown\js\bootstrap-select.js.map" />
-    <Content Include="Plugins\Datatable\lang\Arabic.txt" />
-    <Content Include="Plugins\Datatable\lang\English.txt" />
+    <Content Include="Plugins\Datatable\lang\ar.txt" />
+    <Content Include="Plugins\Datatable\lang\en.txt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\back_disabled.png" />
     <Content Include="Images\back_enabled.png" />

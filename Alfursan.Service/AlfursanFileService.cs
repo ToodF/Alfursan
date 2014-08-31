@@ -26,5 +26,10 @@ namespace Alfursan.Service
         {
             return fileRepository.GetFiles(userId, customerUserId);
         }
+
+        public Responder Delete(int id)
+        {
+            return fileRepository.Delete(id);
+        }
     }
 }

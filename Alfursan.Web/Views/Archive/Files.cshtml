@@ -1,4 +1,14 @@
-﻿@model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
+﻿@using System.Threading
+@model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
+
+<div class="alert alert-warning" id="message-delete-file">
+    <span id="filename"></span>
+    @Alfursan.Resx.MessageResource.Warning_DeleteFile
+    <input type="hidden" name="FileId" id="FileId" />
+    <input type="hidden" name="selectedRow" id="selectedRow" />
+    <input type="button" class="btn btn-danger" id="delete-file-ok" value="@Alfursan.Resx.Management.btnOk" />
+    <input type="button" class="btn btn-primary" id="delete-file-cancel" value="@Alfursan.Resx.Management.btnNo" />
+</div>
 
 <table id="grid-files" class="table table-striped table-bordered hover">
     <thead>
@@ -22,7 +32,9 @@
                     <td>@file.Customer.FullName</td>
                     <td>@file.CreatedUser.FullName</td>
                     <td>@file.CreateDate</td>
-                    <td></td>
+                    <td>
+                        <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger" name="delete-file" data="@file.FileId" />
+                    </td>
                 </tr>
             }
         }
@@ -31,12 +43,47 @@
 
 @section scripts
 {
+    <script src="~/Scripts/Alfursan.Ajax.js"></script>
+
     <script>
         $(document).ready(function () {
-            $('#grid-files').dataTable({
+
+            var dt = $('#grid-files').dataTable({
                 "language": {
-                    "url": "/Plugins/Datatable/lang/English.txt"
+                    "url": "/Plugins/Datatable/lang/en.txt"
                 }
+            });
+
+            var message = $("#message-delete-file");
+            $(message).css("display", "none");
+
+            $("input[name='delete-file']").click(function () {
+                var id = $(this).attr("data");
+                var container = $("#message-delete-file");
+                $("#filename").html(id);
+                $("#FileId").val(id);
+
+                $(container).css("display", "block");
+
+                $("#delete-file-cancel").click(function () {
+                    $(container).css("display", "none");
+                });
+
+                var targetRow = $(this).closest("tr").get(0);
+                var aPos = dt.fnGetPosition(targetRow);
+
+                $('#selectedRow').val(aPos);
+            });
+
+            $("#delete-file-ok").click(function () {
+                $("#message-delete-file").css("display", "none");
+
+                var id = $("#FileId").val();
+
+                var url = "/Archive/DeleteFile/" + id;
+                AlfursanAjax.Request(url, "post", null, null, function () {
+                    dt.fnDeleteRow($('#selectedRow').val());
+                });
             });
 
         });

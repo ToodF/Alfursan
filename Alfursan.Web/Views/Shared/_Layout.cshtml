@@ -7,17 +7,18 @@
 
 @section Menu
 {
-
+    <div class="col-xs-1"></div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
-            <li><a href="/Archive/Files">Hesap Arşivi</a></li>
-            <li>@Html.ActionLink("Mail Gönder", "Index", "Home")</li>
-            <li><a href="/Archive/File/">Dosya Ekle</a></li>
-            <li>@Html.ActionLink("Yönetim", "Index", "Management")</li>
+            <li><a href="/Home/Index"><span class="glyphicon glyphicon-home"></span><br />Home Page</a></li>
+            <li><a href="/Archive/Files"><span class="glyphicon glyphicon-book"></span><br />Archive</a></li>
+            <li><a href="/Archive/Files"><span class="glyphicon glyphicon-envelope"></span><br />Send Mail</a></li>
+            <li><a href="/Archive/File/"><span class="glyphicon glyphicon-upload"></span><br />File Upload</a></li>
+            <li><a href="/Management/Index/"><span class="glyphicon glyphicon-edit"></span><br />Management</a></li>
         </ul>
-    </div>
 @Html.Partial("_LoginPartial")
+
+    </div>
 }
 @RenderBody()
 

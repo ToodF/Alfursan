@@ -36,7 +36,15 @@ namespace Alfursan.Repository
 
         public Responder Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = 0;
+            using (var con = DapperHelper.CreateConnection())
+            {
+                result = con.Execute(@"update [File] set 
+                                            IsDeleted = 1,
+                                            UpdateDate = Getdate()
+                                            where FileId = @FileId", new { FileId = id });
+            }
+            return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful) };
         }
 
         public List<AlfursanFile> GetFiles()
@@ -68,7 +76,8 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var files = con.Query<AlfursanFile, User, User, AlfursanFile>(@"SELECT f.Subject
+                var files = con.Query<AlfursanFile, User, User, AlfursanFile>(@"SELECT f.FileId
+                                                                                    ,f.Subject
 	                                                                                ,f.OriginalFileName
 	                                                                                ,f.FileType
 	                                                                                ,RelatedFileName
