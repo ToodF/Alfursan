@@ -23,7 +23,10 @@ namespace Alfursan.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             IocContainer.Initialize(new BootstrapContainer());
-          
+
+            var roleService = IocContainer.Resolve<IRoleService>();
+            Application["Roles"] = roleService.GetAll().Data;
+
         }
         protected void Application_BeginRequest()
         {

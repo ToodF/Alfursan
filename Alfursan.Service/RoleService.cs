@@ -29,5 +29,10 @@ namespace Alfursan.Service
         {
             return roleRepository.DeleteRolesByProfileId(profileId);
         }
+
+        public EntityResponder<List<Role>> GetAll()
+        {
+            return roleRepository.GetAll();
+        }
     }
 }

@@ -21,7 +21,13 @@ namespace Alfursan.Repository
 
         public EntityResponder<List<Role>> GetAll()
         {
-            throw new NotImplementedException();
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var roles = con.Query<Role>("SELECT [RoleId] ,[ProfileId] FROM [RelationProfileRole] WHERE IsDeleted = 0");
+                if (roles == null || !roles.Any())
+                    return new EntityResponder<List<Role>>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = Const.Error_InvalidUserNameOrPass };
+                return new EntityResponder<List<Role>>() { Data = roles.ToList() };
+            }
         }
 
         public Responder Update(Role entity)
