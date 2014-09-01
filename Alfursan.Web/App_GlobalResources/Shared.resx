@@ -123,4 +123,22 @@
   <data name="Modal_Btn_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Menu_Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="Menu_FileUpload" xml:space="preserve">
+    <value>File Upload</value>
+  </data>
+  <data name="Menu_HomePage" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Menu_Profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Menu_SendMail" xml:space="preserve">
+    <value>Send Mail</value>
+  </data>
+  <data name="Menu_Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
 </root>

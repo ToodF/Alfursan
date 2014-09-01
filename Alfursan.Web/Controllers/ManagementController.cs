@@ -1,4 +1,5 @@
-﻿using Alfursan.Domain;
+﻿using System.Web;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Filters;
@@ -165,7 +166,9 @@ namespace Alfursan.Web.Controllers
                     {
                         roleService.SetRoles(roles);
                     }
+                    System.Web.HttpContext.Current.Application["Roles"] = roleService.GetAll().Data;
                 }
+              
                 ViewData["success"] = Alfursan.Resx.MessageResource.Info_UpdateProfile;
             }
             GetProfiles();

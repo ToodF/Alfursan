@@ -70,6 +70,60 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string Menu_Archive {
+            get {
+                return ResourceManager.GetString("Menu_Archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Upload.
+        /// </summary>
+        public static string Menu_FileUpload {
+            get {
+                return ResourceManager.GetString("Menu_FileUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Page.
+        /// </summary>
+        public static string Menu_HomePage {
+            get {
+                return ResourceManager.GetString("Menu_HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profiles.
+        /// </summary>
+        public static string Menu_Profiles {
+            get {
+                return ResourceManager.GetString("Menu_Profiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Mail.
+        /// </summary>
+        public static string Menu_SendMail {
+            get {
+                return ResourceManager.GetString("Menu_SendMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Menu_Users {
+            get {
+                return ResourceManager.GetString("Menu_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Modal_Btn_Close {

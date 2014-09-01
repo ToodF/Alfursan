@@ -42,7 +42,7 @@ namespace Alfursan.Repository
                 {
                     var result =
                         con.Execute(
-                            "insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId)",
+                            "insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,Address,ProfileId,IsDeleted) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@Address,@ProfileId,0)",
                             entity);
                     return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
                 }
