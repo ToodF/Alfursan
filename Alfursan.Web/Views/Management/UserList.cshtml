@@ -4,12 +4,12 @@
 @using Microsoft.Ajax.Utilities
 
 @model List<Alfursan.Web.Models.UserListViewModel>
-<h2>@Alfursan.Resx.Management.Title_UserList</h2>
 
-<button class="btn btn-primary" id="create-user">
-    @Alfursan.Resx.Management.Btn_NewUser
-</button>
-
+<div class="new-user-button">
+    <button class="btn btn-primary" id="create-user">
+        @Alfursan.Resx.Management.Btn_NewUser
+    </button>
+</div>
 <div class="modal fade" id="AlfursanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
