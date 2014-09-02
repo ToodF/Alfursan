@@ -52,7 +52,7 @@
             
             var table = $('#grid-users').DataTable({
                 "language": {
-                    "url": "/Plugins/Datatable/lang/English.txt"
+                    "url": "/Plugins/Datatable/lang/en.txt"
                 }
             });
 
@@ -82,11 +82,11 @@
                 });
             });
 
-            $("input[name='change-status-passive']").click(function () {
+            $("img[name='change-status-passive']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), false);
             });
 
-            $("input:button[name='change-status-active']").click(function () {
+            $("img[name='change-status-active']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
             });
         });
