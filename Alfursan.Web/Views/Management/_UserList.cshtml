@@ -20,11 +20,11 @@
                     <td>
                         @if (user.Status)
                         {
-                            <img src="/Images/icon-active.png" width="20" height="20" name="change-status-passive" data="@user.UserId" />
+                            <img src="/Images/icon-active.png" width="16" height="16" name="change-status-passive" class="status-icon" data="@user.UserId" />
                         }
                         else
                         {
-                            <img src="/Images/icon-passive.png" width="20" height="20" name="change-status-active" data="@user.UserId" />
+                            <img src="/Images/icon-passive.png" width="16" height="16" name="change-status-active" class="status-icon" data="@user.UserId" />
                         }
                         
                         @user.ProfileId
