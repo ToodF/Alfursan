@@ -7,30 +7,22 @@ namespace Alfursan.Service
 {
     public class MailService : IMessageSender
     {
-        public string Host { get; set; }
-        public int Port { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public MailService(string host, int port, string userName, string password)
+        private MailProvider mailProvider;
+        public MailService(MailProvider mailProvider)
         {
-            Host = host;
-            Port = port;
-            UserName = userName;
-            Password = password;
+            this.mailProvider = mailProvider;
         }
         public Responder SendMessage(MailMessage mailMessage)
         {
-            var mailProvider = new MailProvider();
-            mailProvider.Host = Host;
-            mailProvider.Port = Port;//587;//465
-            mailProvider.UserName = UserName;
-            mailProvider.Password = Password;
-            //TODO:Provider bilgileri set edilecek
+            mailMessage.From = new MailAddress(mailProvider.UserName);
             mailMessage.IsBodyHtml = true;
-            var smtp = new SmtpClient(mailProvider.Host)
+            var smtp = new SmtpClient()
             {
+                Host = mailProvider.Host,
                 Port = mailProvider.Port,
-                Credentials = new NetworkCredential(mailProvider.UserName, mailProvider.Password)
+                Credentials = new NetworkCredential(mailProvider.UserName, mailProvider.Password),
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network
             };
             smtp.Send(mailMessage);
             return new Responder();

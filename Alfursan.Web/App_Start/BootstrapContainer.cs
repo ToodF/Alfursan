@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.Infrastructure.Interceptor;
 using Alfursan.IRepository;
@@ -29,13 +30,14 @@ namespace Alfursan.Web
                 Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient(),
                 Component.For<IRoleRepository>().ImplementedBy<RoleRepository>().LifestyleTransient(),
                 Component.For<IRoleService>().ImplementedBy<RoleService>().LifestyleTransient(),
-                Component.For<IMessageSender>().ImplementedBy<MailService>().DependsOn(new Dependency[]
-                {
-                  Dependency.OnValue("host", ConfigurationManager.AppSettings["MailServerHost"])
-                  , Dependency.OnValue("port", Convert.ToInt32(ConfigurationManager.AppSettings["MailServerPort"]))
-                  , Dependency.OnValue("userName", ConfigurationManager.AppSettings["MailServerUserName"])
-                  , Dependency.OnValue("password", ConfigurationManager.AppSettings["MailServerPassword"])
-                })
+                Component.For<IMessageSender>().ImplementedBy<MailService>().DependsOn(
+                    Dependency.OnValue("MailProvider",new MailProvider()
+                    {
+                        Host = ConfigurationManager.AppSettings["MailServerHost"],
+                        Port = Convert.ToInt32(ConfigurationManager.AppSettings["MailServerPort"]),
+                        UserName = ConfigurationManager.AppSettings["MailServerUserName"],
+                        Password = ConfigurationManager.AppSettings["MailServerPassword"]
+                    }))
                 );
 
             return container;
