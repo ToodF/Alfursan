@@ -59,7 +59,7 @@ namespace Alfursan.Web.Controllers
                 Text = Alfursan.Resx.Shared.drp_Select,
                 Value = "0"
             });
-            var customOfficers = userService.GetCustomOfficersNotJoined();
+            var customOfficers = userService.GetCustomOfficers();
             if (customOfficers.ResponseCode == EnumResponseCode.Successful)
             {
 

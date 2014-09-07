@@ -89,9 +89,9 @@ namespace Alfursan.Service
             return userRepository.GetCountries();
         }
 
-        public EntityResponder<List<User>> GetCustomOfficersNotJoined()
+        public EntityResponder<List<User>> GetCustomOfficers()
         {
-            return userRepository.GetCustomOfficersNotJoined();
+            return userRepository.GetCustomOfficers();
         }
     }
 }

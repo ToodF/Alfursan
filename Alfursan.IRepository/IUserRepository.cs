@@ -21,6 +21,6 @@ namespace Alfursan.IRepository
         EntityResponder<User> GetActiveUserByEmail(string email);
         EntityResponder<List<Country>> GetCountries();
 
-        EntityResponder<List<User>> GetCustomOfficersNotJoined();
+        EntityResponder<List<User>> GetCustomOfficers();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Net.Mail;
+using System.Web;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -56,21 +57,23 @@ namespace Alfursan.Web.Api
                 var user = Mapper.Map<UserViewModel, User>(userViewModel);
                 var userService = IocContainer.Resolve<IUserService>();
                 var result = userService.Set(user);
-                if (result.ResponseCode == EnumResponseCode.Successful
-                    && userViewModel.ProfileId == EnumProfile.Customer
-                    && userViewModel.CustomOfficerId > 0)
+
+                if (result.ResponseCode == EnumResponseCode.Successful)
                 {
-                    var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
+                    if (userViewModel.ProfileId == EnumProfile.Customer && userViewModel.CustomOfficerId > 0)
                     {
-                        CreatedUserId = 0, //((User) HttpContext.Current.Session["CurrentUser"]).UserId,
-                        CustomOfficerUserId = userViewModel.CustomOfficerId,
-                        CustomerUserId = user.UserId
-                    };
-                    userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
-                    return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Success, ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser };
-                }
-                else if (result.ResponseCode == EnumResponseCode.Successful)
-                {
+                        var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
+                        {
+                            CreatedUserId = 0,// ((User)HttpContext.Current.Session["CurrentUser"]).UserId,
+                            CustomOfficerUserId = userViewModel.CustomOfficerId,
+                            CustomerUserId = user.UserId
+                        };
+                        userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+                    }
+                    if (userViewModel.UserId == 0)
+                    {
+                        SendMessageHelper.SendMessageNewUser(userViewModel);
+                    }
                     return new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Success,

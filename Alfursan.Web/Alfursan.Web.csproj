@@ -196,6 +196,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Archive.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\MailMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailMessage.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\MessageResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +233,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SendMessageHelper.cs" />
     <Compile Include="Helpers\ResourceHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlfursanFileViewModel.cs" />
@@ -430,6 +436,11 @@
     <EmbeddedResource Include="App_GlobalResources\Archive.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Archive.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\MailMessage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MailMessage.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\MessageResource.resx">

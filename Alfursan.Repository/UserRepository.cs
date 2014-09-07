@@ -198,11 +198,11 @@ namespace Alfursan.Repository
             }
         }
 
-        public  EntityResponder<List<User>> GetCustomOfficersNotJoined()
+        public  EntityResponder<List<User>> GetCustomOfficers()
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("select * from [User] u where IsDeleted = 0 and [ProfileId] = @profile and not exists(select * from dbo.RelationCustomerCustomOfficer rcc where u.UserId = rcc.CustomOfficerId)", new { profile = (int)EnumProfile.CustomOfficer }).ToList();
+                var users = con.Query<User>("select * from [User] u where IsDeleted = 0 and [ProfileId] = @profile", new { profile = (int)EnumProfile.CustomOfficer }).ToList();
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }

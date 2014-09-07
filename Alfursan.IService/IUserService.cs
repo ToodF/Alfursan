@@ -31,6 +31,6 @@ namespace Alfursan.IService
 
         EntityResponder<List<Country>> GetCountries();
 
-        EntityResponder<List<User>> GetCustomOfficersNotJoined();
+        EntityResponder<List<User>> GetCustomOfficers();
     }
 }
