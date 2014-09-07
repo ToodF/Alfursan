@@ -79,7 +79,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pass.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string btnChangePass {
             get {
@@ -133,7 +133,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CompanyName.
+        ///   Looks up a localized string similar to Company Name.
         /// </summary>
         public static string CompanyName {
             get {
@@ -142,7 +142,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
             get {
@@ -160,7 +160,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CustomOfficer.
+        ///   Looks up a localized string similar to Custom Officer.
         /// </summary>
         public static string CustomOfficer {
             get {
@@ -169,7 +169,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string Email {
             get {
@@ -187,7 +187,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CustomerRoles.
+        ///   Looks up a localized string similar to Customer Roles.
         /// </summary>
         public static string EnumProfile_Customer {
             get {
@@ -232,7 +232,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add file.
+        ///   Looks up a localized string similar to Add File.
         /// </summary>
         public static string EnumRole_AddFile {
             get {
@@ -250,7 +250,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Pass.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string EnumRole_ChangePassword {
             get {
@@ -268,7 +268,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Customofficer.
+        ///   Looks up a localized string similar to Delete Custom Officer.
         /// </summary>
         public static string EnumRole_DeleteCustomOfficer {
             get {

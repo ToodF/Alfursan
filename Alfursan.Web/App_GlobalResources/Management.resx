@@ -121,13 +121,13 @@
     <value>Address</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>CompanyName</value>
+    <value>Company Name</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>ConfirmPassword</value>
+    <value>Confirm Password</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -163,7 +163,7 @@
     <value>Country</value>
   </data>
   <data name="CustomOfficer" xml:space="preserve">
-    <value>CustomOfficer</value>
+    <value>Custom Officer</value>
   </data>
   <data name="btnDelete" xml:space="preserve">
     <value>Delete</value>
@@ -172,7 +172,7 @@
     <value>Admin Roles</value>
   </data>
   <data name="EnumProfile_Customer" xml:space="preserve">
-    <value>CustomerRoles</value>
+    <value>Customer Roles</value>
   </data>
   <data name="EnumProfile_CustomOfficer" xml:space="preserve">
     <value>Custom Officer Roles</value>
@@ -181,10 +181,10 @@
     <value>User Roles</value>
   </data>
   <data name="EnumRole_AddFile" xml:space="preserve">
-    <value>Add file</value>
+    <value>Add File</value>
   </data>
   <data name="btnChangePass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Change Password</value>
   </data>
   <data name="Btn_NewUser" xml:space="preserve">
     <value>New User</value>
@@ -223,13 +223,13 @@
     <value>Add User</value>
   </data>
   <data name="EnumRole_ChangePassword" xml:space="preserve">
-    <value>Change Pass</value>
+    <value>Change Password</value>
   </data>
   <data name="EnumRole_DeleteCustomer" xml:space="preserve">
     <value>Delete Customer</value>
   </data>
   <data name="EnumRole_DeleteCustomOfficer" xml:space="preserve">
-    <value>Delete Customofficer</value>
+    <value>Delete Custom Officer</value>
   </data>
   <data name="EnumRole_DeleteFile" xml:space="preserve">
     <value>Delete file</value>

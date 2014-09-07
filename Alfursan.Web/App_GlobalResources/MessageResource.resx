@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Error_ExistingUserNameOrEmail" xml:space="preserve">
-    <value>Tanımlamak istediğiniz email yada username başka bir kayıt için kullanılmış. Lütfen değişiklik yaparak kayıt işlemine devam ediniz.</value>
+    <value> This Username or E-mail Used. Please Change Username or E-mail and Try Again</value>
   </data>
   <data name="Error_InvalidResourceKey" xml:space="preserve">
-    <value>Tanımsız resource key kullanımı</value>
+    <value>Undefined Key Resource Use</value>
   </data>
   <data name="Error_InvalidUserNameOrPass" xml:space="preserve">
-    <value>Geçersiz Email yada pass.</value>
+    <value>Invalid E-mail or Password</value>
   </data>
   <data name="Error_ModelNotValid" xml:space="preserve">
     <value>Model is not valid</value>
   </data>
   <data name="Error_SqlException" xml:space="preserve">
-    <value>İşleminiz kaydedilemedi.</value>
+    <value>Process Could Not Be Saved.</value>
   </data>
   <data name="Error_Unexpected" xml:space="preserve">
-    <value>Beklenmeyen bir hata oluştu.</value>
+    <value>An Unexpected Error Has Occurred.</value>
   </data>
   <data name="Info_DeleteUser" xml:space="preserve">
-    <value />
+    <value>Delete User</value>
   </data>
   <data name="Info_SetUser" xml:space="preserve">
-    <value>User save.</value>
+    <value>Create</value>
   </data>
   <data name="Info_UpdateProfile" xml:space="preserve">
-    <value>Profile update edilmiştir.</value>
+    <value>Your Profile Updated</value>
   </data>
   <data name="Warning_DeleteFile" xml:space="preserve">
-    <value>dosyasını silmek istediğinize emin misiniz?</value>
+    <value>Are You Sure To Delete This File?</value>
   </data>
   <data name="Warning_DeleteUser" xml:space="preserve">
-    <value>kullanıcısını silmek istediğinize emin misiniz?</value>
+    <value>Are You Sure To Delete This User?</value>
   </data>
   <data name="Warning_NotUpdateAdminProfile" xml:space="preserve">
-    <value>Admin profili düzenlenemez.</value>
+    <value>You Can't Edit The Admin Profile.</value>
   </data>
 </root>

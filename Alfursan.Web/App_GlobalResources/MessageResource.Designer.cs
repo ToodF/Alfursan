@@ -61,7 +61,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tanımlamak istediğiniz email yada username başka bir kayıt için kullanılmış. Lütfen değişiklik yaparak kayıt işlemine devam ediniz..
+        ///   Looks up a localized string similar to  This Username or E-mail Used. Please Change Username or E-mail and Try Again.
         /// </summary>
         public static string Error_ExistingUserNameOrEmail {
             get {
@@ -70,7 +70,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tanımsız resource key kullanımı.
+        ///   Looks up a localized string similar to Undefined Key Resource Use.
         /// </summary>
         public static string Error_InvalidResourceKey {
             get {
@@ -79,7 +79,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geçersiz Email yada pass..
+        ///   Looks up a localized string similar to Invalid E-mail or Password.
         /// </summary>
         public static string Error_InvalidUserNameOrPass {
             get {
@@ -97,7 +97,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İşleminiz kaydedilemedi..
+        ///   Looks up a localized string similar to Process Could Not Be Saved..
         /// </summary>
         public static string Error_SqlException {
             get {
@@ -106,7 +106,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beklenmeyen bir hata oluştu..
+        ///   Looks up a localized string similar to An Unexpected Error Has Occurred..
         /// </summary>
         public static string Error_Unexpected {
             get {
@@ -115,7 +115,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Delete User.
         /// </summary>
         public static string Info_DeleteUser {
             get {
@@ -124,7 +124,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User save..
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Info_SetUser {
             get {
@@ -133,7 +133,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile update edilmiştir..
+        ///   Looks up a localized string similar to Your Profile Updated.
         /// </summary>
         public static string Info_UpdateProfile {
             get {
@@ -142,7 +142,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to dosyasını silmek istediğinize emin misiniz?.
+        ///   Looks up a localized string similar to Are You Sure To Delete This File?.
         /// </summary>
         public static string Warning_DeleteFile {
             get {
@@ -151,7 +151,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to kullanıcısını silmek istediğinize emin misiniz?.
+        ///   Looks up a localized string similar to Are You Sure To Delete This User?.
         /// </summary>
         public static string Warning_DeleteUser {
             get {
@@ -160,7 +160,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Admin profili düzenlenemez..
+        ///   Looks up a localized string similar to You Can&apos;t Edit The Admin Profile..
         /// </summary>
         public static string Warning_NotUpdateAdminProfile {
             get {
