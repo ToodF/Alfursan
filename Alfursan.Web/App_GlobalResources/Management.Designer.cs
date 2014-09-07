@@ -79,7 +79,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Pass.
+        ///   Looks up a localized string similar to Pass.
         /// </summary>
         public static string btnChangePass {
             get {

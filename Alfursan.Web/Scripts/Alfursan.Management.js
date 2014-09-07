@@ -16,26 +16,31 @@
             AlfursanManagement.BindUser(0);
         });
 
-        $("#delete-user-ok").click(function () {
-            $("#message-delete-user").css("display", "none");
-            AlfursanManagement.DeleteUserById($("#UserId").val());
-        });
-
         $(".modal-footer .btn-primary").click(function () {
             var form = $(".modal-body form");
             var isValid = form.valid();
             if (!isValid) {
                 return false;
             }
-            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), null, function (result) {
-                if (result.ReturnCode == "4") {
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body", function (result) {
+                if (result.ReturnCode == "1") {
                     $("#AlfursanModal").modal("hide");
                     AlfursanManagement.GetUserList();
                 }
             });
 
         });
+       
+        $("#delete-user-cancel").click(function () {
+            $("#message-delete-user").hide(1000);
+        });
+
+        $("#delete-user-ok").click(function () {
+            $("#message-delete-user").hide(1000);
+            AlfursanManagement.DeleteUserById($("#UserId").val());
+        });
     },
+
     EditProfileRoleInit: function () {
         $("#ProfileId").change(function () {
             AlfursanManagement.GetRolesByProfileId($(this).val());
@@ -47,10 +52,11 @@
         $("#message-delete-user").css("display", "none");
 
         var url = "/Management/_UserList";
-        AlfursanAjax.Request(url, "post", null, "body", function (result) {
+        AlfursanAjax.Request(url, "get", null, "body", function (result) {
             $("#grid-container").html(result);
             
             var table = $('#grid-users').DataTable({
+                "order": [[1, "asc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
                 }
@@ -71,23 +77,21 @@
                 AlfursanManagement.BindUser(id);
             });
 
-            $("input[name='delete-user']").click(function () {
-                var id = $(this).attr("data");
-                var container = $("#message-delete-user");
-                $("#user-email").html(id);
-                $("#UserId").val(id);
-                $(container).css("display", "block");
-                $("#delete-user-cancel").click(function () {
-                    $(container).css("display", "none");
-                });
-            });
-
             $("img[name='change-status-passive']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), false);
             });
 
             $("img[name='change-status-active']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
+            });
+
+            $("input[name='delete-user']").click(function () {
+                var id = $(this).attr("data");
+                var email = $(this).attr("email");
+                $("#user-email").html(email);
+                $("#UserId").val(id);
+                $("#new-user-button").focus();
+                $("#message-delete-user").show("slow");
             });
         });
     },
@@ -107,6 +111,7 @@
     },
 
     BindUser: function (userId) {
+        $(".modal-body .alert").remove();
         if (userId > 0) {
             var url = "/api/UserApi/" + userId;
             AlfursanAjax.Request(url, 'Get', null, ".modal-body", function (result) {

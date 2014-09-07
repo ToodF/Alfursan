@@ -184,7 +184,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("select * from [User] where IsDeleted = 0 and Email = @Email", new { Email = email }).First();
+                var user = con.Query<User>("select * from [User] where IsDeleted = 0 and Status = 1 and Email = @Email", new { Email = email }).First();
                 return new EntityResponder<User>() { Data = user };
             }
         }

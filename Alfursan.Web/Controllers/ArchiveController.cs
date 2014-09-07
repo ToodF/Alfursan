@@ -14,6 +14,7 @@ using System.Web.Mvc;
 
 namespace Alfursan.Web.Controllers
 {
+    [Authentication]
     public class ArchiveController : BaseController
     {
         // GET: Archive

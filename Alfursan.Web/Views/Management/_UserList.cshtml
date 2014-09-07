@@ -1,8 +1,13 @@
-﻿@model IEnumerable<Alfursan.Web.Models.UserListViewModel>
+﻿@using Alfursan.Domain
+@model IEnumerable<Alfursan.Web.Models.UserListViewModel>
 
+@{
+    var currentUser = (User)Session["CurrentUser"];
+}
 <table id="grid-users" class="table table-striped table-bordered hover " cellspacing="0" width="100%">
     <thead>
         <tr>
+            <th></th>
             <th>@{Write(Alfursan.Resx.Management.Profile);}</th>
             <th>@{Write(Alfursan.Resx.Management.Name);}</th>
             <th>@{Write(Alfursan.Resx.Management.Surname);}</th>
@@ -18,36 +23,38 @@
             {
                 <tr data="@user.UserId">
                     <td>
-                        @if (user.Status)
+                        @if ((currentUser.ProfileId == (int)EnumProfile.Admin && !user.Email.Equals(currentUser.Email)) || (user.ProfileId != EnumProfile.Admin))
                         {
-                            <img src="/Images/icon-active.png" width="16" height="16" name="change-status-passive" class="status-icon" data="@user.UserId" />
+                            if (user.Status)
+                            {
+                                <img src="/Images/icon-active.png" width="16" height="16" name="change-status-passive" class="status-icon" data="@user.UserId" />
+                            }
+                            else
+                            {
+                                <img src="/Images/icon-passive.png" width="16" height="16" name="change-status-active" class="status-icon" data="@user.UserId" />
+                            }
                         }
-                        else
-                        {
-                            <img src="/Images/icon-passive.png" width="16" height="16" name="change-status-active" class="status-icon" data="@user.UserId" />
-                        }
-                        
-                        @user.ProfileId
+                    </td>
+                    <td>
+                        <span class="hidden">@((int)user.ProfileId)</span>
+                        @(user.ProfileId)
                     </td>
                     <td>@user.Name</td>
                     <td>@user.Surname</td>
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>
-                        @*@if (user.Status)
+                        @if ((currentUser.ProfileId ==(int) EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
                         {
-                            <input type="button" value="@Alfursan.Resx.Management.btnStatusPassive" class="btn btn-default" name="change-status-passive" data="@user.UserId" />
+                            <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn btn-warning btn-sm" name="change-pass" data="@user.Email" />
                         }
-                        else
+                        @if (user.ProfileId != EnumProfile.Admin)
                         {
-                            <input type="button" value="@Alfursan.Resx.Management.btnStatusActive" class="btn btn-success" name="change-status-active" data="@user.UserId" />
-                        }*@
-                        <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn btn-warning" name="change-pass" data="@user.Email" />
-                        <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger" name="delete-user" data="@user.UserId" />
+                            <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger btn-sm" name="delete-user" data="@user.UserId" email="@user.Email" />
+                        }
                     </td>
                 </tr>
             }
         }
     </tbody>
 </table>
-

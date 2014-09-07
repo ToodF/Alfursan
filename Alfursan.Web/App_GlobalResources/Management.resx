@@ -184,7 +184,7 @@
     <value>Add file</value>
   </data>
   <data name="btnChangePass" xml:space="preserve">
-    <value>Change Pass</value>
+    <value>Pass</value>
   </data>
   <data name="Btn_NewUser" xml:space="preserve">
     <value>New User</value>

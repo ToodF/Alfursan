@@ -129,6 +129,9 @@
   <data name="Error_ModelNotValid" xml:space="preserve">
     <value>Model is not valid</value>
   </data>
+  <data name="Error_SqlException" xml:space="preserve">
+    <value>İşleminiz kaydedilemedi.</value>
+  </data>
   <data name="Error_Unexpected" xml:space="preserve">
     <value>Beklenmeyen bir hata oluştu.</value>
   </data>
