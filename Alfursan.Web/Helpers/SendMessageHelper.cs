@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -13,7 +14,7 @@ namespace Alfursan.Web.Helpers
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
-            message.Subject = Alfursan.Resx.MailMessage.WelcomeToAlfursan;
+            message.Subject = Alfursan.Resx.MailMessage.WelcomeSubject;
             switch (user.ProfileId)
             {
                 case EnumProfile.Admin:
@@ -44,5 +45,25 @@ namespace Alfursan.Web.Helpers
             message.To.Add(user.Email);
             mailsender.SendMessage(message);
         }
+
+        public static void SendMessageForgot(User user, string confirmKey)
+        {
+            var mailsender = IocContainer.Resolve<IMessageSender>();
+            var message = new MailMessage();
+            message.Subject = Resx.MailMessage.ForgotPasswordSubject;
+            message.Body = Resx.MailMessage.ForgotPasswordBody;
+            var replacements = new Dictionary<string, string>();
+            replacements.Add("<Name>", user.Name);
+            replacements.Add("<Surname>", user.Surname);
+            replacements.Add("<ConfirmKey>", confirmKey);
+            replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
+            foreach (var replacement in replacements)
+            {
+                message.Body = message.Body.Replace(replacement.Key, replacement.Value);
+            }
+            message.To.Add(user.Email);
+            mailsender.SendMessage(message);
+        }
+
     }
 }

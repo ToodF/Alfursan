@@ -113,9 +113,19 @@ namespace Alfursan.Resx {
                 return ResourceManager.GetString("Error_Unexpected", resourceCulture);
             }
         }
+ /// <summary>
+///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
+        /// </summary>
+        public static string Info_ChangePass {
+            get {
+                return ResourceManager.GetString("Info_ChangePass", resourceCulture);
+            }
+        }
+               
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete User.
+        ///   ///   Looks up a localized string similar to Delete User.
+
         /// </summary>
         public static string Info_DeleteUser {
             get {

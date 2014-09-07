@@ -147,7 +147,7 @@ Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (
 Şifre : &lt;Password&gt;
 &lt;/p&gt;</value>
   </data>
-  <data name="WelcomeToAlfursan" xml:space="preserve">
+  <data name="WelcomeSubject" xml:space="preserve">
     <value>Welcome to Alfursan File Managament !</value>
   </data>
   <data name="WelcomeUserBody" xml:space="preserve">
@@ -159,5 +159,15 @@ Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (
 &lt;p&gt;
 Şifre : &lt;Password&gt;
 &lt;/p&gt;</value>
+  </data>
+  <data name="ForgotPasswordBody" xml:space="preserve">
+    <value>&lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
+&lt;p&gt;Aşağıdaki linke tıklayarak yeni şifrenizi belirleyebilirsiniz&lt;/p&gt;
+&lt;p&gt;
+&lt;a href="&lt;SiteRoot&gt;/Account/ResetPassword/&lt;ConfirmKey&gt;"&gt;Şifremi değiştir.&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="ForgotPasswordSubject" xml:space="preserve">
+    <value>Change Password Alfursan</value>
   </data>
 </root>

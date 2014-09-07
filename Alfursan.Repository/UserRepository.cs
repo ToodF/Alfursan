@@ -198,7 +198,7 @@ namespace Alfursan.Repository
             }
         }
 
-        public  EntityResponder<List<User>> GetCustomOfficers()
+        public EntityResponder<List<User>> GetCustomOfficers()
         {
             using (var con = DapperHelper.CreateConnection())
             {
@@ -207,5 +207,15 @@ namespace Alfursan.Repository
             }
         }
 
+        public Responder SetConfirmKey(string email, string confirmKey)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var result = con.Execute(@"update [User] set 
+                                            ConfirmKey = @ConfirmKey
+                                            where Email = @Email", new { ConfirmKey = confirmKey, Email = email });
+                return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
+            }
+        }
     }
 }

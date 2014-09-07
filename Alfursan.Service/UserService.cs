@@ -93,5 +93,10 @@ namespace Alfursan.Service
         {
             return userRepository.GetCustomOfficers();
         }
+
+        public Responder SetConfirmKey(string email, string confirmKey)
+        {
+            return userRepository.SetConfirmKey(email, confirmKey);
+        }
     }
 }
