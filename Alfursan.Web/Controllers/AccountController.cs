@@ -1,4 +1,7 @@
 ﻿using Alfursan.Domain;
+using Alfursan.Infrastructure;
+using Alfursan.IService;
+using Alfursan.Web.Helpers;
 using Alfursan.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -147,12 +150,39 @@ namespace Alfursan.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var userService = IocContainer.Resolve<IUserService>();
+                var userResult = userService.GetActiveUserByEmail(model.Email);
+                if (userResult.ResponseCode == EnumResponseCode.Successful)
                 {
-                    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                    var key = Guid.NewGuid().ToString();
+                    var result = userService.SetConfirmKey(model.Email, key);
+                    if (result.ResponseCode == EnumResponseCode.Successful)
+                    {
+                        SendMessageHelper.SendMessageForgot(userResult.Data, key);
+                        ViewData["success"] = Resx.MessageResource.Info_ChangePass;
+                    }
+                    else
+                    {
+                        ViewData["danger"] =
+                            Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey);
+                        //ModelState.AddModelError("", Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey));
+                        return View();
+                    }
+                }
+                else
+                {
+                    ViewData["danger"] =
+                            Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
+                    //ModelState.AddModelError("", Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey));
                     return View();
                 }
+
+                //var user = await UserManager.FindByNameAsync(model.Email);
+                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                //{
+                //    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                //    return View();
+                //}
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
@@ -177,9 +207,9 @@ namespace Alfursan.Web.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword(string id)
         {
-            if (code == null)
+            if (id == null)
             {
                 return View("Error");
             }

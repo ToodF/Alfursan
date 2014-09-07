@@ -115,6 +115,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
+        /// </summary>
+        public static string Info_ChangePass {
+            get {
+                return ResourceManager.GetString("Info_ChangePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string Info_DeleteUser {

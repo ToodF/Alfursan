@@ -62,6 +62,28 @@ namespace Alfursan.Resx {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
+        ///&lt;p&gt;Aşağıdaki linke tıklayarak yeni şifrenizi belirleyebilirsiniz&lt;/p&gt;
+        ///&lt;p&gt;
+        ///&lt;a href=&quot;&lt;SiteRoot&gt;/Account/ResetPassword/&lt;ConfirmKey&gt;&quot;&gt;Şifremi değiştir.&lt;/a&gt;
+        ///&lt;/p&gt;.
+        /// </summary>
+        public static string ForgotPasswordBody {
+            get {
+                return ResourceManager.GetString("ForgotPasswordBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password Alfursan.
+        /// </summary>
+        public static string ForgotPasswordSubject {
+            get {
+                return ResourceManager.GetString("ForgotPasswordSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
         ///&lt;p&gt;Alfursan dosya takip sistemine hoşgeldiniz. Sisteme giriş bilgileriniz aşağıdaki gibidir. Bu bilgiler ile sistemimizde işlemlerinize ait dosyalara erişebilir talepleriniz için bizimle irtibata geçebilirsiniz.&lt;/p&gt;
         ///&lt;p&gt;
         ///Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (&lt;Email&gt;))
@@ -111,9 +133,9 @@ namespace Alfursan.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Welcome to Alfursan File Managament !.
         /// </summary>
-        public static string WelcomeToAlfursan {
+        public static string WelcomeSubject {
             get {
-                return ResourceManager.GetString("WelcomeToAlfursan", resourceCulture);
+                return ResourceManager.GetString("WelcomeSubject", resourceCulture);
             }
         }
         

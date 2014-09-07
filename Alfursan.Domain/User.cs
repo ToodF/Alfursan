@@ -24,5 +24,7 @@ namespace Alfursan.Domain
         }
 
         public bool Status { get; set; }
+
+        public string ConfirmKey { get; set; }
     }
 }
