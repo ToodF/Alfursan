@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error_EmailNotFound" xml:space="preserve">
+    <value>Email not found.</value>
+  </data>
   <data name="Error_ExistingUserNameOrEmail" xml:space="preserve">
     <value> This Username or E-mail Used. Please Change Username or E-mail and Try Again</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Error_ModelNotValid" xml:space="preserve">
     <value>Model is not valid</value>
+  </data>
+  <data name="Error_NotMatchConfirmKey" xml:space="preserve">
+    <value>Confirm key is wrong.</value>
   </data>
   <data name="Error_SqlException" xml:space="preserve">
     <value>Process Could Not Be Saved.</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="Info_SetUser" xml:space="preserve">
     <value>Create</value>
+  </data>
+  <data name="Info_SuccessChangePass" xml:space="preserve">
+    <value>Your password is changed.Click for  &lt;a href="/Account/Login"&gt;Login&lt;/a&gt;</value>
   </data>
   <data name="Info_UpdateProfile" xml:space="preserve">
     <value>Your Profile Updated</value>

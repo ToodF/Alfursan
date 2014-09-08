@@ -1,17 +1,17 @@
 ﻿
 @if (ViewData["success"] != null)
 {
-    <div class="alert alert-success" role="alert">@ViewData["success"]</div>
+    <div class="alert alert-success" role="alert">@{WriteLiteral(ViewData["success"]);}</div>
 }
 @if (ViewData["info"] != null)
 {
-    <div class="alert alert-info" role="alert">@ViewData["info"]</div>
+    <div class="alert alert-info" role="alert">@{WriteLiteral(ViewData["info"]);}</div>
 }
 @if (ViewData["warning"] != null)
 {
-    <div class="alert alert-warning" role="alert">@ViewData["warning"]</div>
+    <div class="alert alert-warning" role="alert">@{WriteLiteral(ViewData["warning"]);}</div>
 }
 @if (ViewData["danger"] != null)
 {
-    <div class="alert alert-danger" role="alert">@ViewData["danger"]</div>
+    <div class="alert alert-danger" role="alert">@{WriteLiteral(ViewData["danger"]);}</div>
 }

@@ -70,21 +70,18 @@ namespace Alfursan.Repository
             }
         }
 
-        public Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword)
+        public Responder ChangePassword(string emailOrUsername, string newPassword)
         {
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
                 result = con.Execute(@"UPDATE [User]
                                             SET Password = @Password
-                                        WHERE (Email = @EmailOrUsername OR UserName = @EmailOrUsername)
-                                                AND [Password] = @OldPassword 
-                                                AND IsDeleted = 0",
+                                        WHERE (Email = @EmailOrUsername OR UserName = @EmailOrUsername)                                                AND IsDeleted = 0",
                                     new
                                     {
                                         EmailOrUsername = emailOrUsername,
-                                        Password = newPassword,
-                                        OldPassword = oldPassword
+                                        Password = Alfursan.Util.Util.EncryptWithMD5(newPassword)
                                     });
             }
 
@@ -184,8 +181,13 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("select * from [User] where IsDeleted = 0 and Status = 1 and Email = @Email", new { Email = email }).First();
-                return new EntityResponder<User>() { Data = user };
+                var user = con.Query<User>(
+                    "select * from [User] where IsDeleted = 0 and Status = 1 and Email = @Email", new { Email = email });
+                if (user == null || !user.Any())
+                {
+                    return new EntityResponder<User>() { ResponseCode = EnumResponseCode.NoRecordFound, ResponseUserFriendlyMessageKey = "Error_EmailNotFound" };
+                }
+                return new EntityResponder<User>() { Data = user.First() };
             }
         }
 

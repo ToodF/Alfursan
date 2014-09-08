@@ -165,7 +165,6 @@ namespace Alfursan.Web.Controllers
                     {
                         ViewData["danger"] =
                             Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey);
-                        //ModelState.AddModelError("", Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey));
                         return View();
                     }
                 }
@@ -173,26 +172,10 @@ namespace Alfursan.Web.Controllers
                 {
                     ViewData["danger"] =
                             Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
-                    //ModelState.AddModelError("", Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey));
                     return View();
                 }
 
-                //var user = await UserManager.FindByNameAsync(model.Email);
-                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                //{
-                //    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
-                //    return View();
-                //}
-
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -213,7 +196,8 @@ namespace Alfursan.Web.Controllers
             {
                 return View("Error");
             }
-            return View();
+            var model = new ResetPasswordViewModel() { Code = id };
+            return View(model);
         }
 
         //
@@ -225,20 +209,35 @@ namespace Alfursan.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null)
+                var userService = IocContainer.Resolve<IUserService>();
+                var userResult = userService.GetActiveUserByEmail(model.Email);
+                if (userResult.ResponseCode == EnumResponseCode.Successful)
                 {
-                    ModelState.AddModelError("", "No user found.");
-                    return View();
-                }
-                IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    if (userResult.Data.ConfirmKey.Equals(model.Code))
+                    {
+                        var changePass = userService.ChangePassword(model.Email, model.Password);
+                        if (changePass.ResponseCode == EnumResponseCode.Successful)
+                        {
+                            ViewData["success"] = Resx.MessageResource.Info_SuccessChangePass;
+                            return View();
+                        }
+                        else
+                        {
+                            ViewData["danger"] =
+                          Resx.MessageResource.ResourceManager.GetString(changePass.ResponseUserFriendlyMessageKey);
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        ViewData["danger"] = Resx.MessageResource.Error_NotMatchConfirmKey;
+                        return View();
+                    }
                 }
                 else
                 {
-                    AddErrors(result);
+                    ViewData["danger"] =
+                            Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
                     return View();
                 }
             }

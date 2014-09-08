@@ -61,6 +61,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email not found..
+        /// </summary>
+        public static string Error_EmailNotFound {
+            get {
+                return ResourceManager.GetString("Error_EmailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  This Username or E-mail Used. Please Change Username or E-mail and Try Again.
         /// </summary>
         public static string Error_ExistingUserNameOrEmail {
@@ -97,6 +106,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm key is wrong..
+        /// </summary>
+        public static string Error_NotMatchConfirmKey {
+            get {
+                return ResourceManager.GetString("Error_NotMatchConfirmKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process Could Not Be Saved..
         /// </summary>
         public static string Error_SqlException {
@@ -113,19 +131,18 @@ namespace Alfursan.Resx {
                 return ResourceManager.GetString("Error_Unexpected", resourceCulture);
             }
         }
- /// <summary>
-///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
         /// </summary>
         public static string Info_ChangePass {
             get {
                 return ResourceManager.GetString("Info_ChangePass", resourceCulture);
             }
         }
-               
         
         /// <summary>
-        ///   ///   Looks up a localized string similar to Delete User.
-
+        ///   Looks up a localized string similar to Delete User.
         /// </summary>
         public static string Info_DeleteUser {
             get {
@@ -139,6 +156,15 @@ namespace Alfursan.Resx {
         public static string Info_SetUser {
             get {
                 return ResourceManager.GetString("Info_SetUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password is changed.Click for  &lt;a href=&quot;/Account/Login&quot;&gt;Login&lt;/a&gt;.
+        /// </summary>
+        public static string Info_SuccessChangePass {
+            get {
+                return ResourceManager.GetString("Info_SuccessChangePass", resourceCulture);
             }
         }
         

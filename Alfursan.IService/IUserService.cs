@@ -19,7 +19,7 @@ namespace Alfursan.IService
 
         Responder Delete(int id);
 
-        Responder ChangePassword(string emailOrUsername, string oldPassword, string newPassword);
+        Responder ChangePassword(string emailOrUsername, string newPassword);
 
         Responder SaveRelationCustomerCustomOfficer(RelationCustomerCustomOfficer relationCustomerCustomOfficer);
 
