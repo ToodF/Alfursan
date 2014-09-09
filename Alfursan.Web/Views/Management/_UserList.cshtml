@@ -44,13 +44,13 @@
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>
-                        @if ((currentUser.ProfileId ==(int) EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
+                        @if ((currentUser.ProfileId == (int)EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
                         {
-                            <input type="button" value="@Alfursan.Resx.Management.btnChangePass" class="btn btn-warning btn-sm" name="change-pass" data="@user.Email" />
+                            <span class="glyphicon glyphicon-pencil change-pass" data="@user.UserId"></span>
                         }
                         @if (user.ProfileId != EnumProfile.Admin)
                         {
-                            <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger btn-sm" name="delete-user" data="@user.UserId" email="@user.Email" />
+                            <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                         }
                     </td>
                 </tr>

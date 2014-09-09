@@ -34,7 +34,6 @@ namespace Alfursan.Web.Api
                 return new HttpResponseModel()
                 {
                     ReturnCode = EnumResponseStatusCode.Success,
-                    ResponseMessage = Alfursan.Resx.MessageResource.Info_DeleteUser,
                     Data = userViewModel
                 };
             }

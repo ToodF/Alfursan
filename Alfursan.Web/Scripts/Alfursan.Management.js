@@ -63,19 +63,19 @@
             });
 
             $("#grid-container").css("display", "block");
-            $('#grid-users tbody').on('click', 'tr', function () {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
-            });
-            $('#grid-users tbody').on('dblclick', 'tr', function () {
-                var id = $(this).attr("data");
-                AlfursanManagement.BindUser(id);
-            });
+            //$('#grid-users tbody').on('click', 'tr', function () {
+            //    if ($(this).hasClass('selected')) {
+            //        $(this).removeClass('selected');
+            //    }
+            //    else {
+            //        table.$('tr.selected').removeClass('selected');
+            //        $(this).addClass('selected');
+            //    }
+            //});
+            //$('#grid-users tbody').on('dblclick', 'tr', function () {
+            //    var id = $(this).attr("data");
+            //    AlfursanManagement.BindUser(id);
+            //});
 
             $("img[name='change-status-passive']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), false);
@@ -85,13 +85,18 @@
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
             });
 
-            $("input[name='delete-user']").click(function () {
+            $(".delete-user").click(function () {
                 var id = $(this).attr("data");
                 var email = $(this).attr("email");
                 $("#user-email").html(email);
                 $("#UserId").val(id);
                 $("#new-user-button").focus();
                 $("#message-delete-user").show("slow");
+            });
+
+            $(".change-pass").click(function () {
+                var id = $(this).attr("data");
+                AlfursanManagement.BindUser(id);
             });
         });
     },
