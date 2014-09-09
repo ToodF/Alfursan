@@ -10,7 +10,7 @@ namespace Alfursan.Web.Helpers
 {
     public class SendMessageHelper
     {
-        public static void SendMessageNewUser(UserViewModel user)
+        public static Responder SendMessageNewUser(UserViewModel user)
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
@@ -43,10 +43,10 @@ namespace Alfursan.Web.Helpers
                 message.Body = message.Body.Replace(replacement.Key, replacement.Value);
             }
             message.To.Add(user.Email);
-            mailsender.SendMessage(message);
+            return mailsender.SendMessage(message);
         }
 
-        public static void SendMessageForgot(User user, string confirmKey)
+        public static Responder SendMessageForgot(User user, string confirmKey)
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
@@ -62,7 +62,7 @@ namespace Alfursan.Web.Helpers
                 message.Body = message.Body.Replace(replacement.Key, replacement.Value);
             }
             message.To.Add(user.Email);
-            mailsender.SendMessage(message);
+            return mailsender.SendMessage(message);
         }
 
     }

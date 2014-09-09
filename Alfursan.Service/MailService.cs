@@ -21,7 +21,7 @@ namespace Alfursan.Service
                 Host = mailProvider.Host,
                 Port = mailProvider.Port,
                 Credentials = new NetworkCredential(mailProvider.UserName, mailProvider.Password),
-                EnableSsl = true,
+                EnableSsl = mailProvider.EnableSsl,
                 DeliveryMethod = SmtpDeliveryMethod.Network
             };
             smtp.Send(mailMessage);

@@ -31,13 +31,17 @@ namespace Alfursan.Web
                 Component.For<IRoleRepository>().ImplementedBy<RoleRepository>().LifestyleTransient(),
                 Component.For<IRoleService>().ImplementedBy<RoleService>().LifestyleTransient(),
                 Component.For<IMessageSender>().ImplementedBy<MailService>().DependsOn(
-                    Dependency.OnValue("MailProvider",new MailProvider()
+                    Dependency.OnValue("MailProvider", new MailProvider()
                     {
                         Host = ConfigurationManager.AppSettings["MailServerHost"],
                         Port = Convert.ToInt32(ConfigurationManager.AppSettings["MailServerPort"]),
                         UserName = ConfigurationManager.AppSettings["MailServerUserName"],
-                        Password = ConfigurationManager.AppSettings["MailServerPassword"]
+                        Password = ConfigurationManager.AppSettings["MailServerPassword"],
+                        EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
                     }))
+                     .Interceptors(InterceptorReference.ForType<Logging>()).First
+                    .Interceptors(InterceptorReference.ForType<Caching>()).First
+                    .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First
                 );
 
             return container;

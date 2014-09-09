@@ -158,8 +158,17 @@ namespace Alfursan.Web.Controllers
                     var result = userService.SetConfirmKey(model.Email, key);
                     if (result.ResponseCode == EnumResponseCode.Successful)
                     {
-                        SendMessageHelper.SendMessageForgot(userResult.Data, key);
-                        ViewData["success"] = Resx.MessageResource.Info_ChangePass;
+                        var sendMail = SendMessageHelper.SendMessageForgot(userResult.Data, key);
+                        if (sendMail.ResponseCode == EnumResponseCode.Successful)
+                        {
+                            ViewData["success"] = Resx.MessageResource.Info_ChangePass;
+                        }
+                        else
+                        {
+                            ViewData["danger"] =
+                            Resx.MessageResource.ResourceManager.GetString(sendMail.ResponseUserFriendlyMessageKey);
+                            return View();
+                        }
                     }
                     else
                     {

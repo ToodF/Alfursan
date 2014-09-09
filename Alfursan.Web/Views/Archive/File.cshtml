@@ -1,6 +1,5 @@
 ﻿@using Alfursan.Domain
 @model EntityResponder<List<User>>
-
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
     {
@@ -15,7 +14,7 @@
             </select>
         </div>
     }
-    <br/>
+    <br />
     <!-- Redirect browsers with JavaScript disabled to the origin page -->
     @*<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>*@
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -32,9 +31,9 @@
                 <span>Start upload</span>
             </button>
             @*<button type="reset" class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel upload</span>
-            </button>*@
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>*@
             <button type="button" class="btn btn-danger delete">
                 <i class="glyphicon glyphicon-trash"></i>
                 <span>Delete</span>
@@ -57,9 +56,7 @@
     <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 </form>
 
-
 <script id="template-upload" type="text/x-tmpl">
-
     {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
         <td>
@@ -132,29 +129,32 @@
             <span class="size">{%=o.formatFileSize(file.size)%}</span>
         </td>
         <td>
-
             @*{% if (file.deleteUrl) { %}
-            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-                <i class="glyphicon glyphicon-trash"></i>
-                <span>Delete</span>
-            </button>
-            <input type="checkbox" name="delete" value="1" class="toggle">
-            {% } else { %}
-            <button class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel</span>
-            </button>
-            {% } %}*@
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+                {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+                {% } %}*@
         </td>
     </tr>
     {% } %}
 </script>
-
 <link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload-ui-noscript.css" rel="stylesheet" />
 <link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload.css" rel="stylesheet" />
 <link href="~/Plugins/JQueryFileUpload/css/style.css" rel="stylesheet" />
 <link href="~/Plugins/Dropdown/css/bootstrap-select.css" rel="stylesheet" />
-
+<style>
+    .body-content {
+        margin-top: 30px;
+    }
+     
+</style>
 @section Scripts {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
@@ -190,7 +190,6 @@
     <script src="/Plugins/JQueryFileUpload/js/main.js"></script>
     <!-- The dropdown bootstrap script -->
     <script src="/Plugins/Dropdown/js/bootstrap-select.js"></script>
-
     <script>
         /*jslint unparam: true, regexp: true */
         /*global window, $ */
