@@ -171,8 +171,8 @@ namespace Alfursan.Web.Controllers
             var height = int.Parse(ConfigurationManager.AppSettings["AuthorThumbnailResizeHeight"]);
 
             // Build absolute path
-            var absPath = ConfigurationManager.AppSettings["FiledUploadedPath"];
-            var absFileAndPath = absPath + relatedFileName;
+            var absPath = Server.MapPath("/Uploaded"); // ConfigurationManager.AppSettings["FiledUploadedPath"];
+            var absFileAndPath = absPath + "/" + relatedFileName;
 
             // Create directory as necessary and save image on server
             if (!Directory.Exists(absPath))
@@ -184,9 +184,9 @@ namespace Alfursan.Web.Controllers
 
             if (isFileImage)
             {
-                var thumbnailsPath = string.Format("{0}Thumbnails", ConfigurationManager.AppSettings["FiledUploadedPath"]);
+                var thumbnailsPath = Server.MapPath("/UploadedThumbnails");//string.Format("{0}Thumbnails", ConfigurationManager.AppSettings["FiledUploadedPath"]);
                 var thumbnailsFileAndPath = string.Format("{0}\\{1}", thumbnailsPath, relatedFileName);
-                thumbnail = string.Format(@"/Uploaded/Thumbnails/{0}", relatedFileName);
+                thumbnail = string.Format(@"/UploadedThumbnails/{0}", relatedFileName);
 
                 // Resize image using "ImageResizer" NuGet package.
                 var resizeSettings = new ImageResizer.ResizeSettings
