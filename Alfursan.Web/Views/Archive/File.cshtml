@@ -72,14 +72,19 @@
         </td>
         <td>
             {% if (!i && !o.options.autoUpload) { %}
-            <p>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default active" value="1">Shipment Document</button>
-                    <button type="button" class="btn btn-default" value="2">Account Document</button>
-                    <button type="button" class="btn btn-default" value="3">Other</button>
-                </div>
-                <input type='hidden' id="selectedFileType" name="fileType" value='1'>
-            </p>
+
+            @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer)
+            {
+                <p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default active" value="1">Shipment Document</button>
+                        <button type="button" class="btn btn-default" value="2">Account Document</button>
+                        <button type="button" class="btn btn-default" value="3">Other</button>
+                    </div>
+                </p>
+            }
+            <input type='hidden' id="selectedFileType" name="fileType" value='1'>
+
             <p>
                 <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
             </p>
@@ -153,7 +158,6 @@
     .body-content {
         margin-top: 30px;
     }
-     
 </style>
 @section Scripts {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
