@@ -80,3 +80,7 @@ a:hover, a:focus {
     cursor: pointer;
     margin: 0 5px;
 }
+footer {
+    font-size: smaller;
+    text-align: center;
+}

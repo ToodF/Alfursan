@@ -70,6 +70,22 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.
+        ///            Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
+        ///            Osmanbey-Sisli/ISTANUL/TURKEY
+        ///            Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32
+        ///            Web: &lt;a href=&quot;http://www.alfursan.com.tr&quot;&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
+        ///            &lt;a href=&quot;mailto:ccdep@alfursan.com.tr&quot; target=&quot;_top&quot;&gt;
+        ///                ccdep@alfursan.com.tr
+        ///            &lt;/a&gt;.
+        /// </summary>
+        public static string Footer {
+            get {
+                return ResourceManager.GetString("Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive.
         /// </summary>
         public static string Menu_Archive {

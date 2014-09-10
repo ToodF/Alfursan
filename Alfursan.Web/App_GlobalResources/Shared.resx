@@ -141,4 +141,14 @@
   <data name="Menu_Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="Footer" xml:space="preserve">
+    <value>ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.
+            Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
+            Osmanbey-Sisli/ISTANUL/TURKEY
+            Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32
+            Web: &lt;a href="http://www.alfursan.com.tr"&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
+            &lt;a href="mailto:ccdep@alfursan.com.tr" target="_top"&gt;
+                ccdep@alfursan.com.tr
+            &lt;/a&gt;</value>
+  </data>
 </root>

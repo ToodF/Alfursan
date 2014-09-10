@@ -68,5 +68,47 @@ namespace Alfursan.Resx {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading the shipment files, account files and other files into the related user’s account.&lt;br/&gt;
+        ///            Before upload a file please select the related user and file destination.&lt;br/&gt;
+        ///            PLEASE MAKE SURE THAT YOU’VE UPLOADED THE RIGHT FILE TO THE RIGHT USER..
+        /// </summary>
+        public static string UploadText {
+            get {
+                return ResourceManager.GetString("UploadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Document.
+        /// </summary>
+        public static string UploadTitle {
+            get {
+                return ResourceManager.GetString("UploadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to ALFURSAN&apos;s online archive system.&lt;br/&gt;
+        ///        This system has been created just for our customers.&lt;br /&gt;
+        ///        By this system, our customers can follow up their business runing.&lt;br /&gt;
+        ///        You can upload shipment documents, account statements and any kind of various documents into related clients’ user accounts by using the system.&lt;br/&gt;
+        ///        Operate clear!.
+        /// </summary>
+        public static string WelcomeText {
+            get {
+                return ResourceManager.GetString("WelcomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALFURSAN&apos;s Client Login.
+        /// </summary>
+        public static string WelcomeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeTitle", resourceCulture);
+            }
+        }
     }
 }
