@@ -137,7 +137,7 @@ namespace Alfursan.Repository
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerId,CreatedUserId) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId)", relationCustomerCustomOfficer);
+                result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerId,CreatedUserId,IsDeleted) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId,0)", relationCustomerCustomOfficer);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
         }
@@ -172,7 +172,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("SELECT * FROM [User] WHERE ProfileId = 3").ToList();
+                var users = con.Query<User>("SELECT * FROM [User] WHERE ProfileId = 3 AND IsDeleted = 0").ToList();
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }

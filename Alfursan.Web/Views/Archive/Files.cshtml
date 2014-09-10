@@ -1,6 +1,10 @@
 ﻿@using System.Threading
-@model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
+@using Alfursan.Domain
 
+@model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
+@{
+    var currentUser = (User)Session["CurrentUser"];
+}
 <div class="alert alert-warning" id="message-delete-file">
     <span id="filename"></span>
     @Alfursan.Resx.MessageResource.Warning_DeleteFile
@@ -33,7 +37,13 @@
                     <td>@file.CreatedUser.FullName</td>
                     <td>@file.CreateDate</td>
                     <td>
-                        <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger" name="delete-file" data="@file.FileId" />
+                        @if (currentUser.ProfileId != (int)EnumProfile.CustomOfficer || file.CreatedUser.CreatedUserId == currentUser.UserId)
+                        {
+                            if (currentUser.ProfileId != (int)EnumProfile.Customer || file.CreatedUser.CreatedUserId == currentUser.UserId)
+                            {
+                                <input type="button" value="@Alfursan.Resx.Management.btnDelete" class="btn btn-danger" name="delete-file" data="@file.FileId" />
+                            }
+                        }
                     </td>
                 </tr>
             }

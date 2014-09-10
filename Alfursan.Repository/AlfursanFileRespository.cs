@@ -77,41 +77,36 @@ namespace Alfursan.Repository
             using (var con = DapperHelper.CreateConnection())
             {
                 var files = con.Query<AlfursanFile, User, User, AlfursanFile>(@"SELECT f.FileId
-                                                                                    ,f.Subject
-	                                                                                ,f.OriginalFileName
-	                                                                                ,f.FileType
-	                                                                                ,RelatedFileName
-	                                                                                ,f.CreateDate
-	                                                                                ,customer.UserId AS CustomerUserId
-	                                                                                ,customer.Name
-	                                                                                ,customer.Surname
-	                                                                                ,createdUser.UserId AS CreatedUserId
-	                                                                                ,createdUser.Name
-	                                                                                ,createdUser.Surname
-                                                                                FROM [File] f
-                                                                                INNER JOIN [user] currentUser ON currentUser.UserId = @CurrentUserId
-                                                                                LEFT OUTER JOIN RelationCustomerCustomOfficer rcco ON f.CustomerUserId = rcco.CustomerUserId
-                                                                                LEFT OUTER JOIN [User] createdUser ON f.CreatedUserId = createdUser.UserId
-                                                                                LEFT OUTER JOIN [User] customer ON f.CustomerUserId = customer.UserId
-                                                                                WHERE f.IsDeleted = 0
-	                                                                                AND currentUser.IsDeleted = 0
-	                                                                                AND currentUser.ProfileId IN (1,2)
-	                                                                                OR (
-		                                                                                currentUser.ProfileId = 3
-		                                                                                AND rcco.CustomerUserId = @CustomerUserId
-		                                                                                )
-	                                                                                OR (
-		                                                                                FileType = 1
-		                                                                                AND rcco.CustomerUserId = @CustomerUserId
-		                                                                                )
-                                                                                ORDER BY CreateDate DESC"
+                        ,f.Subject
+                        ,f.OriginalFileName
+                        ,f.FileType
+                        ,RelatedFileName
+                        ,f.CreateDate
+                        ,customer.UserId AS CustomerUserId
+                        ,customer.Name
+                        ,customer.Surname
+                        ,createdUser.UserId AS CreatedUserId
+                        ,createdUser.Name
+                        ,createdUser.Surname
+                    FROM [File] f
+                    INNER JOIN [user] currentUser ON currentUser.UserId = @CurrentUserId
+                    LEFT OUTER JOIN RelationCustomerCustomOfficer rcco ON f.CustomerUserId = rcco.CustomerUserId
+                    LEFT OUTER JOIN [User] createdUser ON f.CreatedUserId = createdUser.UserId
+                    LEFT OUTER JOIN [User] customer ON f.CustomerUserId = customer.UserId
+                    WHERE 
+                        f.IsDeleted = 0 
+                        AND currentUser.IsDeleted = 0
+                        AND (currentUser.ProfileId in(1,2))
+	                    OR (currentUser.ProfileId = 3 and f.CreatedUserId = @CurrentUserId OR f.CustomerUserID = @CurrentUserId)
+	                    OR (currentUser.ProfileId = 4 and f.FileType = 1 and f.CustomerUserId in (SELECT CustomerUserId FROM RelationCustomerCustomOfficer WHERE CustomOfficerId = @CurrentUserId ))
+"
                                                               , (file, customer, createdUser) =>
                                                               {
                                                                   file.Customer = customer;
                                                                   file.CreatedUser = createdUser;
                                                                   return file;
                                                               },
-                                           new { CurrentUserId = userId, CustomerUserId = customerUserId }, splitOn: "CustomerUserId,CreatedUserId").ToList();
+                                           new { CurrentUserId = userId }, splitOn: "CustomerUserId,CreatedUserId").ToList();
 
                 return new EntityResponder<List<AlfursanFile>>() { Data = files };
             }

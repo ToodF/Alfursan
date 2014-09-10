@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Alfursan.Domain;
+﻿using Alfursan.Domain;
 using Alfursan.Infrastructure;
-using Alfursan.Infrastructure.Exceptions;
 using Alfursan.IRepository;
 using Alfursan.IService;
 using System;
+using System.Collections.Generic;
 
 namespace Alfursan.Service
 {
@@ -17,16 +16,12 @@ namespace Alfursan.Service
         }
         public EntityResponder<User> Login(string email, string pass)
         {
-            var user = userRepository.Get(email, pass);
-            if (user == null)
-                throw new NotFoundUserException();
-            return user;
+            return userRepository.Get(email, pass);
         }
 
         public EntityResponder<List<User>> GetCustomers()
         {
-            var users = userRepository.GetCustomers();
-            return users;
+            return userRepository.GetCustomers();
         }
 
         public EntityResponder<List<User>> GetAllByUserType(EnumProfile profile)
@@ -44,8 +39,7 @@ namespace Alfursan.Service
 
         public EntityResponder<User> Get(int userId)
         {
-            var user = userRepository.Get(userId);
-            return user;
+            return userRepository.Get(userId);
         }
 
         public EntityResponder<List<User>> GetAll()
