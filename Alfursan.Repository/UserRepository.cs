@@ -177,9 +177,27 @@ namespace Alfursan.Repository
             {
                 result = con.Execute(@"
 	                    UPDATE RelationCustomerCustomOfficer SET IsDeleted = 1 , UpdateDate = Getdate() WHERE CustomerUserId = @CustomerUserId
-	                  ", new { CustomerUserId = customerUserId } );
+	                  ", new { CustomerUserId = customerUserId });
             };
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful) };
+        }
+
+        public EntityResponder<List<User>> GetUsersForNotificationByCustomerUserId(int customerUserId)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var user = con.Query<User>(@"SELECT DISTINCT u.Email,
+                                                            u.Name,
+                                                            u.Surname
+                                            FROM   [dbo].[RelationCustomerCustomOfficer] rcco
+                                                   INNER JOIN [dbo].[user] u
+                                                           ON u.UserId = rcco.CustomOfficerId
+                                                               OR u.UserId = rcco.CustomerUserId
+                                            WHERE  rcco.CustomerUserId = @CustomerUserId",
+                                           new { CustomerUserId = customerUserId }).ToList();
+
+                return new EntityResponder<List<User>>() { Data = user };
+            }
         }
 
         public Responder ChangeStatus(int userId, bool status)

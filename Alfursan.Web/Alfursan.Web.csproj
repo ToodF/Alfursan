@@ -437,11 +437,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Archive.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\MailMessage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MailMessage.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\MessageResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

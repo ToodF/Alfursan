@@ -1,7 +1,9 @@
-﻿using Alfursan.Domain;
+﻿using System.Web.UI.WebControls;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Filters;
+using Alfursan.Web.Helpers;
 using Alfursan.Web.Models;
 using AutoMapper;
 using System;
@@ -92,61 +94,74 @@ namespace Alfursan.Web.Controllers
 
             EnumFileType fileType;
 
-            if (Enum.TryParse(Request.Form["fileType"], out fileType))
-            {
-                var alfursanFileViewModel = new AlfursanFileViewModel();
-
-                alfursanFileViewModel.Subject = Request.Form["subject"];
-                alfursanFileViewModel.FileType = fileType;
-
-                alfursanFileViewModel.OriginalFileName = file.FileName;
-                alfursanFileViewModel.RelatedFileName = relatedFileName;
-
-                alfursanFileViewModel.CreateDate = DateTime.Now;
-                alfursanFileViewModel.UpdateDate = DateTime.Now;
-
-                alfursanFileViewModel.IsDeleted = false;
-
-                alfursanFileViewModel.CreatedUser = new User();
-                alfursanFileViewModel.CreatedUser.UserId = CurrentUser.UserId;
-                alfursanFileViewModel.CreatedUserId = CurrentUser.UserId;
-
-                alfursanFileViewModel.Customer = new User();
-
-                if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
-                {
-                    alfursanFileViewModel.Customer.UserId = Convert.ToInt32(Request.Form["customerUserId"]);
-                }
-                else if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
-                {
-                    alfursanFileViewModel.Customer.UserId = CurrentUser.UserId;
-                }
-                else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
-                {
-                    alfursanFileViewModel.Customer.UserId = (int)Session["CustomerUserIdForCustomerOfficer"];
-                }
-
-                alfursanFileViewModel.CustomerUserId = alfursanFileViewModel.Customer.UserId;
-
-                Mapper.CreateMap<AlfursanFileViewModel, AlfursanFile>();
-                var alfursanFile = Mapper.Map<AlfursanFileViewModel, AlfursanFile>(alfursanFileViewModel);
-
-                var fileService = IocContainer.Resolve<IAlfursanFileService>();
-
-                fileService.Set(alfursanFile);
-            }
-
             try
             {
-                string thumbnail;
-                var filename = UploadFile(file, relatedFileName, out thumbnail);
+                if (Enum.TryParse(Request.Form["fileType"], out fileType))
+                {
+                    var alfursanFileViewModel = new AlfursanFileViewModel();
 
-                // Return JSON
+                    alfursanFileViewModel.Subject = Request.Form["subject"];
+                    alfursanFileViewModel.FileType = fileType;
+
+                    alfursanFileViewModel.OriginalFileName = file.FileName;
+                    alfursanFileViewModel.RelatedFileName = relatedFileName;
+
+                    alfursanFileViewModel.CreateDate = DateTime.Now;
+                    alfursanFileViewModel.UpdateDate = DateTime.Now;
+
+                    alfursanFileViewModel.IsDeleted = false;
+
+                    alfursanFileViewModel.CreatedUser = new User();
+                    alfursanFileViewModel.CreatedUser.UserId = CurrentUser.UserId;
+                    alfursanFileViewModel.CreatedUserId = CurrentUser.UserId;
+
+                    alfursanFileViewModel.Customer = new User();
+
+                    if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
+                    {
+                        alfursanFileViewModel.Customer.UserId = Convert.ToInt32(Request.Form["customerUserId"]);
+                    }
+                    else if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
+                    {
+                        alfursanFileViewModel.Customer.UserId = CurrentUser.UserId;
+                    }
+                    else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+                    {
+                        alfursanFileViewModel.Customer.UserId = (int)Session["CustomerUserIdForCustomerOfficer"];
+                    }
+
+                    alfursanFileViewModel.CustomerUserId = alfursanFileViewModel.Customer.UserId;
+
+                    Mapper.CreateMap<AlfursanFileViewModel, AlfursanFile>();
+                    var alfursanFile = Mapper.Map<AlfursanFileViewModel, AlfursanFile>(alfursanFileViewModel);
+
+                    var fileService = IocContainer.Resolve<IAlfursanFileService>();
+
+                    fileService.Set(alfursanFile);
+
+                    string thumbnail;
+                    string absolutePath;
+                    var filename = UploadFile(file, relatedFileName, out thumbnail, out absolutePath);
+
+                    if (Request.Form["sendmail"] == "on")
+                    {
+                        SendMail(alfursanFileViewModel.Customer.UserId, absolutePath);
+                    }
+
+                    // Return JSON
+                    return Json(new
+                    {
+                        statusCode = 200,
+                        status = "Image uploaded.",
+                        files = new[] { new { url = filename, error = "", thumbnailUrl = thumbnail, name = file.FileName } },
+                    }, "text/html");
+                }
+
                 return Json(new
                 {
-                    statusCode = 200,
-                    status = "Image uploaded.",
-                    files = new[] { new { url = filename, error = "", thumbnailUrl = thumbnail, name = file.FileName } },
+                    statusCode = 500,
+                    status = "File type not found.",
+                    files = new[] { new { url = "", error = "File type not found.", thumbnailUrl = "", name = file.FileName } },
                 }, "text/html");
             }
             catch (Exception ex)
@@ -162,9 +177,22 @@ namespace Alfursan.Web.Controllers
             }
         }
 
-        string UploadFile(HttpPostedFileBase file, string relatedFileName, out string thumbnail)
+        private void SendMail(int customerUserId, string absolutePath)
+        {
+            var userService = IocContainer.Resolve<IUserService>();
+
+            var users = userService.GetUsersForNotificationByCustomerUserId(customerUserId);
+
+            foreach (var user in users.Data)
+            {
+                SendMessageHelper.SendMessageNewFileUploaded(user, absolutePath);
+            }
+        }
+
+        string UploadFile(HttpPostedFileBase file, string relatedFileName, out string thumbnail, out string absolutePath)
         {
             thumbnail = string.Empty;
+            absolutePath = string.Empty;
 
             // Initialize variables we'll need for resizing and saving
             var width = int.Parse(ConfigurationManager.AppSettings["AuthorThumbnailResizeWidth"]);
@@ -177,6 +205,8 @@ namespace Alfursan.Web.Controllers
             // Create directory as necessary and save image on server
             if (!Directory.Exists(absPath))
                 Directory.CreateDirectory(absPath);
+
+            absolutePath = absFileAndPath;
 
             file.SaveAs(absFileAndPath);
 

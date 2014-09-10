@@ -32,7 +32,11 @@ namespace Alfursan.IService
         EntityResponder<List<Country>> GetCountries();
 
         EntityResponder<List<User>> GetCustomOfficers();
+
         Responder SetConfirmKey(string email, string confirmKey);
+        
         Responder DeleteRelationCustomerCustomOfficer(int customerUserId);
+
+        EntityResponder<List<User>> GetUsersForNotificationByCustomerUserId(int customerUserId);
     }
 }

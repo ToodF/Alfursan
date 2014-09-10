@@ -1,12 +1,14 @@
 ﻿@using Alfursan.Domain
 @model EntityResponder<List<User>>
+<br />
+<br />
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
     {
         <div class="form-group customer-dropdown-select">
-            <label for="drpUser">Customer</label>
+            <label for="drpUser">@Alfursan.Resx.Archive.Customer</label>
             <select id="drpUser" name="customerUserId" class="selectpicker" data-live-search="true" data-max-options="1" data-width="30%" style="display: none;">
-                <option data-hidden="true">Select</option>
+                <option data-hidden="true">@Alfursan.Resx.Archive.Select</option>
                 @foreach (var user in Model.Data)
                 {
                     <option value="@user.UserId">@user.FullName</option>
@@ -19,17 +21,18 @@
     @*<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>*@
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="form-group fileupload-buttonbar">
-        <div class="col-lg-7">
+        <div class="col-lg-3">
             <!-- The fileinput-button span is used to style the file input field as button -->
             <span class="btn btn-success fileinput-button">
                 <i class="glyphicon glyphicon-plus"></i>
-                <span>Add files...</span>
+                <span>@Alfursan.Resx.Archive.AddFiles</span>
                 <input type="file" name="files[]" multiple>
             </span>
             <button type="submit" class="btn btn-primary start">
                 <i class="glyphicon glyphicon-upload"></i>
-                <span>Start upload</span>
+                <span>@Alfursan.Resx.Archive.StartUpload</span>
             </button>
+
             @*<button type="reset" class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
@@ -41,6 +44,11 @@
             <input type="checkbox" class="toggle">
             <!-- The global file processing state -->
             <span class="fileupload-process"></span>
+        </div>
+        <div class="checkbox col-lg-2">
+            <label>
+                <input type="checkbox" name="sendmail"> @Alfursan.Resx.Archive.IsSendEmail
+            </label>
         </div>
         <!-- The global progress state -->
         <div class="col-lg-5 fileupload-progress fade">
@@ -77,30 +85,30 @@
             {
                 <p>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default active" value="1">Shipment Document</button>
-                        <button type="button" class="btn btn-default" value="2">Account Document</button>
-                        <button type="button" class="btn btn-default" value="3">Other</button>
+                        <button type="button" class="btn btn-default active" value="1">@Alfursan.Resx.Archive.ShipmentDocument</button>
+                        <button type="button" class="btn btn-default" value="2">@Alfursan.Resx.Archive.AccountDocument</button>
+                        <button type="button" class="btn btn-default" value="3">@Alfursan.Resx.Archive.Other</button>
                     </div>
                 </p>
             }
             <input type='hidden' id="selectedFileType" name="fileType" value='1'>
 
             <p>
-                <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="@Alfursan.Resx.Archive.Subject" required>
             </p>
             {% } %}
 
             {% if (!i && !o.options.autoUpload) { %}
             <button class="btn btn-primary start" disabled>
                 <i class="glyphicon glyphicon-upload"></i>
-                <span>Start</span>
+                <span>@Alfursan.Resx.Archive.Start</span>
             </button>
             {% } %}
 
             {% if (!i) { %}
             <button class="btn btn-warning cancel">
                 <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel</span>
+                <span>@Alfursan.Resx.Archive.Cancel</span>
             </button>
             {% } %}
         </td>
@@ -170,7 +178,6 @@
     <!-- The Canvas to Blob plugin is included for image resizing functionality -->
     <script src="~/Plugins/JQueryFileUpload/js/canvas-to-blob.min.js"></script>
     <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- blueimp Gallery script -->
     <script src="~/Plugins/JQueryFileUpload/js/jquery.blueimp-gallery.min.js"></script>

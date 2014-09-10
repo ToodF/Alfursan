@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountDocument" xml:space="preserve">
+    <value>Account Document</value>
+  </data>
+  <data name="AddFiles" xml:space="preserve">
+    <value>Add Files...</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Created By</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
   </data>
   <data name="CustomerName" xml:space="preserve">
     <value>Customer</value>
@@ -131,5 +143,26 @@
   </data>
   <data name="FileType" xml:space="preserve">
     <value>File Type</value>
+  </data>
+  <data name="IsSendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="ShipmentDocument" xml:space="preserve">
+    <value>Shipment Document</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="StartUpload" xml:space="preserve">
+    <value>Start Upload</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
   </data>
 </root>

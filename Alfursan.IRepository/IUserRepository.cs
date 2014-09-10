@@ -16,14 +16,19 @@ namespace Alfursan.IRepository
         Responder ChangeStatus(int userId, bool status);
 
         EntityResponder<User> GetCustomerUserId(int customOfficerId);
+
         EntityResponder<List<User>> GetCustomers();
 
         EntityResponder<User> GetActiveUserByEmail(string email);
+        
         EntityResponder<List<Country>> GetCountries();
 
         EntityResponder<List<User>> GetCustomOfficers();
 
         Responder SetConfirmKey(string email, string confirmKey);
+
         Responder DeleteRelationCustomerCustomOfficer(int customerUserId);
+
+        EntityResponder<List<User>> GetUsersForNotificationByCustomerUserId(int customerUserId);
     }
 }

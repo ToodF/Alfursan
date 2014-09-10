@@ -65,5 +65,28 @@ namespace Alfursan.Web.Helpers
             return mailsender.SendMessage(message);
         }
 
+        public static Responder SendMessageNewFileUploaded(User user, string absolutePath)
+        {
+            var mailsender = IocContainer.Resolve<IMessageSender>();
+            var message = new MailMessage();
+            message.Subject = Alfursan.Resx.MailMessage.NewFileUploadedSubject;
+
+            message.Body = Resx.MailMessage.NewFileUploadedBody;
+
+            var attachment = new Attachment(absolutePath);
+            message.Attachments.Add(attachment);
+
+            var replacements = new Dictionary<string, string>();
+            replacements.Add("<Name>", user.Name);
+            replacements.Add("<Surname>", user.Surname);
+            replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
+            
+            foreach (var replacement in replacements)
+            {
+                message.Body = message.Body.Replace(replacement.Key, replacement.Value);
+            }
+            message.To.Add(user.Email);
+            return mailsender.SendMessage(message);
+        }
     }
 }

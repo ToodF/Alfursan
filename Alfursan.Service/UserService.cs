@@ -97,5 +97,10 @@ namespace Alfursan.Service
         {
             return userRepository.DeleteRelationCustomerCustomOfficer(customerUserId);
         }
+
+        public EntityResponder<List<User>> GetUsersForNotificationByCustomerUserId(int customerUserId)
+        {
+            return userRepository.GetUsersForNotificationByCustomerUserId(customerUserId);            
+        }
     }
 }
