@@ -151,4 +151,10 @@
                 ccdep@alfursan.com.tr
             &lt;/a&gt;</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
 </root>

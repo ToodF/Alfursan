@@ -89,17 +89,17 @@ namespace Alfursan.Repository
                         ,createdUser.Name
                         ,createdUser.Surname
                     FROM [File] f
-                    INNER JOIN [user] currentUser ON currentUser.UserId = @CurrentUserId
-                    LEFT OUTER JOIN RelationCustomerCustomOfficer rcco ON f.CustomerUserId = rcco.CustomerUserId
+                    left JOIN [user] currentUser ON currentUser.UserId = @CurrentUserId
+                    LEFT OUTER JOIN RelationCustomerCustomOfficer rcco ON f.CustomerUserId = rcco.CustomerUserId AND rcco.IsDeleted = 0
                     LEFT OUTER JOIN [User] createdUser ON f.CreatedUserId = createdUser.UserId
                     LEFT OUTER JOIN [User] customer ON f.CustomerUserId = customer.UserId
                     WHERE 
                         f.IsDeleted = 0 
-                        AND currentUser.IsDeleted = 0
-                        AND (currentUser.ProfileId in(1,2))
+                        AND currentUser.IsDeleted = 0                        
+                        AND ((currentUser.ProfileId in(1,2))
 	                    OR (currentUser.ProfileId = 3 and f.CreatedUserId = @CurrentUserId OR f.CustomerUserID = @CurrentUserId)
 	                    OR (currentUser.ProfileId = 4 and f.FileType = 1 and f.CustomerUserId in (SELECT CustomerUserId FROM RelationCustomerCustomOfficer WHERE CustomOfficerId = @CurrentUserId ))
-"
+	                    )"
                                                               , (file, customer, createdUser) =>
                                                               {
                                                                   file.Customer = customer;

@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 100px;
-    padding-bottom: 20px;
+    padding-top: 115px;
+    padding-bottom: 10px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -18,7 +18,8 @@ textarea {
 }
 
 .navbar {
-    min-height: 65px;
+    min-height: 100px;
+    padding-top: 15px;
 }
 
 .navbar-logo {
@@ -76,11 +77,17 @@ a:hover, a:focus {
 .status-icon {
     cursor: pointer;
 }
-.delete-user,.change-pass {
+.delete-user,.change-pass,.delete-file {
     cursor: pointer;
     margin: 0 5px;
 }
 footer {
     font-size: smaller;
     text-align: center;
+}
+.forgot-pass {
+    font-size: small;
+}
+.navbar-collapse ul {
+    margin-top: 9px;
 }
