@@ -14,8 +14,31 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var user = con.Query<User>("select * from [User] where UserId = @UserId", new { UserId = id }).First();
-                return new EntityResponder<User>() { Data = user };
+                var userResult = con.Query<User, RelationCustomerCustomOfficer, User>(@"select 
+	                    [UserId]
+                            ,[UserName]
+                            ,[Email]
+                            ,[Password]
+                            ,[Name]
+                            ,[Surname]
+                            ,[CompanyName]
+                            ,[Phone]
+                            ,[CountryId]
+                            ,[Address]
+                            ,[ProfileId]
+                            ,[RelationId]
+                            ,[CustomerUserId]
+                            ,[CustomOfficerId]
+                        from [User] as u
+                    left join RelationCustomerCustomOfficer as rcco on u.UserId = rcco.CustomerUserId and rcco.IsDeleted = 0
+                    where UserId = @UserId "
+                    , (user, relation) =>
+                    {
+                        user.RelationCustomerCustomOfficer = relation;
+                        return user;
+                    }
+                    , new { UserId = id }, splitOn: "RelationId");
+                return new EntityResponder<User>() { Data = userResult.First() };
             }
         }
 
@@ -137,9 +160,26 @@ namespace Alfursan.Repository
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute("INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerId,CreatedUserId,IsDeleted) VALUES (@CustomerUserId,@CustomOfficerUserId,@CreatedUserId,0)", relationCustomerCustomOfficer);
+                result = con.Execute(@"IF (NOT EXISTS (SELECT * FROM RelationCustomerCustomOfficer WHERE IsDeleted = 0 AND CustomerUserId = @CustomerUserId AND CustomOfficerId = @CustomOfficerId))
+                    BEGIN
+	                    UPDATE RelationCustomerCustomOfficer SET IsDeleted = 1 , UpdateDate = Getdate() WHERE CustomerUserId = @CustomerUserId
+	                    INSERT INTO dbo.RelationCustomerCustomOfficer(CustomerUserId,CustomOfficerId,CreatedUserId,IsDeleted) VALUES (@CustomerUserId,@CustomOfficerId,@CreatedUserId,0)
+                    END"
+                    , relationCustomerCustomOfficer);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
+        }
+
+        public Responder DeleteRelationCustomerCustomOfficer(int customerUserId)
+        {
+            var result = 0;
+            using (var con = DapperHelper.CreateConnection())
+            {
+                result = con.Execute(@"
+	                    UPDATE RelationCustomerCustomOfficer SET IsDeleted = 1 , UpdateDate = Getdate() WHERE CustomerUserId = @CustomerUserId
+	                  ", new { CustomerUserId = customerUserId } );
+            };
+            return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotUpdated : EnumResponseCode.Successful) };
         }
 
         public Responder ChangeStatus(int userId, bool status)

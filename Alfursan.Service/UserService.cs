@@ -92,5 +92,10 @@ namespace Alfursan.Service
         {
             return userRepository.SetConfirmKey(email, confirmKey);
         }
+
+        public Responder DeleteRelationCustomerCustomOfficer(int customerUserId)
+        {
+            return userRepository.DeleteRelationCustomerCustomOfficer(customerUserId);
+        }
     }
 }

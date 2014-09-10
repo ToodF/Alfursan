@@ -24,5 +24,6 @@ namespace Alfursan.IRepository
         EntityResponder<List<User>> GetCustomOfficers();
 
         Responder SetConfirmKey(string email, string confirmKey);
+        Responder DeleteRelationCustomerCustomOfficer(int customerUserId);
     }
 }

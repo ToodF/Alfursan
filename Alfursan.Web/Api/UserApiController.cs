@@ -31,6 +31,8 @@ namespace Alfursan.Web.Api
                 Mapper.CreateMap<User, UserViewModel>();
                 var userViewModel = Mapper.Map<User, UserViewModel>(response.Data);
                 userViewModel.ConfirmPassword = userViewModel.Password;
+                if (response.Data.RelationCustomerCustomOfficer != null)
+                    userViewModel.CustomOfficerId = response.Data.RelationCustomerCustomOfficer.CustomOfficerId;
                 return new HttpResponseModel()
                 {
                     ReturnCode = EnumResponseStatusCode.Success,
@@ -59,15 +61,22 @@ namespace Alfursan.Web.Api
 
                 if (result.ResponseCode == EnumResponseCode.Successful)
                 {
-                    if (userViewModel.ProfileId == EnumProfile.Customer && userViewModel.CustomOfficerId > 0)
+                    if (userViewModel.ProfileId == EnumProfile.Customer)
                     {
-                        var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
+                        if (userViewModel.CustomOfficerId > 0)
                         {
-                            CreatedUserId = 0,// ((User)HttpContext.Current.Session["CurrentUser"]).UserId,
-                            CustomOfficerUserId = userViewModel.CustomOfficerId,
-                            CustomerUserId = user.UserId
-                        };
-                        userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+                            var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
+                            {
+                                CreatedUserId = 0, // ((User)HttpContext.Current.Session["CurrentUser"]).UserId,
+                                CustomOfficerId = userViewModel.CustomOfficerId,
+                                CustomerUserId = user.UserId
+                            };
+                            userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
+                        }
+                        else
+                        {
+                            userService.DeleteRelationCustomerCustomOfficer(user.UserId);
+                        }
                     }
                     if (userViewModel.UserId == 0)
                     {

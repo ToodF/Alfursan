@@ -30,7 +30,7 @@
             });
 
         });
-       
+
         $("#delete-user-cancel").click(function () {
             $("#message-delete-user").hide(1000);
         });
@@ -54,7 +54,7 @@
         var url = "/Management/_UserList";
         AlfursanAjax.Request(url, "get", null, "body", function (result) {
             $("#grid-container").html(result);
-            
+
             var table = $('#grid-users').DataTable({
                 "order": [[1, "asc"]],
                 "language": {
@@ -152,6 +152,7 @@ var AlfursanUser = {
     Phone: "",
     Address: "",
     ProfileId: 3,
+    CustomOfficerId: "",
     SetEntity: function (entity) {
         if (entity == null) {
             this.UserId = 0;
@@ -166,6 +167,7 @@ var AlfursanUser = {
             this.Phone = "";
             this.Address = "";
             this.ProfileId = 3;
+            this.CustomOfficerId = "";
         } else {
             this.UserId = entity.UserId;
             this.UserName = entity.UserName;
@@ -179,6 +181,7 @@ var AlfursanUser = {
             this.Phone = entity.Phone;
             this.Address = entity.Address;
             this.ProfileId = entity.ProfileId;
+            this.CustomOfficerId = entity.CustomOfficerId;
         }
     },
 
@@ -207,6 +210,7 @@ var AlfursanUser = {
         } else {
             $("#form-item-customerofficer").css("display", "none");
         }
+        $("#CustomOfficerId").val(this.CustomOfficerId);
     }
 };
 
