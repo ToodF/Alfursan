@@ -88,5 +88,32 @@ namespace Alfursan.Web.Helpers
             message.To.Add(user.Email);
             return mailsender.SendMessage(message);
         }
+
+        internal static Responder SendMessageChangePass(ChangePassViewModel changePassViewModel)
+        {
+            var userService = IocContainer.Resolve<IUserService>();
+            var userResponse = userService.GetActiveUserByEmail(changePassViewModel.Email);
+            if (userResponse.ResponseCode == EnumResponseCode.Successful)
+            {
+                var user = userResponse.Data;
+                var mailsender = IocContainer.Resolve<IMessageSender>();
+                var message = new MailMessage();
+                message.Subject = Alfursan.Resx.MailMessage.ChangePassSubject;
+                message.Body = Resx.MailMessage.ChangePassBody;
+                var replacements = new Dictionary<string, string>();
+                replacements.Add("<Name>", user.Name);
+                replacements.Add("<Surname>", user.Surname);
+                replacements.Add("<Username>", user.UserName);
+                replacements.Add("<Email>", user.Email);
+                replacements.Add("<Password>", user.Password);
+                foreach (var replacement in replacements)
+                {
+                    message.Body = message.Body.Replace(replacement.Key, replacement.Value);
+                }
+                message.To.Add(user.Email);
+                return mailsender.SendMessage(message);
+            }
+            return userResponse;
+        }
     }
 }

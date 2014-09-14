@@ -56,6 +56,25 @@ namespace Alfursan.Web.Models
         public int CustomOfficerId { get; set; }
     }
 
+    public class ChangePassViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email", ResourceType = typeof(Alfursan.Resx.Management))]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password", ResourceType = typeof(Alfursan.Resx.Management))]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Alfursan.Resx.Management))]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
+    }
+
     public class UserListViewModel
     {
         public int UserId { get; set; }

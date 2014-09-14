@@ -383,6 +383,7 @@
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Archive\File.cshtml" />
     <Content Include="Views\Archive\Files.cshtml" />
+    <Content Include="Views\Management\_ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

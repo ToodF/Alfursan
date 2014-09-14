@@ -77,7 +77,7 @@ a:hover, a:focus {
 .status-icon {
     cursor: pointer;
 }
-.delete-user,.change-pass,.delete-file {
+.delete-user,.edit-user,.delete-file,.btn-change-pass {
     cursor: pointer;
     margin: 0 5px;
 }
