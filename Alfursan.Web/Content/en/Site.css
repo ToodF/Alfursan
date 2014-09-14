@@ -71,23 +71,47 @@ a:hover, a:focus {
     float: left;
     text-align: center;
 }
+
 .new-user-button {
     margin: 15px 0;
 }
+
 .status-icon {
     cursor: pointer;
 }
-.delete-user,.change-pass,.delete-file {
+
+.delete-user, .change-pass, .delete-file {
     cursor: pointer;
     margin: 0 5px;
 }
+
 footer {
     font-size: smaller;
     text-align: center;
 }
+
 .forgot-pass {
     font-size: small;
 }
+
 .navbar-collapse ul {
     margin-top: 9px;
+}
+
+.filter_date_range {
+    -moz-min-width: 206px;
+    -ms-min-width: 206px;
+    -o-min-width: 206px;
+    -webkit-min-width: 206px;
+    min-width: 206px;
+}
+
+.hasDatepicker {
+    width: 95px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
 }

@@ -14,8 +14,17 @@
     <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Alfursan.Resx.Management.btnNo" />
 </div>
 
+
 <table id="grid-files" class="table table-striped table-bordered hover">
     <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
         <tr>
             <th>@{Write(Alfursan.Resx.Archive.CreatedDate);}</th>
             <th>@{Write(Alfursan.Resx.Archive.FileName);}</th>
@@ -36,7 +45,7 @@
                     <td>@file.FileType</td>
                     <td>@file.Customer.FullName</td>
                     <td>@file.CreatedUser.FullName</td>
-                    
+
                     <td>
                         @if (currentUser.ProfileId != (int)EnumProfile.CustomOfficer || file.CreatedUser.CreatedUserId == currentUser.UserId)
                         {
@@ -59,12 +68,26 @@
     <script>
         $(document).ready(function () {
 
+            $('#grid-files').addClass('no-wrap');
+
             var dt = $('#grid-files').dataTable({
                 "order": [[0, "desc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
-                }
-            });
+                },
+                responsive: true
+            })
+                .columnFilter({
+                    sPlaceHolder: "head:before",
+                    aoColumns: [
+                        { type: "date-range" },
+                        { type: "text" },
+                        { type: "text" },
+                        { type: "text" },
+                        { type: "text" }
+                    ]
+
+                });
 
             var message = $("#message-delete-file");
             $(message).css("display", "none");

@@ -54,3 +54,22 @@ a:hover, a:focus {
     float: left;
     text-align: center;
 }
+
+.filter_date_range {
+    -moz-min-width: 206px;
+    -ms-min-width: 206px;
+    -o-min-width: 206px;
+    -webkit-min-width: 206px;
+    min-width: 206px;
+}
+
+.hasDatepicker {
+    width: 95px;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
