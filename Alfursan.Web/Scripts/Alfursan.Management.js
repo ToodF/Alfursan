@@ -16,8 +16,8 @@
             AlfursanManagement.BindUser(0);
         });
 
-        $(".modal-footer .btn-primary").click(function () {
-            var form = $(".modal-body form");
+        $("#AlfursanModal .modal-footer .btn-primary").click(function () {
+            var form = $("#AlfursanModal .modal-body form");
             var isValid = form.valid();
             if (!isValid) {
                 return false;
@@ -26,6 +26,20 @@
                 if (result.ReturnCode == "1") {
                     $("#AlfursanModal").modal("hide");
                     AlfursanManagement.GetUserList();
+                }
+            });
+
+        });
+
+        $("#ChangePasswordModal .modal-footer .btn-primary").click(function () {
+            var form = $("#ChangePasswordModal .modal-body form");
+            var isValid = form.valid();
+            if (!isValid) {
+                return false;
+            }
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body", function (result) {
+                if (result.ReturnCode == "1") {
+                    $("#ChangePasswordModal").modal("hide");
                 }
             });
 
@@ -63,19 +77,6 @@
             });
 
             $("#grid-container").css("display", "block");
-            //$('#grid-users tbody').on('click', 'tr', function () {
-            //    if ($(this).hasClass('selected')) {
-            //        $(this).removeClass('selected');
-            //    }
-            //    else {
-            //        table.$('tr.selected').removeClass('selected');
-            //        $(this).addClass('selected');
-            //    }
-            //});
-            //$('#grid-users tbody').on('dblclick', 'tr', function () {
-            //    var id = $(this).attr("data");
-            //    AlfursanManagement.BindUser(id);
-            //});
 
             $("img[name='change-status-passive']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), false);
@@ -83,6 +84,11 @@
 
             $("img[name='change-status-active']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
+            });
+            
+            $(".edit-user").click(function () {
+                var id = $(this).attr("data");
+                AlfursanManagement.BindUser(id);
             });
 
             $(".delete-user").click(function () {
@@ -94,9 +100,9 @@
                 $("#message-delete-user").show("slow");
             });
 
-            $(".change-pass").click(function () {
-                var id = $(this).attr("data");
-                AlfursanManagement.BindUser(id);
+            $(".btn-change-pass").click(function () {
+                var email = $(this).attr("email");
+                AlfursanManagement.OpenChangePassModal(email);
             });
         });
     },
@@ -136,6 +142,11 @@
         AlfursanAjax.Request(url, 'Get', null, "#contaner-roles", function (result) {
             $("#contaner-roles").html(result);
         });
+    },
+
+    OpenChangePassModal: function (email) {
+        AlfursanUser.BindModelForChangePass(email);
+        $("#ChangePasswordModal").modal("show");
     }
 };
 
@@ -153,6 +164,7 @@ var AlfursanUser = {
     Address: "",
     ProfileId: 3,
     CustomOfficerId: "",
+
     SetEntity: function (entity) {
         if (entity == null) {
             this.UserId = 0;
@@ -183,6 +195,11 @@ var AlfursanUser = {
             this.ProfileId = entity.ProfileId;
             this.CustomOfficerId = entity.CustomOfficerId;
         }
+    },
+   
+    BindModelForChangePass: function (email) {
+        $("#ChangePasswordModal #Email").val(email);
+        $("#email-for-changepass").text(email);
     },
 
     BindModel: function () {

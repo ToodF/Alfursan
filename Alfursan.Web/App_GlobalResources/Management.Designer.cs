@@ -322,11 +322,20 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save User.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Modal_Btn_Save {
             get {
                 return ResourceManager.GetString("Modal_Btn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string Modal_Title_ChangePass {
+            get {
+                return ResourceManager.GetString("Modal_Title_ChangePass", resourceCulture);
             }
         }
         

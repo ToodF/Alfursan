@@ -46,12 +46,13 @@
                     <td>
                         @if ((currentUser.ProfileId == (int)EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
                         {
-                            <span class="glyphicon glyphicon-pencil change-pass" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-pencil edit-user" data="@user.UserId"></span>
                         }
                         @if (user.ProfileId != EnumProfile.Admin)
                         {
                             <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                         }
+                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                     </td>
                 </tr>
             }

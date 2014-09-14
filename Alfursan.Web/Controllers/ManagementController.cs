@@ -111,6 +111,41 @@ namespace Alfursan.Web.Controllers
             return PartialView();
         }
 
+        [HttpPost]
+        public HttpResponseModel _ChangePass(ChangePassViewModel changePassViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var userService = IocContainer.Resolve<IUserService>();
+                var changePassResult = userService.ChangePassword(changePassViewModel.Email, changePassViewModel.Password);
+                if (changePassResult.ResponseCode == EnumResponseCode.Successful)
+                {
+                    var sendMailResult = SendMessageHelper.SendMessageChangePass(changePassViewModel);
+                    if (sendMailResult.ResponseCode == EnumResponseCode.Successful)
+                    {
+                        return new HttpResponseModel()
+                        {
+                            ReturnCode = EnumResponseStatusCode.Success
+                        };
+                    }
+                    return new HttpResponseModel()
+                    {
+                        ReturnCode = EnumResponseStatusCode.Error,
+                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(sendMailResult.ResponseUserFriendlyMessageKey)
+                    }; 
+                }
+                else
+                {
+                    return new HttpResponseModel()
+                    {
+                        ReturnCode = EnumResponseStatusCode.Error,
+                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(changePassResult.ResponseUserFriendlyMessageKey)
+                    };
+                }
+            }
+            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
+        }
+
         public PartialViewResult _UserList()
         {
             var userService = IocContainer.Resolve<IUserService>();
@@ -168,7 +203,7 @@ namespace Alfursan.Web.Controllers
                     }
                     System.Web.HttpContext.Current.Application["Roles"] = roleService.GetAll().Data;
                 }
-              
+
                 ViewData["success"] = Alfursan.Resx.MessageResource.Info_UpdateProfile;
             }
             GetProfiles();

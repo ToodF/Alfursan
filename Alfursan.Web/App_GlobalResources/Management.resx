@@ -190,10 +190,13 @@
     <value>New User</value>
   </data>
   <data name="Modal_Btn_Save" xml:space="preserve">
-    <value>Save User</value>
+    <value>Save</value>
   </data>
   <data name="Modal_Title_NewUser" xml:space="preserve">
     <value>New User</value>
+  </data>
+  <data name="Modal_Title_ChangePass" xml:space="preserve">
+    <value>Change Password</value>
   </data>
   <data name="Title_UserList" xml:space="preserve">
     <value>User List</value>
