@@ -79,6 +79,15 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string ArchiveTitle {
+            get {
+                return ResourceManager.GetString("ArchiveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -142,6 +151,24 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Uploading the shipment files, account files and other files into the related user&apos;s account. &lt;/p&gt;&lt;p&gt;Before upload a file please select the related user and file destination.&lt;/p&gt;&lt;p&gt;PLEASE MAKE SURE THAT YOU&apos;VE UPLOADED THE RIGHT FILE TO THE RIGHT USER&lt;/p&gt;.
+        /// </summary>
+        public static string FileUploadDescription {
+            get {
+                return ResourceManager.GetString("FileUploadDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Files.
+        /// </summary>
+        public static string FileUploadTitle {
+            get {
+                return ResourceManager.GetString("FileUploadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send Email.
         /// </summary>
         public static string IsSendEmail {
@@ -160,7 +187,7 @@ namespace Alfursan.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select.
+        ///   Looks up a localized string similar to Please select the customer.
         /// </summary>
         public static string Select {
             get {

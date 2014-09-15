@@ -1,5 +1,6 @@
-﻿@using System.Threading
-@using Alfursan.Domain
+﻿@using Alfursan.Domain
+
+<h2>@ViewBag.Title</h2>
 
 @model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
 @{
@@ -9,6 +10,7 @@
     <span id="filename"></span>
     @Alfursan.Resx.MessageResource.Warning_DeleteFile
     <input type="hidden" name="FileId" id="FileId" />
+    <input type="hidden" name="selectedFileIds" id="selectedFileIds" />
     <input type="hidden" name="selectedRow" id="selectedRow" />
     <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Alfursan.Resx.Management.btnOk" />
     <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Alfursan.Resx.Management.btnNo" />
@@ -18,7 +20,7 @@
 <table id="grid-files" class="table table-striped table-bordered hover">
     <thead>
         <tr>
-            <th></th>
+            @*<th></th>*@
             <th></th>
             <th></th>
             <th></th>
@@ -26,6 +28,7 @@
             <th></th>
         </tr>
         <tr>
+            @*<th></th>*@
             <th>@{Write(Alfursan.Resx.Archive.CreatedDate);}</th>
             <th>@{Write(Alfursan.Resx.Archive.FileName);}</th>
             <th>@{Write(Alfursan.Resx.Archive.FileType);}</th>
@@ -40,6 +43,11 @@
             foreach (var file in Model)
             {
                 <tr data="@file.FileId">
+                    @*<td>
+                        <div class="checkbox col-lg-2">
+                            <input type="checkbox" name="file" data="@file.FileId">
+                        </div>
+                    </td>*@
                     <td>@file.CreateDate</td>
                     <td><a href="/Uploaded/@file.RelatedFileName" download> @file.OriginalFileName</a></td>
                     <td>@file.FileType</td>
@@ -60,6 +68,7 @@
         }
     </tbody>
 </table>
+<input type="button" class="btn btn-lg" id="sendMail" value="@Alfursan.Resx.Management.SendMail" />
 
 @section scripts
 {
@@ -71,7 +80,7 @@
             $('#grid-files').addClass('no-wrap');
 
             var dt = $('#grid-files').dataTable({
-                "order": [[0, "desc"]],
+                "order": [[1, "desc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
                 },
@@ -80,22 +89,40 @@
                 .columnFilter({
                     sPlaceHolder: "head:before",
                     aoColumns: [
+                        //null,
                         { type: "date-range" },
                         { type: "text" },
-                        { type: "text" },
+                        { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
                         { type: "text" },
                         { type: "text" }
                     ]
 
                 });
 
+            $('input[type="checkbox"]').click(function () {
+
+                var isChecked = $(this).is(':checked');
+
+                $(this).attr('checked', isChecked);
+            });
+
+            $('#sendMail').click(function () {
+                var ids = [];
+                $("input[type=checkbox][checked]").each(function () {
+                    ids.push($(this).attr("data"));
+
+                    $('#selectedFileIds').val(ids);
+                });
+            });
+
             var message = $("#message-delete-file");
             $(message).css("display", "none");
 
             $(".delete-file").click(function () {
                 var id = $(this).attr("data");
+                var filename = $(this).attr("filename");
                 var container = $("#message-delete-file");
-                $("#filename").html(id);
+                $("#filename").html(filename);
                 $("#FileId").val(id);
 
                 $(container).show("slow");

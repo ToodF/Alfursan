@@ -23,7 +23,8 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult File()
         {
-            ViewBag.Title = Alfursan.Resx.Index.Title;
+            ViewBag.Title = Alfursan.Resx.Archive.FileUploadTitle;
+            ViewBag.Description = Alfursan.Resx.Archive.FileUploadDescription;
 
             if (CurrentUser == null)
                 return RedirectToAction("Login", "Account");
@@ -41,7 +42,7 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult Files()
         {
-            ViewBag.Title = Alfursan.Resx.Index.Title;
+            ViewBag.Title = Alfursan.Resx.Archive.ArchiveTitle;
 
             var customerUserId = 0;
 

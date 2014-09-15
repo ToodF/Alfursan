@@ -1,7 +1,11 @@
 ﻿@using Alfursan.Domain
 @model EntityResponder<List<User>>
-<br />
-<br />
+
+<h2>@ViewBag.Title</h2>
+
+@{WriteLiteral(ViewBag.Description);}
+<br/>
+
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
     {
@@ -164,7 +168,7 @@
 <link href="~/Plugins/Dropdown/css/bootstrap-select.css" rel="stylesheet" />
 <style>
     .body-content {
-        margin-top: 50px;
+        margin-top: 75px;
     }
 </style>
 @section Scripts {

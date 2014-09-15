@@ -123,6 +123,9 @@
   <data name="AddFiles" xml:space="preserve">
     <value>Add Files...</value>
   </data>
+  <data name="ArchiveTitle" xml:space="preserve">
+    <value>Archive</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -144,6 +147,12 @@
   <data name="FileType" xml:space="preserve">
     <value>File Type</value>
   </data>
+  <data name="FileUploadDescription" xml:space="preserve">
+    <value>&lt;p&gt;Uploading the shipment files, account files and other files into the related user's account. &lt;/p&gt;&lt;p&gt;Before upload a file please select the related user and file destination.&lt;/p&gt;&lt;p&gt;PLEASE MAKE SURE THAT YOU'VE UPLOADED THE RIGHT FILE TO THE RIGHT USER&lt;/p&gt;</value>
+  </data>
+  <data name="FileUploadTitle" xml:space="preserve">
+    <value>Upload Files</value>
+  </data>
   <data name="IsSendEmail" xml:space="preserve">
     <value>Send Email</value>
   </data>
@@ -151,7 +160,7 @@
     <value>Other</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>Select</value>
+    <value>Please select the customer</value>
   </data>
   <data name="ShipmentDocument" xml:space="preserve">
     <value>Shipment Document</value>
