@@ -73,7 +73,7 @@
                 "order": [[1, "asc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
-                }
+                }, responsive: true
             });
 
             $("#grid-container").css("display", "block");
