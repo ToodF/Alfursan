@@ -111,5 +111,17 @@ namespace Alfursan.Repository
                 return new EntityResponder<List<AlfursanFile>>() { Data = files };
             }
         }
+
+
+        public EntityResponder<List<AlfursanFile>> GetFilesByIds(string fileIds)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                var files = con.Query<AlfursanFile>(string.Format(@"SELECT * FROM   [File] WHERE  FileId IN({0})", fileIds)).ToList();
+
+                return new EntityResponder<List<AlfursanFile>>() { Data = files };
+            }
+        }
+
     }
 }

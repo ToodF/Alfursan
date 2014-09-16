@@ -55,7 +55,7 @@ namespace Alfursan.Web
                      "~/Content/ar/site.css"));
 
             bundles.Add(new StyleBundle("~/Style/Datatable").Include(
-                     "~/Plugins/Datatable/css/jquery.dataTables.min.css",
+                     "~/Plugins/Datatable/css/jquery.dataTables.css",
                       "~/Plugins/Datatable/css/jquery.dataTables_themeroller.css",
                       "~/Plugins/Datatable/css/dataTables.bootstrap.css",
                       "~/Plugins/Datatable/css/dataTables.responsive.css",

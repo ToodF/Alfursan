@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -65,22 +67,25 @@ namespace Alfursan.Web.Helpers
             return mailsender.SendMessage(message);
         }
 
-        public static Responder SendMessageNewFileUploaded(User user, string absolutePath)
+        public static Responder SendMessageFileUploaded(User user, List<string> absolutePaths, string body, string subject)
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
-            message.Subject = Alfursan.Resx.MailMessage.NewFileUploadedSubject;
+            message.Subject = subject;
 
-            message.Body = Resx.MailMessage.NewFileUploadedBody;
+            message.Body = body;
 
-            var attachment = new Attachment(absolutePath);
-            message.Attachments.Add(attachment);
+            foreach (var absolutePath in absolutePaths)
+            {
+                var attachment = new Attachment(absolutePath);
+                message.Attachments.Add(attachment);
+            }
 
             var replacements = new Dictionary<string, string>();
             replacements.Add("<Name>", user.Name);
             replacements.Add("<Surname>", user.Surname);
             replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
-            
+
             foreach (var replacement in replacements)
             {
                 message.Body = message.Body.Replace(replacement.Key, replacement.Value);
@@ -88,7 +93,7 @@ namespace Alfursan.Web.Helpers
             message.To.Add(user.Email);
             return mailsender.SendMessage(message);
         }
-
+        
         internal static Responder SendMessageChangePass(ChangePassViewModel changePassViewModel)
         {
             var userService = IocContainer.Resolve<IUserService>();

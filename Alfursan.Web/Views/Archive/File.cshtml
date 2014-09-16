@@ -4,7 +4,7 @@
 <h2>@ViewBag.Title</h2>
 
 @{WriteLiteral(ViewBag.Description);}
-<br/>
+<br />
 
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
@@ -84,11 +84,11 @@
         </td>
         <td>
             {% if (!i && !o.options.autoUpload) { %}
-
+            
             @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer)
             {
                 <p>
-                    <div class="btn-group">
+                    <div class="btn-group document-type">
                         <button type="button" class="btn btn-default active" value="1">@Alfursan.Resx.Archive.ShipmentDocument</button>
                         <button type="button" class="btn btn-default" value="2">@Alfursan.Resx.Archive.AccountDocument</button>
                         <button type="button" class="btn btn-default" value="3">@Alfursan.Resx.Archive.Other</button>

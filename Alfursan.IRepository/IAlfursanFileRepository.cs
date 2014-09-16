@@ -17,5 +17,7 @@ namespace Alfursan.IRepository
         List<AlfursanFile> SearchFilesByUserIdKeyword(int userId, string keywords);
 
         EntityResponder<List<AlfursanFile>> GetFiles(int userId, int customerUserId);
+
+        EntityResponder<List<AlfursanFile>> GetFilesByIds(string fileIds);
     }
 }

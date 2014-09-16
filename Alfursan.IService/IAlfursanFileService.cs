@@ -12,5 +12,6 @@ namespace Alfursan.IService
         Responder Set(AlfursanFile file);
         EntityResponder<List<AlfursanFile>> GetFiles(int userId, int customerUserId);
         Responder Delete(int id);
+        EntityResponder<List<AlfursanFile>> GetFilesByIds(string fileIds);
     }
 }

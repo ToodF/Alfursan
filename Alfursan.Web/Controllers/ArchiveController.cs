@@ -1,4 +1,5 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -25,6 +26,8 @@ namespace Alfursan.Web.Controllers
         {
             ViewBag.Title = Alfursan.Resx.Archive.FileUploadTitle;
             ViewBag.Description = Alfursan.Resx.Archive.FileUploadDescription;
+
+            Session["FileIndex"] = 0;
 
             if (CurrentUser == null)
                 return RedirectToAction("Login", "Account");
@@ -146,7 +149,7 @@ namespace Alfursan.Web.Controllers
 
                     if (Request.Form["sendmail"] == "on")
                     {
-                        SendMail(alfursanFileViewModel.Customer.UserId, absolutePath);
+                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resx.MailMessage.NewFileUploadedBody, Resx.MailMessage.NewFileUploadedSubject);
                     }
 
                     // Return JSON
@@ -178,7 +181,7 @@ namespace Alfursan.Web.Controllers
             }
         }
 
-        private void SendMail(int customerUserId, string absolutePath)
+        private void SendMail(int customerUserId, List<string> absolutePath, string body, string subject)
         {
             var userService = IocContainer.Resolve<IUserService>();
 
@@ -186,8 +189,34 @@ namespace Alfursan.Web.Controllers
 
             foreach (var user in users.Data)
             {
-                SendMessageHelper.SendMessageNewFileUploaded(user, absolutePath);
+                SendMessageHelper.SendMessageFileUploaded(user,
+                    absolutePath,
+                    body,
+                    subject);
             }
+        }
+
+        [HttpPost]
+        public ActionResult SendMail(string fileIds)
+        {
+            var fileService = IocContainer.Resolve<IAlfursanFileService>();
+
+            var files = fileService.GetFilesByIds(fileIds);
+
+            var results = files.Data.GroupBy(c => c.CustomerUserId);
+
+            var absPath = Server.MapPath("/Uploaded");
+
+            foreach (var result in results)
+            {
+                var absolutePaths = new List<string>();
+
+                absolutePaths.AddRange(result.Select(file => string.Format("{0}/{1}", absPath, file.RelatedFileName)));
+
+                SendMail(result.Key, absolutePaths, Resx.MailMessage.FileUploadedBody, Resx.MailMessage.FileUploadedSubject);
+            }
+
+            return null;
         }
 
         string UploadFile(HttpPostedFileBase file, string relatedFileName, out string thumbnail, out string absolutePath)

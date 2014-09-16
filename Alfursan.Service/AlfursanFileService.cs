@@ -31,5 +31,10 @@ namespace Alfursan.Service
         {
             return fileRepository.Delete(id);
         }
+
+        public EntityResponder<List<AlfursanFile>> GetFilesByIds(string fileIds)
+        {
+            return fileRepository.GetFilesByIds(fileIds);
+        }
     }
 }

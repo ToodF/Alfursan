@@ -8,6 +8,7 @@
             type: method,
             url: url,
             data: data,
+            traditional: true
         }).done(function (result) {
             if (result.ResponseMessage != undefined && result.ResponseMessage != "" ) {
                 var messageCode = "alert-success";

@@ -80,7 +80,7 @@ a:hover, a:focus {
     cursor: pointer;
 }
 
-.delete-user,.edit-user,.delete-file,.btn-change-pass {
+.delete-user, .edit-user, .delete-file, .btn-change-pass {
     cursor: pointer;
     margin: 0 5px;
 }
@@ -114,4 +114,13 @@ footer {
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
+}
+
+.document-type .btn-default.active {
+    background-color: greenyellow;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: 1px solid #ddd;
 }

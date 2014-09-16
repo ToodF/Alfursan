@@ -55,6 +55,26 @@
         });
     },
 
+    ArchiveInit: function () {
+
+        $('#sendMail').click(function () {
+            var ids = [];
+            $("input[type=checkbox][checked]").each(function () {
+                ids.push($(this).attr("data"));
+
+                $('#fileIds').val(ids);
+
+                console.log('Send Mail: ' + JSON.stringify(ids));
+            });
+
+            var postData = { fileIds: ids.join(',') };
+
+            AlfursanAjax.Request("/Archive/SendMail", "Post", postData, null, function () {
+                console.log('Send Mail');
+            });
+        });
+    },
+
     EditProfileRoleInit: function () {
         $("#ProfileId").change(function () {
             AlfursanManagement.GetRolesByProfileId($(this).val());
@@ -85,7 +105,7 @@
             $("img[name='change-status-active']").click(function () {
                 AlfursanManagement.ChangeStatusById($(this).attr("data"), true);
             });
-            
+
             $(".edit-user").click(function () {
                 var id = $(this).attr("data");
                 AlfursanManagement.BindUser(id);
@@ -196,7 +216,7 @@ var AlfursanUser = {
             this.CustomOfficerId = entity.CustomOfficerId;
         }
     },
-   
+
     BindModelForChangePass: function (email) {
         $("#ChangePasswordModal #Email").val(email);
         $("#email-for-changepass").text(email);

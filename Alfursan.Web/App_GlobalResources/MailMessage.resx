@@ -190,4 +190,11 @@ Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (
   <data name="ChangePassSubject" xml:space="preserve">
     <value>Alfursan Changed Password</value>
   </data>
+  <data name="FileUploadedBody" xml:space="preserve">
+    <value>&lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
+&lt;p&gt;Alfursan dosya takip sistemine yeni bir dosya eklendi. Dosyayı ekte bulabilirsiniz.&lt;/p&gt;&lt;p&gt;Ayrıca Alfursan dosya takip sistemine giriş yaparak aşağıdaki linkten erişebilirsiniz.&lt;/p&gt;&lt;p&gt;&lt;a href="&lt;SiteRoot&gt;/Archive/Files"&gt;&lt;SiteRoot&gt;/Archive/Files&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="FileUploadedSubject" xml:space="preserve">
+    <value>Alfursan File Management - File Uploaded</value>
+  </data>
 </root>

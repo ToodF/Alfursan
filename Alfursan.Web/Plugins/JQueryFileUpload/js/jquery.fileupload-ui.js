@@ -87,6 +87,7 @@
             // widget (via file input selection, drag & drop or add API call).
             // See the basic file upload widget for more information:
             add: function (e, data) {
+
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -646,6 +647,7 @@
             options.templatesContainer = this.document[0].createElement(
                 options.filesContainer.prop('nodeName')
             );
+
             if (tmpl) {
                 if (options.uploadTemplateId) {
                     options.uploadTemplate = tmpl(options.uploadTemplateId);
