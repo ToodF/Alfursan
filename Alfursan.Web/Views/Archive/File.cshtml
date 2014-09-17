@@ -95,10 +95,10 @@
                     </div>
                 </p>
             }
-            <input type='hidden' id="selectedFileType" name="fileType" value='1'>
+            <input type='hidden' name="fileType" value='1'>
 
             <p>
-                <input type="text" id="subject" name="subject" class="form-control" placeholder="@Alfursan.Resx.Archive.Subject" required>
+                <input type="text" name="subject" class="form-control" placeholder="@Alfursan.Resx.Archive.Subject" required>
             </p>
             {% } %}
 
@@ -289,7 +289,7 @@
             }).bind('fileuploadsubmit', function (e, data) {
                 // The example input, doesn't have to be part of the upload form:
 
-                var inputs = data.form.find(':input');
+                var inputs = data.context.find(':input');
                 if (inputs.filter(function () {
                         return !this.value && $(this).prop('required');
                 }).first().focus().length) {
