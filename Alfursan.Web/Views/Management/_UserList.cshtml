@@ -46,7 +46,7 @@
                     <td>
                         @if ((currentUser.ProfileId == (int)EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
                         {
-                            <span class="glyphicon glyphicon-pencil edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
                         }
                         @if (user.ProfileId != EnumProfile.Admin)
                         {

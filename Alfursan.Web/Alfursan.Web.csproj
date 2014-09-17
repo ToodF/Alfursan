@@ -254,13 +254,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ar\bootstrap.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Plugins\Datatable\css\dataTables.bootstrap.css" />
-    <Content Include="Content\en\bootstrap.css" />
     <Content Include="Content\ar\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -402,6 +400,7 @@
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Archive\File.cshtml" />
     <Content Include="Views\Archive\Files.cshtml" />
+    <Content Include="Views\Management\_ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

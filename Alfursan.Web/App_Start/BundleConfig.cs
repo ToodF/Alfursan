@@ -45,13 +45,13 @@ namespace Alfursan.Web
                      ));
 
             bundles.Add(new StyleBundle("~/Style/en").Include(
-                      "~/Content/en/bootstrap.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/en/site.css",
                       "~/Plugins/Datatable/css/style.css",
                       "~/Plugins/Datatable/css/jquery.fileupload.css"
                       ));
             bundles.Add(new StyleBundle("~/Style/ar").Include(
-                     "~/Content/ar/bootstrap.css",
+                     "~/Content/bootstrap.css",
                      "~/Content/ar/site.css"));
 
             bundles.Add(new StyleBundle("~/Style/Datatable").Include(
@@ -63,9 +63,14 @@ namespace Alfursan.Web
                       "~/Plugins/Datatable/css/dataTables.bootstrap.css"
                       ));
 
-            // Set EnableOptimizations to false for debugging. For more information,
-            // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;
+#if DEBUG
+            BundleTable.EnableOptimizations = false;
+            foreach (var bundle in BundleTable.Bundles)
+            {
+                bundle.Transforms.Clear();
+            }
+#endif
         }
     }
 }
