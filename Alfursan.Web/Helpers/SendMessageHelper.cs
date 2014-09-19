@@ -16,20 +16,20 @@ namespace Alfursan.Web.Helpers
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
-            message.Subject = Alfursan.Resx.MailMessage.WelcomeSubject;
+            message.Subject = Resources.MailMessage.WelcomeSubject;
             switch (user.ProfileId)
             {
                 case EnumProfile.Admin:
-                    message.Body = Resx.MailMessage.WelcomeAdminBody;
+                    message.Body = Resources.MailMessage.WelcomeAdminBody;
                     break;
                 case EnumProfile.User:
-                    message.Body = Resx.MailMessage.WelcomeUserBody;
+                    message.Body = Resources.MailMessage.WelcomeUserBody;
                     break;
                 case EnumProfile.Customer:
-                    message.Body = Resx.MailMessage.WelcomeCustomerBody;
+                    message.Body = Resources.MailMessage.WelcomeCustomerBody;
                     break;
                 case EnumProfile.CustomOfficer:
-                    message.Body = Resx.MailMessage.WelcomeCustomOfficerBody;
+                    message.Body = Resources.MailMessage.WelcomeCustomOfficerBody;
                     break;
                 default:
                     break;
@@ -52,8 +52,8 @@ namespace Alfursan.Web.Helpers
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
-            message.Subject = Resx.MailMessage.ForgotPasswordSubject;
-            message.Body = Resx.MailMessage.ForgotPasswordBody;
+            message.Subject = Resources.MailMessage.ForgotPasswordSubject;
+            message.Body = Resources.MailMessage.ForgotPasswordBody;
             var replacements = new Dictionary<string, string>();
             replacements.Add("<Name>", user.Name);
             replacements.Add("<Surname>", user.Surname);
@@ -103,8 +103,8 @@ namespace Alfursan.Web.Helpers
                 var user = userResponse.Data;
                 var mailsender = IocContainer.Resolve<IMessageSender>();
                 var message = new MailMessage();
-                message.Subject = Alfursan.Resx.MailMessage.ChangePassSubject;
-                message.Body = Resx.MailMessage.ChangePassBody;
+                message.Subject = Resources.MailMessage.ChangePassSubject;
+                message.Body = Resources.MailMessage.ChangePassBody;
                 var replacements = new Dictionary<string, string>();
                 replacements.Add("<Name>", user.Name);
                 replacements.Add("<Surname>", user.Surname);

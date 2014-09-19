@@ -161,26 +161,26 @@ namespace Alfursan.Web.Controllers
                         var sendMail = SendMessageHelper.SendMessageForgot(userResult.Data, key);
                         if (sendMail.ResponseCode == EnumResponseCode.Successful)
                         {
-                            ViewData["success"] = Resx.MessageResource.Info_ChangePass;
+                            ViewData["success"] = Resources.MessageResource.Info_ChangePass;
                         }
                         else
                         {
                             ViewData["danger"] =
-                            Resx.MessageResource.ResourceManager.GetString(sendMail.ResponseUserFriendlyMessageKey);
+                            Resources.MessageResource.ResourceManager.GetString(sendMail.ResponseUserFriendlyMessageKey);
                             return View();
                         }
                     }
                     else
                     {
                         ViewData["danger"] =
-                            Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey);
+                            Resources.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey);
                         return View();
                     }
                 }
                 else
                 {
                     ViewData["danger"] =
-                            Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
+                            Resources.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
                     return View();
                 }
 
@@ -227,26 +227,26 @@ namespace Alfursan.Web.Controllers
                         var changePass = userService.ChangePassword(model.Email, model.Password);
                         if (changePass.ResponseCode == EnumResponseCode.Successful)
                         {
-                            ViewData["success"] = Resx.MessageResource.Info_SuccessChangePass;
+                            ViewData["success"] = Resources.MessageResource.Info_SuccessChangePass;
                             return View();
                         }
                         else
                         {
                             ViewData["danger"] =
-                          Resx.MessageResource.ResourceManager.GetString(changePass.ResponseUserFriendlyMessageKey);
+                          Resources.MessageResource.ResourceManager.GetString(changePass.ResponseUserFriendlyMessageKey);
                             return View();
                         }
                     }
                     else
                     {
-                        ViewData["danger"] = Resx.MessageResource.Error_NotMatchConfirmKey;
+                        ViewData["danger"] = Resources.MessageResource.Error_NotMatchConfirmKey;
                         return View();
                     }
                 }
                 else
                 {
                     ViewData["danger"] =
-                            Resx.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
+                            Resources.MessageResource.ResourceManager.GetString(userResult.ResponseUserFriendlyMessageKey);
                     return View();
                 }
             }

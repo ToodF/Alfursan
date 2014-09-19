@@ -8,11 +8,11 @@
 }
 <div class="alert alert-danger" id="message-delete-file">
     <span id="filename"></span>
-    @Alfursan.Resx.MessageResource.Warning_DeleteFile
+    @Resources.MessageResource.Warning_DeleteFile
     <input type="hidden" name="FileId" id="FileId" />
     <input type="hidden" name="selectedRow" id="selectedRow" />
-    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Alfursan.Resx.Management.btnOk" />
-    <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Alfursan.Resx.Management.btnNo" />
+    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Management.btnOk" />
+    <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Management.btnNo" />
 </div>
 @*<table>
         <tr>
@@ -26,12 +26,12 @@
         <tr>
             <th></th>
             <th>
-                @{Write(Alfursan.Resx.Archive.CreatedDate);}
+                @{Write(Resources.Archive.CreatedDate);}
             </th>
-            <th>@{Write(Alfursan.Resx.Archive.FileName);}</th>
-            <th>@{Write(Alfursan.Resx.Archive.FileType);}</th>
-            <th>@{Write(Alfursan.Resx.Archive.CustomerName);}</th>
-            <th>@{Write(Alfursan.Resx.Archive.CreatedBy);}</th>
+            <th>@{Write(Resources.Archive.FileName);}</th>
+            <th>@{Write(Resources.Archive.FileType);}</th>
+            <th>@{Write(Resources.Archive.CustomerName);}</th>
+            <th>@{Write(Resources.Archive.CreatedBy);}</th>
             <th></th>
         </tr>
         <tr>
@@ -77,7 +77,7 @@
 
 </table>
 
-<input type="button" class="btn btn-lg" id="sendMail" value="@Alfursan.Resx.Management.SendMail" />
+<input type="button" class="btn btn-lg" id="sendMail" value="@Resources.Management.SendMail" />
 
 
 @section scripts

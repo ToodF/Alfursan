@@ -22,8 +22,8 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult File()
         {
-            ViewBag.Title = Alfursan.Resx.Archive.FileUploadTitle;
-            ViewBag.Description = Alfursan.Resx.Archive.FileUploadDescription;
+            ViewBag.Title = Resources.Archive.FileUploadTitle;
+            ViewBag.Description = Resources.Archive.FileUploadDescription;
 
             Session["FileIndex"] = 0;
 
@@ -43,7 +43,7 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult Files()
         {
-            ViewBag.Title = Alfursan.Resx.Archive.ArchiveTitle;
+            ViewBag.Title = Resources.Archive.ArchiveTitle;
 
             var customerUserId = 0;
 
@@ -147,7 +147,7 @@ namespace Alfursan.Web.Controllers
 
                     if (Request.Form["sendmail"] == "on")
                     {
-                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resx.MailMessage.NewFileUploadedBody, Resx.MailMessage.NewFileUploadedSubject);
+                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.NewFileUploadedSubject);
                     }
 
                     // Return JSON
@@ -211,7 +211,7 @@ namespace Alfursan.Web.Controllers
 
                 absolutePaths.AddRange(result.Select(file => string.Format("{0}/{1}", absPath, file.RelatedFileName)));
 
-                SendMail(result.Key, absolutePaths, Resx.MailMessage.FileUploadedBody, Resx.MailMessage.FileUploadedSubject);
+                SendMail(result.Key, absolutePaths, Resources.MailMessage.FileUploadedBody, Resources.MailMessage.FileUploadedSubject);
             }
 
             return null;

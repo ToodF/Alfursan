@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Alfursan.Resx {
+namespace Resources {
     using System;
     
     

@@ -8,7 +8,7 @@
         {
             <div>
                 @Html.CheckBox(userRole.Role.ToString(), userRole.IsActive, new { id = userRole.Role.ToString() })
-                @Html.Label(Alfursan.Resx.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
+                @Html.Label(Resources.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
             </div>
         }
     </div>
@@ -22,7 +22,7 @@
         {
             <div>
                 @Html.CheckBox(userRole.Role.ToString(), userRole.IsActive, new { id = userRole.Role.ToString() })
-                @Html.Label(Alfursan.Resx.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
+                @Html.Label(Resources.Management.ResourceManager.GetString("EnumRole_" + userRole.Role.ToString()), new { @for = userRole.Role.ToString() })
             </div>
         }
     </div>

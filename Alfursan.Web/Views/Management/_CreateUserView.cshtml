@@ -21,16 +21,16 @@
             @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="radio" name="ProfileId" id="@EnumProfile.Admin.ToString()" value="@((int)EnumProfile.Admin)" @{Write(profile == EnumProfile.Admin ? "checked=checked" : "");}/>
-                <label for="@EnumProfile.Admin">@Alfursan.Resx.Management.Profile_Admin</label>
+                <label for="@EnumProfile.Admin">@Resources.Management.Profile_Admin</label>
                 
                 <input type="radio" name="ProfileId" id="@EnumProfile.User.ToString()" value="@((int)EnumProfile.User)" @{Write(profile == EnumProfile.User ? "checked=checked" : "");} />
-                <label for="@EnumProfile.User">@Alfursan.Resx.Management.Profile_User</label>
+                <label for="@EnumProfile.User">@Resources.Management.Profile_User</label>
                 
                 <input type="radio" name="ProfileId" id="@EnumProfile.Customer.ToString()" value="@((int)EnumProfile.Customer)" @{Write(profile == EnumProfile.Customer ? "checked=checked" : "");} />
-                <label for="@EnumProfile.Customer">@Alfursan.Resx.Management.Profile_Customer</label>
+                <label for="@EnumProfile.Customer">@Resources.Management.Profile_Customer</label>
 
                 <input type="radio" name="ProfileId" id="@EnumProfile.CustomOfficer.ToString()" value="@((int)EnumProfile.CustomOfficer)" @{Write(profile == EnumProfile.CustomOfficer ? "checked=checked" : "");} />
-                <label for="@EnumProfile.CustomOfficer">@Alfursan.Resx.Management.Profile_CustomOfficer</label>
+                <label for="@EnumProfile.CustomOfficer">@Resources.Management.Profile_CustomOfficer</label>
 
             </div>
         </div>

@@ -85,7 +85,7 @@ namespace Alfursan.Web.Api
                     return new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Success,
-                        ResponseMessage = Alfursan.Resx.MessageResource.Info_SetUser
+                        ResponseMessage = Resources.MessageResource.Info_SetUser
                     };
                 }
                 else
@@ -93,11 +93,11 @@ namespace Alfursan.Web.Api
                     return new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Error,
-                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey)
+                        ResponseMessage = Resources.MessageResource.ResourceManager.GetString(result.ResponseUserFriendlyMessageKey)
                     };
                 }
             }
-            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
+            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Resources.MessageResource.Error_ModelNotValid };
         }
 
         [Route("api/UserApi/{id}/{status}")]
@@ -110,7 +110,7 @@ namespace Alfursan.Web.Api
                 return new HttpResponseModel()
                 {
                     ReturnCode = EnumResponseStatusCode.Success,
-                    ResponseMessage = Alfursan.Resx.MessageResource.Info_DeleteUser
+                    ResponseMessage = Resources.MessageResource.Info_DeleteUser
                 };
             }
             else
@@ -138,7 +138,7 @@ namespace Alfursan.Web.Api
                 return new HttpResponseModel()
                 {
                     ReturnCode = EnumResponseStatusCode.Success,
-                    ResponseMessage = Alfursan.Resx.MessageResource.Info_DeleteUser
+                    ResponseMessage = Resources.MessageResource.Info_DeleteUser
                 };
             }
             else

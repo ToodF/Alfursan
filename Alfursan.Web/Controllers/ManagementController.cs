@@ -31,14 +31,14 @@ namespace Alfursan.Web.Controllers
             foreach (var user in userListViewModels)
             {
                 if (user.ProfileId == EnumProfile.Admin)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_Admin;
+                    user.ProfileName = Resources.Management.Profile_Admin;
                 if (user.ProfileId == EnumProfile.CustomOfficer)
 
-                    user.ProfileName = Alfursan.Resx.Management.Profile_CustomOfficer;
+                    user.ProfileName = Resources.Management.Profile_CustomOfficer;
                 if (user.ProfileId == EnumProfile.Customer)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_Customer;
+                    user.ProfileName = Resources.Management.Profile_Customer;
                 if (user.ProfileId == EnumProfile.User)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_User;
+                    user.ProfileName = Resources.Management.Profile_User;
             }
             return View(userListViewModels);
         }
@@ -56,7 +56,7 @@ namespace Alfursan.Web.Controllers
             var customOfficerList = new List<SelectListItem>();
             customOfficerList.Add(new SelectListItem
             {
-                Text = Alfursan.Resx.Shared.drp_Select,
+                Text = Resources.Shared.drp_Select,
                 Value = "0"
             });
             var customOfficers = userService.GetCustomOfficers();
@@ -77,7 +77,7 @@ namespace Alfursan.Web.Controllers
             var countryList = new List<SelectListItem>();
             countryList.Add(new SelectListItem
             {
-                Text = Alfursan.Resx.Shared.drp_Select,
+                Text = Resources.Shared.drp_Select,
                 Value = "0"
             });
             var countries = userService.GetCountries();
@@ -131,7 +131,7 @@ namespace Alfursan.Web.Controllers
                     return new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Error,
-                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(sendMailResult.ResponseUserFriendlyMessageKey)
+                        ResponseMessage = Resources.MessageResource.ResourceManager.GetString(sendMailResult.ResponseUserFriendlyMessageKey)
                     }; 
                 }
                 else
@@ -139,11 +139,11 @@ namespace Alfursan.Web.Controllers
                     return new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Error,
-                        ResponseMessage = Alfursan.Resx.MessageResource.ResourceManager.GetString(changePassResult.ResponseUserFriendlyMessageKey)
+                        ResponseMessage = Resources.MessageResource.ResourceManager.GetString(changePassResult.ResponseUserFriendlyMessageKey)
                     };
                 }
             }
-            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Alfursan.Resx.MessageResource.Error_ModelNotValid };
+            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Resources.MessageResource.Error_ModelNotValid };
         }
 
         public PartialViewResult _UserList()
@@ -155,14 +155,14 @@ namespace Alfursan.Web.Controllers
             foreach (var user in userListViewModels)
             {
                 if (user.ProfileId == EnumProfile.Admin)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_Admin;
+                    user.ProfileName = Resources.Management.Profile_Admin;
                 if (user.ProfileId == EnumProfile.CustomOfficer)
 
-                    user.ProfileName = Alfursan.Resx.Management.Profile_CustomOfficer;
+                    user.ProfileName = Resources.Management.Profile_CustomOfficer;
                 if (user.ProfileId == EnumProfile.Customer)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_Customer;
+                    user.ProfileName = Resources.Management.Profile_Customer;
                 if (user.ProfileId == EnumProfile.User)
-                    user.ProfileName = Alfursan.Resx.Management.Profile_User;
+                    user.ProfileName = Resources.Management.Profile_User;
             }
             return PartialView(userListViewModels);
         }
@@ -179,7 +179,7 @@ namespace Alfursan.Web.Controllers
             var profileId = Convert.ToInt32(collection["ProfileId"]);
             if (profileId == (int)EnumProfile.Admin)
             {
-                ViewData["warning"] = Alfursan.Resx.MessageResource.Warning_NotUpdateAdminProfile;
+                ViewData["warning"] = Resources.MessageResource.Warning_NotUpdateAdminProfile;
             }
             else
             {
@@ -204,7 +204,7 @@ namespace Alfursan.Web.Controllers
                     System.Web.HttpContext.Current.Application["Roles"] = roleService.GetAll().Data;
                 }
 
-                ViewData["success"] = Alfursan.Resx.MessageResource.Info_UpdateProfile;
+                ViewData["success"] = Resources.MessageResource.Info_UpdateProfile;
             }
             GetProfiles();
             return View();

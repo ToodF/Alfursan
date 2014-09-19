@@ -7,7 +7,7 @@
 
 <div class="new-user-button">
     <button class="btn btn-primary" id="create-user">
-        @Alfursan.Resx.Management.Btn_NewUser
+        @Resources.Management.Btn_NewUser
     </button>
 </div>
 <div class="modal fade" id="AlfursanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -15,14 +15,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Alfursan.Resx.Shared.Modal_Btn_Close </span></button>
-                <h4 class="modal-title" id="myModalLabel">@Alfursan.Resx.Management.Modal_Title_NewUser</h4>
+                <h4 class="modal-title" id="myModalLabel">@Resources.Management.Modal_Title_NewUser</h4>
             </div>
             <div class="modal-body">
                 @{ Html.RenderAction("_CreateUserView", new { id = 0 });}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@Alfursan.Resx.Shared.Modal_Btn_Close</button>
-                <button type="button" class="btn btn-primary">@Alfursan.Resx.Management.Modal_Btn_Save</button>
+                <button type="button" class="btn btn-primary">@Resources.Management.Modal_Btn_Save</button>
             </div>
         </div>
     </div>
@@ -30,9 +30,9 @@
 
 <div class="alert alert-danger" id="message-delete-user">
     <span id="user-email"></span>
-    @Alfursan.Resx.MessageResource.Warning_DeleteUser
-    <input type="button" class="btn btn-xs" id="delete-user-ok" value="@Alfursan.Resx.Management.btnOk" />
-    <input type="button" class="btn btn-primary btn-xs" id="delete-user-cancel" value="@Alfursan.Resx.Management.btnNo" />
+    @Resources.MessageResource.Warning_DeleteUser
+    <input type="button" class="btn btn-xs" id="delete-user-ok" value="@Resources.Management.btnOk" />
+    <input type="button" class="btn btn-primary btn-xs" id="delete-user-cancel" value="@Resources.Management.btnNo" />
 </div>
 <div id="grid-container">
 </div>
@@ -42,14 +42,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Alfursan.Resx.Shared.Modal_Btn_Close </span></button>
-                <h4 class="modal-title" id="myModalLabel">@Alfursan.Resx.Management.Modal_Title_ChangePass</h4>
+                <h4 class="modal-title" id="myModalLabel">@Resources.Management.Modal_Title_ChangePass</h4>
             </div>
             <div class="modal-body">
                 @{ Html.RenderPartial("_ChangePass",new ChangePassViewModel());}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@Alfursan.Resx.Shared.Modal_Btn_Close</button>
-                <button type="button" class="btn btn-primary">@Alfursan.Resx.Management.Modal_Btn_Save</button>
+                <button type="button" class="btn btn-primary">@Resources.Management.Modal_Btn_Save</button>
             </div>
         </div>
     </div>

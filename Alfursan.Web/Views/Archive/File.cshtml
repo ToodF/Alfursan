@@ -10,9 +10,9 @@
     @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
     {
         <div class="form-group customer-dropdown-select">
-            <label for="drpUser">@Alfursan.Resx.Archive.Customer</label>
+            <label for="drpUser">@Resources.Archive.Customer</label>
             <select id="drpUser" name="customerUserId" class="selectpicker" data-live-search="true" data-max-options="1" data-width="30%" style="display: none;">
-                <option data-hidden="true">@Alfursan.Resx.Archive.Select</option>
+                <option data-hidden="true">@Resources.Archive.Select</option>
                 @foreach (var user in Model.Data)
                 {
                     <option value="@user.UserId">@user.FullName</option>
@@ -29,12 +29,12 @@
             <!-- The fileinput-button span is used to style the file input field as button -->
             <span class="btn btn-success fileinput-button">
                 <i class="glyphicon glyphicon-plus"></i>
-                <span>@Alfursan.Resx.Archive.AddFiles</span>
+                <span>@Resources.Archive.AddFiles</span>
                 <input type="file" name="files[]" multiple>
             </span>
             <button type="submit" class="btn btn-primary start">
                 <i class="glyphicon glyphicon-upload"></i>
-                <span>@Alfursan.Resx.Archive.StartUpload</span>
+                <span>@Resources.Archive.StartUpload</span>
             </button>
 
             @*<button type="reset" class="btn btn-warning cancel">
@@ -51,7 +51,7 @@
         </div>
         <div class="checkbox col-lg-2">
             <label>
-                <input type="checkbox" name="sendmail"> @Alfursan.Resx.Archive.IsSendEmail
+                <input type="checkbox" name="sendmail"> @Resources.Archive.IsSendEmail
             </label>
         </div>
         <!-- The global progress state -->
@@ -89,30 +89,30 @@
             {
                 <p>
                     <div class="btn-group document-type">
-                        <button type="button" class="btn btn-default active" value="1">@Alfursan.Resx.Archive.ShipmentDocument</button>
-                        <button type="button" class="btn btn-default" value="2">@Alfursan.Resx.Archive.AccountDocument</button>
-                        <button type="button" class="btn btn-default" value="3">@Alfursan.Resx.Archive.Other</button>
+                        <button type="button" class="btn btn-default active" value="1">@Resources.Archive.ShipmentDocument</button>
+                        <button type="button" class="btn btn-default" value="2">@Resources.Archive.AccountDocument</button>
+                        <button type="button" class="btn btn-default" value="3">@Resources.Archive.Other</button>
                     </div>
                 </p>
             }
             <input type='hidden' name="fileType" value='1'>
 
             <p>
-                <input type="text" name="subject" class="form-control" placeholder="@Alfursan.Resx.Archive.Subject" required>
+                <input type="text" name="subject" class="form-control" placeholder="@Resources.Archive.Subject" required>
             </p>
             {% } %}
 
             {% if (!i && !o.options.autoUpload) { %}
             <button class="btn btn-primary start" disabled>
                 <i class="glyphicon glyphicon-upload"></i>
-                <span>@Alfursan.Resx.Archive.Start</span>
+                <span>@Resources.Archive.Start</span>
             </button>
             {% } %}
 
             {% if (!i) { %}
             <button class="btn btn-warning cancel">
                 <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>@Alfursan.Resx.Archive.Cancel</span>
+                <span>@Resources.Archive.Cancel</span>
             </button>
             {% } %}
         </td>
