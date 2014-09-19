@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Index {
+    public class _MainLayout {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Index() {
+        internal _MainLayout() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alfursan.Web.Views.Home.App_LocalResources.Index", typeof(Index).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alfursan.Web.Views.Shared.App_LocalResources._MainLayout", typeof(_MainLayout).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,53 +61,90 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alfursan File Management.
+        ///   Looks up a localized string similar to ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.
+        ///            Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
+        ///            Osmanbey-Sisli/ISTANUL/TURKEY
+        ///            Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32
+        ///            Web: &lt;a href=&quot;http://www.alfursan.com.tr&quot;&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
+        ///            &lt;a href=&quot;mailto:ccdep@alfursan.com.tr&quot; target=&quot;_top&quot;&gt;
+        ///                ccdep@alfursan.com.tr
+        ///            &lt;/a&gt;.
         /// </summary>
-        public static string Title {
+        public static string Footer {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("Footer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading the shipment files, account files and other files into the related user’s account.&lt;br/&gt;
-        ///            Before upload a file please select the related user and file destination.&lt;br/&gt;
-        ///            PLEASE MAKE SURE THAT YOU’VE UPLOADED THE RIGHT FILE TO THE RIGHT USER..
+        ///   Looks up a localized string similar to Log in.
         /// </summary>
-        public static string UploadText {
+        public static string Login {
             get {
-                return ResourceManager.GetString("UploadText", resourceCulture);
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload Document.
+        ///   Looks up a localized string similar to Log off.
         /// </summary>
-        public static string UploadTitle {
+        public static string Logoff {
             get {
-                return ResourceManager.GetString("UploadTitle", resourceCulture);
+                return ResourceManager.GetString("Logoff", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to ALFURSAN&apos;s online archive system.&lt;br/&gt;
-        ///        This system has been created just for our customers.&lt;br /&gt;
-        ///        By this system, our customers can follow up their business runing.&lt;br /&gt;
-        ///        You can upload shipment documents, account statements and any kind of various documents into related clients’ user accounts by using the system.&lt;br/&gt;
-        ///        Operate clear!.
+        ///   Looks up a localized string similar to Archive.
         /// </summary>
-        public static string WelcomeText {
+        public static string Menu_Archive {
             get {
-                return ResourceManager.GetString("WelcomeText", resourceCulture);
+                return ResourceManager.GetString("Menu_Archive", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ALFURSAN&apos;s Client Login.
+        ///   Looks up a localized string similar to File Upload.
         /// </summary>
-        public static string WelcomeTitle {
+        public static string Menu_FileUpload {
             get {
-                return ResourceManager.GetString("WelcomeTitle", resourceCulture);
+                return ResourceManager.GetString("Menu_FileUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Page.
+        /// </summary>
+        public static string Menu_HomePage {
+            get {
+                return ResourceManager.GetString("Menu_HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profiles.
+        /// </summary>
+        public static string Menu_Profiles {
+            get {
+                return ResourceManager.GetString("Menu_Profiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Mail.
+        /// </summary>
+        public static string Menu_SendMail {
+            get {
+                return ResourceManager.GetString("Menu_SendMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Menu_Users {
+            get {
+                return ResourceManager.GetString("Menu_Users", resourceCulture);
             }
         }
     }

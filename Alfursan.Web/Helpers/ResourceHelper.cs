@@ -1,6 +1,4 @@
 ﻿using Alfursan.Domain;
-using Alfursan.Resx;
-using System;
 using Resources;
 
 namespace Alfursan.Web.Helpers

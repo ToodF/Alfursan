@@ -1,9 +1,8 @@
 ﻿@using Alfursan.Web.Models
-@using resx = Alfursan.Resx;
 @model LoginViewModel
 
 @{
-    ViewBag.Title = Alfursan.Resx.Login.PageTitle;
+    ViewBag.Title = Resources.Login.PageTitle;
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
@@ -13,7 +12,7 @@
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
             @Html.AntiForgeryToken()
-            <h4>@resx.Login.TitleDesc</h4>
+            <h4>@Resources.Login.TitleDesc</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -41,7 +40,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Log in" class="btn btn-default" />
-                    @Html.ActionLink(Alfursan.Resx.Login.ForgotPass, "ForgotPassword", "Account", new { @class = "forgot-pass" })
+                    @Html.ActionLink(Resources.Login.ForgotPass, "ForgotPassword", "Account", new { @class = "forgot-pass" })
                 </div>
             </div>
             }

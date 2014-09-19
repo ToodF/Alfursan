@@ -8,11 +8,12 @@
 }
 <div class="alert alert-danger" id="message-delete-file">
     <span id="filename"></span>
-    @Resources.MessageResource.Warning_DeleteFile
+    @ViewBag.DeleteMessage
     <input type="hidden" name="FileId" id="FileId" />
     <input type="hidden" name="selectedRow" id="selectedRow" />
-    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Management.btnOk" />
-    <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Management.btnNo" />
+    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Files.btnOk />
+    <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Files.btnNo" />
+ />
 </div>
 @*<table>
         <tr>
@@ -26,12 +27,12 @@
         <tr>
             <th></th>
             <th>
-                @{Write(Resources.Archive.CreatedDate);}
+                @{Write(Resources.Files.CreatedDate);}
             </th>
-            <th>@{Write(Resources.Archive.FileName);}</th>
-            <th>@{Write(Resources.Archive.FileType);}</th>
-            <th>@{Write(Resources.Archive.CustomerName);}</th>
-            <th>@{Write(Resources.Archive.CreatedBy);}</th>
+            <th>@{Write(Resources.Files.FileName);}</th>
+            <th>@{Write(Resources.Files.FileType);}</th>
+            <th>@{Write(Resources.Files.CustomerName);}</th>
+            <th>@{Write(Resources.Files.CreatedBy);}</th>
             <th></th>
         </tr>
         <tr>
@@ -77,7 +78,7 @@
 
 </table>
 
-<input type="button" class="btn btn-lg" id="sendMail" value="@Resources.Management.SendMail" />
+<input type="button" class="btn btn-lg" id="sendMail" value="@Resources.Files.SendMail" />
 
 
 @section scripts

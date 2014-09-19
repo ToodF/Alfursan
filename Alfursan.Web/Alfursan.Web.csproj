@@ -191,20 +191,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Account.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Archive.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Archive.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\MailMessage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MailMessage.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Management.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Management.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\MessageResource.designer.cs">
       <AutoGen>True</AutoGen>
@@ -242,15 +232,40 @@
     <Compile Include="Models\SharedViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Account\App_LocalResources\Login.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Login.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\App_LocalResources\Login.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Archive\App_LocalResources\Files.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\App_LocalResources\Index.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\App_LocalResources\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\App_LocalResources\Management.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Management.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\App_LocalResources\_MainLayout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_MainLayout.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -452,12 +467,6 @@
       <LastGenOutput>Account.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\Archive.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Archive.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\MailMessage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MailMessage.Designer.cs</LastGenOutput>
@@ -469,12 +478,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MessageResource.designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\Management.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Management.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
@@ -483,17 +486,40 @@
     <EmbeddedResource Include="Views\Account\App_LocalResources\Login.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <Content Include="Views\Home\App_LocalResources\Index.ar.resx" />
+    <EmbeddedResource Include="Views\Archive\App_LocalResources\Files.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\App_LocalResources\Index.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.ar.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\App_LocalResources\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Alfursan.Resx</CustomToolNamespace>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\App_LocalResources\Management.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Management.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\App_LocalResources\_MainLayout.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>_MainLayout.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Account\App_LocalResources\Login.ar.resx" />
+    <EmbeddedResource Include="Views\Account\App_LocalResources\Login.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.ar.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

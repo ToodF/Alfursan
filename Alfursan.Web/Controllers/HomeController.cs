@@ -9,7 +9,7 @@ namespace Alfursan.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = Alfursan.Resx.Index.Title;
+            ViewBag.Title = Resources.Index.Title;
             return View();
         }
     }

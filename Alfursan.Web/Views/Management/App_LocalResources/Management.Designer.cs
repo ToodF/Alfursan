@@ -39,7 +39,7 @@ namespace Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alfursan.Web.App_GlobalResources.Management", typeof(Management).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alfursan.Web.Views.Management.App_LocalResources.Management", typeof(Management).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -93,24 +93,6 @@ namespace Resources {
         public static string btnDelete {
             get {
                 return ResourceManager.GetString("btnDelete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No.
-        /// </summary>
-        public static string btnNo {
-            get {
-                return ResourceManager.GetString("btnNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        public static string btnOk {
-            get {
-                return ResourceManager.GetString("btnOk", resourceCulture);
             }
         }
         
@@ -322,6 +304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Modal_Btn_Close {
+            get {
+                return ResourceManager.GetString("Modal_Btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Modal_Btn_Save {
@@ -417,15 +408,6 @@ namespace Resources {
         public static string Profile_User {
             get {
                 return ResourceManager.GetString("Profile_User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Send Mail.
-        /// </summary>
-        public static string SendMail {
-            get {
-                return ResourceManager.GetString("SendMail", resourceCulture);
             }
         }
         

@@ -9,13 +9,13 @@
             <li>
                 @Html.ActionLink(User.Identity.GetUserName(), "", "", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Alfursan.Resx.Shared.Logoff</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources._MainLayout.Logoff</a></li>
         </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink(Alfursan.Resx.Shared.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(Resources._MainLayout.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

@@ -14,12 +14,12 @@
             @{
                 var user = (User)Session["CurrentUser"];
             }
-            <li><a href="/Home/Index"><span class="glyphicon glyphicon-home"></span><br />@Alfursan.Resx.Shared.Menu_HomePage</a></li>
-            <li><a href="/Archive/Files"><span class="glyphicon glyphicon-book"></span><br />@Alfursan.Resx.Shared.Menu_Archive</a></li>
-            <li><a href="/Archive/File/"><span class="glyphicon glyphicon-upload"></span><br />@Alfursan.Resx.Shared.Menu_FileUpload</a></li>
+            <li><a href="/Home/Index"><span class="glyphicon glyphicon-home"></span><br />@Resources._MainLayout.Menu_HomePage</a></li>
+            <li><a href="/Archive/Files"><span class="glyphicon glyphicon-book"></span><br />@Resources._MainLayout.Menu_Archive</a></li>
+            <li><a href="/Archive/File/"><span class="glyphicon glyphicon-upload"></span><br />@Resources._MainLayout.Menu_FileUpload</a></li>
             @if (user.ProfileId == (int)EnumProfile.Admin || user.ProfileId == (int)EnumProfile.User)
             {
-                <li><a href="/Management/UserList"><span class="glyphicon glyphicon-user"></span><br />@Alfursan.Resx.Shared.Menu_Users</a></li>
+                <li><a href="/Management/UserList"><span class="glyphicon glyphicon-user"></span><br />@Resources._MainLayout.Menu_Users</a></li>
             }
         </ul>
         @Html.Partial("_LoginPartial")

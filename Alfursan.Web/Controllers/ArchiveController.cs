@@ -22,8 +22,8 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult File()
         {
-            ViewBag.Title = Resources.Archive.FileUploadTitle;
-            ViewBag.Description = Resources.Archive.FileUploadDescription;
+            ViewBag.Title = Resources.Files.FileUploadTitle;
+            ViewBag.Description = Resources.Files.FileUploadDescription;
 
             Session["FileIndex"] = 0;
 
@@ -43,7 +43,8 @@ namespace Alfursan.Web.Controllers
         [Authentication]
         public ActionResult Files()
         {
-            ViewBag.Title = Resources.Archive.ArchiveTitle;
+            ViewBag.Title = Resources.Files.ArchiveTitle;
+            ViewBag.DeleteMessage = Resources.MessageResource.Warning_DeleteFile;
 
             var customerUserId = 0;
 

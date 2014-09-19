@@ -117,139 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address" xml:space="preserve">
-    <value>Address</value>
+  <data name="Footer" xml:space="preserve">
+    <value>ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.
+            Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
+            Osmanbey-Sisli/ISTANUL/TURKEY
+            Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32
+            Web: &lt;a href="http://www.alfursan.com.tr"&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
+            &lt;a href="mailto:ccdep@alfursan.com.tr" target="_top"&gt;
+                ccdep@alfursan.com.tr
+            &lt;/a&gt;</value>
   </data>
-  <data name="CompanyName" xml:space="preserve">
-    <value>Company Name</value>
+  <data name="Login" xml:space="preserve">
+    <value>Log in</value>
   </data>
-  <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
+  <data name="Logoff" xml:space="preserve">
+    <value>Log off</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
+  <data name="Menu_Archive" xml:space="preserve">
+    <value>Archive</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="Menu_FileUpload" xml:space="preserve">
+    <value>File Upload</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="Menu_HomePage" xml:space="preserve">
+    <value>Home Page</value>
   </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+  <data name="Menu_Profiles" xml:space="preserve">
+    <value>Profiles</value>
   </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="Profile_Admin" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <data name="Profile_Customer" xml:space="preserve">
-    <value>Customer</value>
-  </data>
-  <data name="Profile_CustomOfficer" xml:space="preserve">
-    <value>Custom Officer</value>
-  </data>
-  <data name="Profile_User" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="Surname" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>UserName</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="CustomOfficer" xml:space="preserve">
-    <value>Custom Officer</value>
-  </data>
-  <data name="btnDelete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="EnumProfile_Admin" xml:space="preserve">
-    <value>Admin Roles</value>
-  </data>
-  <data name="EnumProfile_Customer" xml:space="preserve">
-    <value>Customer Roles</value>
-  </data>
-  <data name="EnumProfile_CustomOfficer" xml:space="preserve">
-    <value>Custom Officer Roles</value>
-  </data>
-  <data name="EnumProfile_User" xml:space="preserve">
-    <value>User Roles</value>
-  </data>
-  <data name="EnumRole_AddFile" xml:space="preserve">
-    <value>Add File</value>
-  </data>
-  <data name="btnChangePass" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="Btn_NewUser" xml:space="preserve">
-    <value>New User</value>
-  </data>
-  <data name="Modal_Btn_Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Modal_Title_NewUser" xml:space="preserve">
-    <value>New User</value>
-  </data>
-  <data name="Modal_Title_ChangePass" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="Title_UserList" xml:space="preserve">
-    <value>User List</value>
-  </data>
-  <data name="btnNo" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="btnOk" xml:space="preserve">
-    <value>Yes</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="btnStatusActive" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="btnStatusPassive" xml:space="preserve">
-    <value>Passive</value>
-  </data>
-  <data name="EnumRole_AddCustomer" xml:space="preserve">
-    <value>Add Customer</value>
-  </data>
-  <data name="EnumRole_AddCustomOfficer" xml:space="preserve">
-    <value>Add Customofficer</value>
-  </data>
-  <data name="EnumRole_AddUser" xml:space="preserve">
-    <value>Add User</value>
-  </data>
-  <data name="EnumRole_ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="EnumRole_DeleteCustomer" xml:space="preserve">
-    <value>Delete Customer</value>
-  </data>
-  <data name="EnumRole_DeleteCustomOfficer" xml:space="preserve">
-    <value>Delete Custom Officer</value>
-  </data>
-  <data name="EnumRole_DeleteFile" xml:space="preserve">
-    <value>Delete file</value>
-  </data>
-  <data name="EnumRole_DeleteUser" xml:space="preserve">
-    <value>Delete User</value>
-  </data>
-  <data name="EnumRole_UpdateCustomer" xml:space="preserve">
-    <value>Update Customer</value>
-  </data>
-  <data name="EnumRole_UpdateCustomOfficer" xml:space="preserve">
-    <value>Update Customofficer</value>
-  </data>
-  <data name="EnumRole_UpdateUser" xml:space="preserve">
-    <value>Update User</value>
-  </data>
-  <data name="SendMail" xml:space="preserve">
+  <data name="Menu_SendMail" xml:space="preserve">
     <value>Send Mail</value>
+  </data>
+  <data name="Menu_Users" xml:space="preserve">
+    <value>Users</value>
   </data>
 </root>

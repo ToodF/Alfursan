@@ -24,6 +24,7 @@ namespace Alfursan.Web.Controllers
         }
         public ActionResult UserList()
         {
+            ViewBag.DeleteMessage = @Resources.MessageResource.Warning_DeleteUser;
             var userService = IocContainer.Resolve<IUserService>();
             var users = userService.GetAll();
             Mapper.CreateMap<User, UserListViewModel>();
