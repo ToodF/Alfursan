@@ -183,4 +183,7 @@
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="Warning_NoCustomer" xml:space="preserve">
+    <value>Dosya yükleyebileceğiniz bir müşteri bulunamadığından bu sayfada şuan işlem yapamazsınız.</value>
+  </data>
 </root>

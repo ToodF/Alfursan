@@ -257,5 +257,14 @@ namespace Resources {
                 return ResourceManager.GetString("Subject", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dosya yükleyebileceğiniz bir müşteri bulunamadığından bu sayfada şuan işlem yapamazsınız..
+        /// </summary>
+        public static string Warning_NoCustomer {
+            get {
+                return ResourceManager.GetString("Warning_NoCustomer", resourceCulture);
+            }
+        }
     }
 }

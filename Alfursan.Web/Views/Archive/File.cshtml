@@ -1,228 +1,237 @@
 ﻿@using Alfursan.Domain
 
 <h2>@ViewBag.Title</h2>
+@{
+    var currentUser = (User)Session["CurrentUser"];
+    var customers = (List<SelectListItem>)ViewBag.CustomerList;
+}
 
 @{WriteLiteral(ViewBag.Description);}
 <br />
-
-<form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-    @{
-        var currentUser = (User)Session["CurrentUser"];
-        var customers = (List<SelectListItem>)ViewBag.CustomerList;
-    }
-    @if (customers.Count > 1 && (currentUser.ProfileId == (int)EnumProfile.Admin || currentUser.ProfileId == (int)EnumProfile.CustomOfficer))
-    {
-        <div class="form-group customer-dropdown-select">
-            <label for="drpUser">@Resources.Files.Customer</label>
-            <select id="drpUser" name="customerUserId" class="selectpicker" data-live-search="true" data-max-options="1" data-width="30%" style="display: none;">
-                <option data-hidden="true">@Resources.Files.Select</option>
-                @foreach (var user in customers)
-                {
-                    <option value="@user.Value">@user.Text</option>
-                }
-            </select>
-        </div>
-    }
-    else if (customers.Count > 0)
-    {
-        <div class="form-group">
-            <label for="drpUser" class="control-label col-md-2">@Resources.Files.Customer</label>
-            
-            @Html.Hidden("customerUserId", customers.FirstOrDefault().Value)
-            @Html.Label("lblcustomerUserId", customers.FirstOrDefault().Text)
-        </div>
-    }
-    <br />
-    <!-- Redirect browsers with JavaScript disabled to the origin page -->
-    @*<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>*@
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="form-group fileupload-buttonbar">
-        <div class="col-lg-3">
-            <!-- The fileinput-button span is used to style the file input field as button -->
-            <span class="btn btn-success fileinput-button">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>@Resources.Files.AddFiles</span>
-                <input type="file" name="files[]" multiple>
-            </span>
-            <button type="submit" class="btn btn-primary start">
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>@Resources.Files.StartUpload</span>
-            </button>
-
-            @*<button type="reset" class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel upload</span>
-                </button>*@
-            <button type="button" class="btn btn-danger delete">
-                <i class="glyphicon glyphicon-trash"></i>
-                <span>Delete</span>
-            </button>
-            <input type="checkbox" class="toggle">
-            <!-- The global file processing state -->
-            <span class="fileupload-process"></span>
-        </div>
-        <div class="checkbox col-lg-2">
-            <label>
-                <input type="checkbox" name="sendmail"> @Resources.Files.IsSendEmail
-            </label>
-        </div>
-        <!-- The global progress state -->
-        <div class="col-lg-5 fileupload-progress fade">
-            <!-- The global progress bar -->
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-            </div>
-            <!-- The extended global progress state -->
-            <div class="progress-extended">&nbsp;</div>
-        </div>
+@if (customers.Count == 0)
+{
+    <div class="alert alert-warning">
+        @Resources.Files.Warning_NoCustomer
     </div>
-    <!-- The table listing the files available for upload/download -->
-    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-</form>
+}
+else
+{
 
-<script id="template-upload" type="text/x-tmpl">
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
-        <td>
-            <span class="preview"></span>
-        </td>
-        <td>
-            <p class="name">{%=file.name%}</p>
-            <strong class="error text-danger"></strong>
-        </td>
-        <td>
-            <p class="size">Processing...</p>
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-        </td>
-        <td>
-            {% if (!i && !o.options.autoUpload) { %}
+    <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
 
-            @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer)
-            {
-                <p>
-                    <div class="btn-group document-type">
-                        <button type="button" class="btn btn-default active" value="1">@Resources.Files.ShipmentDocument</button>
-                        <button type="button" class="btn btn-default" value="2">@Resources.Files.AccountDocument</button>
-                        <button type="button" class="btn btn-default" value="3">@Resources.Files.Other</button>
-                    </div>
-                </p>
-            }
-            <input type='hidden' name="fileType" value='1'>
+        @if (customers.Count > 1 && (currentUser.ProfileId == (int)EnumProfile.Admin || currentUser.ProfileId == (int)EnumProfile.CustomOfficer))
+        {
+            <div class="form-group customer-dropdown-select">
+                <label for="drpUser">@Resources.Files.Customer</label>
+                <select id="drpUser" name="customerUserId" class="selectpicker" data-live-search="true" data-max-options="1" data-width="30%" style="display: none;">
+                    <option data-hidden="true">@Resources.Files.Select</option>
+                    @foreach (var user in customers)
+                    {
+                        <option value="@user.Value">@user.Text</option>
+                    }
+                </select>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label for="drpUser" class="control-label col-md-2">@Resources.Files.Customer</label>
 
-            <p>
-                <input type="text" name="subject" class="form-control" placeholder="@Resources.Files.Subject" required>
-            </p>
-            {% } %}
+                @Html.Hidden("customerUserId", customers.FirstOrDefault().Value)
+                @Html.Label("lblcustomerUserId", customers.FirstOrDefault().Text)
+            </div>
+        }
+        <br />
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        @*<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>*@
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="form-group fileupload-buttonbar">
+            <div class="col-lg-3">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>@Resources.Files.AddFiles</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>@Resources.Files.StartUpload</span>
+                </button>
 
-            {% if (!i && !o.options.autoUpload) { %}
-            <button class="btn btn-primary start" disabled>
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>@Resources.Files.Start</span>
-            </button>
-            {% } %}
-
-            {% if (!i) { %}
-            <button class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>@Resources.Files.Cancel</span>
-            </button>
-            {% } %}
-        </td>
-    </tr>
-    {% } %}
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
-        <td>
-            <span class="preview">
-                {% if (file.thumbnailUrl) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                {% } %}
-            </span>
-        </td>
-        <td>
-            <p class="name">
-                {% if (file.url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                {% } else { %}
-                <span>{%=file.name%}</span>
-                {% } %}
-            </p>
-            {% if (file.error) { %}
-            <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-            {% } %}
-        </td>
-        <td>
-            <span class="size">{%=o.formatFileSize(file.size)%}</span>
-        </td>
-        <td>
-            @*{% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                @*<button type="reset" class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel upload</span>
+                    </button>*@
+                <button type="button" class="btn btn-danger delete">
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-                {% } else { %}
+                <input type="checkbox" class="toggle">
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+            </div>
+            <div class="checkbox col-lg-2">
+                <label>
+                    <input type="checkbox" name="sendmail"> @Resources.Files.IsSendEmail
+                </label>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </form>
+
+    <script id="template-upload" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+            <td>
+                <span class="preview"></span>
+            </td>
+            <td>
+                <p class="name">{%=file.name%}</p>
+                <strong class="error text-danger"></strong>
+            </td>
+            <td>
+                <p class="size">Processing...</p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+            </td>
+            <td>
+                {% if (!i && !o.options.autoUpload) { %}
+
+                @if (((User) Session["CurrentUser"]).ProfileId != (int) EnumProfile.CustomOfficer)
+            {
+            <p>
+                <div class="btn-group document-type">
+                    <button type="button" class="btn btn-default active" value="1">@Resources.Files.ShipmentDocument</button>
+                    <button type="button" class="btn btn-default" value="2">@Resources.Files.AccountDocument</button>
+                    <button type="button" class="btn btn-default" value="3">@Resources.Files.Other</button>
+                </div>
+            </p>
+            }
+                <input type='hidden' name="fileType" value='1'>
+
+                <p>
+                    <input type="text" name="subject" class="form-control" placeholder="@Resources.Files.Subject" required>
+                </p>
+                {% } %}
+
+                {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>@Resources.Files.Start</span>
+                </button>
+                {% } %}
+
+                {% if (!i) { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
+                    <span>@Resources.Files.Cancel</span>
                 </button>
-                {% } %}*@
-        </td>
-    </tr>
-    {% } %}
-</script>
-<link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload-ui-noscript.css" rel="stylesheet" />
-<link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload.css" rel="stylesheet" />
-<link href="~/Plugins/JQueryFileUpload/css/style.css" rel="stylesheet" />
-<link href="~/Plugins/Dropdown/css/bootstrap-select.css" rel="stylesheet" />
-<style>
-    .body-content {
-        margin-top: 75px;
-    }
-</style>
-@section Scripts {
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-    <script src="/Plugins/JQueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
-    <!-- The Templates plugin is included to render the upload/download listings -->
-    <script src="/Plugins/JQueryFileUpload/js/tmpl.min.js"></script>
-    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="/Plugins/JQueryFileUpload/js/load-image.min.js"></script>
-    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="~/Plugins/JQueryFileUpload/js/canvas-to-blob.min.js"></script>
-    <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+                {% } %}
+            </td>
+        </tr>
+        {% } %}
+    </script>
+    <!-- The template to display files available for download -->
+    <script id="template-download" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+            <td>
+                <span class="preview">
+                    {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                    {% } %}
+                </span>
+            </td>
+            <td>
+                <p class="name">
+                    {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                    {% } else { %}
+                    <span>{%=file.name%}</span>
+                    {% } %}
+                </p>
+                {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                {% } %}
+            </td>
+            <td>
+                <span class="size">{%=o.formatFileSize(file.size)%}</span>
+            </td>
+            <td>
+                @*{% if (file.deleteUrl) { %}
+                    <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>Delete</span>
+                    </button>
+                    <input type="checkbox" name="delete" value="1" class="toggle">
+                    {% } else { %}
+                    <button class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel</span>
+                    </button>
+                    {% } %}*@
+            </td>
+        </tr>
+        {% } %}
+    </script>
+    <link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload-ui-noscript.css" rel="stylesheet" />
+    <link href="~/Plugins/JQueryFileUpload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Plugins/JQueryFileUpload/css/style.css" rel="stylesheet" />
+    <link href="~/Plugins/Dropdown/css/bootstrap-select.css" rel="stylesheet" />
+    <style>
+        .body-content {
+            margin-top: 75px;
+        }
+    </style>
+    @section Scripts {
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+        <script src="/Plugins/JQueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
+        <!-- The Templates plugin is included to render the upload/download listings -->
+        <script src="/Plugins/JQueryFileUpload/js/tmpl.min.js"></script>
+        <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+        <script src="/Plugins/JQueryFileUpload/js/load-image.min.js"></script>
+        <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+        <script src="~/Plugins/JQueryFileUpload/js/canvas-to-blob.min.js"></script>
+        <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <!-- blueimp Gallery script -->
-    <script src="~/Plugins/JQueryFileUpload/js/jquery.blueimp-gallery.min.js"></script>
-    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.iframe-transport.js"></script>
-    <!-- The basic File Upload plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload.js"></script>
-    <!-- The File Upload processing plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-process.js"></script>
-    <!-- The File Upload image preview & resize plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-image.js"></script>
-    <!-- The File Upload audio preview plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-audio.js"></script>
-    <!-- The File Upload video preview plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-video.js"></script>
-    <!-- The File Upload validation plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-validate.js"></script>
-    <!-- The File Upload user interface plugin -->
-    <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-ui.js"></script>
-    <!-- The main application script -->
-    <script src="/Plugins/JQueryFileUpload/js/main.js"></script>
-    <!-- The dropdown bootstrap script -->
-    <script src="/Plugins/Dropdown/js/bootstrap-select.js"></script>
-    <script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- blueimp Gallery script -->
+        <script src="~/Plugins/JQueryFileUpload/js/jquery.blueimp-gallery.min.js"></script>
+        <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.iframe-transport.js"></script>
+        <!-- The basic File Upload plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload.js"></script>
+        <!-- The File Upload processing plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-process.js"></script>
+        <!-- The File Upload image preview & resize plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-image.js"></script>
+        <!-- The File Upload audio preview plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-audio.js"></script>
+        <!-- The File Upload video preview plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-video.js"></script>
+        <!-- The File Upload validation plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-validate.js"></script>
+        <!-- The File Upload user interface plugin -->
+        <script src="/Plugins/JQueryFileUpload/js/jquery.fileupload-ui.js"></script>
+        <!-- The main application script -->
+        <script src="/Plugins/JQueryFileUpload/js/main.js"></script>
+        <!-- The dropdown bootstrap script -->
+        <script src="/Plugins/Dropdown/js/bootstrap-select.js"></script>
+        <script>
         /*jslint unparam: true, regexp: true */
         /*global window, $ */
-        $(function () {
+        $(function() {
             'use strict';
             // Change this to the location of your server-side upload handler:
             var url = '/Archive/UploadImage',
@@ -230,125 +239,125 @@
                     .addClass('btn btn-primary')
                     .prop('disabled', true)
                     .text('Processing...')
-                    .on('click', function () {
+                    .on('click', function() {
                         var $this = $(this),
                             data = $this.data();
                         $this
                             .off('click')
                             .text('Abort')
-                            .on('click', function () {
+                            .on('click', function() {
                                 $this.remove();
                                 data.abort();
                             });
-                        data.submit().always(function () {
+                        data.submit().always(function() {
                             $this.remove();
                         });
                     });
             $('#fileupload').fileupload({
-                url: url,
-                dataType: 'json',
-                autoUpload: false,
-                maxFileSize: 5000000, // 5 MB
-                // Enable image resizing, except for Android and Opera,
-                // which actually support image resizing, but fail to
-                // send Blob objects via XHR requests:
-                disableImageResize: /Android(?!.*Chrome)|Opera/
-                    .test(window.navigator.userAgent),
-                previewMaxWidth: 100,
-                previewMaxHeight: 100,
-                previewCrop: true
-            }).on('fileuploadadd', function (e, data) {
-                data.context = $('<div/>').appendTo('#files');
-                $.each(data.files, function (index, file) {
-                    var node = $('<p/>')
-                        .append($('<span/>').text(file.name));
-                    if (!index) {
+                    url: url,
+                    dataType: 'json',
+                    autoUpload: false,
+                    maxFileSize: 5000000, // 5 MB
+                    // Enable image resizing, except for Android and Opera,
+                    // which actually support image resizing, but fail to
+                    // send Blob objects via XHR requests:
+                    disableImageResize: /Android(?!.*Chrome)|Opera/
+                        .test(window.navigator.userAgent),
+                    previewMaxWidth: 100,
+                    previewMaxHeight: 100,
+                    previewCrop: true
+                }).on('fileuploadadd', function(e, data) {
+                    data.context = $('<div/>').appendTo('#files');
+                    $.each(data.files, function(index, file) {
+                        var node = $('<p/>')
+                            .append($('<span/>').text(file.name));
+                        if (!index) {
+                            node
+                                .append('<br>')
+                                .append(uploadButton.clone(true).data(data));
+                        }
+                        node.appendTo(data.context);
+                    });
+                }).on('fileuploadprocessalways', function(e, data) {
+                    var index = data.index,
+                        file = data.files[index],
+                        node = $(data.context.children()[index]);
+                    if (file.preview) {
+                        node
+                            .prepend('<br>')
+                            .prepend(file.preview);
+                    }
+                    if (file.error) {
                         node
                             .append('<br>')
-                            .append(uploadButton.clone(true).data(data));
+                            .append($('<span class="text-danger"/>').text(file.error));
                     }
-                    node.appendTo(data.context);
-                });
-            }).on('fileuploadprocessalways', function (e, data) {
-                var index = data.index,
-                    file = data.files[index],
-                    node = $(data.context.children()[index]);
-                if (file.preview) {
-                    node
-                        .prepend('<br>')
-                        .prepend(file.preview);
-                }
-                if (file.error) {
-                    node
-                        .append('<br>')
-                        .append($('<span class="text-danger"/>').text(file.error));
-                }
 
-                var docType = $("button[value='@Url.RequestContext.RouteData.Values["id"]']");
+                    var docType = $("button[value='@Url.RequestContext.RouteData.Values["id"]']");
 
-                docType.siblings().removeClass('active');
-                docType.addClass('active');
+                    docType.siblings().removeClass('active');
+                    docType.addClass('active');
 
-                $("input[name='fileType']").each(function (index) {
-                    $(this).val(@ViewBag.FileType);
-                });
+                    $("input[name='fileType']").each(function(index) {
+                        $(this).val(@ViewBag.FileType);
+                    });
 
-                //if (index + 1 === data.files.length) {
-                //    data.context.find('button')
-                //        .text('Upload')
-                //        .prop('disabled', !!data.files.error);
-                //}
-            }).bind('fileuploadsubmit', function (e, data) {
-                // The example input, doesn't have to be part of the upload form:
+                    //if (index + 1 === data.files.length) {
+                    //    data.context.find('button')
+                    //        .text('Upload')
+                    //        .prop('disabled', !!data.files.error);
+                    //}
+                }).bind('fileuploadsubmit', function(e, data) {
+                    // The example input, doesn't have to be part of the upload form:
 
-                var inputs = data.context.find(':input');
-                if (inputs.filter(function () {
-                    return !this.value && $(this).prop('required');
-                }).first().focus().length) {
-                    data.context.find('button').prop('disabled', false);
-                    return false;
-                }
+                    var inputs = data.context.find(':input');
+                    if (inputs.filter(function() {
+                        return !this.value && $(this).prop('required');
+                    }).first().focus().length) {
+                        data.context.find('button').prop('disabled', false);
+                        return false;
+                    }
 
-                data.formData = inputs.serializeArray();
-                if ($("select[name='customerUserId']").size() > 0) {
-                    data.formData.push({ name: "customerUserId", value: $("select[name='customerUserId']").val() });
-                } else {
-                    data.formData.push({ name: "customerUserId", value: $("input[name='customerUserId']").val() });
-                }
-            }).on('fileuploadprogressall', function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
-            }).on('fileuploaddone', function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    if (file.url) {
-                        var link = $('<a>')
-                            .attr('target', '_blank')
-                            .prop('href', file.url);
-                        $(data.context.children()[index])
-                            .wrap(link);
-                    } else if (file.error) {
-                        var error = $('<span class="text-danger"/>').text(file.error);
+                    data.formData = inputs.serializeArray();
+                    if ($("select[name='customerUserId']").size() > 0) {
+                        data.formData.push({ name: "customerUserId", value: $("select[name='customerUserId']").val() });
+                    } else {
+                        data.formData.push({ name: "customerUserId", value: $("input[name='customerUserId']").val() });
+                    }
+                }).on('fileuploadprogressall', function(e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }).on('fileuploaddone', function(e, data) {
+                    $.each(data.result.files, function(index, file) {
+                        if (file.url) {
+                            var link = $('<a>')
+                                .attr('target', '_blank')
+                                .prop('href', file.url);
+                            $(data.context.children()[index])
+                                .wrap(link);
+                        } else if (file.error) {
+                            var error = $('<span class="text-danger"/>').text(file.error);
+                            $(data.context.children()[index])
+                                .append('<br>')
+                                .append(error);
+                        }
+                    });
+                }).on('fileuploadfail', function(e, data) {
+                    $.each(data.files, function(index) {
+                        var error = $('<span class="text-danger"/>').text('File upload failed.');
                         $(data.context.children()[index])
                             .append('<br>')
                             .append(error);
-                    }
-                });
-            }).on('fileuploadfail', function (e, data) {
-                $.each(data.files, function (index) {
-                    var error = $('<span class="text-danger"/>').text('File upload failed.');
-                    $(data.context.children()[index])
-                        .append('<br>')
-                        .append(error);
-                });
-            }).prop('disabled', !$.support.fileInput)
+                    });
+                }).prop('disabled', !$.support.fileInput)
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
         });
 
-        $(document).ready(function () {
-            $('body').on('click', '.btn-group button', function () {
+        $(document).ready(function() {
+            $('body').on('click', '.btn-group button', function() {
 
                 $(this).addClass('active');
                 $(this).siblings().removeClass('active');
@@ -357,5 +366,6 @@
             });
         });
 
-    </script>
+        </script>
+    }
 }
