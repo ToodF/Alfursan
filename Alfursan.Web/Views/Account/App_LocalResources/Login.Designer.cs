@@ -70,11 +70,74 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you forgot your password, please enter your e-mail address below. We will send yur password your e-mail..
+        /// </summary>
+        public static string ForgotPassDesc {
+            get {
+                return ResourceManager.GetString("ForgotPassDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your E-mail address.
+        /// </summary>
+        public static string ForgotPassEmail {
+            get {
+                return ResourceManager.GetString("ForgotPassEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string ForgotPassSend {
+            get {
+                return ResourceManager.GetString("ForgotPassSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PASSWORD.
+        /// </summary>
+        public static string ForgotPassTitle {
+            get {
+                return ResourceManager.GetString("ForgotPassTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALFURSAN&apos;s Client Login.
         /// </summary>
         public static string PageTitle {
             get {
                 return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        public static string ResetPass_ConfirmPass {
+            get {
+                return ResourceManager.GetString("ResetPass_ConfirmPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string ResetPass_Pass {
+            get {
+                return ResourceManager.GetString("ResetPass_Pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string ResetPassEmail {
+            get {
+                return ResourceManager.GetString("ResetPassEmail", resourceCulture);
             }
         }
         

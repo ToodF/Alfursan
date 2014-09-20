@@ -120,8 +120,29 @@
   <data name="ForgotPass" xml:space="preserve">
     <value>Forgot Password</value>
   </data>
+  <data name="ForgotPassDesc" xml:space="preserve">
+    <value>If you forgot your password, please enter your e-mail address below. We will send yur password your e-mail.</value>
+  </data>
+  <data name="ForgotPassEmail" xml:space="preserve">
+    <value>Your E-mail address</value>
+  </data>
+  <data name="ForgotPassSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ForgotPassTitle" xml:space="preserve">
+    <value>PASSWORD</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
     <value>ALFURSAN's Client Login</value>
+  </data>
+  <data name="ResetPassEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ResetPass_ConfirmPass" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ResetPass_Pass" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="TitleDesc" xml:space="preserve">
     <value>Use a local account to log in.</value>

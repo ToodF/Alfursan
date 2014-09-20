@@ -61,7 +61,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email not found..
+        ///   Looks up a localized string similar to Your e-mail address is not registered in our system. 
+        ///Please enter a valid e-mail address..
         /// </summary>
         public static string Error_EmailNotFound {
             get {
@@ -142,7 +143,10 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
+        ///   Looks up a localized string similar to We sent your password. Please check your e-mail. 
+        ///If you need any asistance please contact us. 
+        ///Tel: 0090 212 2464430 
+        ///.
         /// </summary>
         public static string Info_ChangePass {
             get {

@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Error_EmailNotFound" xml:space="preserve">
-    <value>Email not found.</value>
+    <value>Your e-mail address is not registered in our system. 
+Please enter a valid e-mail address.</value>
   </data>
   <data name="Error_ExistingUserNameOrEmail" xml:space="preserve">
     <value> This Username or E-mail Used. Please Change Username or E-mail and Try Again</value>
@@ -145,7 +146,10 @@
     <value>Şifre değiştirme işleminiz tamamlanmış olup kullanıcı mail ile bilgilendirilmiştir.</value>
   </data>
   <data name="Info_ChangePass" xml:space="preserve">
-    <value>Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir.</value>
+    <value>We sent your password. Please check your e-mail. 
+If you need any asistance please contact us. 
+Tel: 0090 212 2464430 
+</value>
   </data>
   <data name="Info_DeleteUser" xml:space="preserve">
     <value>Delete User</value>

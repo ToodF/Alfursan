@@ -477,6 +477,7 @@
       <CustomToolNamespace>Resources</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MessageResource.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
