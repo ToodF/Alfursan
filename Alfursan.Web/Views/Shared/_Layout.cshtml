@@ -1,34 +1,61 @@
-﻿@using System.Globalization
-@using System.Threading
+﻿@using System.Threading
 @using Alfursan.Domain
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
 
-@{
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
-}
+    @Styles.Render("~/Style/" + Thread.CurrentThread.CurrentCulture.Name)
+    @Styles.Render("~/Style/Datatable")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/"><div class="navbar-logo"></div></a>
 
-@section Menu
-{
-    <div class="col-xs-1"></div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            @{
-                var user = (User)Session["CurrentUser"];
-            }
-            <li><a href="/Home/Index"><span class="glyphicon glyphicon-home"></span><br />@Resources._MainLayout.Menu_HomePage</a></li>
-            <li><a href="/Archive/Files"><span class="glyphicon glyphicon-book"></span><br />@Resources._MainLayout.Menu_Archive</a></li>
-            <li><a href="/Archive/File/"><span class="glyphicon glyphicon-upload"></span><br />@Resources._MainLayout.Menu_FileUpload</a></li>
-            @if (user.ProfileId == (int)EnumProfile.Admin || user.ProfileId == (int)EnumProfile.User)
-            {
-                <li><a href="/Management/UserList"><span class="glyphicon glyphicon-user"></span><br />@Resources._MainLayout.Menu_Users</a></li>
-            }
-        </ul>
-        @Html.Partial("_LoginPartial")
+            </div>
+            <div class="col-xs-1"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @{
+                        var user = (User)Session["CurrentUser"];
+                    }
+                    <li><a href="/Home/Index"><span class="glyphicon glyphicon-home"></span><br />@Resources._MainLayout.Menu_HomePage</a></li>
+                    <li><a href="/Archive/Files"><span class="glyphicon glyphicon-book"></span><br />@Resources._MainLayout.Menu_Archive</a></li>
+                    <li><a href="/Archive/File/"><span class="glyphicon glyphicon-upload"></span><br />@Resources._MainLayout.Menu_FileUpload</a></li>
+                    @if (user.ProfileId == (int)EnumProfile.Admin || user.ProfileId == (int)EnumProfile.User)
+                    {
+                        <li><a href="/Management/UserList"><span class="glyphicon glyphicon-user"></span><br />@Resources._MainLayout.Menu_Users</a></li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
 
+            </div>
+        </div>
     </div>
-}
-@RenderBody()
-
-@section scripts
-{
+    <div class="container">
+        <div class="body-content">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            @{WriteLiteral(Resources._MainLayout.Footer);}
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-}
+
+</body>
+</html>

@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alfursan File Management.
+        ///   Looks up a localized string similar to ALFURSAN&apos;s Client Login.
         /// </summary>
         public static string PageTitle {
             get {

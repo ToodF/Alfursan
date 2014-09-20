@@ -487,6 +487,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Archive\App_LocalResources\Files.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -507,6 +508,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Management.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\App_LocalResources\_MainLayout.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

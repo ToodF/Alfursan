@@ -40,6 +40,7 @@ namespace Alfursan.Web.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email",ResourceType = typeof(Resources.Account))]
+
         public string Email { get; set; }
 
         [Required]

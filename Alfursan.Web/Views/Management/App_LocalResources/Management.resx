@@ -205,7 +205,7 @@
     <value>Change Password</value>
   </data>
   <data name="Modal_Title_NewUser" xml:space="preserve">
-    <value>New User</value>
+    <value>Add - Edit User</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

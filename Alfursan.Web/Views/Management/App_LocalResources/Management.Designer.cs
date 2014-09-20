@@ -331,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New User.
+        ///   Looks up a localized string similar to Add - Edit User.
         /// </summary>
         public static string Modal_Title_NewUser {
             get {
