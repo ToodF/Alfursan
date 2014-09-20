@@ -337,7 +337,7 @@
                 $(this).addClass('active');
                 $(this).siblings().removeClass('active');
 
-                $(this).parent().parent().find('#selectedFileType').val($(this).val());
+                $(this).parent().parent().find('input[name="fileType"]').val($(this).val());
             });
         });
 

@@ -141,6 +141,9 @@
   <data name="Error_Unexpected" xml:space="preserve">
     <value>An Unexpected Error Has Occurred.</value>
   </data>
+  <data name="Info_ChangedPassword" xml:space="preserve">
+    <value>Şifre değiştirme işleminiz tamamlanmış olup kullanıcı mail ile bilgilendirilmiştir.</value>
+  </data>
   <data name="Info_ChangePass" xml:space="preserve">
     <value>Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir.</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="Info_UpdateProfile" xml:space="preserve">
     <value>Your Profile Updated</value>
+  </data>
+  <data name="Warning_ChangedPasswordSendMail" xml:space="preserve">
+    <value>Şifre değiştirme işlemi tamamlanmıştır ancak kullanıcıya mail gönderimi sırasında hata alındı.</value>
   </data>
   <data name="Warning_DeleteFile" xml:space="preserve">
     <value>Are You Sure To Delete This File?</value>

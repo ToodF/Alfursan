@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 
 namespace Alfursan.Web.Controllers
 {
@@ -113,38 +114,55 @@ namespace Alfursan.Web.Controllers
         }
 
         [HttpPost]
-        public HttpResponseModel _ChangePass(ChangePassViewModel changePassViewModel)
+        public JsonResult _ChangePass(ChangePassViewModel changePassViewModel)
         {
+            HttpResponseModel result;
             if (ModelState.IsValid)
             {
                 var userService = IocContainer.Resolve<IUserService>();
-                var changePassResult = userService.ChangePassword(changePassViewModel.Email, changePassViewModel.Password);
+                var changePassResult = userService.ChangePassword(changePassViewModel.Email,
+                    changePassViewModel.Password);
                 if (changePassResult.ResponseCode == EnumResponseCode.Successful)
                 {
                     var sendMailResult = SendMessageHelper.SendMessageChangePass(changePassViewModel);
                     if (sendMailResult.ResponseCode == EnumResponseCode.Successful)
                     {
-                        return new HttpResponseModel()
+                        result = new HttpResponseModel()
                         {
-                            ReturnCode = EnumResponseStatusCode.Success
+                            ReturnCode = EnumResponseStatusCode.Success,
+                            ResponseMessage = Resources.MessageResource.Info_ChangedPassword
                         };
                     }
-                    return new HttpResponseModel()
+                    else
                     {
-                        ReturnCode = EnumResponseStatusCode.Error,
-                        ResponseMessage = Resources.MessageResource.ResourceManager.GetString(sendMailResult.ResponseUserFriendlyMessageKey)
-                    }; 
+                        result = new HttpResponseModel()
+                        {
+                            ReturnCode = EnumResponseStatusCode.Error,
+                            ResponseMessage =
+                                Resources.MessageResource.Warning_ChangedPasswordSendMail
+                        };
+                    }
                 }
                 else
                 {
-                    return new HttpResponseModel()
+                    result = new HttpResponseModel()
                     {
                         ReturnCode = EnumResponseStatusCode.Error,
-                        ResponseMessage = Resources.MessageResource.ResourceManager.GetString(changePassResult.ResponseUserFriendlyMessageKey)
+                        ResponseMessage =
+                            Resources.MessageResource.ResourceManager.GetString(
+                                changePassResult.ResponseUserFriendlyMessageKey)
                     };
                 }
             }
-            return new HttpResponseModel() { ReturnCode = EnumResponseStatusCode.Error, ResponseMessage = Resources.MessageResource.Error_ModelNotValid };
+            else
+            {
+                result = new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Error,
+                    ResponseMessage = Resources.MessageResource.Error_ModelNotValid
+                };
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public PartialViewResult _UserList()
@@ -246,6 +264,35 @@ namespace Alfursan.Web.Controllers
                 roleViewModel.Roles.Add(roleModel);
             }
             return PartialView(roleViewModel);
+        }
+
+        [HttpGet]
+        public JsonResult GetCustomOfficers()
+        {
+            var userService = IocContainer.Resolve<IUserService>();
+            var customOfficerList = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = Resources.Shared.drp_Select,
+                    Value = "0"
+                }
+            };
+            var customOfficers = userService.GetCustomOfficers();
+            if (customOfficers.ResponseCode == EnumResponseCode.Successful)
+            {
+                customOfficerList.AddRange(customOfficers.Data.Select(customOfficer => new SelectListItem
+                {
+                    Value = customOfficer.UserId.ToString(),
+                    Text = customOfficer.FullName
+                }));
+            }
+            var result = new HttpResponseModel()
+               {
+                   ReturnCode = EnumResponseStatusCode.Success,
+                   Data = customOfficerList
+               };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

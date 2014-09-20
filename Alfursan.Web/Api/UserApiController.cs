@@ -65,11 +65,12 @@ namespace Alfursan.Web.Api
                     {
                         if (userViewModel.CustomOfficerId > 0)
                         {
+                            var activeUser = userService.GetActiveUserByEmail(user.Email);
                             var relationCustomerCustomOfficer = new RelationCustomerCustomOfficer
                             {
                                 CreatedUserId = 0, // ((User)HttpContext.Current.Session["CurrentUser"]).UserId,
                                 CustomOfficerId = userViewModel.CustomOfficerId,
-                                CustomerUserId = user.UserId
+                                CustomerUserId = activeUser.Data.UserId
                             };
                             userService.SaveRelationCustomerCustomOfficer(relationCustomerCustomOfficer);
                         }

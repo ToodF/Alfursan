@@ -26,9 +26,9 @@
                 if (result.ReturnCode == "1") {
                     $("#AlfursanModal").modal("hide");
                     AlfursanManagement.GetUserList();
+                    AlfursanManagement.BindCustomOfficers();
                 }
             });
-
         });
 
         $("#ChangePasswordModal .modal-footer .btn-primary").click(function () {
@@ -37,12 +37,7 @@
             if (!isValid) {
                 return false;
             }
-            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body", function (result) {
-                if (result.ReturnCode == "1") {
-                    $("#ChangePasswordModal").modal("hide");
-                }
-            });
-
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body");
         });
 
         $("#delete-user-cancel").click(function () {
@@ -167,6 +162,17 @@
     OpenChangePassModal: function (email) {
         AlfursanUser.BindModelForChangePass(email);
         $("#ChangePasswordModal").modal("show");
+    },
+
+    BindCustomOfficers: function () {
+        var url = "/Management/GetCustomOfficers";
+        AlfursanAjax.Request(url, "GET", null, null, function (result) {
+            $("#CustomOfficerId").find('option').remove();
+            $.each(result.Data, function (key, value) {
+                $("#CustomOfficerId").append($("<option></option>").val
+                (value.Value).html(value.Text));
+            });
+        });
     }
 };
 
@@ -183,7 +189,7 @@ var AlfursanUser = {
     Phone: "",
     Address: "",
     ProfileId: 3,
-    CustomOfficerId: "",
+    CustomOfficerId: 0,
 
     SetEntity: function (entity) {
         if (entity == null) {
@@ -199,7 +205,7 @@ var AlfursanUser = {
             this.Phone = "";
             this.Address = "";
             this.ProfileId = 3;
-            this.CustomOfficerId = "";
+            this.CustomOfficerId = 0;
         } else {
             this.UserId = entity.UserId;
             this.UserName = entity.UserName;
@@ -246,6 +252,11 @@ var AlfursanUser = {
             $("#form-item-customerofficer").css("display", "block");
         } else {
             $("#form-item-customerofficer").css("display", "none");
+        }
+        if (this.ProfileId == 1) {
+            $(".profile-container").css("display", "none");
+        } else {
+            $(".profile-container").css("display", "block");
         }
         $("#CustomOfficerId").val(this.CustomOfficerId);
     }

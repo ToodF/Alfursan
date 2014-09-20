@@ -133,3 +133,6 @@ table.dataTable thead th, table.dataTable thead td {
  .hasDatepicker{
      width: 46.5% !important;
  }
+ #message-delete-user {
+     display: none;
+ }

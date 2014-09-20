@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Şifre değiştirme işleminiz tamamlanmış olup kullanıcı mail ile bilgilendirilmiştir..
+        /// </summary>
+        public static string Info_ChangedPassword {
+            get {
+                return ResourceManager.GetString("Info_ChangedPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Şifre değiştirmek için doğrulama kodunuz mail adresinize gönderilmiştir..
         /// </summary>
         public static string Info_ChangePass {
@@ -174,6 +183,15 @@ namespace Resources {
         public static string Info_UpdateProfile {
             get {
                 return ResourceManager.GetString("Info_UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifre değiştirme işlemi tamamlanmıştır ancak kullanıcıya mail gönderimi sırasında hata alındı..
+        /// </summary>
+        public static string Warning_ChangedPasswordSendMail {
+            get {
+                return ResourceManager.GetString("Warning_ChangedPasswordSendMail", resourceCulture);
             }
         }
         
