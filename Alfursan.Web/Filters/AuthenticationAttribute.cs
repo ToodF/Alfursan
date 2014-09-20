@@ -25,12 +25,6 @@ namespace Alfursan.Web.Filters
                 var user = response.Data;
 
                 filterContext.HttpContext.Session["CurrentUser"] = user;
-
-                if (user.ProfileId == (int)EnumProfile.CustomOfficer)
-                {
-                    var customerUser = userService.GetCustomerUser(user.UserId);
-                    filterContext.HttpContext.Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
-                }
             }
             else
             {
@@ -40,34 +34,7 @@ namespace Alfursan.Web.Filters
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
         {
-            //var identity = filterContext.HttpContext.User;
-
-            //if (!identity.Identity.IsAuthenticated)
-            //{
-            //    filterContext.Result = new HttpUnauthorizedResult();
-            //    return;
-            //}
-            //if (filterContext.HttpContext.Session != null && filterContext.HttpContext.Session["CurrentUser"] == null)
-            //{
-            //    var userService = IocContainer.Resolve<IUserService>();
-            //    var response = userService.GetUserByEmail(identity.Identity.Name);
-            //    if (response.ResponseCode == EnumResponseCode.Successful)
-            //    {
-            //        var user = response.Data;
-
-            //        filterContext.HttpContext.Session["CurrentUser"] = user;
-
-            //        if (user.ProfileId == (int)EnumProfile.CustomOfficer)
-            //        {
-            //            var customerUser = userService.GetCustomerUser(user.UserId);
-            //            filterContext.HttpContext.Session["CustomerUserIdForCustomerOfficer"] = customerUser.Data.UserId;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        filterContext.HttpContext.Response.Redirect("/Account/LogOff");
-            //    }
-            //}
+            
         }
     }
 }

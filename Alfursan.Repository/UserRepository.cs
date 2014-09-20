@@ -211,7 +211,7 @@ namespace Alfursan.Repository
             }
         }
 
-        public EntityResponder<User> GetCustomerUserId(int customOfficerId)
+        public EntityResponder<List<User>> GetCustomersByCustomOfficerId(int customOfficerId)
         {
             using (var con = DapperHelper.CreateConnection())
             {
@@ -220,9 +220,12 @@ namespace Alfursan.Repository
                                                    INNER JOIN [User] u
                                                            ON u.UserId = rcco.CustomerUserId
                                             WHERE  CustomOfficerId = @CustomOfficerId",
-                                           new { CustomOfficerId = customOfficerId }).FirstOrDefault();
-
-                return new EntityResponder<User>() { Data = user };
+                    new {CustomOfficerId = customOfficerId});
+                if (user == null || !user.Any())
+                {
+                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound};
+                }
+                return new EntityResponder<List<User>>() { Data = user.ToList() };
             }
         }
 

@@ -28,17 +28,6 @@ namespace Alfursan.Web.Controllers
             }
             set { Session["CurrentUser"] = value; }
         }
-        public int CustomerUserIdForCustomerOfficer
-        {
-            get
-            {
-                if (Session["CustomerUserIdForCustomerOfficer"] != null)
-                    return (int)Session["CustomerUserIdForCustomerOfficer"];
-
-                return 0;
-            }
-            set { Session["CustomerUserIdForCustomerOfficer"] = value; }
-        }
 
         public bool LoginAndSetCookie(LoginViewModel model, string returnUrl)
         {
@@ -49,12 +38,6 @@ namespace Alfursan.Web.Controllers
                 var user = response.Data;
                 FormsAuthentication.SetAuthCookie(user.Email, model.RememberMe);
                 CurrentUser = user;
-
-                if (user.ProfileId == (int)EnumProfile.CustomOfficer)
-                {
-                    var customerUser = userService.GetCustomerUser(user.UserId);
-                    CustomerUserIdForCustomerOfficer = customerUser.Data.UserId;
-                }
 
                 if (model.RememberMe)
                 {

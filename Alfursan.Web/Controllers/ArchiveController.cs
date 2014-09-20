@@ -15,29 +15,47 @@ using System.Web.Mvc;
 
 namespace Alfursan.Web.Controllers
 {
+    [Authorize]
     [Authentication]
     public class ArchiveController : BaseController
     {
         // GET: Archive
         [Authentication]
-        public ActionResult File()
+        public ActionResult File(string id = null)
         {
             ViewBag.Title = Resources.Files.FileUploadTitle;
             ViewBag.Description = Resources.Files.FileUploadDescription;
-
+            ViewBag.FileType = "";
+            if (!string.IsNullOrEmpty(id))
+            {
+                ViewBag.FileType = id;
+            }
             Session["FileIndex"] = 0;
 
-            if (CurrentUser == null)
-                return RedirectToAction("Login", "Account");
-
+            var customerList = new List<SelectListItem>();
+            var userResult = new EntityResponder<List<User>>();
+            var userService = IocContainer.Resolve<IUserService>();
             if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
             {
-                var userService = IocContainer.Resolve<IUserService>();
-                var users = userService.GetCustomers();
-
-                return View(users);
+                userResult = userService.GetCustomers();
             }
-
+            else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+            {
+                ViewBag.FileType = (int)EnumFileType.ShipmentDoc;
+                userResult = userService.GetCustomersByCustomOfficerId(CurrentUser.UserId);
+            }
+            if (userResult.ResponseCode == EnumResponseCode.Successful)
+            {
+                foreach (var customer in userResult.Data)
+                {
+                    customerList.Add(new SelectListItem
+                    {
+                        Text = customer.FullName,
+                        Value = customer.UserId.ToString()
+                    });
+                }
+            }
+            ViewBag.CustomerList = customerList;
             return View();
         }
         [Authentication]
@@ -54,10 +72,6 @@ namespace Alfursan.Web.Controllers
             if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
             {
                 customerUserId = CurrentUser.UserId;
-            }
-            else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
-            {
-                customerUserId = (int)CustomerUserIdForCustomerOfficer;
             }
 
             var fileService = IocContainer.Resolve<IAlfursanFileService>();
@@ -120,17 +134,13 @@ namespace Alfursan.Web.Controllers
 
                     alfursanFileViewModel.Customer = new User();
 
-                    if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
+                    if (CurrentUser.ProfileId == (int)EnumProfile.Admin || CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
                     {
                         alfursanFileViewModel.Customer.UserId = Convert.ToInt32(Request.Form["customerUserId"]);
                     }
                     else if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
                     {
                         alfursanFileViewModel.Customer.UserId = CurrentUser.UserId;
-                    }
-                    else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
-                    {
-                        alfursanFileViewModel.Customer.UserId = (int)Session["CustomerUserIdForCustomerOfficer"];
                     }
 
                     alfursanFileViewModel.CustomerUserId = alfursanFileViewModel.Customer.UserId;

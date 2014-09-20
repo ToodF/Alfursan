@@ -68,9 +68,9 @@ namespace Alfursan.Service
             return userRepository.ChangeStatus(userId, status);
         }
 
-        public EntityResponder<User> GetCustomerUser(int customOfficerId)
+        public EntityResponder<List<User>> GetCustomersByCustomOfficerId(int customOfficerId)
         {
-            return userRepository.GetCustomerUserId(customOfficerId);
+            return userRepository.GetCustomersByCustomOfficerId(customOfficerId);
         }
 
         public EntityResponder<User> GetActiveUserByEmail(string email)

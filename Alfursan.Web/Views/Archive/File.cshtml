@@ -1,5 +1,4 @@
 ﻿@using Alfursan.Domain
-@model EntityResponder<List<User>>
 
 <h2>@ViewBag.Title</h2>
 
@@ -7,17 +6,30 @@
 <br />
 
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-    @if (((User)Session["CurrentUser"]).ProfileId == (int)EnumProfile.Admin)
+    @{
+        var currentUser = (User)Session["CurrentUser"];
+        var customers = (List<SelectListItem>)ViewBag.CustomerList;
+    }
+    @if (customers.Count > 1 && (currentUser.ProfileId == (int)EnumProfile.Admin || currentUser.ProfileId == (int)EnumProfile.CustomOfficer))
     {
         <div class="form-group customer-dropdown-select">
             <label for="drpUser">@Resources.Files.Customer</label>
             <select id="drpUser" name="customerUserId" class="selectpicker" data-live-search="true" data-max-options="1" data-width="30%" style="display: none;">
                 <option data-hidden="true">@Resources.Files.Select</option>
-                @foreach (var user in Model.Data)
+                @foreach (var user in customers)
                 {
-                    <option value="@user.UserId">@user.FullName</option>
+                    <option value="@user.Value">@user.Text</option>
                 }
             </select>
+        </div>
+    }
+    else if (customers.Count > 0)
+    {
+        <div class="form-group">
+            <label for="drpUser" class="control-label col-md-2">@Resources.Files.Customer</label>
+            
+            @Html.Hidden("customerUserId", customers.FirstOrDefault().Value)
+            @Html.Label("lblcustomerUserId", customers.FirstOrDefault().Text)
         </div>
     }
     <br />
@@ -84,7 +96,7 @@
         </td>
         <td>
             {% if (!i && !o.options.autoUpload) { %}
-            
+
             @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer)
             {
                 <p>
@@ -249,7 +261,7 @@
                 data.context = $('<div/>').appendTo('#files');
                 $.each(data.files, function (index, file) {
                     var node = $('<p/>')
-                            .append($('<span/>').text(file.name));
+                        .append($('<span/>').text(file.name));
                     if (!index) {
                         node
                             .append('<br>')
@@ -278,7 +290,7 @@
                 docType.addClass('active');
 
                 $("input[name='fileType']").each(function (index) {
-                    $(this).val(@Url.RequestContext.RouteData.Values["id"]);
+                    $(this).val(@ViewBag.FileType);
                 });
 
                 //if (index + 1 === data.files.length) {
@@ -291,14 +303,18 @@
 
                 var inputs = data.context.find(':input');
                 if (inputs.filter(function () {
-                        return !this.value && $(this).prop('required');
+                    return !this.value && $(this).prop('required');
                 }).first().focus().length) {
                     data.context.find('button').prop('disabled', false);
                     return false;
                 }
 
                 data.formData = inputs.serializeArray();
-                data.formData.push({ name: "customerUserId", value: $("select[name='customerUserId']").val() });
+                if ($("select[name='customerUserId']").size() > 0) {
+                    data.formData.push({ name: "customerUserId", value: $("select[name='customerUserId']").val() });
+                } else {
+                    data.formData.push({ name: "customerUserId", value: $("input[name='customerUserId']").val() });
+                }
             }).on('fileuploadprogressall', function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css(
@@ -328,7 +344,7 @@
                         .append(error);
                 });
             }).prop('disabled', !$.support.fileInput)
-                    .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
         });
 
         $(document).ready(function () {
