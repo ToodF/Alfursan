@@ -95,6 +95,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string Menu_Account {
+            get {
+                return ResourceManager.GetString("Menu_Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive.
         /// </summary>
         public static string Menu_Archive {
@@ -122,6 +131,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string Menu_Other {
+            get {
+                return ResourceManager.GetString("Menu_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profiles.
         /// </summary>
         public static string Menu_Profiles {
@@ -136,6 +154,15 @@ namespace Resources {
         public static string Menu_SendMail {
             get {
                 return ResourceManager.GetString("Menu_SendMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipment.
+        /// </summary>
+        public static string Menu_ShipmentDoc {
+            get {
+                return ResourceManager.GetString("Menu_ShipmentDoc", resourceCulture);
             }
         }
         

@@ -144,3 +144,6 @@ table.dataTable thead th, table.dataTable thead td {
     font-weight: normal;
     margin-bottom: 0;
 }
+.jumbotron p {
+    font-size: 17px !important;
+}

@@ -1,22 +1,41 @@
-﻿
+﻿@using Alfursan.Domain
+
+@{
+    var currentUser = (User)Session["CurrentUser"];
+}
 <div class="jumbotron">
-    <h2>@Resources.Index.WelcomeTitle</h2>
+    <h3>@Resources.Index.WelcomeTitle</h3>
     <p class="lead">@{ WriteLiteral(Resources.Index.WelcomeText);}</p>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <h2><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h2>
-        <p>@{WriteLiteral(Resources.Index.UploadText);}</p>
-        <p><a class="btn btn-success" href="/Archive/File">Add &raquo;</a></p>
+    <div class="col-sm-3">
+        <h4><a href="/Archive/Files/1">@Resources.Index.FileTypeShipmentDoc</a> </h4>
+        <p>@{WriteLiteral(Resources.Index.ShipmentDocDesc);}</p>
+        <p><a class="btn btn-primary" href="/Archive/File/1">Add &raquo;</a></p>
     </div>
-    @*<div class="col-md-4">
-        <h2><a href="/Archive/Files/2">Account Documents</a> </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p><a class="btn btn-warning" href="/Archive/File/2">Add &raquo;</a></p>
+    @if (currentUser.ProfileId != (int)EnumProfile.CustomOfficer)
+    {
+        <div class="col-sm-3">
+            <h4><a href="/Archive/Files/2">@Resources.Index.FileTypeAccountDoc</a> </h4>
+            <p>@{ WriteLiteral(Resources.Index.AccountDesc); }</p>
+            <p><a class="btn btn-primary" href="/Archive/File/2">Add &raquo;</a></p>
+        </div>
+        <div class="col-sm-3">
+            <h4><a href="/Archive/Files/3">@Resources.Index.FileTypeOther</a> </h4>
+            <p>@{ WriteLiteral(Resources.Index.OtherDesc); }</p>
+            <p><a class="btn btn-primary" href="/Archive/File/3">Add &raquo;</a></p>
+        </div>
+    }
+    <div class="col-sm-3">
+        <h4><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h4>
+        @if (currentUser.ProfileId == (int) EnumProfile.Admin || currentUser.ProfileId == (int) EnumProfile.User)
+        {
+            <p>@{ WriteLiteral(Resources.Index.UploadTextAdmin); }</p>
+        }
+        else
+        {
+            <p>@{ WriteLiteral(Resources.Index.UploadText); }</p>
+        }
+        <p><a class="btn btn-primary" href="/Archive/File">Add &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2><a href="/Archive/Files/3">Other</a> </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p><a class="btn btn-primary" href="/Archive/File/3">Add &raquo;</a></p>
-    </div>*@
 </div>

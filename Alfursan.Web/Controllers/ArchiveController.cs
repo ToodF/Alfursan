@@ -35,14 +35,18 @@ namespace Alfursan.Web.Controllers
             var customerList = new List<SelectListItem>();
             var userResult = new EntityResponder<List<User>>();
             var userService = IocContainer.Resolve<IUserService>();
-            if (CurrentUser.ProfileId == (int)EnumProfile.Admin)
+            if (CurrentUser.ProfileId == (int)EnumProfile.Admin || CurrentUser.ProfileId == (int)EnumProfile.User)
             {
                 userResult = userService.GetCustomers();
             }
-            else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+            else if (CurrentUser.ProfileId == (int) EnumProfile.CustomOfficer)
             {
-                ViewBag.FileType = (int)EnumFileType.ShipmentDoc;
+                ViewBag.FileType = (int) EnumFileType.ShipmentDoc;
                 userResult = userService.GetCustomersByCustomOfficerId(CurrentUser.UserId);
+            }
+            else
+            {
+                userResult.Data = new List<User>() { CurrentUser };
             }
             if (userResult.ResponseCode == EnumResponseCode.Successful)
             {
@@ -134,7 +138,7 @@ namespace Alfursan.Web.Controllers
 
                     alfursanFileViewModel.Customer = new User();
 
-                    if (CurrentUser.ProfileId == (int)EnumProfile.Admin || CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+                    if (CurrentUser.ProfileId != (int)EnumProfile.Customer)
                     {
                         alfursanFileViewModel.Customer.UserId = Convert.ToInt32(Request.Form["customerUserId"]);
                     }

@@ -61,6 +61,64 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Account files are here!&lt;br/&gt;
+        ///Please click  &lt;a href=&quot;/Archive/Files/2&quot;&gt;Go to Accounts&lt;/a&gt; button and view your account files..
+        /// </summary>
+        public static string AccountDesc {
+            get {
+                return ResourceManager.GetString("AccountDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Document.
+        /// </summary>
+        public static string FileTypeAccountDoc {
+            get {
+                return ResourceManager.GetString("FileTypeAccountDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string FileTypeOther {
+            get {
+                return ResourceManager.GetString("FileTypeOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipment Document.
+        /// </summary>
+        public static string FileTypeShipmentDoc {
+            get {
+                return ResourceManager.GetString("FileTypeShipmentDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your other documents are here as your order invoices.&lt;br/&gt;
+        ///Please click  &lt;a href=&quot;/Archive/Files/3&quot;&gt;Others&lt;/a&gt; button and view your any other kind of various files..
+        /// </summary>
+        public static string OtherDesc {
+            get {
+                return ResourceManager.GetString("OtherDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Shipments Documents are here&lt;br/&gt;
+        ///Invoice, Packing List, Eur1, AWB and more.&lt;br/&gt;
+        ///Please click  &lt;a href=&quot;/Archive/Files/1&quot;&gt;Go to Shipments&lt;/a&gt; button and view your shipment files..
+        /// </summary>
+        public static string ShipmentDocDesc {
+            get {
+                return ResourceManager.GetString("ShipmentDocDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alfursan File Management.
         /// </summary>
         public static string Title {
@@ -70,13 +128,22 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading the shipment files, account files and other files into the related user’s account.&lt;br/&gt;
-        ///            Before upload a file please select the related user and file destination.&lt;br/&gt;
-        ///            PLEASE MAKE SURE THAT YOU’VE UPLOADED THE RIGHT FILE TO THE RIGHT USER..
+        ///   Looks up a localized string similar to You can upload various files into your account..
         /// </summary>
         public static string UploadText {
             get {
                 return ResourceManager.GetString("UploadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading the shipment files, account files and other files into the related user’s account.
+        ///Before upload a file please select the related user and file destination. &lt;br/&gt;
+        ///PLEASE MAKE SURE THAT YOU’VE UPLOADED THE RIGHT FILE TO THE RIGHT USER..
+        /// </summary>
+        public static string UploadTextAdmin {
+            get {
+                return ResourceManager.GetString("UploadTextAdmin", resourceCulture);
             }
         }
         

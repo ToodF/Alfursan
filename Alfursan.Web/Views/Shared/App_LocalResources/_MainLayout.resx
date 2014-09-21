@@ -133,6 +133,9 @@
   <data name="Logoff" xml:space="preserve">
     <value>Log off</value>
   </data>
+  <data name="Menu_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
   <data name="Menu_Archive" xml:space="preserve">
     <value>Archive</value>
   </data>
@@ -142,11 +145,17 @@
   <data name="Menu_HomePage" xml:space="preserve">
     <value>Home Page</value>
   </data>
+  <data name="Menu_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
   <data name="Menu_Profiles" xml:space="preserve">
     <value>Profiles</value>
   </data>
   <data name="Menu_SendMail" xml:space="preserve">
     <value>Send Mail</value>
+  </data>
+  <data name="Menu_ShipmentDoc" xml:space="preserve">
+    <value>Shipment</value>
   </data>
   <data name="Menu_Users" xml:space="preserve">
     <value>Users</value>

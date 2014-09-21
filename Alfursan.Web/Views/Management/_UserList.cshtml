@@ -44,15 +44,26 @@
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>
-                        @if ((currentUser.ProfileId == (int)EnumProfile.Admin) || (user.ProfileId != EnumProfile.Admin))
+                        @if (currentUser.ProfileId == (int)EnumProfile.Admin)
                         {
                             <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                            if (user.ProfileId != EnumProfile.Admin)
+                            {
+                                <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
+                            }
                         }
-                        @if (user.ProfileId != EnumProfile.Admin)
+                        else if ((currentUser.ProfileId == (int)EnumProfile.User) && (user.ProfileId == EnumProfile.Customer || user.ProfileId == EnumProfile.CustomOfficer))
                         {
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                             <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                         }
-                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                        else if (currentUser.ProfileId == (int)EnumProfile.User && user.UserId == currentUser.UserId)
+                        {
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                        }
                     </td>
                 </tr>
             }
