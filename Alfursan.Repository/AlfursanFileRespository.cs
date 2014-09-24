@@ -19,7 +19,7 @@ namespace Alfursan.Repository
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute("INSERT INTO dbo.[File](CustomerUserId,OriginalFileName,RelatedFileName,FileName,Description,CreatedUserId,CreateDate,UpdateDate,IsDeleted,FileType) VALUES (@CustomerUserId,@OriginalFileName,@RelatedFileName,@Subject,@Description,@CreatedUserId,@CreateDate,@UpdateDate,@IsDeleted,@FileType)", file);
+                result = con.Execute("INSERT INTO dbo.[File](CustomerUserId,OriginalFileName,RelatedFileName,FileName,Description,CreatedUserId,CreateDate,UpdateDate,IsDeleted,FileType) VALUES (@CustomerUserId,@OriginalFileName,@RelatedFileName,@FileName,@Description,@CreatedUserId,@CreateDate,@UpdateDate,@IsDeleted,@FileType)", file);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
         }

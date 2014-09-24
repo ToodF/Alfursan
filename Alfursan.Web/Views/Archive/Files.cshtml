@@ -20,22 +20,22 @@
     <thead>
         <tr>
             <th></th>
-            <th>
-                @{Write(Resources.Files.CreatedDate);}
-            </th>
-            <th>@{Write(Resources.Files.FileName);}</th>
-            <th>@{Write(Resources.Files.FileType);}</th>
-            <th>@{Write(Resources.Files.CustomerName);}</th>
-            <th>@{Write(Resources.Files.CreatedBy);}</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
         <tr>
             <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>@{Write(Resources.Files.FileName);}</th>
+            <th>
+                @{Write(Resources.Files.CreatedDate);}
+            </th>
+            <th>@{Write(Resources.Files.FileType);}</th>
+            <th>@{Write(Resources.Files.CustomerName);}</th>
+            <th>@{Write(Resources.Files.CreatedBy);}</th>
             <th></th>
         </tr>
     </thead>
@@ -50,8 +50,8 @@
                             <input type="checkbox" name="file" data="@file.FileId">
                         </div>
                     </td>
+                    <td><a href="/Uploaded/@file.RelatedFileName" download> @file.FileName</a></td>
                     <td>@file.CreateDate</td>
-                    <td><a href="/Uploaded/@file.RelatedFileName" download> @file.OriginalFileName</a></td>
                     <td>@file.FileType</td>
                     <td>@file.Customer.FullName</td>
                     <td>@file.CreatedUser.FullName</td>
@@ -103,14 +103,11 @@
             sPlaceHolder: "head:before",
             aoColumns: [
                 null,
-                { type: "date-range" },
-                //{ type: "text" },
                 null,
+                { type: "date-range" },
                 { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
                 null,
                 null,
-                //{ type: "text" },
-                //{ type: "text" },
                 null
             ]
 
