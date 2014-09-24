@@ -118,14 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Footer" xml:space="preserve">
-    <value>ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.
-            Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
-            Osmanbey-Sisli/ISTANUL/TURKEY
-            Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32
-            Web: &lt;a href="http://www.alfursan.com.tr"&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
+    <value>&lt;h4&gt;ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.&lt;/h4&gt;
+            &lt;h5&gt;Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
+            Osmanbey-Sisli/ISTANUL/TURKEY&lt;/h5&gt;
+            &lt;h5&gt;Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32&lt;/h5&gt;
+            &lt;h5&gt;Web: &lt;a href="http://www.alfursan.com.tr"&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
             &lt;a href="mailto:ccdep@alfursan.com.tr" target="_top"&gt;
                 ccdep@alfursan.com.tr
-            &lt;/a&gt;</value>
+            &lt;/a&gt;
+          &lt;/h5&gt;</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Log in</value>

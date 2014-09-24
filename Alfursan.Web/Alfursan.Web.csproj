@@ -416,6 +416,7 @@
     <Content Include="Views\Archive\File.cshtml" />
     <Content Include="Views\Archive\Files.cshtml" />
     <Content Include="Views\Management\_ChangePass.cshtml" />
+    <Content Include="Views\Archive\_SendMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -494,6 +495,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Files.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\App_LocalResources\Index.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -516,6 +518,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_MainLayout.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

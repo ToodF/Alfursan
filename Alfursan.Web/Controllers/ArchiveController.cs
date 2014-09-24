@@ -78,6 +78,35 @@ namespace Alfursan.Web.Controllers
                 customerUserId = CurrentUser.UserId;
             }
 
+            var customerList = new List<SelectListItem>();
+            var userResult = new EntityResponder<List<User>>();
+            var userService = IocContainer.Resolve<IUserService>();
+            if (CurrentUser.ProfileId == (int)EnumProfile.Admin || CurrentUser.ProfileId == (int)EnumProfile.User)
+            {
+                userResult = userService.GetCustomers();
+            }
+            else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+            {
+                ViewBag.FileType = (int)EnumFileType.ShipmentDoc;
+                userResult = userService.GetCustomersByCustomOfficerId(CurrentUser.UserId);
+            }
+            else
+            {
+                userResult.Data = new List<User>() { CurrentUser };
+            }
+            if (userResult.ResponseCode == EnumResponseCode.Successful)
+            {
+                foreach (var customer in userResult.Data)
+                {
+                    customerList.Add(new SelectListItem
+                    {
+                        Text = customer.FullName,
+                        Value = customer.UserId.ToString()
+                    });
+                }
+            }
+            ViewBag.CustomerList = customerList;
+
             var fileService = IocContainer.Resolve<IAlfursanFileService>();
             var files = fileService.GetFiles(CurrentUser.UserId, customerUserId);
 

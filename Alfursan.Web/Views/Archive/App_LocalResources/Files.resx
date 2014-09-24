@@ -139,7 +139,7 @@
     <value>Created By</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Create Date</value>
+    <value>Select Date Range</value>
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
@@ -185,5 +185,8 @@
   </data>
   <data name="Warning_NoCustomer" xml:space="preserve">
     <value>Dosya yükleyebileceğiniz bir müşteri bulunamadığından bu sayfada şuan işlem yapamazsınız.</value>
+  </data>
+  <data name="FileTypeAll" xml:space="preserve">
+    <value>All</value>
   </data>
 </root>

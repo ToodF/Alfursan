@@ -58,17 +58,29 @@
                 ids.push($(this).attr("data"));
 
                 $('#fileIds').val(ids);
-
-                console.log('Send Mail: ' + JSON.stringify(ids));
             });
 
-            var postData = { fileIds: ids.join(',') };
+            if (ids.length > 0) {
 
-            AlfursanAjax.Request("/Archive/SendMail", "Post", postData, null, function () {
-                console.log('Send Mail');
-            });
+                if ($('#profileId').val() == 1) {
+
+                    AlfursanManagement.OpenSendMailModal();
+
+                } else {
+
+                    var postData = { fileIds: ids.join(',') };
+
+                    AlfursanAjax.Request("/Archive/SendMail", "Post", postData, null, function () { });
+                }
+            }
+
         });
     },
+
+    OpenSendMailModal: function () {
+        $("#SendMailModal").modal("show");
+    },
+
 
     EditProfileRoleInit: function () {
         $("#ProfileId").change(function () {
