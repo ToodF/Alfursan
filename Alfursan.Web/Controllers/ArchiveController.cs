@@ -121,7 +121,7 @@ namespace Alfursan.Web.Controllers
                 {
                     var alfursanFileViewModel = new AlfursanFileViewModel();
 
-                    alfursanFileViewModel.Subject = Request.Form["subject"];
+                    alfursanFileViewModel.FileName = Request.Form["filename"];
                     alfursanFileViewModel.FileType = fileType;
 
                     alfursanFileViewModel.OriginalFileName = file.FileName;
