@@ -10,9 +10,9 @@
             <th></th>
             <th>@{Write(Resources.Management.Profile);}</th>
             <th>@{Write(Resources.Management.Name);}</th>
-            <th>@{Write(Resources.Management.Surname);}</th>
             <th>@{Write(Resources.Management.Email);}</th>
             <th>@{Write(Resources.Management.Phone);}</th>
+            <th>@{Write(Resources.Management.CustomOfficer);}</th>
             <th></th>
         </tr>
     </thead>
@@ -39,30 +39,30 @@
                         <span class="hidden">@((int)user.ProfileId)</span>
                         @(user.ProfileId)
                     </td>
-                    <td>@user.Name</td>
-                    <td>@user.Surname</td>
+                    <td>@user.Name @user.Surname</td>
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
+                    <td>@user.CustomOfficer</td>
                     <td>
                         @if (currentUser.ProfileId == (int)EnumProfile.Admin)
                         {
-                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                             if (user.ProfileId != EnumProfile.Admin)
                             {
-                                <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
+                        <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                             }
                         }
                         else if ((currentUser.ProfileId == (int)EnumProfile.User) && (user.ProfileId == EnumProfile.Customer || user.ProfileId == EnumProfile.CustomOfficer))
                         {
-                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
-                            <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
+                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                        <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                         }
                         else if (currentUser.ProfileId == (int)EnumProfile.User && user.UserId == currentUser.UserId)
                         {
-                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                         }
                     </td>
                 </tr>

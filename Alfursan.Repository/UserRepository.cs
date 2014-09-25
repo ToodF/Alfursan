@@ -46,7 +46,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("SELECT * FROM [User] WHERE IsDeleted = 0 ").ToList();
+                var users = con.Query<User>("SELECT U.*,CustomOfficer.Name + ' ' + CustomOfficer.Surname AS CustomOfficer FROM [User] AS U LEFT JOIN dbo.RelationCustomerCustomOfficer AS Customer ON U.UserId = Customer.CustomerUserId LEFT JOIN [User] AS CustomOfficer ON CustomOfficer.UserID = Customer.CustomOfficerId WHERE U.IsDeleted = 0 ").ToList();
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }
@@ -220,10 +220,10 @@ namespace Alfursan.Repository
                                                    INNER JOIN [User] u
                                                            ON u.UserId = rcco.CustomerUserId
                                             WHERE  CustomOfficerId = @CustomOfficerId",
-                    new {CustomOfficerId = customOfficerId});
+                    new { CustomOfficerId = customOfficerId });
                 if (user == null || !user.Any())
                 {
-                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound};
+                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound };
                 }
                 return new EntityResponder<List<User>>() { Data = user.ToList() };
             }

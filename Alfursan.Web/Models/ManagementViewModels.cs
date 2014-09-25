@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 using Alfursan.Domain;
 
 namespace Alfursan.Web.Models
@@ -95,6 +96,8 @@ namespace Alfursan.Web.Models
         public string Phone { get; set; }
 
         public bool Status { get; set; }
+
+        public string CustomOfficer { get; set; }
     }
 
     public class RoleViewModel
