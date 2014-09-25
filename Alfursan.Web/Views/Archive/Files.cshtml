@@ -11,14 +11,13 @@
     @ViewBag.DeleteMessage
     <input type="hidden" name="FileId" id="FileId" />
     <input type="hidden" name="selectedRow" id="selectedRow" />
-    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Files.btnOk   />
+    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Files.btnOk      />
     <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Files.btnNo" />
-    />
 </div>
-<p id="createDate"></p>
-<table id="grid-files" class="table table-striped table-bordered hover">
+<table id="grid-files" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
     <thead>
         <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -31,6 +30,7 @@
             <th></th>
         </tr>
         <tr>
+            <th></th>
             <th></th>
             <th>@{Write(Resources.Files.FileName);}</th>
             <th>
@@ -51,6 +51,7 @@
             foreach (var file in Model)
             {
                 <tr data="@file.FileId">
+                    <td></td>
                     <td>
                         <div class="checkbox col-lg-2">
                             <input type="checkbox" name="file" data="@file.FileId">
@@ -83,48 +84,60 @@
 
 <input type="button" class="btn btn-lg" id="sendMail" value="@Resources.Files.SendMail" />
 
-
+<style>
+    .filter_date_range input[type='text'] {
+        max-width: 100px;
+    }
+    .filter_text input[type='text']{
+         max-width: 150px;
+          min-width: 150px;
+    }
+</style>
 @section scripts
 {
     <script src="~/Scripts/Alfursan.Ajax.js"></script>
     <script src="~/Scripts/Alfursan.Management.js"></script>
 
     <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            var dt = $('#grid-files').dataTable({
-                "aoColumns": [
-                    { "sWidth": "5%" },
-                    { "sWidth": "10%" },
-                    { "sWidth": "20%" },
-                    { "sWidth": "15%" },
+        var dt = $('#grid-files').dataTable({
+            "aoColumns": [
+                { "sWidth": "1%" },
+                { "sWidth": "5%" },
+                { "sWidth": "10%" },
+                { "sWidth": "12%" },
+                { "sWidth": "10%" },
                     @if (currentUser.ProfileId != (int) EnumProfile.Customer)
                     {
-                           WriteLiteral( "{'sWidth':'15%'},");
+                           WriteLiteral( "{'sWidth':'12%'},");
                     }
-                    { "sWidth": "15%" },
+                    { "sWidth": "12%" },
                     { "sWidth": "5%" }
                 ],
                 "order": [[2, "desc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
-                },
-                //responsive: true
+                }
+                , responsive: true
             })
-        .columnFilter({
-            sPlaceHolder: "head:before",
-            aoColumns: [
-                null,
-                null,
-                { type: "date-range" },
-                { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
-                null,
-                null,
-                null
-            ]
+            .columnFilter({
+                sPlaceHolder: "head:before",
+                aoColumns: [
+                    null, null,
+                    { type: "text" },
+                    { type: "date-range" },
+                    { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
+                     @if (currentUser.ProfileId != (int) EnumProfile.Customer)
+                     {
+                        WriteLiteral("{type:'text'},");
+                     }
+                      { type: "text" }
+                ]
 
-        })
+            })
             ;
+
 
             $('input[type="checkbox"]').click(function () {
 
