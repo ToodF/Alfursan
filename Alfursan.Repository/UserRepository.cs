@@ -46,7 +46,7 @@ namespace Alfursan.Repository
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("SELECT * FROM [User] WHERE IsDeleted = 0 ").ToList();
+                var users = con.Query<User>("SELECT U.*,CustomOfficer.Name + ' ' + CustomOfficer.Surname AS CustomOfficer FROM [User] AS U LEFT JOIN dbo.RelationCustomerCustomOfficer AS Customer ON U.UserId = Customer.CustomerUserId AND Customer.IsDeleted = 0 LEFT JOIN [User] AS CustomOfficer ON CustomOfficer.UserID = Customer.CustomOfficerId  WHERE U.IsDeleted = 0").ToList();
                 return new EntityResponder<List<User>>() { Data = users };
             }
         }
@@ -126,17 +126,21 @@ namespace Alfursan.Repository
                 }
                 else
                 {
-                    var result = con.Execute(@"update [User] set 
-                                            UserName = @UserName
-                                            , Email = @Email
-                                            , Name = @Name
-                                            , Surname = @Surname
-                                            , CompanyName = @CompanyName
-                                            , Phone = @Phone
-                                            , CountryId = @CountryId
-                                            , Address = @Address
-                                            , ProfileId = @ProfileId
-                                            where UserId = @UserId", entity);
+                    var result = con.Execute(@"if(@ProfileId <> 3)
+                                                begin 
+	                                                UPDATE RelationCustomerCustomOfficer SET IsDeleted = 1 , UpdateDate = Getdate() WHERE CustomerUserId = @UserId
+                                                end              
+                                                update [User] set 
+                                                UserName = @UserName
+                                                , Email = @Email
+                                                , Name = @Name
+                                                , Surname = @Surname
+                                                , CompanyName = @CompanyName
+                                                , Phone = @Phone
+                                                , CountryId = @CountryId
+                                                , Address = @Address
+                                                , ProfileId = @ProfileId
+                                                where UserId = @UserId", entity);
                     return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
                 }
             }
@@ -220,10 +224,10 @@ namespace Alfursan.Repository
                                                    INNER JOIN [User] u
                                                            ON u.UserId = rcco.CustomerUserId
                                             WHERE  CustomOfficerId = @CustomOfficerId",
-                    new {CustomOfficerId = customOfficerId});
+                    new { CustomOfficerId = customOfficerId });
                 if (user == null || !user.Any())
                 {
-                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound};
+                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound };
                 }
                 return new EntityResponder<List<User>>() { Data = user.ToList() };
             }

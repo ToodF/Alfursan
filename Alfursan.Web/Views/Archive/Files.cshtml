@@ -18,6 +18,10 @@
 
 <p id="createDate"></p>
 <table id="grid-files" class="table table-striped table-bordered hover">
+    <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Files.btnOk      />
+    <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Files.btnNo" />
+</div>
+<table id="grid-files" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th></th>
@@ -27,15 +31,26 @@
             <th>@{Write(Resources.Files.FileTypeAll);}</th>
             <th>@{Write(Resources.Files.FileTypeAll);}</th>
             <th></th>
+            <th></th>
+            @if (currentUser.ProfileId != (int)EnumProfile.Customer)
+            {
+                <th></th>
+            }
+            <th></th>
+            <th></th>
         </tr>
         <tr>
+            <th></th>
             <th></th>
             <th>@{Write(Resources.Files.FileName);}</th>
             <th>
                 @{Write(Resources.Files.CreatedDate);}
             </th>
             <th>@{Write(Resources.Files.FileType);}</th>
-            <th>@{Write(Resources.Files.CustomerName);}</th>
+            @if (currentUser.ProfileId != (int)EnumProfile.Customer)
+            {
+                <th>@{ Write(Resources.Files.CustomerName); }</th>
+            }
             <th>@{Write(Resources.Files.CreatedBy);}</th>
             <th></th>
         </tr>
@@ -46,6 +61,7 @@
             foreach (var file in Model)
             {
                 <tr data="@file.FileId">
+                    <td></td>
                     <td>
                         <div class="checkbox col-lg-2">
                             <input type="checkbox" name="file" data="@file.FileId" data-filename="@file.FileName" data-filepath="@file.RelatedFileName">
@@ -54,7 +70,10 @@
                     <td><a href="/Uploaded/@file.RelatedFileName" download> @file.FileName</a></td>
                     <td>@file.CreateDate</td>
                     <td>@file.FileType</td>
-                    <td>@file.Customer.FullName</td>
+                    @if (currentUser.ProfileId != (int)EnumProfile.Customer)
+                    {
+                        <td>@file.Customer.FullName</td>
+                    }
                     <td>@file.CreatedUser.FullName</td>
 
                     <td>
@@ -94,6 +113,15 @@
 </div>
 
 
+<style>
+    .filter_date_range input[type='text'] {
+        max-width: 100px;
+    }
+    .filter_text input[type='text']{
+         max-width: 150px;
+          min-width: 150px;
+    }
+</style>
 
 @section scripts
 {
@@ -101,38 +129,44 @@
     <script src="~/Scripts/Alfursan.Management.js"></script>
 
     <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            var dt = $('#grid-files').dataTable({
-                "aoColumns": [
-                    { "sWidth": "5%" },
-                    { "sWidth": "10%" },
-                    { "sWidth": "20%" },
-                    { "sWidth": "15%" },
-                    { "sWidth": "15%" },
-                    { "sWidth": "15%" },
+        var dt = $('#grid-files').dataTable({
+            "aoColumns": [
+                { "sWidth": "1%" },
+                { "sWidth": "5%" },
+                { "sWidth": "10%" },
+                { "sWidth": "12%" },
+                { "sWidth": "10%" },
+                    @if (currentUser.ProfileId != (int) EnumProfile.Customer)
+                    {
+                           WriteLiteral( "{'sWidth':'12%'},");
+                    }
+                    { "sWidth": "12%" },
                     { "sWidth": "5%" }
                 ],
                 "order": [[2, "desc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
-                },
-                //responsive: true
+                }
+                , responsive: true
             })
-        .columnFilter({
-            sPlaceHolder: "head:after",
-            aoColumns: [
-                null,
-                { type: "text" },
-                { type: "date-range" },
-                { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
-                { type: "select" },
-                { type: "select" },
-                null
-            ]
+            .columnFilter({
+                sPlaceHolder: "head:before",
+                aoColumns: [
+                    null, null,
+                    { type: "text" },
+                    { type: "date-range" },
+                    { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
+                     @if (currentUser.ProfileId != (int) EnumProfile.Customer)
+                     {
+                        WriteLiteral("{type:'select'},");
+                     }
+                      { type: "select" }
+                ]
 
-        })
-            ;
+            })            ;
+
 
             $('input[type="checkbox"]').click(function () {
 
