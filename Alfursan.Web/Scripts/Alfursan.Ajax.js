@@ -10,7 +10,7 @@
             data: data,
             traditional: true
         }).done(function (result) {
-            if (result.ResponseMessage != undefined && result.ResponseMessage != "" ) {
+            if (result.ResponseMessage != undefined && result.ResponseMessage != "") {
                 var messageCode = "alert-success";
                 if (result.ReturnCode == "2") {
                     messageCode = "alert-danger";
@@ -25,6 +25,8 @@
                     alertDiv.addClass("alert");
                     alertDiv.addClass(messageCode);
                     alertDiv.html(result.ResponseMessage);
+                    console.log('alertDiv.size() > 0');
+
                 } else {
                     $(resultContainer).append('<div class="alert ' + messageCode + '" role="alert">' + result.ResponseMessage + '</div>');
                 }

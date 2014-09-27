@@ -1,4 +1,5 @@
-﻿using Alfursan.Domain;
+﻿using System.ServiceModel.Dispatcher;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Filters;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Alfursan.Web.Controllers
 {
@@ -39,9 +41,9 @@ namespace Alfursan.Web.Controllers
             {
                 userResult = userService.GetCustomers();
             }
-            else if (CurrentUser.ProfileId == (int) EnumProfile.CustomOfficer)
+            else if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
             {
-                ViewBag.FileType = (int) EnumFileType.ShipmentDoc;
+                ViewBag.FileType = (int)EnumFileType.ShipmentDoc;
                 userResult = userService.GetCustomersByCustomOfficerId(CurrentUser.UserId);
             }
             else
@@ -96,16 +98,8 @@ namespace Alfursan.Web.Controllers
             }
             if (userResult.ResponseCode == EnumResponseCode.Successful)
             {
-                foreach (var customer in userResult.Data)
-                {
-                    customerList.Add(new SelectListItem
-                    {
-                        Text = customer.FullName,
-                        Value = customer.UserId.ToString()
-                    });
-                }
+                ViewBag.CustomerList = userResult.Data;
             }
-            ViewBag.CustomerList = customerList;
 
             var fileService = IocContainer.Resolve<IAlfursanFileService>();
             var files = fileService.GetFiles(CurrentUser.UserId, customerUserId);
@@ -150,7 +144,7 @@ namespace Alfursan.Web.Controllers
                 {
                     var alfursanFileViewModel = new AlfursanFileViewModel();
 
-                    alfursanFileViewModel.Subject = Request.Form["subject"];
+                    alfursanFileViewModel.FileName = Request.Form["filename"];
                     alfursanFileViewModel.FileType = fileType;
 
                     alfursanFileViewModel.OriginalFileName = file.FileName;
@@ -239,26 +233,44 @@ namespace Alfursan.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendMail(string fileIds)
+        public JsonResult SendMail()
         {
-            var fileService = IocContainer.Resolve<IAlfursanFileService>();
-
-            var files = fileService.GetFilesByIds(fileIds);
-
-            var results = files.Data.GroupBy(c => c.CustomerUserId);
-
-            var absPath = Server.MapPath("/Uploaded");
-
-            foreach (var result in results)
+            HttpResponseModel result;
+            if (ModelState.IsValid)
             {
-                var absolutePaths = new List<string>();
+                var sendMailViewModel = JsonConvert.DeserializeObject<SendMailViewModel>(Request.Form[0]);
 
-                absolutePaths.AddRange(result.Select(file => string.Format("{0}/{1}", absPath, file.RelatedFileName)));
+                foreach (var user in sendMailViewModel.Users)
+                {
+                    var absPath = Server.MapPath("/Uploaded");
 
-                SendMail(result.Key, absolutePaths, Resources.MailMessage.FileUploadedBody, Resources.MailMessage.FileUploadedSubject);
+                    var absolutePaths = new List<string>();
+
+                    absolutePaths.AddRange(
+                        sendMailViewModel.Files.Select(file => string.Format("{0}/{1}", absPath, file.RelatedFileName)));
+
+                    SendMessageHelper.SendMessageFileUploaded(user,
+                        absolutePaths,
+                        Resources.MailMessage.FileUploadedBody,
+                        Resources.MailMessage.FileUploadedSubject);
+                }
+
+                result = new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Success,
+                    ResponseMessage = Resources.MessageResource.Info_SendMail
+                };
+            }
+            else
+            {
+                result = new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Error,
+                    ResponseMessage = Resources.MessageResource.Error_ModelNotValid
+                };
             }
 
-            return null;
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         string UploadFile(HttpPostedFileBase file, string relatedFileName, out string thumbnail, out string absolutePath)

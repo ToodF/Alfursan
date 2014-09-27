@@ -1,44 +1,34 @@
 ﻿@using Alfursan.Domain
+@using Alfursan.Web.Models
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "/Archive/SendMail" }))
 {
     @Html.AntiForgeryToken()
 
     var currentUser = (User)Session["CurrentUser"];
-    var customers = (List<SelectListItem>)ViewBag.CustomerList;
+    var customers = (List<User>)ViewBag.CustomerList;
 
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
 
-            @if (customers.Count > 1 && currentUser.ProfileId != (int)EnumProfile.Customer)
-            {
-                <div class="form-group customer-dropdown-select">
-                    <label for="drpUser">@Resources.Files.Customer</label>
-                    <select id="drpUser" name="customerUserId" class="selectpicker">
-                        <option data-hidden="true">@Resources.Files.Select</option>
+        @if (customers.Count > 1 && currentUser.ProfileId != (int)EnumProfile.Customer)
+        {
+            <div class="well" style="max-height: 600px; overflow: auto;">
+
+                <div class="row">
+                    <input type="text" class="form-control" name="search-customer" placeholder="Search Customer"/>
+                </div>
+
+                <div class="row">
+                    <ul id="check-list-box" class="list-group checked-list-box">
                         @foreach (var user in customers)
                         {
-                            <option value="@user.Value">@user.Text</option>
+                            <li class="list-group-item" data-color="info" data="@user.UserId" data-email="@user.Email">@user.Name @user.Surname</li>
                         }
-                    </select>
+                    </ul>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
-}
-
-
-<link href="~/Plugins/Dropdown/css/bootstrap-select.css" rel="stylesheet" />
-
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            $('.selectpicker').selectpicker();
-        });
-
-    </script>
-
 }

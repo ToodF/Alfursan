@@ -180,8 +180,8 @@
   <data name="StartUpload" xml:space="preserve">
     <value>Start Upload</value>
   </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Subject</value>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
   </data>
   <data name="Warning_NoCustomer" xml:space="preserve">
     <value>Dosya yükleyebileceğiniz bir müşteri bulunamadığından bu sayfada şuan işlem yapamazsınız.</value>

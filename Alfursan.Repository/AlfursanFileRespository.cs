@@ -19,7 +19,7 @@ namespace Alfursan.Repository
             var result = 0;
             using (var con = DapperHelper.CreateConnection())
             {
-                result = con.Execute("INSERT INTO dbo.[File](CustomerUserId,OriginalFileName,RelatedFileName,Subject,Description,CreatedUserId,CreateDate,UpdateDate,IsDeleted,FileType) VALUES (@CustomerUserId,@OriginalFileName,@RelatedFileName,@Subject,@Description,@CreatedUserId,@CreateDate,@UpdateDate,@IsDeleted,@FileType)", file);
+                result = con.Execute("INSERT INTO dbo.[File](CustomerUserId,OriginalFileName,RelatedFileName,FileName,Description,CreatedUserId,CreateDate,UpdateDate,IsDeleted,FileType) VALUES (@CustomerUserId,@OriginalFileName,@RelatedFileName,@FileName,@Description,@CreatedUserId,@CreateDate,@UpdateDate,@IsDeleted,@FileType)", file);
             }
             return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
         }
@@ -77,7 +77,7 @@ namespace Alfursan.Repository
             using (var con = DapperHelper.CreateConnection())
             {
                 var files = con.Query<AlfursanFile, User, User, AlfursanFile>(@"SELECT f.FileId
-                        ,f.Subject
+                        ,f.FileName
                         ,f.OriginalFileName
                         ,f.FileType
                         ,RelatedFileName

@@ -11,7 +11,7 @@
     @ViewBag.DeleteMessage
     <input type="hidden" name="FileId" id="FileId" />
     <input type="hidden" name="selectedRow" id="selectedRow" />
-    <input type="hidden" name="profileId" id="profileId" value="@currentUser.ProfileId"/>
+    <input type="hidden" name="profileId" id="profileId" value="@currentUser.ProfileId" />
     <input type="button" class="btn btn-xs" id="delete-file-ok" value="@Resources.Files.btnOk" />
     <input type="button" class="btn btn-primary btn-xs" id="delete-file-cancel" value="@Resources.Files.btnNo" />
 </div>
@@ -48,10 +48,10 @@
                 <tr data="@file.FileId">
                     <td>
                         <div class="checkbox col-lg-2">
-                            <input type="checkbox" name="file" data="@file.FileId">
+                            <input type="checkbox" name="file" data="@file.FileId" data-filename="@file.FileName" data-filepath="@file.RelatedFileName">
                         </div>
                     </td>
-                    <td><a href="/Uploaded/@file.RelatedFileName" download> @file.Subject</a></td>
+                    <td><a href="/Uploaded/@file.RelatedFileName" download> @file.FileName</a></td>
                     <td>@file.CreateDate</td>
                     <td>@file.FileType</td>
                     <td>@file.Customer.FullName</td>
@@ -87,7 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Management.Modal_Btn_Close</button>
-                <button type="button" class="btn btn-primary">@Resources.Management.Modal_Btn_SendMail</button>
+                <button type="button" class="btn btn-primary" id="get-checked-data">@Resources.Management.Modal_Btn_SendMail</button>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@
 
                 $(this).attr('checked', isChecked);
             });
-            
+
             var message = $("#message-delete-file");
             $(message).css("display", "none");
 
@@ -175,6 +175,7 @@
             });
 
             AlfursanManagement.ArchiveInit();
+
         });
 
     </script>

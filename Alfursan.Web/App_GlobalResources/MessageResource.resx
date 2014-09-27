@@ -175,4 +175,7 @@ Tel: 0090 212 2464430
   <data name="Warning_NotUpdateAdminProfile" xml:space="preserve">
     <value>You Can't Edit The Admin Profile.</value>
   </data>
+  <data name="Info_SendMail" xml:space="preserve">
+    <value>Dosyalar seçilen müşterilere gönderilmiştir.</value>
+  </data>
 </root>
