@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAlfursanFileRepository.cs" />
+    <Compile Include="ILoggerRepository.cs" />
     <Compile Include="IRoleRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUserRepository.cs" />

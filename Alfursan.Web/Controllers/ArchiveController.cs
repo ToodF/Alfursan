@@ -72,15 +72,10 @@ namespace Alfursan.Web.Controllers
 
             var customerUserId = 0;
 
-            if (CurrentUser == null)
-                return RedirectToAction("Login", "Account");
-
             if (CurrentUser.ProfileId == (int)EnumProfile.Customer)
             {
                 customerUserId = CurrentUser.UserId;
             }
-
-            var customerList = new List<SelectListItem>();
             var userResult = new EntityResponder<List<User>>();
             var userService = IocContainer.Resolve<IUserService>();
             if (CurrentUser.ProfileId == (int)EnumProfile.Admin || CurrentUser.ProfileId == (int)EnumProfile.User)
@@ -222,26 +217,41 @@ namespace Alfursan.Web.Controllers
             var userService = IocContainer.Resolve<IUserService>();
 
             var users = userService.GetUsersForNotificationByCustomerUserId(customerUserId);
-
-            foreach (var user in users.Data)
-            {
-                SendMessageHelper.SendMessageFileUploaded(user,
-                    absolutePath,
-                    body,
-                    subject);
-            }
+            SendMessageHelper.SendMessageFileUploaded(users.Data.Select(f => f.Email).ToList(),
+                   absolutePath,
+                   body,
+                   subject);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public JsonResult SendMail()
         {
             HttpResponseModel result;
             if (ModelState.IsValid)
             {
                 var sendMailViewModel = JsonConvert.DeserializeObject<SendMailViewModel>(Request.Form[0]);
-
-                foreach (var user in sendMailViewModel.Users)
+                if (!string.IsNullOrEmpty(sendMailViewModel.Emails))
                 {
+                    var splitMails = sendMailViewModel.Emails.Split(';');
+                    foreach (var mail in splitMails)
+                    {
+                        if (!string.IsNullOrEmpty(mail))
+                        {
+                            sendMailViewModel.Users.Add(new User() { Email = mail });
+                        }
+                    }
+                }
+                if (sendMailViewModel.Users.Count == 0)
+                {
+                    result = new HttpResponseModel()
+                    {
+                        ReturnCode = EnumResponseStatusCode.Error,
+                        ResponseMessage = Resources.MessageResource.Error_ModelNotValid
+                    };
+                }
+                else
+                {
+
                     var absPath = Server.MapPath("/Uploaded");
 
                     var absolutePaths = new List<string>();
@@ -249,17 +259,28 @@ namespace Alfursan.Web.Controllers
                     absolutePaths.AddRange(
                         sendMailViewModel.Files.Select(file => string.Format("{0}/{1}", absPath, file.RelatedFileName)));
 
-                    SendMessageHelper.SendMessageFileUploaded(user,
-                        absolutePaths,
-                        Resources.MailMessage.FileUploadedBody,
-                        Resources.MailMessage.FileUploadedSubject);
+                    var mailResult =
+                        SendMessageHelper.SendMessageFileUploaded(sendMailViewModel.Users.Select(f => f.Email).ToList(),
+                            absolutePaths,
+                            sendMailViewModel.MailBody,
+                            sendMailViewModel.Subject);
+                    if (mailResult.ResponseCode == EnumResponseCode.Successful)
+                    {
+                        result = new HttpResponseModel()
+                        {
+                            ReturnCode = EnumResponseStatusCode.Success,
+                            ResponseMessage = Resources.MessageResource.Info_SendMail
+                        };
+                    }
+                    else
+                    {
+                        result = new HttpResponseModel()
+                        {
+                            ReturnCode = EnumResponseStatusCode.Error,
+                            ResponseMessage = Resources.MessageResource.ResourceManager.GetString(mailResult.ResponseUserFriendlyMessageKey)
+                        };
+                    }
                 }
-
-                result = new HttpResponseModel()
-                {
-                    ReturnCode = EnumResponseStatusCode.Success,
-                    ResponseMessage = Resources.MessageResource.Info_SendMail
-                };
             }
             else
             {

@@ -180,13 +180,17 @@
   <data name="StartUpload" xml:space="preserve">
     <value>Start Upload</value>
   </data>
-  <data name="FileName" xml:space="preserve">
-    <value>File Name</value>
-  </data>
   <data name="Warning_NoCustomer" xml:space="preserve">
     <value>Dosya yükleyebileceğiniz bir müşteri bulunamadığından bu sayfada şuan işlem yapamazsınız.</value>
   </data>
   <data name="FileTypeAll" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="FileUploadMailBody" xml:space="preserve">
+    <value>&lt;h4&gt;Merhaba ;&lt;/h4&gt;
+&lt;p&gt;Ekte hesap bilgilerinizi bulabilirsiniz.&lt;/p&gt;</value>
+  </data>
+  <data name="FileUploadMailSubject" xml:space="preserve">
+    <value>Alfursan Hesap Dökümanları</value>
   </data>
 </root>

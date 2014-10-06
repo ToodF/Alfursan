@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using Alfursan.Domain;
+﻿using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
-using System.Net.Mail;
 using Alfursan.Web.Models;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Net.Mail;
 
 namespace Alfursan.Web.Helpers
 {
@@ -40,12 +38,8 @@ namespace Alfursan.Web.Helpers
             replacements.Add("<Username>", user.UserName);
             replacements.Add("<Email>", user.Email);
             replacements.Add("<Password>", user.Password);
-            foreach (var replacement in replacements)
-            {
-                message.Body = message.Body.Replace(replacement.Key, replacement.Value);
-            }
             message.To.Add(user.Email);
-            return mailsender.SendMessage(message);
+            return mailsender.SendMessage(message, replacements);
         }
 
         public static Responder SendMessageForgot(User user, string confirmKey)
@@ -59,15 +53,12 @@ namespace Alfursan.Web.Helpers
             replacements.Add("<Surname>", user.Surname);
             replacements.Add("<ConfirmKey>", confirmKey);
             replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
-            foreach (var replacement in replacements)
-            {
-                message.Body = message.Body.Replace(replacement.Key, replacement.Value);
-            }
+          
             message.To.Add(user.Email);
-            return mailsender.SendMessage(message);
+            return mailsender.SendMessage(message, replacements);
         }
 
-        public static Responder SendMessageFileUploaded(User user, List<string> absolutePaths, string body, string subject)
+        public static Responder SendMessageFileUploaded(List<string> emails, List<string> absolutePaths, string body, string subject)
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
@@ -80,18 +71,11 @@ namespace Alfursan.Web.Helpers
                 var attachment = new Attachment(absolutePath);
                 message.Attachments.Add(attachment);
             }
-
-            var replacements = new Dictionary<string, string>();
-            replacements.Add("<Name>", user.Name);
-            replacements.Add("<Surname>", user.Surname);
-            replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
-
-            foreach (var replacement in replacements)
+            foreach (var email in emails)
             {
-                message.Body = message.Body.Replace(replacement.Key, replacement.Value);
+                message.To.Add(email);
             }
-            message.To.Add(user.Email);
-            return mailsender.SendMessage(message);
+            return mailsender.SendMessage(message, null);
         }
         
         internal static Responder SendMessageChangePass(ChangePassViewModel changePassViewModel)
@@ -111,12 +95,8 @@ namespace Alfursan.Web.Helpers
                 replacements.Add("<Username>", user.UserName);
                 replacements.Add("<Email>", user.Email);
                 replacements.Add("<Password>", user.Password);
-                foreach (var replacement in replacements)
-                {
-                    message.Body = message.Body.Replace(replacement.Key, replacement.Value);
-                }
                 message.To.Add(user.Email);
-                return mailsender.SendMessage(message);
+                return mailsender.SendMessage(message, replacements);
             }
             return userResponse;
         }

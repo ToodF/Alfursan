@@ -45,6 +45,7 @@
     <Compile Include="Country.cs" />
     <Compile Include="EntityResponder.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="MailLog.cs" />
     <Compile Include="MailProvider.cs" />
     <Compile Include="RelationCustomerCustomOfficer.cs" />
     <Compile Include="Role.cs" />

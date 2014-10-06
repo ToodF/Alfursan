@@ -29,6 +29,7 @@
             }
             <th>@{Write(Resources.Files.FileTypeAll);}</th>
             <th></th>
+            <th></th>
         </tr>
         <tr>
             <th></th>
@@ -43,7 +44,7 @@
             }
             <th>@{Write(Resources.Files.CreatedBy);}</th>
             <th></th>
-            
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -104,7 +105,7 @@
 </div>
 
 
-<style>
+<style type="text/css">
     .filter_date_range input[type='text'] {
         max-width: 100px;
     }
@@ -119,6 +120,8 @@
 {
     <script src="~/Scripts/Alfursan.Ajax.js"></script>
     <script src="~/Scripts/Alfursan.Management.js"></script>
+    <script type="text/javascript" src="/Plugins/jHtmlArea/scripts/jHtmlArea-0.8.js"></script>
+    <link rel="Stylesheet" type="text/css" href="/Plugins/jHtmlArea/style/jHtmlArea.css" />
 
     <script>
         $(document).ready(function () {
@@ -130,12 +133,12 @@
                     { "sWidth": "10%" },
                     { "sWidth": "12%" },
                     { "sWidth": "10%" },
-                        @if (currentUser.ProfileId != (int) EnumProfile.Customer)
-                    {
-                           WriteLiteral( "{'sWidth':'12%'},");
-                    }
-                        { "sWidth": "12%" },
-                        { "sWidth": "5%" }
+                    @if (currentUser.ProfileId != (int) EnumProfile.Customer)
+                        {
+                            WriteLiteral( "{'sWidth':'12%'},");
+                        }
+                    { "sWidth": "12%" },
+                    { "sWidth": "5%" }
                 ],
                 "order": [[2, "desc"]],
                 "language": {
@@ -150,11 +153,11 @@
                         { type: "text" },
                         { type: "date-range" },
                         { type: "select", values: ['ShipmentDoc', 'AccountDoc', 'Other'], selected: '' },
-                         @if (currentUser.ProfileId != (int) EnumProfile.Customer)
-                     {
-                        WriteLiteral("{type:'select'},");
-                     }
-                          { type: "select" }
+                        @if (currentUser.ProfileId != (int) EnumProfile.Customer)
+                        {
+                            WriteLiteral("{type:'select'},");
+                        }
+                    { type: "select" }
                     ]
 
                 });
@@ -204,5 +207,17 @@
 
         });
 
+    </script>
+
+    <script type="text/javascript">
+        // You can do this to perform a global override of any of the "default" options
+        // jHtmlArea.fn.defaultOptions.css = "jHtmlArea.Editor.css";
+
+        $(function () {
+            //$("textarea").htmlarea(); // Initialize all TextArea's as jHtmlArea's with default values
+
+            $("#MailBody").htmlarea(); // Initialize jHtmlArea's with all default values
+        
+        });
     </script>
 }

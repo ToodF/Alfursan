@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Mvc;
 using Alfursan.Domain;
+using System.Collections.Generic;
 
 namespace Alfursan.Web.Models
 {
@@ -11,5 +9,9 @@ namespace Alfursan.Web.Models
         public List<AlfursanFile> Files { get; set; }
 
         public List<User> Users { get; set; }
+        public string Subject { get; set; }
+        public string Emails { get; set; }
+        [AllowHtml]
+        public string MailBody { get; set; }
     }
 }

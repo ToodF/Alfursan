@@ -51,7 +51,7 @@
     },
 
     ArchiveInit: function () {
-        var sendMail = { Files: [], Users: [] };
+        var sendMail = { Files: [], Users: [], Subject: '', Emails: '', MailBody: '' };
 
         $('#sendMail').click(function () {
             var ids = [];
@@ -163,9 +163,14 @@
             $("#check-list-box li.active").each(function (idx, li) {
                 sendMail.Users.push({ UserId: $(li).attr("data"), Name: $(li).text(), Email: $(li).attr("data-email") });
             });
+            sendMail.Subject = $("#Subject").val();
+            sendMail.Emails = $("#Emails").val();
+            sendMail.MailBody = $("#MailBody").val();
 
-            if (sendMail.Users.length > 0) {
-                AlfursanAjax.Request("/Archive/SendMail", "Post", JSON.stringify(sendMail, null, '\t'), ".modal-body", function () { });
+            if (sendMail.Users.length > 0 || sendMail.Emails.length > 0) {
+                AlfursanAjax.Request("/Archive/SendMail", "Post", JSON.stringify(sendMail, null, '\t'), ".modal-body", function() {});
+            } else {
+                alert("Mail gönderim için mail adresi eklemelisiniz.");
             }
 
         });

@@ -67,7 +67,7 @@ namespace Alfursan.Repository
                         con.Execute(
                             "insert into [User] (UserName,Email,Password,Name,Surname,CompanyName,Phone,CountryId,Address,ProfileId,IsDeleted) values (@UserName,@Email,@Password,@Name,@Surname,@CompanyName,@Phone,@CountryId,@Address,@ProfileId,0)",
                             entity);
-                    return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NoRecordFound : EnumResponseCode.Successful) };
+                    return new Responder() { ResponseCode = (result == 0 ? EnumResponseCode.NotInserted : EnumResponseCode.Successful) };
                 }
             }
 

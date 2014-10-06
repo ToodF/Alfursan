@@ -1,6 +1,4 @@
 ﻿@using Alfursan.Domain
-@using Alfursan.Web.Models
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "/Archive/SendMail" }))
 {
     @Html.AntiForgeryToken()
@@ -11,15 +9,12 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         @if (customers.Count > 1 && currentUser.ProfileId != (int)EnumProfile.Customer)
         {
             <div class="well" style="max-height: 600px; overflow: auto;">
-
                 <div class="row">
-                    <input type="text" class="form-control" name="search-customer" placeholder="Search Customer"/>
+                    <input type="text" class="form-control" name="search-customer" placeholder="Search Customer" />
                 </div>
-
                 <div class="row">
                     <ul id="check-list-box" class="list-group checked-list-box">
                         @foreach (var user in customers)
@@ -30,5 +25,51 @@
                 </div>
             </div>
         }
+
+        <div>
+            @Html.Label("Emails")
+        </div>
+
+        <div>
+            <input type="text" class="form-control" name="Emails" id="Emails" placeholder="example1@mail.com;example2@mail.com;" />
+        </div>
+        <div>
+            @Html.Label("Subject")
+        </div>
+        <div>
+            <input type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject" value="@Resources.Files.FileUploadMailSubject" />
+        </div>
+        <div>
+            @Html.Label("Mail Body")
+        </div>
+        <div>
+            <textarea id="MailBody" name="MailBody" cols="50" rows="15" style="width: 572px;height: 200px;">
+                @Resources.Files.FileUploadMailBody
+            </textarea>
+        </div>
     </div>
+    
 }
+<style type="text/css">
+    /* body { background: #ccc;} */
+    div.jHtmlArea .ToolBar ul li a.custom_disk_button {
+        background: url(images/disk.png) no-repeat;
+        background-position: 0 0;
+    }
+
+    div.jHtmlArea {
+        border: solid 1px #ccc;
+    }
+
+    .jHtmlArea h1, .jHtmlArea .h1, .jHtmlArea h2, .jHtmlArea .h2, .jHtmlArea h3, .jHtmlArea .h3 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .jHtmlArea h4, .jHtmlArea .h4, .jHtmlArea h5, .jHtmlArea .h5, .jHtmlArea h6, .jHtmlArea .h6 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+</style>
+
+

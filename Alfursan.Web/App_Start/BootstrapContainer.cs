@@ -41,7 +41,8 @@ namespace Alfursan.Web
                     }))
                      .Interceptors(InterceptorReference.ForType<Logging>()).First
                     .Interceptors(InterceptorReference.ForType<Caching>()).First
-                    .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First
+                    .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
+                Component.For<ILoggerRepository>().ImplementedBy<LoggerRepository>().LifestyleTransient()
                 );
 
             return container;
