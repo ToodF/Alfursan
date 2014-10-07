@@ -53,7 +53,7 @@ namespace Alfursan.Web.Helpers
             replacements.Add("<Surname>", user.Surname);
             replacements.Add("<ConfirmKey>", confirmKey);
             replacements.Add("<SiteRoot>", ConfigurationManager.AppSettings["SiteRoot"]);
-          
+
             message.To.Add(user.Email);
             return mailsender.SendMessage(message, replacements);
         }
@@ -77,7 +77,7 @@ namespace Alfursan.Web.Helpers
             }
             return mailsender.SendMessage(message, null);
         }
-        
+
         internal static Responder SendMessageChangePass(ChangePassViewModel changePassViewModel)
         {
             var userService = IocContainer.Resolve<IUserService>();
@@ -101,21 +101,14 @@ namespace Alfursan.Web.Helpers
             return userResponse;
         }
 
-        public static Responder SendMessage(List<string> emails, string body, string subject)
+        public static Responder SendMessage(string email, string body, string subject)
         {
             var mailsender = IocContainer.Resolve<IMessageSender>();
             var message = new MailMessage();
             message.Subject = subject;
 
             message.Body = body;
-            
-            foreach (var email in emails)
-            {
-                if (!string.IsNullOrEmpty(email))
-                {
-                    message.To.Add(email);
-                }
-            }
+            message.To.Add(email);
             return mailsender.SendMessage(message, null);
         }
     }
