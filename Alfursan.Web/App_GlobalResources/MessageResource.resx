@@ -176,6 +176,6 @@ Tel: 0090 212 2464430
     <value>You Can't Edit The Admin Profile.</value>
   </data>
   <data name="Info_SendMail" xml:space="preserve">
-    <value>Dosyalar seçilen müşterilere gönderilmiştir.</value>
+    <value>Mail gönderildi.</value>
   </data>
 </root>

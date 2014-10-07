@@ -458,6 +458,7 @@
     <Content Include="Views\Archive\Files.cshtml" />
     <Content Include="Views\Management\_ChangePass.cshtml" />
     <Content Include="Views\Archive\_SendMail.cshtml" />
+    <Content Include="Views\Management\_SendMailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

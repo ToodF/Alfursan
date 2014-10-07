@@ -100,5 +100,23 @@ namespace Alfursan.Web.Helpers
             }
             return userResponse;
         }
+
+        public static Responder SendMessage(List<string> emails, string body, string subject)
+        {
+            var mailsender = IocContainer.Resolve<IMessageSender>();
+            var message = new MailMessage();
+            message.Subject = subject;
+
+            message.Body = body;
+            
+            foreach (var email in emails)
+            {
+                if (!string.IsNullOrEmpty(email))
+                {
+                    message.To.Add(email);
+                }
+            }
+            return mailsender.SendMessage(message, null);
+        }
     }
 }

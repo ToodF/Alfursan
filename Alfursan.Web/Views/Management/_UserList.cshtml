@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th></th>
+            <th></th>
             <th>@{Write(Resources.Management.Profile);}</th>
             <th>@{Write(Resources.Management.Name);}</th>
             <th>@{Write(Resources.Management.Email);}</th>
@@ -22,6 +23,11 @@
             foreach (var user in Model)
             {
                 <tr data="@user.UserId">
+                    <td>
+                        <div class="checkbox col-lg-2">
+                            <input type="checkbox" name="file" data="@user.Email" >
+                        </div>
+                    </td>
                     <td>
                         @if ((currentUser.ProfileId == (int)EnumProfile.Admin && !user.Email.Equals(currentUser.Email)) || (user.ProfileId != EnumProfile.Admin))
                         {
@@ -46,24 +52,25 @@
                     <td>
                         @if (currentUser.ProfileId == (int)EnumProfile.Admin)
                         {
-                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                             if (user.ProfileId != EnumProfile.Admin)
                             {
-                        <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
+                                <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                             }
                         }
                         else if ((currentUser.ProfileId == (int)EnumProfile.User) && (user.ProfileId == EnumProfile.Customer || user.ProfileId == EnumProfile.CustomOfficer))
                         {
-                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
-                        <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                            <span class="glyphicon glyphicon-trash delete-user" data="@user.UserId" email="@user.Email"></span>
                         }
                         else if (currentUser.ProfileId == (int)EnumProfile.User && user.UserId == currentUser.UserId)
                         {
-                        <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
-                        <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
+                            <span class="glyphicon glyphicon-edit edit-user" data="@user.UserId"></span>
+                            <span class="glyphicon glyphicon-lock btn-change-pass" email="@user.Email"></span>
                         }
+                        <span class="glyphicon glyphicon-envelope btn-send-mail" email="@user.Email"></span>
                     </td>
                 </tr>
             }

@@ -4,6 +4,8 @@
     UserListInit: function () {
         AlfursanManagement.GetUserList();
 
+        $("#MailBody").htmlarea();
+
         $("input[name='ProfileId']").change(function () {
             if ($(this).val() == AlfursanManagement.CustomerProfileId) {
                 $("#form-item-customerofficer").css("display", "block");
@@ -40,6 +42,16 @@
             AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body");
         });
 
+        $("#SendMailModal .modal-footer .btn-primary").click(function () {
+            var form = $("#SendMailModal .modal-body form");
+            var isValid = form.valid();
+            if (!isValid) {
+                return false;
+            }
+            AlfursanAjax.Request(form.attr('action'), form.attr('method'), form.serialize(), ".modal-body");
+        });
+
+
         $("#delete-user-cancel").click(function () {
             $("#message-delete-user").hide(1000);
         });
@@ -48,9 +60,26 @@
             $("#message-delete-user").hide(1000);
             AlfursanManagement.DeleteUserById($("#UserId").val());
         });
+
+        $("#send-bulk-mail").click(function () {
+            var emails = "";
+            $("input[type=checkbox]:checked").each(function () {
+                emails += $(this).attr("data") + ";";
+            });
+            if (emails.length > 0) {
+                $("#email-for-sendMail").text(emails);
+                $("#mailTo").val(emails);
+                $("#SendMailModal").modal("show");
+            } else {
+                alert("Kullanıcı seçmelisiniz.");
+            }
+        });
     },
 
     ArchiveInit: function () {
+
+        $("#MailBody").htmlarea();
+
         var sendMail = { Files: [], Users: [], Subject: '', Emails: '', MailBody: '' };
 
         $('#sendMail').click(function () {
@@ -168,7 +197,7 @@
             sendMail.MailBody = $("#MailBody").val();
 
             if (sendMail.Users.length > 0 || sendMail.Emails.length > 0) {
-                AlfursanAjax.Request("/Archive/SendMail", "Post", JSON.stringify(sendMail, null, '\t'), ".modal-body", function() {});
+                AlfursanAjax.Request("/Archive/SendMail", "Post", JSON.stringify(sendMail, null, '\t'), ".modal-body", function () { });
             } else {
                 alert("Mail gönderim için mail adresi eklemelisiniz.");
             }
@@ -194,7 +223,6 @@
     OpenSendMailModal: function () {
         $("#SendMailModal").modal("show");
     },
-
 
     EditProfileRoleInit: function () {
         $("#ProfileId").change(function () {
@@ -244,6 +272,13 @@
             $(".btn-change-pass").click(function () {
                 var email = $(this).attr("email");
                 AlfursanManagement.OpenChangePassModal(email);
+            });
+
+            $(".btn-send-mail").click(function () {
+                var email = $(this).attr("email");
+                $("#email-for-sendMail").text(email);
+                $("#mailTo").val(email);
+                $("#SendMailModal").modal("show");
             });
         });
     },

@@ -294,5 +294,34 @@ namespace Alfursan.Web.Controllers
                };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost, ValidateInput(false)]
+        public JsonResult _SendMail(FormCollection formCollection)
+        {
+            HttpResponseModel result;
+            var mailTo = formCollection["mailTo"];
+            var subject = formCollection["Subject"];
+            var mailBody = formCollection["MailBody"];
+
+            var mailResult = SendMessageHelper.SendMessage(mailTo.Split(';').ToList(), mailBody, subject);
+            if (mailResult.ResponseCode == EnumResponseCode.Successful)
+            {
+                result = new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Success,
+                    ResponseMessage = Resources.MessageResource.Info_SendMail
+                };
+            }
+            else
+            {
+                result = new HttpResponseModel()
+                {
+                    ReturnCode = EnumResponseStatusCode.Error,
+                    ResponseMessage = Resources.MessageResource.ResourceManager.GetString(mailResult.ResponseUserFriendlyMessageKey)
+                };
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

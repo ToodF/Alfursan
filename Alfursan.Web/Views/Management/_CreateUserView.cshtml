@@ -1,129 +1,137 @@
 ﻿@using Alfursan.Domain
 @model Alfursan.Web.Models.UserViewModel
 
-
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "/api/UserApi" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        @Html.HiddenFor(model => model.UserId)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group profile-container">
-            @{
-                var profile = EnumProfile.Customer;
-                if (Model != null)
+<div class="modal fade" id="AlfursanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Resources.Management.Modal_Btn_Close </span></button>
+                <h4 class="modal-title" id="myModalLabel">@Resources.Management.Modal_Title_NewUser</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @action = "/api/UserApi" }))
                 {
-                    profile = Model.ProfileId;
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.HiddenFor(model => model.UserId)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group profile-container">
+                            @{
+                    var profile = EnumProfile.Customer;
+                    if (Model != null)
+                    {
+                        profile = Model.ProfileId;
+                    }
+                            }
+                            @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-md-8">
+                                <input type="radio" name="ProfileId" id="@EnumProfile.Admin.ToString()" value="@((int)EnumProfile.Admin)" @{Write(profile == EnumProfile.Admin ? "checked=checked" : "");} />
+                                <label for="@EnumProfile.Admin">@Resources.Management.Profile_Admin</label>
+
+                                <input type="radio" name="ProfileId" id="@EnumProfile.User.ToString()" value="@((int)EnumProfile.User)" @{Write(profile == EnumProfile.User ? "checked=checked" : "");} />
+                                <label for="@EnumProfile.User">@Resources.Management.Profile_User</label>
+
+                                <input type="radio" name="ProfileId" id="@EnumProfile.Customer.ToString()" value="@((int)EnumProfile.Customer)" @{Write(profile == EnumProfile.Customer ? "checked=checked" : "");} />
+                                <label for="@EnumProfile.Customer">@Resources.Management.Profile_Customer</label>
+
+                                <input type="radio" name="ProfileId" id="@EnumProfile.CustomOfficer.ToString()" value="@((int)EnumProfile.CustomOfficer)" @{Write(profile == EnumProfile.CustomOfficer ? "checked=checked" : "");} />
+                                <label for="@EnumProfile.CustomOfficer">@Resources.Management.Profile_CustomOfficer</label>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="container-pass">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="container-confirmpassword">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.DropDownListFor(model => model.CountryId, (List<SelectListItem>)ViewData["CountryList"], htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.TextAreaFor(model => model.Address, new
+                {
+                    @class = "form-control"
+                    ,
+                    rows = 3
+                })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group" id="form-item-customerofficer">
+                            @Html.LabelFor(model => model.CustomOfficerId, htmlAttributes: new { @class = "control-label col-xs-4" })
+                            <div class="col-xs-7">
+                                @Html.DropDownListFor(model => model.CustomOfficerId, (List<SelectListItem>)ViewData["CustomOfficers"], htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CustomOfficerId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
                 }
-            }
-            @Html.LabelFor(model => model.ProfileId, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-md-8">
-                <input type="radio" name="ProfileId" id="@EnumProfile.Admin.ToString()" value="@((int)EnumProfile.Admin)" @{Write(profile == EnumProfile.Admin ? "checked=checked" : "");}/>
-                <label for="@EnumProfile.Admin">@Resources.Management.Profile_Admin</label>
-                
-                <input type="radio" name="ProfileId" id="@EnumProfile.User.ToString()" value="@((int)EnumProfile.User)" @{Write(profile == EnumProfile.User ? "checked=checked" : "");} />
-                <label for="@EnumProfile.User">@Resources.Management.Profile_User</label>
-                
-                <input type="radio" name="ProfileId" id="@EnumProfile.Customer.ToString()" value="@((int)EnumProfile.Customer)" @{Write(profile == EnumProfile.Customer ? "checked=checked" : "");} />
-                <label for="@EnumProfile.Customer">@Resources.Management.Profile_Customer</label>
-
-                <input type="radio" name="ProfileId" id="@EnumProfile.CustomOfficer.ToString()" value="@((int)EnumProfile.CustomOfficer)" @{Write(profile == EnumProfile.CustomOfficer ? "checked=checked" : "");} />
-                <label for="@EnumProfile.CustomOfficer">@Resources.Management.Profile_CustomOfficer</label>
-
             </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group" id="container-pass">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group" id="container-confirmpassword">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.DropDownListFor(model => model.CountryId, (List<SelectListItem>)ViewData["CountryList"], htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.TextAreaFor(model => model.Address, new
-                {
-                    @class = "form-control" 
-                    ,rows=3
-                } )
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group" id="form-item-customerofficer">
-            @Html.LabelFor(model => model.CustomOfficerId, htmlAttributes: new { @class = "control-label col-xs-4" })
-            <div class="col-xs-7">
-                @Html.DropDownListFor(model => model.CustomOfficerId, (List<SelectListItem>)ViewData["CustomOfficers"], htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomOfficerId, "", new { @class = "text-danger" })
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Management.Modal_Btn_Close</button>
+                <button type="button" class="btn btn-primary">@Resources.Management.Modal_Btn_Save</button>
             </div>
         </div>
     </div>
-}
+</div>
+

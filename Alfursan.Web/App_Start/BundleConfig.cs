@@ -28,9 +28,11 @@ namespace Alfursan.Web
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"
-                //,"~/Scripts/Alfursan.Ajax.js"
+                      "~/Scripts/bootstrap.js"
+                        , "~/Scripts/respond.js"
+                        , "~/Scripts/Alfursan.Ajax.js"
+                        , "~/Scripts/Alfursan.Management.js"
+                        , "~/Plugins/jHtmlArea/scripts/jHtmlArea-0.8.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/fileupload").Include(
@@ -48,7 +50,8 @@ namespace Alfursan.Web
                       "~/Content/bootstrap.css",
                       "~/Content/en/site.css",
                       "~/Plugins/Datatable/css/style.css",
-                      "~/Plugins/Datatable/css/jquery.fileupload.css"
+                      "~/Plugins/Datatable/css/jquery.fileupload.css",
+                      "~/Plugins/jHtmlArea/style/jHtmlArea.css"
                       ));
             bundles.Add(new StyleBundle("~/Style/ar").Include(
                      "~/Content/bootstrap.css",
