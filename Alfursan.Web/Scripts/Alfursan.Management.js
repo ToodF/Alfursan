@@ -239,7 +239,7 @@
             $("#grid-container").html(result);
 
             var table = $('#grid-users').DataTable({
-                "order": [[1, "asc"]],
+                "order": [[2, "asc"]],
                 "language": {
                     "url": "/Plugins/Datatable/lang/en.txt"
                 }, responsive: true
