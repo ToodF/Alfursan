@@ -63,8 +63,7 @@ namespace Alfursan.Service
             }
 
             var logger = IocContainer.Resolve<ILoggerRepository>();
-            logger.Log(mailLog);
-            return new Responder();
+            return logger.Log(mailLog);
         }
     }
 }

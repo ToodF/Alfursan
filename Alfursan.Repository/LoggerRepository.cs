@@ -20,5 +20,15 @@ namespace Alfursan.Repository
                 };
             }
         }
+
+        public void Log(System.Exception ex, string method)
+        {
+            using (var con = DapperHelper.CreateConnection())
+            {
+                con.Execute(
+                    "INSERT INTO [dbo].[Log] ([MethodInfo] ,[ExceptionType] ,[Message] ,[InnerException] ,[StackTrace] ,[MessageDate]) VALUES (@MethodInfo ,@ExceptionType ,@Message ,@InnerException ,@StackTrace ,GetDate())",
+                    new { Message = ex.Message, InnerException = (ex.InnerException != null ? ex.InnerException.Message : ""), StackTrace = ex.StackTrace, ExceptionType = ex.GetType().FullName, MethodInfo = method });
+            }
+        }
     }
 }

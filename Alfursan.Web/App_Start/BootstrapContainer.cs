@@ -22,14 +22,13 @@ namespace Alfursan.Web
                 Component.For<Caching>().LifestyleTransient(),
                 Component.For<ExceptionHandling>().LifestyleTransient(),
                 Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient()
-                    .Interceptors(InterceptorReference.ForType<Logging>()).First
-                    .Interceptors(InterceptorReference.ForType<Caching>()).First
+                //.Interceptors(InterceptorReference.ForType<Logging>()).First
+                //.Interceptors(InterceptorReference.ForType<Caching>()).First
                     .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
-                Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient(),
-                Component.For<IAlfursanFileRepository>().ImplementedBy<AlfursanFileRespository>().LifestyleTransient(),
-                Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient(),
-                Component.For<IRoleRepository>().ImplementedBy<RoleRepository>().LifestyleTransient(),
-                Component.For<IRoleService>().ImplementedBy<RoleService>().LifestyleTransient(),
+                Component.For<IAlfursanFileService>().ImplementedBy<AlfursanFileService>().LifestyleTransient()
+                 .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
+                Component.For<IRoleService>().ImplementedBy<RoleService>().LifestyleTransient()
+                 .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
                 Component.For<IMessageSender>().ImplementedBy<MailService>().DependsOn(
                     Dependency.OnValue("MailProvider", new MailProvider()
                     {
@@ -39,9 +38,13 @@ namespace Alfursan.Web
                         Password = ConfigurationManager.AppSettings["MailServerPassword"],
                         EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
                     }))
-                     .Interceptors(InterceptorReference.ForType<Logging>()).First
-                    .Interceptors(InterceptorReference.ForType<Caching>()).First
+                // .Interceptors(InterceptorReference.ForType<Logging>()).First
+                //.Interceptors(InterceptorReference.ForType<Caching>()).First
                     .Interceptors(InterceptorReference.ForType<ExceptionHandling>()).First,
+
+                Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient(),
+                Component.For<IAlfursanFileRepository>().ImplementedBy<AlfursanFileRespository>().LifestyleTransient(),
+                Component.For<IRoleRepository>().ImplementedBy<RoleRepository>().LifestyleTransient(),
                 Component.For<ILoggerRepository>().ImplementedBy<LoggerRepository>().LifestyleTransient()
                 );
 

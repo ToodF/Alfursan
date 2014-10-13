@@ -61,6 +61,10 @@
       <Project>{AB3EA5CF-DF17-48FA-97DA-80EF20B278FA}</Project>
       <Name>Alfursan.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Alfursan.IRepository\Alfursan.IRepository.csproj">
+      <Project>{4E9341AF-FF94-4FD3-B967-1EFF9CD402AA}</Project>
+      <Name>Alfursan.IRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

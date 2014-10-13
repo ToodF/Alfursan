@@ -1,5 +1,8 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
+using System.Text;
 using Alfursan.Domain;
+using Alfursan.IRepository;
 using Castle.DynamicProxy;
 using System;
 
@@ -9,6 +12,7 @@ namespace Alfursan.Infrastructure.Interceptor
     {
         public void Intercept(IInvocation invocation)
         {
+            Exception ex = null;
             var hasError = false;
             var responder = new Responder();
             try
@@ -18,6 +22,7 @@ namespace Alfursan.Infrastructure.Interceptor
             catch (System.Data.SqlClient.SqlException exception)
             {
                 hasError = true;
+                ex = exception;
                 responder.ResponseCode = EnumResponseCode.DbError;
                 responder.ResponseErrorMessage = exception.Message;
                 responder.ResponseUserFriendlyMessageKey = "Error_SqlException";
@@ -25,6 +30,7 @@ namespace Alfursan.Infrastructure.Interceptor
             catch (Exception exception)
             {
                 hasError = true;
+                ex = exception;
                 responder.ResponseCode = EnumResponseCode.Unexpected;
                 responder.ResponseErrorMessage = exception.Message;
                 responder.ResponseUserFriendlyMessageKey = "Error_Unexpected";
@@ -33,7 +39,22 @@ namespace Alfursan.Infrastructure.Interceptor
             {
                 if (hasError)
                 {
-                    if (invocation.Method.ReturnParameter.ParameterType.FullName.Equals(typeof (Responder).FullName))
+
+                    var sb = new StringBuilder();
+                    sb.AppendFormat("Called: {0}.{1}(", invocation.TargetType.Name, invocation.Method.Name);
+                    for (var i = 0; i < invocation.Arguments.Count(); i++)
+                    {
+                        var paramInfo = invocation.Method.GetParameters()[1].ToString();
+                        var argument = invocation.Arguments[i];
+                        var argumentDescription = argument == null ? "null" : argument.ToString();
+                        sb.AppendFormat("{0} : {1} ;", paramInfo, argumentDescription);
+                    }
+                    if (invocation.Arguments.Any()) sb.Length--;
+                    sb.Append(")");
+
+                    var logger = IocContainer.Resolve<ILoggerRepository>();
+                    logger.Log(ex, sb.ToString());
+                    if (invocation.Method.ReturnParameter.ParameterType.FullName.Equals(typeof(Responder).FullName))
                     {
                         invocation.ReturnValue = responder;
                     }
@@ -54,7 +75,16 @@ namespace Alfursan.Infrastructure.Interceptor
                     }
                 }
             }
-            
+        }
+
+        private static string DumpObject(object argument)
+        {
+            Type objtype = argument.GetType();
+            if (objtype == typeof(String) || objtype.IsPrimitive || !objtype.IsClass) { }
+            //return objtype.ToString();
+            return "";
+
+            //return DataContractSerialize(argument, objtype);
         }
     }
 }
