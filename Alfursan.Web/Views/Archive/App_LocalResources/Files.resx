@@ -193,4 +193,7 @@
   <data name="FileUploadMailSubject" xml:space="preserve">
     <value>Alfursan Hesap Dökümanları</value>
   </data>
+  <data name="Error_SelectUser" xml:space="preserve">
+    <value>Please select the files that you want to send by e-mail.</value>
+  </data>
 </root>

@@ -84,6 +84,7 @@
 
         $('#sendMail').click(function () {
             var ids = [];
+            $(".error-select-user").css("display", "none");
             $("input[type=checkbox][checked]").each(function () {
                 ids.push($(this).attr("data"));
 
@@ -97,17 +98,9 @@
             });
 
             if (ids.length > 0) {
-
-                if ($('#profileId').val() == 1) {
-
-                    AlfursanManagement.OpenSendMailModal();
-
-                } else {
-
-                    var postData = { fileIds: ids.join(',') };
-
-                    AlfursanAjax.Request("/Archive/SendMail", "Post", postData, null, function () { });
-                }
+                AlfursanManagement.OpenSendMailModal();
+            } else {
+                $(".error-select-user").css("display", "block");
             }
 
         });

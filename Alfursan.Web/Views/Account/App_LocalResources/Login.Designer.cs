@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot Password.
+        ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string ForgotPass {
             get {
@@ -111,6 +111,24 @@ namespace Resources {
         public static string PageTitle {
             get {
                 return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your e-mail address.
+        /// </summary>
+        public static string PlaceHolderEmail {
+            get {
+                return ResourceManager.GetString("PlaceHolderEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password.
+        /// </summary>
+        public static string PlaceHolderPass {
+            get {
+                return ResourceManager.GetString("PlaceHolderPass", resourceCulture);
             }
         }
         

@@ -105,11 +105,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
-        ///&lt;p&gt;Aşağıdaki linke tıklayarak yeni şifrenizi belirleyebilirsiniz&lt;/p&gt;
-        ///&lt;p&gt;
-        ///&lt;a href=&quot;&lt;SiteRoot&gt;/Account/ResetPassword/&lt;ConfirmKey&gt;&quot;&gt;Şifremi değiştir.&lt;/a&gt;
-        ///&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;h4&gt;Dear &lt;Name&gt; &lt;Surname&gt; ,&lt;/h4&gt;
+        ///
+        ///&lt;p&gt;Please click the link below to change your password. &lt;/p&gt;
+        ///&lt;p&gt;&lt;a href=&quot;&lt;SiteRoot&gt;/Account/ResetPassword/&lt;ConfirmKey&gt;&quot;&gt;Change password&lt;/a&gt;&lt;/p&gt;
+        ///&lt;p&gt;If you need any other assistance please don’t hesitate to contact us.&lt;/p&gt;.
         /// </summary>
         public static string ForgotPasswordBody {
             get {
@@ -127,8 +127,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
-        ///&lt;p&gt;Alfursan dosya takip sistemine yeni bir dosya eklendi. Dosyayı ekte bulabilirsiniz.&lt;/p&gt;&lt;p&gt;Ayrıca Alfursan dosya takip sistemine giriş yaparak aşağıdaki linkten erişebilirsiniz.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;&lt;SiteRoot&gt;/Archive/Files&quot;&gt;&lt;SiteRoot&gt;/Archive/Files&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;h4&gt;Dear  &lt;Name&gt; &lt;Surname&gt; ,&lt;/h4&gt;
+        ///&lt;p&gt;Please view your files attached.&lt;/p&gt;.
         /// </summary>
         public static string NewFileUploadedBody {
             get {
@@ -137,11 +137,42 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alfursan File Management - New File Uploaded.
+        ///   Looks up a localized string similar to ALFURSAN- ACCOUNT FILE.
         /// </summary>
-        public static string NewFileUploadedSubject {
+        public static string NewFileUploadedSubjectAccountDoc {
             get {
-                return ResourceManager.GetString("NewFileUploadedSubject", resourceCulture);
+                return ResourceManager.GetString("NewFileUploadedSubjectAccountDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALFURSAN-VARIOUS FILES.
+        /// </summary>
+        public static string NewFileUploadedSubjectOther {
+            get {
+                return ResourceManager.GetString("NewFileUploadedSubjectOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALFURSAN- SHIPMENT DOCUMENTS .
+        /// </summary>
+        public static string NewFileUploadedSubjectShipmentDoc {
+            get {
+                return ResourceManager.GetString("NewFileUploadedSubjectShipmentDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Best Regards,&lt;/p&gt;
+        ///&lt;p&gt;ALFURSAN Team &lt;br/&gt;
+        ///Tel : 0090 212 246 44 30 &lt;br/&gt;
+        ///E-mail : ccdep@alfursan.com.tr
+        ///&lt;/p&gt;.
+        /// </summary>
+        public static string Signature {
+            get {
+                return ResourceManager.GetString("Signature", resourceCulture);
             }
         }
         
@@ -203,14 +234,21 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
-        ///&lt;p&gt;Alfursan dosya takip sistemine hoşgeldiniz. Sisteme giriş bilgileriniz aşağıdaki gibidir. Bu bilgiler ile sistemimizde işlemlerinize ait dosyalara erişebilir talepleriniz için bizimle irtibata geçebilirsiniz.&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;h4&gt;Dear &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
+        ///
+        ///&lt;p&gt;ALFURSAN has been created username and password for you.&lt;/p&gt;
+        ///&lt;p&gt;Please note your user name and password to use on Alfursan&apos;s Client Login system.&lt;/p&gt;
+        ///
+        ///&lt;p&gt;By this system you can reach your documents wherever you are. &lt;/p&gt;
+        ///&lt;p&gt;( Invoice, Packing List, Eur1, AWB, your account statements and various files) &lt;/p&gt;
+        ///&lt;br/&gt;
+        ///&lt;br/&gt;
         ///&lt;p&gt;
-        ///Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (&lt;Email&gt;))
+        ///Your user name : &lt;Email&gt;&lt;br/&gt;
+        ///Your password: &lt;Password&gt;&lt;br/&gt;
         ///&lt;/p&gt;
-        ///&lt;p&gt;
-        ///Şifre : &lt;Password&gt;
-        ///&lt;/p&gt;.
+        ///
+        ///&lt;p&gt;Please click this link to login to the system  &lt;a href=&quot;http://pane [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WelcomeUserBody {
             get {

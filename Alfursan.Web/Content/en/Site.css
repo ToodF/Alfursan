@@ -181,3 +181,14 @@ div.jHtmlArea {
     margin-bottom: 0;
     margin-top: 0;
 }
+
+#sendMail {
+    float: left;
+}
+
+.error-select-user {
+    display: none;
+    color: red;
+    margin-top: 15px;
+    text-indent: 10px;
+}

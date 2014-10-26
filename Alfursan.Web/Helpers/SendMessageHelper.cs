@@ -32,6 +32,7 @@ namespace Alfursan.Web.Helpers
                 default:
                     break;
             }
+            message.Body += Resources.MailMessage.Signature;
             var replacements = new Dictionary<string, string>();
             replacements.Add("<Name>", user.Name);
             replacements.Add("<Surname>", user.Surname);
@@ -48,6 +49,7 @@ namespace Alfursan.Web.Helpers
             var message = new MailMessage();
             message.Subject = Resources.MailMessage.ForgotPasswordSubject;
             message.Body = Resources.MailMessage.ForgotPasswordBody;
+            message.Body += Resources.MailMessage.Signature;
             var replacements = new Dictionary<string, string>();
             replacements.Add("<Name>", user.Name);
             replacements.Add("<Surname>", user.Surname);
@@ -65,6 +67,7 @@ namespace Alfursan.Web.Helpers
             message.Subject = subject;
 
             message.Body = body;
+            message.Body += Resources.MailMessage.Signature;
 
             foreach (var absolutePath in absolutePaths)
             {
@@ -89,6 +92,7 @@ namespace Alfursan.Web.Helpers
                 var message = new MailMessage();
                 message.Subject = Resources.MailMessage.ChangePassSubject;
                 message.Body = Resources.MailMessage.ChangePassBody;
+                message.Body += Resources.MailMessage.Signature;
                 var replacements = new Dictionary<string, string>();
                 replacements.Add("<Name>", user.Name);
                 replacements.Add("<Surname>", user.Surname);
@@ -108,6 +112,7 @@ namespace Alfursan.Web.Helpers
             message.Subject = subject;
 
             message.Body = body;
+            message.Body += Resources.MailMessage.Signature;
             message.To.Add(email);
             return mailsender.SendMessage(message, null);
         }

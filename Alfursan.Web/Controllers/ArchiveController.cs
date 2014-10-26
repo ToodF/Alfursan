@@ -180,7 +180,7 @@ namespace Alfursan.Web.Controllers
 
                     if (Request.Form["sendmail"] == "on")
                     {
-                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.NewFileUploadedSubject);
+                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.ResourceManager.GetString("NewFileUploadedSubject" + fileType.ToString()));
                     }
 
                     // Return JSON

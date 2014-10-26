@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select the files that you want to send by e-mail..
+        /// </summary>
+        public static string Error_SelectUser {
+            get {
+                return ResourceManager.GetString("Error_SelectUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Name.
         /// </summary>
         public static string FileName {
