@@ -20,11 +20,10 @@
 </div>
 <div id="grid-container">
 </div>
-<div class="send-bulk-mail">
-    <button class="btn btn-primary" id="send-bulk-mail">
-        @Resources.Management.Modal_Btn_SendMail
-    </button>
-</div>
+<div class="clearfix"></div>
+<input type="button" class="btn btn-primary" id="send-bulk-mail" value="@Resources.Management.Modal_Btn_SendMail" />
+<label class="error-select-user">@Resources.Management.MessageSelectUser</label>
+<div class="clearfix"></div>
 
 @{ Html.RenderPartial("_ChangePass", new ChangePassViewModel());}
 @{ Html.RenderPartial("_SendMailView");}

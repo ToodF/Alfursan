@@ -192,3 +192,6 @@ div.jHtmlArea {
     margin-top: 15px;
     text-indent: 10px;
 }
+#send-bulk-mail {
+    float: left
+}

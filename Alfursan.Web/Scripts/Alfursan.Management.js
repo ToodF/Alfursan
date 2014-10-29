@@ -63,6 +63,7 @@
 
         $("#send-bulk-mail").click(function () {
             var emails = "";
+            $(".error-select-user").css("display", "none");
             $("input[type=checkbox]:checked").each(function () {
                 emails += $(this).attr("data") + ";";
             });
@@ -71,7 +72,7 @@
                 $("#mailTo").val(emails);
                 $("#SendMailModal").modal("show");
             } else {
-                alert("Kullanıcı seçmelisiniz.");
+                $(".error-select-user").css("display", "block");
             }
         });
     },

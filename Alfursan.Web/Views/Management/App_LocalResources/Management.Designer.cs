@@ -304,6 +304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select user..
+        /// </summary>
+        public static string MessageSelectUser {
+            get {
+                return ResourceManager.GetString("MessageSelectUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Modal_Btn_Close {

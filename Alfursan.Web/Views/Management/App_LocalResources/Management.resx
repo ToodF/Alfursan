@@ -252,4 +252,7 @@
   <data name="Modal_Title_SendMail" xml:space="preserve">
     <value>Send Mail</value>
   </data>
+  <data name="MessageSelectUser" xml:space="preserve">
+    <value>Please select user.</value>
+  </data>
 </root>

@@ -187,11 +187,12 @@
     <value>All</value>
   </data>
   <data name="FileUploadMailBody" xml:space="preserve">
-    <value>&lt;h4&gt;Merhaba ;&lt;/h4&gt;
-&lt;p&gt;Ekte hesap bilgilerinizi bulabilirsiniz.&lt;/p&gt;</value>
+    <value>Dear Sir, &lt;br/&gt;&lt;br/&gt;
+
+Please view your files attached.</value>
   </data>
   <data name="FileUploadMailSubject" xml:space="preserve">
-    <value>Alfursan Hesap Dökümanları</value>
+    <value>ALFURSAN-VARIOUS FILES</value>
   </data>
   <data name="Error_SelectUser" xml:space="preserve">
     <value>Please select the files that you want to send by e-mail.</value>

@@ -226,8 +226,9 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h4&gt;Merhaba ;&lt;/h4&gt;
-        ///&lt;p&gt;Ekte hesap bilgilerinizi bulabilirsiniz.&lt;/p&gt;.
+        ///   Looks up a localized string similar to Dear Sir, &lt;br/&gt;&lt;br/&gt;
+        ///
+        ///Please view your files attached..
         /// </summary>
         public static string FileUploadMailBody {
             get {
@@ -236,7 +237,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alfursan Hesap Dökümanları.
+        ///   Looks up a localized string similar to ALFURSAN-VARIOUS FILES.
         /// </summary>
         public static string FileUploadMailSubject {
             get {
