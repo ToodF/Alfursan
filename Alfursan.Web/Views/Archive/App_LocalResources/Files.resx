@@ -192,7 +192,7 @@
 Please view your files attached.</value>
   </data>
   <data name="FileUploadMailSubject" xml:space="preserve">
-    <value>ALFURSAN-VARIOUS FILES</value>
+    <value>ALFURSAN CLIENT LOGIN - DOCUMENTS</value>
   </data>
   <data name="Error_SelectUser" xml:space="preserve">
     <value>Please select the files that you want to send by e-mail.</value>

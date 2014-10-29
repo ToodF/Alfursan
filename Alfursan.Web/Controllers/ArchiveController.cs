@@ -207,7 +207,7 @@ namespace Alfursan.Web.Controllers
                     string absolutePath;
                     var filename = UploadFile(file, relatedFileName, out thumbnail, out absolutePath);
 
-                    if (Request.Form["sendmail"] == "on")
+                    if (Request.Form["sendmail"] == "true")
                     {
                         SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.ResourceManager.GetString("NewFileUploadedSubject" + fileType.ToString()));
                     }

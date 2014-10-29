@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you forgot your password, please enter your e-mail address below. We will send yur password your e-mail..
+        ///   Looks up a localized string similar to If you forgot your password, please enter your e-mail address below. We will send your password to your e-mail..
         /// </summary>
         public static string ForgotPassDesc {
             get {

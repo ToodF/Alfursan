@@ -121,7 +121,7 @@
     <value>Forgot your password?</value>
   </data>
   <data name="ForgotPassDesc" xml:space="preserve">
-    <value>If you forgot your password, please enter your e-mail address below. We will send yur password your e-mail.</value>
+    <value>If you forgot your password, please enter your e-mail address below. We will send your password to your e-mail.</value>
   </data>
   <data name="ForgotPassEmail" xml:space="preserve">
     <value>Your E-mail address</value>
