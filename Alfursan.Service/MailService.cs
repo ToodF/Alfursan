@@ -25,7 +25,7 @@ namespace Alfursan.Service
                     mailMessage.Subject = mailMessage.Subject.Replace(replacement.Key, replacement.Value);
                 }
             }
-            mailMessage.From = new MailAddress(mailProvider.UserName);
+            mailMessage.From = new MailAddress(mailProvider.UserName, "AL FURSAN Istanbul");
             mailMessage.IsBodyHtml = true;
             var smtp = new SmtpClient()
             {
