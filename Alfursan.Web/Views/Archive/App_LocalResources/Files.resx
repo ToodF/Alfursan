@@ -139,7 +139,7 @@
     <value>Created By</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Select Date Range</value>
+    <value>Date</value>
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
@@ -202,6 +202,11 @@ Please click the “ File Names” to view your documents.</value>
   </data>
   <data name="AccountTitle" xml:space="preserve">
     <value>Account Documents</value>
+  </data>
+  <data name="FileUploadDescCustomer" xml:space="preserve">
+    <value>You can upload various files into your account.&lt;br/&gt;
+After uploaded the files, please return to “Homepage” and
+click the OTHERS to view the files uploaded by yourself.</value>
   </data>
   <data name="OtherDesc" xml:space="preserve">
     <value>Your other documents are listed below: &lt;br/&gt;

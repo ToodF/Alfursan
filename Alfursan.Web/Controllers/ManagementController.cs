@@ -305,6 +305,7 @@ namespace Alfursan.Web.Controllers
             var mails = mailTo.Split(';');
             foreach (var mail in mails)
             {
+                if (!string.IsNullOrEmpty(mail))
                 SendMessageHelper.SendMessage(mail, mailBody, subject);
             }
             var result = new HttpResponseModel()

@@ -143,7 +143,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Date Range.
+        ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string CreatedDate {
             get {
@@ -202,6 +202,17 @@ namespace Resources {
         public static string FileTypeAll {
             get {
                 return ResourceManager.GetString("FileTypeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can upload various files into your account.&lt;br/&gt;
+        ///After uploaded the files, please return to “Homepage” and
+        ///click the OTHERS to view the files uploaded by yourself..
+        /// </summary>
+        public static string FileUploadDescCustomer {
+            get {
+                return ResourceManager.GetString("FileUploadDescCustomer", resourceCulture);
             }
         }
         

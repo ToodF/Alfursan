@@ -23,7 +23,6 @@
         <tr>
             <th></th>
             <th></th>
-            <th></th>
             <th>@{Write(Resources.Files.FileTypeAll);}</th>
             @if (currentUser.ProfileId != (int)EnumProfile.Customer)
             {
@@ -46,7 +45,7 @@
             }
             <th>@{Write(Resources.Files.CreatedBy);}</th>
             <th></th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -55,7 +54,6 @@
             foreach (var file in Model)
             {
                 <tr data="@file.FileId">
-                    <td></td>
                     <td>
                         <div class="checkbox col-lg-2">
                             <input type="checkbox" name="file" data="@file.FileId" data-filename="@file.FileName" data-filepath="@file.RelatedFileName">
@@ -114,7 +112,6 @@
 
             var dt = $('#grid-files').dataTable({
                 "aoColumns": [
-                    { "sWidth": "1%" },
                     { "sWidth": "5%" },
                     { "sWidth": "10%" },
                     { "sWidth": "12%" },

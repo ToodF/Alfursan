@@ -27,6 +27,11 @@ namespace Alfursan.Web.Controllers
         {
             ViewBag.Title = Resources.Files.FileUploadTitle;
             ViewBag.Description = Resources.Files.FileUploadDescription;
+            if (CurrentUser.ProfileId == (int) EnumProfile.Customer ||
+                CurrentUser.ProfileId == (int) EnumProfile.CustomOfficer)
+            {
+                ViewBag.Description = Resources.Files.FileUploadDescCustomer;
+            }
             ViewBag.FileType = "";
             if (!string.IsNullOrEmpty(id))
             {
