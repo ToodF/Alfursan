@@ -61,12 +61,57 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Account files are here!&lt;br/&gt;
+        ///   Looks up a localized string similar to Your &lt;b&gt;Account files &lt;/b&gt;are here!&lt;br/&gt;
         ///Please click  &lt;a href=&quot;/Archive/Files/2&quot;&gt;Go to Accounts&lt;/a&gt; button and view your account files..
         /// </summary>
         public static string AccountDesc {
             get {
                 return ResourceManager.GetString("AccountDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to Accounts.
+        /// </summary>
+        public static string BtnAccountDocs {
+            get {
+                return ResourceManager.GetString("BtnAccountDocs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string BtnOther {
+            get {
+                return ResourceManager.GetString("BtnOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string BtnSend {
+            get {
+                return ResourceManager.GetString("BtnSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to Shipments.
+        /// </summary>
+        public static string BtnShipmmentDocs {
+            get {
+                return ResourceManager.GetString("BtnShipmmentDocs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        public static string BtnUpload {
+            get {
+                return ResourceManager.GetString("BtnUpload", resourceCulture);
             }
         }
         
@@ -108,7 +153,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Shipments Documents are here&lt;br/&gt;
+        ///   Looks up a localized string similar to You can send bulk e-mails to the saved users on the system..
+        /// </summary>
+        public static string SendEmailText {
+            get {
+                return ResourceManager.GetString("SendEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send E-mail.
+        /// </summary>
+        public static string SendEmailTitle {
+            get {
+                return ResourceManager.GetString("SendEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your &lt;b&gt; Shipments Documents &lt;/b&gt;are here&lt;br/&gt;
         ///Invoice, Packing List, Eur1, AWB and more.&lt;br/&gt;
         ///Please click  &lt;a href=&quot;/Archive/Files/1&quot;&gt;Go to Shipments&lt;/a&gt; button and view your shipment files..
         /// </summary>
@@ -148,7 +211,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload Document.
+        ///   Looks up a localized string similar to Upload Files.
         /// </summary>
         public static string UploadTitle {
             get {
@@ -163,9 +226,24 @@ namespace Resources {
         ///        You can upload shipment documents, account statements and any kind of various documents into related clients’ user accounts by using the system.&lt;br/&gt;
         ///        Operate clear!.
         /// </summary>
-        public static string WelcomeText {
+        public static string WelcomeTextAdmin {
             get {
-                return ResourceManager.GetString("WelcomeText", resourceCulture);
+                return ResourceManager.GetString("WelcomeTextAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear Customer,&lt;br/&gt;&lt;br/&gt;
+        ///Welcome to ALFURSAN&apos;s online archive system.&lt;br/&gt;
+        ///We’ve created this system just for our Alfursan’s customers business follow up.&lt;br/&gt;&lt;br/&gt;
+        ///You can view your shipment documents, account statements, various documents and all the history of your business runing.&lt;br/&gt;
+        ///Please click the buttons below and view your files.&lt;br/&gt;
+        ///If you need any asistance, please don’t hesitate to contact us.&lt;br/&gt;
+        ///&lt;br/&gt;Best Regards,.
+        /// </summary>
+        public static string WelcomeTextCustomer {
+            get {
+                return ResourceManager.GetString("WelcomeTextCustomer", resourceCulture);
             }
         }
         

@@ -1,7 +1,9 @@
 ﻿@using Alfursan.Domain
 
 <h2>@ViewBag.Title</h2>
-
+<p>
+    @{WriteLiteral(ViewBag.Description);}
+</p>
 @model IEnumerable<Alfursan.Web.Models.AlfursanFileViewModel>
 @{
     var currentUser = (User)Session["CurrentUser"];

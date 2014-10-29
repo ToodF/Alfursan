@@ -61,11 +61,30 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account documents are listed below: &lt;br/&gt;
+        ///Please click the “ File Names” to view your documents..
+        /// </summary>
+        public static string AccountDesc {
+            get {
+                return ResourceManager.GetString("AccountDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Document.
         /// </summary>
         public static string AccountDocument {
             get {
                 return ResourceManager.GetString("AccountDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Documents.
+        /// </summary>
+        public static string AccountTitle {
+            get {
+                return ResourceManager.GetString("AccountTitle", resourceCulture);
             }
         }
         
@@ -242,6 +261,25 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your other documents are listed below: &lt;br/&gt;
+        ///Please click the “ File Names” to view your various documents..
+        /// </summary>
+        public static string OtherDesc {
+            get {
+                return ResourceManager.GetString("OtherDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string OtherTitle {
+            get {
+                return ResourceManager.GetString("OtherTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select the customer.
         /// </summary>
         public static string Select {
@@ -256,6 +294,25 @@ namespace Resources {
         public static string SendMail {
             get {
                 return ResourceManager.GetString("SendMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your shipment documents are listed below: &lt;br/&gt;
+        ///Please click the “ File Names” to view your documents..
+        /// </summary>
+        public static string ShipmentDocDesc {
+            get {
+                return ResourceManager.GetString("ShipmentDocDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipment Documents.
+        /// </summary>
+        public static string ShipmentDocTitle {
+            get {
+                return ResourceManager.GetString("ShipmentDocTitle", resourceCulture);
             }
         }
         

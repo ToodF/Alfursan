@@ -63,7 +63,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;h4&gt;ALFURSAN FOREIGN TRADE TOURISM INVESTMENT AND CONTRACTING CO.LTD.&lt;/h4&gt;
         ///            &lt;h5&gt;Address: Mesrutiyet Mah. Kucukbahce Sokak Tecim Is Hani No:11 K:1
-        ///            Osmanbey-Sisli/ISTANBUL/TURKEY&lt;/h5&gt;
+        ///            Osmanbey-Şişli/ISTANBUL/TURKEY&lt;/h5&gt;
         ///            &lt;h5&gt;Tel: +90 212 246 44 30 Tel: +90 212 246 44 31 Fax : +90 212 246 44 32&lt;/h5&gt;
         ///            &lt;h5&gt;Web: &lt;a href=&quot;http://www.alfursan.com.tr&quot;&gt;www.alfursan.com.tr&lt;/a&gt; E-mail: 
         ///            &lt;a href=&quot;mailto:ccdep@alfursan.com.tr&quot; target=&quot;_top&quot;&gt;

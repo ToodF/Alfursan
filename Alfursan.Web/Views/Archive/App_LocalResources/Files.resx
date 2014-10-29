@@ -196,4 +196,25 @@
   <data name="Error_SelectUser" xml:space="preserve">
     <value>Please select the files that you want to send by e-mail.</value>
   </data>
+  <data name="AccountDesc" xml:space="preserve">
+    <value>Your account documents are listed below: &lt;br/&gt;
+Please click the “ File Names” to view your documents.</value>
+  </data>
+  <data name="AccountTitle" xml:space="preserve">
+    <value>Account Documents</value>
+  </data>
+  <data name="OtherDesc" xml:space="preserve">
+    <value>Your other documents are listed below: &lt;br/&gt;
+Please click the “ File Names” to view your various documents.</value>
+  </data>
+  <data name="OtherTitle" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="ShipmentDocDesc" xml:space="preserve">
+    <value>Your shipment documents are listed below: &lt;br/&gt;
+Please click the “ File Names” to view your documents.</value>
+  </data>
+  <data name="ShipmentDocTitle" xml:space="preserve">
+    <value>Shipment Documents</value>
+  </data>
 </root>

@@ -3,39 +3,87 @@
 @{
     var currentUser = (User)Session["CurrentUser"];
 }
-<div class="jumbotron">
-    <h3>@Resources.Index.WelcomeTitle</h3>
-    <p class="lead">@{ WriteLiteral(Resources.Index.WelcomeText);}</p>
-</div>
-<div class="row">
-    <div class="col-sm-3">
-        <h4><a href="/Archive/Files/1">@Resources.Index.FileTypeShipmentDoc</a> </h4>
-        <p>@{WriteLiteral(Resources.Index.ShipmentDocDesc);}</p>
-        <p><a class="btn btn-primary" href="/Archive/File/1">Add &raquo;</a></p>
+@if (currentUser.ProfileId == (int)EnumProfile.Admin || currentUser.ProfileId == (int)EnumProfile.User)
+{
+    <div class="jumbotron">
+        <h3>@Resources.Index.WelcomeTitle</h3>
+        <p class="lead">@{ WriteLiteral(Resources.Index.WelcomeTextAdmin);}</p>
     </div>
-    @if (currentUser.ProfileId != (int)EnumProfile.CustomOfficer)
-    {
+    <div class="row">
         <div class="col-sm-3">
-            <h4><a href="/Archive/Files/2">@Resources.Index.FileTypeAccountDoc</a> </h4>
-            <p>@{ WriteLiteral(Resources.Index.AccountDesc); }</p>
-            <p><a class="btn btn-primary" href="/Archive/File/2">Add &raquo;</a></p>
-        </div>
-        <div class="col-sm-3">
-            <h4><a href="/Archive/Files/3">@Resources.Index.FileTypeOther</a> </h4>
-            <p>@{ WriteLiteral(Resources.Index.OtherDesc); }</p>
-            <p><a class="btn btn-primary" href="/Archive/File/3">Add &raquo;</a></p>
-        </div>
-    }
-    <div class="col-sm-3">
-        <h4><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h4>
-        @if (currentUser.ProfileId == (int) EnumProfile.Admin || currentUser.ProfileId == (int) EnumProfile.User)
-        {
+            <h4><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h4>
             <p>@{ WriteLiteral(Resources.Index.UploadTextAdmin); }</p>
-        }
-        else
-        {
-            <p>@{ WriteLiteral(Resources.Index.UploadText); }</p>
-        }
-        <p><a class="btn btn-primary" href="/Archive/File">Add &raquo;</a></p>
+            <p><a class="btn btn-success" href="/Archive/File">@Resources.Index.BtnUpload &raquo;</a></p>
+        </div>
+        <div class="col-sm-3">
+            <h4><a href="/Archive/File">@Resources.Index.SendEmailTitle</a> </h4>
+            <p>@{ WriteLiteral(Resources.Index.SendEmailText); }</p>
+            <p><a class="btn btn-warning" href="/Management/UserList">@Resources.Index.BtnSend &raquo;</a></p>
+        </div>
     </div>
-</div>
+}
+else if (currentUser.ProfileId == (int)EnumProfile.Customer || currentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+{
+    <div class="jumbotron">
+        <p class="lead">@{ WriteLiteral(Resources.Index.WelcomeTextCustomer);}</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <h4><a href="/Archive/Files/1">@Resources.Index.FileTypeShipmentDoc</a> </h4>
+            <p>@{WriteLiteral(Resources.Index.ShipmentDocDesc);}</p>
+            <p><a class="btn btn-success" href="/Archive/Files/1">@Resources.Index.BtnShipmmentDocs &raquo;</a></p>
+        </div>
+        @if (currentUser.ProfileId == (int)EnumProfile.Customer)
+        {
+            <div class="col-sm-3">
+                <h4><a href="/Archive/Files/2">@Resources.Index.FileTypeAccountDoc</a> </h4>
+                <p>@{ WriteLiteral(Resources.Index.AccountDesc); }</p>
+                <p><a class="btn btn-warning" href="/Archive/Files/2">@Resources.Index.BtnAccountDocs &raquo;</a></p>
+            </div>
+            <div class="col-sm-3">
+                <h4><a href="/Archive/Files/3">@Resources.Index.FileTypeOther</a> </h4>
+                <p>@{ WriteLiteral(Resources.Index.OtherDesc); }</p>
+                <p><a class="btn btn-primary" href="/Archive/Files/3">@Resources.Index.BtnOther &raquo;</a></p>
+            </div>
+            <div class="col-sm-3">
+                <h4><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h4>
+                <p>@{ WriteLiteral(Resources.Index.UploadText); }</p>
+                <p><a class="btn btn-success" href="/Archive/File">@Resources.Index.BtnUpload &raquo;</a></p>
+            </div>
+        }
+    </div>
+}
+
+
+    @*<div class="row">
+            <div class="col-sm-3">
+                <h4><a href="/Archive/Files/1">@Resources.Index.FileTypeShipmentDoc</a> </h4>
+                <p>@{WriteLiteral(Resources.Index.ShipmentDocDesc);}</p>
+                <p><a class="btn btn-primary" href="/Archive/File/1">Add &raquo;</a></p>
+            </div>
+            @if (currentUser.ProfileId != (int)EnumProfile.CustomOfficer)
+            {
+                <div class="col-sm-3">
+                    <h4><a href="/Archive/Files/2">@Resources.Index.FileTypeAccountDoc</a> </h4>
+                    <p>@{ WriteLiteral(Resources.Index.AccountDesc); }</p>
+                    <p><a class="btn btn-primary" href="/Archive/File/2">Add &raquo;</a></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4><a href="/Archive/Files/3">@Resources.Index.FileTypeOther</a> </h4>
+                    <p>@{ WriteLiteral(Resources.Index.OtherDesc); }</p>
+                    <p><a class="btn btn-primary" href="/Archive/File/3">Add &raquo;</a></p>
+                </div>
+            }
+            <div class="col-sm-3">
+                <h4><a href="/Archive/File">@Resources.Index.UploadTitle</a> </h4>
+                @if (currentUser.ProfileId == (int)EnumProfile.Admin || currentUser.ProfileId == (int)EnumProfile.User)
+                {
+                    <p>@{ WriteLiteral(Resources.Index.UploadTextAdmin); }</p>
+                }
+                else
+                {
+                    <p>@{ WriteLiteral(Resources.Index.UploadText); }</p>
+                }
+                <p><a class="btn btn-primary" href="/Archive/File">Add &raquo;</a></p>
+            </div>
+        </div>*@

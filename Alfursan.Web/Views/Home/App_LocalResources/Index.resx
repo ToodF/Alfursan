@@ -118,8 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountDesc" xml:space="preserve">
-    <value>Your Account files are here!&lt;br/&gt;
+    <value>Your &lt;b&gt;Account files &lt;/b&gt;are here!&lt;br/&gt;
 Please click  &lt;a href="/Archive/Files/2"&gt;Go to Accounts&lt;/a&gt; button and view your account files.</value>
+  </data>
+  <data name="BtnAccountDocs" xml:space="preserve">
+    <value>Go to Accounts</value>
+  </data>
+  <data name="BtnOther" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="BtnSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="BtnShipmmentDocs" xml:space="preserve">
+    <value>Go to Shipments</value>
+  </data>
+  <data name="BtnUpload" xml:space="preserve">
+    <value>Upload</value>
   </data>
   <data name="FileTypeAccountDoc" xml:space="preserve">
     <value>Account Document</value>
@@ -134,8 +149,14 @@ Please click  &lt;a href="/Archive/Files/2"&gt;Go to Accounts&lt;/a&gt; button a
     <value>Your other documents are here as your order invoices.&lt;br/&gt;
 Please click  &lt;a href="/Archive/Files/3"&gt;Others&lt;/a&gt; button and view your any other kind of various files.</value>
   </data>
+  <data name="SendEmailText" xml:space="preserve">
+    <value>You can send bulk e-mails to the saved users on the system.</value>
+  </data>
+  <data name="SendEmailTitle" xml:space="preserve">
+    <value>Send E-mail</value>
+  </data>
   <data name="ShipmentDocDesc" xml:space="preserve">
-    <value>Your Shipments Documents are here&lt;br/&gt;
+    <value>Your &lt;b&gt; Shipments Documents &lt;/b&gt;are here&lt;br/&gt;
 Invoice, Packing List, Eur1, AWB and more.&lt;br/&gt;
 Please click  &lt;a href="/Archive/Files/1"&gt;Go to Shipments&lt;/a&gt; button and view your shipment files.</value>
   </data>
@@ -151,14 +172,23 @@ Before upload a file please select the related user and file destination. &lt;br
 PLEASE MAKE SURE THAT YOU’VE UPLOADED THE RIGHT FILE TO THE RIGHT USER.</value>
   </data>
   <data name="UploadTitle" xml:space="preserve">
-    <value>Upload Document</value>
+    <value>Upload Files</value>
   </data>
-  <data name="WelcomeText" xml:space="preserve">
+  <data name="WelcomeTextAdmin" xml:space="preserve">
     <value>Welcome to ALFURSAN's online archive system.&lt;br/&gt;
         This system has been created just for our customers.&lt;br /&gt;
         By this system, our customers can follow up their business runing.&lt;br /&gt;
         You can upload shipment documents, account statements and any kind of various documents into related clients’ user accounts by using the system.&lt;br/&gt;
         Operate clear!</value>
+  </data>
+  <data name="WelcomeTextCustomer" xml:space="preserve">
+    <value>Dear Customer,&lt;br/&gt;&lt;br/&gt;
+Welcome to ALFURSAN's online archive system.&lt;br/&gt;
+We’ve created this system just for our Alfursan’s customers business follow up.&lt;br/&gt;&lt;br/&gt;
+You can view your shipment documents, account statements, various documents and all the history of your business runing.&lt;br/&gt;
+Please click the buttons below and view your files.&lt;br/&gt;
+If you need any asistance, please don’t hesitate to contact us.&lt;br/&gt;
+&lt;br/&gt;Best Regards,</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
     <value>ALFURSAN's Client Login</value>

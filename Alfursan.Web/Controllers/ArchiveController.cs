@@ -65,9 +65,35 @@ namespace Alfursan.Web.Controllers
             return View();
         }
         [Authentication]
-        public ActionResult Files()
+        public ActionResult Files(string id = null)
         {
             ViewBag.Title = Resources.Files.ArchiveTitle;
+            ViewBag.Description = "";
+            if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+            {
+                id = EnumFileType.ShipmentDoc.ToString();
+            }
+            if (!string.IsNullOrEmpty(id))
+            {
+                var fileType = 0;
+                int.TryParse(id, out fileType);
+                if (fileType == (int)EnumFileType.ShipmentDoc)
+                {
+                    ViewBag.Title = Resources.Files.ShipmentDocTitle;
+                    ViewBag.Description = Resources.Files.ShipmentDocDesc;
+                }
+                else if (fileType == (int)EnumFileType.AccountDoc)
+                {
+                    ViewBag.Title = Resources.Files.AccountTitle;
+                    ViewBag.Description = Resources.Files.AccountDesc;
+                }
+                else if (fileType == (int)EnumFileType.Other)
+                {
+                    ViewBag.Title = Resources.Files.OtherTitle;
+                    ViewBag.Description = Resources.Files.OtherDesc;
+                }
+
+            }
             ViewBag.DeleteMessage = Resources.MessageResource.Warning_DeleteFile;
 
             var customerUserId = 0;
@@ -102,11 +128,9 @@ namespace Alfursan.Web.Controllers
             Mapper.CreateMap<AlfursanFile, AlfursanFileViewModel>();
             var alfursanFileViewModels = Mapper.Map<List<AlfursanFile>, List<AlfursanFileViewModel>>(files.Data);
 
-            var fileType = Url.RequestContext.RouteData.Values["id"];
-
-            if (fileType != null)
+            if (id != null)
             {
-                return View(alfursanFileViewModels.Where(x => x.FileType == (EnumFileType)Enum.Parse(typeof(EnumFileType), fileType.ToString())));
+                return View(alfursanFileViewModels.Where(x => x.FileType == (EnumFileType)Enum.Parse(typeof(EnumFileType), id)));
             }
 
             return View(alfursanFileViewModels);
