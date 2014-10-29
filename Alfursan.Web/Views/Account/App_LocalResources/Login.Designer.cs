@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your e-mail address.
+        ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string PlaceHolderEmail {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your password.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string PlaceHolderPass {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use a local account to log in..
+        ///   Looks up a localized string similar to Please enter your e-mail address and password..
         /// </summary>
         public static string TitleDesc {
             get {

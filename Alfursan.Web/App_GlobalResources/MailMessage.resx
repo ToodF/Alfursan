@@ -195,17 +195,19 @@ Please click the CLIENT LOGIN on the left top and enter your user name and passw
 &lt;p&gt;Please view your files attached.&lt;/p&gt;</value>
   </data>
   <data name="ChangePassBody" xml:space="preserve">
-    <value>&lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
-&lt;p&gt;Panel giriş şifreniz değiştrilmiştir.&lt;/p&gt;
+    <value>&lt;h4&gt;Dear &lt;Name&gt; &lt;Surname&gt; ,&lt;/h4&gt;
+&lt;p&gt;Your password has been changed on ALFURSAN’s Client Login System.&lt;/p&gt;
 &lt;p&gt;
-Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (&lt;Email&gt;))
-&lt;/p&gt;
-&lt;p&gt;
-Şifre : &lt;Password&gt;
-&lt;/p&gt;</value>
+Your e-mail address : &lt;Email&gt;&lt;br/&gt;
+
+Your new password is : &lt;Password&gt;&lt;/p&gt;
+ 
+&lt;p&gt;You can login to system by using your new password.&lt;br/&gt;
+ 
+If you need any asistance, please don’t hesitate to contact us.&lt;/p&gt;</value>
   </data>
   <data name="ChangePassSubject" xml:space="preserve">
-    <value>Alfursan Changed Password</value>
+    <value>CHANGED PASSWORD / ALFURSAN’s Client Login System.</value>
   </data>
   <data name="FileUploadedBody" xml:space="preserve">
     <value>&lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;

@@ -61,14 +61,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h4&gt;Sayın &lt;Name&gt; &lt;Surname&gt; ;&lt;/h4&gt;
-        ///&lt;p&gt;Panel giriş şifreniz değiştrilmiştir.&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;h4&gt;Dear &lt;Name&gt; &lt;Surname&gt; ,&lt;/h4&gt;
+        ///&lt;p&gt;Your password has been changed on ALFURSAN’s Client Login System.&lt;/p&gt;
         ///&lt;p&gt;
-        ///Kullanıcı adı : &lt;Username&gt; (Email bilginiz ile de login olabilirsiniz (&lt;Email&gt;))
-        ///&lt;/p&gt;
-        ///&lt;p&gt;
-        ///Şifre : &lt;Password&gt;
-        ///&lt;/p&gt;.
+        ///Your e-mail address : &lt;Email&gt;&lt;br/&gt;
+        ///
+        ///Your new password is : &lt;Password&gt;&lt;/p&gt;
+        /// 
+        ///&lt;p&gt;You can login to system by using your new password.&lt;br/&gt;
+        /// 
+        ///If you need any asistance, please don’t hesitate to contact us.&lt;/p&gt;.
         /// </summary>
         public static string ChangePassBody {
             get {
@@ -77,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alfursan Changed Password.
+        ///   Looks up a localized string similar to CHANGED PASSWORD / ALFURSAN’s Client Login System..
         /// </summary>
         public static string ChangePassSubject {
             get {

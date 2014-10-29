@@ -136,10 +136,10 @@
     <value>ALFURSAN's Client Login</value>
   </data>
   <data name="PlaceHolderEmail" xml:space="preserve">
-    <value>Your e-mail address</value>
+    <value>E-mail</value>
   </data>
   <data name="PlaceHolderPass" xml:space="preserve">
-    <value>Your password</value>
+    <value>Password</value>
   </data>
   <data name="ResetPassEmail" xml:space="preserve">
     <value>Email</value>
@@ -151,6 +151,6 @@
     <value>Password</value>
   </data>
   <data name="TitleDesc" xml:space="preserve">
-    <value>Use a local account to log in.</value>
+    <value>Please enter your e-mail address and password.</value>
   </data>
 </root>
