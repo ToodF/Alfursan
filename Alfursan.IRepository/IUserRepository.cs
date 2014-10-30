@@ -7,7 +7,7 @@ namespace Alfursan.IRepository
     {
         EntityResponder<User> Get(string emailOrUsername, string password);
 
-        EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
+        EntityResponder<List<User>> GetAllActiveByUserType(EnumProfile profile);
 
         Responder ChangePassword(string emailOrUsername, string newPassword);
 

@@ -11,7 +11,7 @@ namespace Alfursan.IService
 
         EntityResponder<List<User>> GetCustomers();
 
-        EntityResponder<List<User>> GetAllByUserType(EnumProfile profile);
+        EntityResponder<List<User>> GetAllActiveByUserType(EnumProfile profile);
 
         Responder Set(User user);
 

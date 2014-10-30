@@ -103,7 +103,7 @@ else
             <td>
                 {% if (!i && !o.options.autoUpload) { %}
 
-                @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer)
+                @if (((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.CustomOfficer && ((User)Session["CurrentUser"]).ProfileId != (int)EnumProfile.Customer)
                 {
                     <p>
                         <div class="btn-group document-type">

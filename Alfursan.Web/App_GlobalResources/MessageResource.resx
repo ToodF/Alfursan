@@ -146,9 +146,8 @@ Please enter a valid e-mail address.</value>
     <value>Şifre değiştirme işleminiz tamamlanmış olup kullanıcı mail ile bilgilendirilmiştir.</value>
   </data>
   <data name="Info_ChangePass" xml:space="preserve">
-    <value>We sent your password. Please check your e-mail. 
-If you need any asistance please contact us. 
-Tel: 0090 212 2464430 
+    <value>We sent you an e-mail to set your password. Please check your e-mail. &lt;br/&gt;
+If you need any asistance please contact us. Tel: 00902122464430
 </value>
   </data>
   <data name="Info_DeleteUser" xml:space="preserve">

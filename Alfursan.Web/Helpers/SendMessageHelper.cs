@@ -1,4 +1,5 @@
-﻿using Alfursan.Domain;
+﻿using System.Linq;
+using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
 using Alfursan.Web.Models;
@@ -79,6 +80,33 @@ namespace Alfursan.Web.Helpers
                 message.To.Add(email);
             }
             return mailsender.SendMessage(message, null);
+        }
+
+        public static Responder SendMessageFileUploaded(List<User> users, List<string> absolutePaths, string body, string subject)
+        {
+            var mailsender = IocContainer.Resolve<IMessageSender>();
+            var message = new MailMessage();
+            message.Subject = subject;
+
+            message.Body = body;
+            message.Body += Resources.MailMessage.Signature;
+
+            var replacements = new Dictionary<string, string>();
+            replacements.Add("<Name>", users.First().Name);
+            replacements.Add("<Surname>", users.First().Surname);
+            replacements.Add("<Username>", users.First().UserName);
+            replacements.Add("<Email>", users.First().Email);
+
+            foreach (var absolutePath in absolutePaths)
+            {
+                var attachment = new Attachment(absolutePath);
+                message.Attachments.Add(attachment);
+            }
+            foreach (var email in users.Select(f=> f.Email))
+            {
+                message.To.Add(email);
+            }
+            return mailsender.SendMessage(message, replacements);
         }
 
         internal static Responder SendMessageChangePass(ChangePassViewModel changePassViewModel)

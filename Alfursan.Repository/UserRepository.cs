@@ -84,12 +84,16 @@ namespace Alfursan.Repository
             }
         }
 
-        public EntityResponder<List<User>> GetAllByUserType(EnumProfile profile)
+        public EntityResponder<List<User>> GetAllActiveByUserType(EnumProfile profile)
         {
             using (var con = DapperHelper.CreateConnection())
             {
-                var users = con.Query<User>("select * from [User] where IsDeleted = 0 and [ProfileId] = @profile", new { profile = (int)profile }).ToList();
-                return new EntityResponder<List<User>>() { Data = users };
+                var users = con.Query<User>("select * from [User] where IsDeleted = 0 and Status = 1 and [ProfileId] = @profile", new { profile = (int)profile }).ToList();
+                if (!users.Any())
+                {
+                    return new EntityResponder<List<User>>() { ResponseCode = EnumResponseCode.NoRecordFound };
+                }
+                return new EntityResponder<List<User>>() { Data = users.ToList() };
             }
         }
 
@@ -223,7 +227,7 @@ namespace Alfursan.Repository
                                             FROM   RelationCustomerCustomOfficer rcco
                                                    INNER JOIN [User] u
                                                            ON u.UserId = rcco.CustomerUserId
-                                            WHERE  CustomOfficerId = @CustomOfficerId",
+                                            WHERE  CustomOfficerId = @CustomOfficerId AND u.IsDeleted = 1 AND u.[Status] = 1 AND rcco.IsDeleted = 1",
                     new { CustomOfficerId = customOfficerId });
                 if (user == null || !user.Any())
                 {

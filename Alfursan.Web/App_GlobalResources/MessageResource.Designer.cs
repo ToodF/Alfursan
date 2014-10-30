@@ -143,9 +143,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We sent your password. Please check your e-mail. 
-        ///If you need any asistance please contact us. 
-        ///Tel: 0090 212 2464430 
+        ///   Looks up a localized string similar to We sent you an e-mail to set your password. Please check your e-mail. &lt;br/&gt;
+        ///If you need any asistance please contact us. Tel: 00902122464430
         ///.
         /// </summary>
         public static string Info_ChangePass {

@@ -24,9 +24,9 @@ namespace Alfursan.Service
             return userRepository.GetCustomers();
         }
 
-        public EntityResponder<List<User>> GetAllByUserType(EnumProfile profile)
+        public EntityResponder<List<User>> GetAllActiveByUserType(EnumProfile profile)
         {
-            throw new NotImplementedException();
+            return userRepository.GetAllActiveByUserType(profile);
         }
 
         public Responder Set(User user)

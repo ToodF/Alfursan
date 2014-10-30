@@ -1,4 +1,5 @@
-﻿using System.ServiceModel.Dispatcher;
+﻿using System.Collections.Concurrent;
+using System.ServiceModel.Dispatcher;
 using Alfursan.Domain;
 using Alfursan.Infrastructure;
 using Alfursan.IService;
@@ -27,8 +28,8 @@ namespace Alfursan.Web.Controllers
         {
             ViewBag.Title = Resources.Files.FileUploadTitle;
             ViewBag.Description = Resources.Files.FileUploadDescription;
-            if (CurrentUser.ProfileId == (int) EnumProfile.Customer ||
-                CurrentUser.ProfileId == (int) EnumProfile.CustomOfficer)
+            if (CurrentUser.ProfileId == (int)EnumProfile.Customer ||
+                CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
             {
                 ViewBag.Description = Resources.Files.FileUploadDescCustomer;
             }
@@ -53,6 +54,7 @@ namespace Alfursan.Web.Controllers
             }
             else
             {
+                ViewBag.FileType = (int)EnumFileType.Other;
                 userResult.Data = new List<User>() { CurrentUser };
             }
             if (userResult.ResponseCode == EnumResponseCode.Successful)
@@ -76,7 +78,7 @@ namespace Alfursan.Web.Controllers
             ViewBag.Description = "";
             if (CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
             {
-                id = EnumFileType.ShipmentDoc.ToString();
+                id = ((int)EnumFileType.ShipmentDoc).ToString();
             }
             if (!string.IsNullOrEmpty(id))
             {
@@ -209,7 +211,46 @@ namespace Alfursan.Web.Controllers
 
                     if (Request.Form["sendmail"] == "true")
                     {
-                        SendMail(alfursanFileViewModel.Customer.UserId, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.ResourceManager.GetString("NewFileUploadedSubject" + fileType.ToString()));
+                        var userService = IocContainer.Resolve<IUserService>();
+                        var mailUsers = new List<User>();
+
+                        if (CurrentUser.ProfileId != (int) EnumProfile.Customer)
+                        {
+                            var customer = userService.Get(alfursanFileViewModel.Customer.UserId);
+                            if (customer.ResponseCode == EnumResponseCode.Successful)
+                            {
+                                mailUsers.Add(customer.Data);
+                            }
+                        }
+                        if ((CurrentUser.ProfileId == (int)EnumProfile.Admin ||
+                            CurrentUser.ProfileId == (int)EnumProfile.User) && fileType == EnumFileType.ShipmentDoc)
+                        {
+                            /*Kullanıcılar Dosya yüklediğinde eğer dosya shipment doc ise müşteri ve gümrükçüye değilse sadece müşteriye mail gönderilir.*/
+                            var notificationUsers = userService.GetUsersForNotificationByCustomerUserId(alfursanFileViewModel.Customer.UserId);
+                            if (notificationUsers.ResponseCode == EnumResponseCode.Successful)
+                            {
+                                mailUsers = notificationUsers.Data;
+                            }
+                        }
+                        else if (CurrentUser.ProfileId == (int)EnumProfile.Customer || CurrentUser.ProfileId == (int)EnumProfile.CustomOfficer)
+                        {
+                            /*Müşteri kendine dosya yüklediğinde admin ve kullanıcılara mail gönderilir.*/
+                            /*Gümrükçü müşteriye dosya yüklediğinde müşteri ve kullanıcılara mail gönderilir.*/
+                            var adminUsers = userService.GetAllActiveByUserType(EnumProfile.Admin);
+                            var users = userService.GetAllActiveByUserType(EnumProfile.User);
+                            if (adminUsers.ResponseCode == EnumResponseCode.Successful)
+                            {
+                                mailUsers.AddRange(adminUsers.Data);
+                            }
+                            if (users.ResponseCode == EnumResponseCode.Successful)
+                            {
+                                mailUsers.AddRange(users.Data);
+                            }
+                        }
+                        if (mailUsers.Count > 0)
+                        {
+                            SendMessageHelper.SendMessageFileUploaded(mailUsers, new List<string> { absolutePath }, Resources.MailMessage.NewFileUploadedBody, Resources.MailMessage.ResourceManager.GetString("NewFileUploadedSubject" + fileType.ToString()));
+                        }
                     }
 
                     // Return JSON
@@ -239,17 +280,6 @@ namespace Alfursan.Web.Controllers
                     files = new { url = "", error = "" },
                 }, "text/html");
             }
-        }
-
-        private void SendMail(int customerUserId, List<string> absolutePath, string body, string subject)
-        {
-            var userService = IocContainer.Resolve<IUserService>();
-
-            var users = userService.GetUsersForNotificationByCustomerUserId(customerUserId);
-            SendMessageHelper.SendMessageFileUploaded(users.Data.Select(f => f.Email).ToList(),
-                   absolutePath,
-                   body,
-                   subject);
         }
 
         [HttpPost, ValidateInput(false)]
